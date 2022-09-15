@@ -1,0 +1,29 @@
+// Admin variable
+$bg-nav-bar-admin: #293042;
+$bg-admin: #F7F9FC;
+$color-white-primary: #fff;
+$color-white-secondary: #ced4da;
+
+
+.admin{
+    display: flex;
+    min-height: 100vh;
+
+    &-aside{
+        flex: 0 0 15%;
+        background-color: $bg-nav-bar-admin;
+        max-width: 15%;
+        position: sticky;
+        top: 0;
+        left: 0;
+        max-height: 100vh;
+        color: $color-white-secondary;
+    }
+
+    &-main{
+        flex: 0 0 85%;
+        max-width: 85%;
+        background: $bg-admin;
+        height: 1000px;
+    }
+}

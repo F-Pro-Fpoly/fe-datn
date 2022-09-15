@@ -1,0 +1,20 @@
+.navBarAdmin{
+    padding: 0 23px;
+    padding-bottom: 23px;
+
+    &-logo{
+        padding: 24px 30px;
+        text-align: center;
+        display: block;
+        text-decoration: none;
+        &-text{
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+    }
+
+    &-main{
+        margin-top: 30px;
+    }
+}

@@ -1,0 +1,32 @@
+.navBarItem{
+    padding: 10px 5px;
+    &-dropdown{
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    &-head{
+        display: flex;
+        text-decoration: none;
+        align-items: center;
+        justify-content: space-between;
+        color: #ced4da;
+        cursor: pointer;
+        &:hover{
+            color: white;
+        }
+
+        &>i{
+            margin-right: 5px;
+        }
+        
+    }
+    &-count{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px 5px;
+        border-radius: 5px;
+        background-color: #3F80EA;
+    }
+}
