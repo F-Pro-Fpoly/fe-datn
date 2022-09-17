@@ -1,5 +1,4 @@
 .navBarItem{
-    padding: 10px 5px;
     &-dropdown{
         margin-bottom: 0;
         list-style: none;
@@ -8,6 +7,7 @@
     &-head{
         display: flex;
         text-decoration: none;
+        padding: 10px 5px;
         align-items: center;
         justify-content: space-between;
         color: #ced4da;
@@ -19,6 +19,9 @@
         &>i{
             margin-right: 5px;
         }
+        &[aria-expanded=true]{
+            color: #fff;
+        }
         
     }
     &-count{
@@ -28,5 +31,9 @@
         padding: 2px 5px;
         border-radius: 5px;
         background-color: #3F80EA;
+    }
+
+    &-dropdown{
+        
     }
 }
