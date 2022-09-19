@@ -1,5 +1,4 @@
 
-
 import { Link } from "react-router-dom";
 import NavBarItem from "../NavBarItem";
 import "./NavBarAdmin.scss";
@@ -13,7 +12,7 @@ function NavBarAdmin({className}) {
 
             <div className="navBarAdmin-main">
                 <NavBarItem name="Dashboard" icon="bi bi-speedometer2" countTitle="5" />
-                <NavBarItem id="users" name="Quản lý user" dropdownArr={[
+                <NavBarItem id="users" name="Quản lý user" countTitle="7" dropdownArr={[
                     {
                         name: "Thêm user",
                         to: "/admin/add-user"

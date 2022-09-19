@@ -16,7 +16,7 @@ function RoleMiddleware(role = [], Element) {
         if(next) {
             return Element;
         }else{
-            return (<Navigate to="/" />)
+            return (<Navigate to="/notfound" />)
         }
         
         
