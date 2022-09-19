@@ -7,6 +7,7 @@ import Login from "./pages/auth/Login/Login";
 import Register from "./pages/auth/Resgister/Register";
 import HomePage from "./pages/site/HomePage";
 import {RoleMiddleware, AuthMiddlware} from "./Middleware";
+import NotFound from "./pages/NotFound/NotFound";
 
 
 
@@ -16,6 +17,7 @@ function Web() {
     return ( 
         <>
             <Routes>
+                <Route path="*" element={<NotFound/>} />
                 <Route element={<LayoutHome />}>
                     <Route path="/"  element={<HomePage />}/>
                     <Route path="/about"  element={<h2>About</h2>}/>
