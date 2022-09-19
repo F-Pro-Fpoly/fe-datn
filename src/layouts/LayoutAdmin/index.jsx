@@ -21,7 +21,9 @@ function LayoutAdmin() {
             <NavBarAdmin className="admin-aside"  />
             <main className="admin-main">
                 <NavBarTop navEl2={navEl2} />
-                <Outlet />
+                <div className="admin-content">
+                    <Outlet />
+                </div>
             </main>
         </div>
         </>
