@@ -8,6 +8,7 @@ import Register from "./pages/auth/Resgister/Register";
 import HomePage from "./pages/site/HomePage";
 import {RoleMiddleware, AuthMiddlware} from "./Middleware";
 import NotFound from "./pages/NotFound/NotFound";
+import Dashboard from "./pages/admin/Dashboard";
 
 
 
@@ -26,8 +27,9 @@ function Web() {
                     <Route path="/register"  element={<Register />}/>
                     <Route path="/login"  element={<Login />}/>
                 </Route>
-                <Route element={ RoleMiddleware([1, 2] ,<LayoutAdmin/>) } path="/admin">
+                <Route element={ RoleMiddleware([1, 2] ,<LayoutAdmin/>) } path="admin">
                     <Route index  element={<div>admin</div>}/>
+                    <Route  element={<Dashboard/> } path ='dashboard'/>
                 </Route>
             </Routes>
         </>
