@@ -9,7 +9,7 @@ function HomePage() {
             {
                 user&&
                 <div>
-                    {user.name}    
+                    {user.name}
                 </div>
             }
 
