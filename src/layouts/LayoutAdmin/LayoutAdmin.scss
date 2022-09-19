@@ -26,4 +26,16 @@ $color-white-secondary: #ced4da;
         background: $bg-admin;
         height: 1000px;
     }
+
+    &-toggle{
+        &>.admin-aside{
+            display: none;
+            
+        }
+        &>.admin-main{
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            overflow: hidden;
+        }
+    }
 }
