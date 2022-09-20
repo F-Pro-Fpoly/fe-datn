@@ -1,0 +1,39 @@
+
+
+    .nav{
+        display: flex;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 18px;
+       
+        .logo{
+            margin-left: 15px;
+        }
+        .main-menu{
+            padding: 25px;
+            display: flex;  
+          
+            ul{             
+                list-style-type: none;
+                margin: 0;
+                padding: 0;     
+                overflow: hidden;  
+                li{
+                    margin-right: 15px;
+                    display: inline;         
+                    padding: 5px; 
+                    a{
+                        color: #B4BDDB;
+                        text-decoration: none;
+                    }
+                    a:hover{
+                        color: #6F7BA4; 
+                    }
+                }
+            }
+        }
+    }
