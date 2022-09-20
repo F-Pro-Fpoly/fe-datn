@@ -4,8 +4,15 @@ function ListAdmin () {
 
     return(
     <div className="container">
+        <div className="top">
         <p>Danh sách khách hàng</p>
-        <table className="table table-striped"> 
+
+       <div> 
+            <input type="text" className="form-control" placeholder="Tìm kiếm? " />
+       </div>
+       
+        </div>
+        <table className="table table-striped" > 
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -31,9 +38,29 @@ function ListAdmin () {
                 <th scope="row">3</th>
                 <td colSpan="2">Larry the Bird</td>
                 <td>@twitter</td>
-            </tr>
+            </tr>         
             </tbody>
+           
       </table>
+        <nav aria-label="Page navigation example">
+            {/* <ul className="pagination justify-content-start">
+              
+            </ul> */}
+            <ul className="pagination justify-content-end">
+                <li className="page-item">
+                    <p>Hiện có 5 dòng trong 100 dòng</p>
+                </li>
+                <li className="page-item disabled">
+                    <a className="page-link" href="#" tabIndex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li className="page-item"><a className="page-link" href="#">1</a></li>
+                <li className="page-item"><a className="page-link" href="#">2</a></li>
+                <li className="page-item"><a className="page-link" href="#">3</a></li>
+                <li className="page-item">
+                    <a className="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
     );
