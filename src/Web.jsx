@@ -5,7 +5,7 @@ import LayoutAuth from "./layouts/LayoutAuth/LayoutAuth";
 import LayoutHome from "./layouts/LayoutClient/LayoutHome";
 import Login from "./pages/auth/Login/Login";
 import Register from "./pages/auth/Resgister/Register";
-import HomePage from "./pages/site/HomePage";
+import HomePage from "./pages/site/Home/HomePage";
 import {RoleMiddleware, AuthMiddlware} from "./Middleware";
 import NotFound from "./pages/NotFound/NotFound";
 import Dashboard from "./pages/admin/Dashboard";
