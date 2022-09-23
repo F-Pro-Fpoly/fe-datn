@@ -16,6 +16,7 @@
         align-content: center;
         justify-content: center;
         align-items: center;
+       
         .icon{
             width: 35%;
             text-align: center;
@@ -24,6 +25,7 @@
             box-shadow: 10px 10px 5px lightblue inset;
             i{
                 font-size: 20px;
+                color: #000000;
             }  
         }
         .icon:hover{
@@ -31,10 +33,17 @@
         }
         .title{
             width: 100%;
+            a{
+                text-decoration: none;
+            }      
             p{
                 font-weight: 700;
                 font-size: 18px;
                 text-align: center;
+                color: #000000;
+            }      
+            p:hover{
+                color: #45C3D2;
             }
         }
     }

@@ -1,21 +1,23 @@
+import { Link } from "react-router-dom";
 import "./Category.scss"
-function Category () {
+function Category ({Catearr = []} ) {
     return(
-
-
-         <div className="cate">
-            <div className="row1">
-                <div className="icon">
-                    <i className="fa-regular fa-building"></i>
+        <div className="cate">
+            {Catearr.map((item, index) =>(
+                <div className="row1" key={index}>  
+                   <div className="icon">
+                        <Link>
+                             <i className={item.icon}></i>
+                        </Link>                                    
+                    </div>
+                    <div className="title">
+                        <Link>
+                        <p>{item.title}</p>
+                        </Link>
+                    </div>
                 </div>
-                <div className="title">
-                    <p>Khám chuyên khoa</p>
-                </div>
-            </div>
-          
-     
-        </div>
-
+            ))}
+        </div>    
     )
 }
 
