@@ -1,6 +1,6 @@
 import {Outlet} from 'react-router-dom'; 
-import Footer from '../../components/Footer';
-import Nav from '../../components/Nav';
+import Footer from '../../components/Client/Footer';
+import Nav from '../../components/Client/Nav';
 import "./LayoutHome.scss"
 
 function LayoutHome() {

@@ -1,7 +1,7 @@
 import "./Footer.scss"
-import fb from "../../image/facebook-square.svg"
-import yb from "../../image/youtube-square.svg"
-import logo from "../../image/logo192.png"
+import fb from "../../../image/facebook-square.svg"
+import yb from "../../../image/youtube-square.svg"
+import logo from "../../../image/logo192.png"
 function Footer () {
 
     return (

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import "./Nav.scss"
-import logo from "../../image/logo192.png"
+import logo from "../../../image/logo192.png"
 function Nav (){
     let user = useSelector((state => state.auth.user));
     return(
