@@ -1,0 +1,66 @@
+
+
+    .nav{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 18px;
+        h4{
+            font-size: 18px;
+        }
+        .logo{
+            margin-left: 25px;
+        }
+        .main-menu{
+            padding: 25px  25px 0 25px;
+            display: flex;  
+            ul{             
+                display: flex;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-content: center;
+                justify-content: center;
+                align-items: stretch; 
+                li{
+                    margin-right: 15px;
+                    display: inline;         
+                    padding: 5px  5px 0 5px; 
+                    a{
+                        color: #333333;
+                        text-decoration: none;
+                    }
+                    a:hover{
+                        color: #6F7BA4; 
+                    }
+                }
+            }
+        }
+        .login{
+            ul{             
+                list-style-type: none;
+                margin: 0;
+                padding: 0;     
+                overflow: hidden;  
+                display: flex;
+                li{
+                    margin-right: 15px;
+                    display: inline;         
+                    padding: 5px 5px 0 5px; 
+                    a{
+                        color: #333333;
+                        text-decoration: none;
+                    }
+                    a:hover{
+                        color: #6F7BA4; 
+                    }
+                }
+            }
+        }
+    }
