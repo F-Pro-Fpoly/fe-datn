@@ -8,7 +8,7 @@ import { useEffect } from "react";
 function NavBarAdmin({className}) {
     return ( 
         <aside className={`navBarAdmin ${className}`}>
-            <Link className="navBarAdmin-logo" to="/admin">
+            <Link className="navBarAdmin-logo" to="/">
                 <span className="navBarAdmin-logo-text">AppLogo</span>
             </Link>
 
