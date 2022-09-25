@@ -1,15 +1,23 @@
 .footer1{
     background-color:transparent;
     h3{
-        font-size: 18px;
+        font-size: 18px;    
     }
     .flashlink{
-        margin-left: 10%;
-       
-        a{
-            line-height: 25px;
-            text-decoration: none;
-            color: #4AC3D2;
+        margin-left: 18%;
+        .row{
+            a{
+                line-height: 45px;     
+                text-decoration: none;
+                color: #4AC3D2;
+            }
+        }
+    }
+    .headquarters{
+        margin-left: 18%;
+        .row{       
+            line-height: 50px;     
+           
         }
     }
 }
