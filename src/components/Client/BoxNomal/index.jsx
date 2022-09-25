@@ -5,7 +5,7 @@ function Box ({boxArr = []}) {
     return ( 
         <>
         {boxArr.map((item,index) => (
-            <div className="col">
+            <div className="col" key={index}>
                 <div className="tag">
                     <span>{item.tag}</span>
                 </div>
