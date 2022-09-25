@@ -49,11 +49,11 @@ function HomePage() {
             <div className="container">
                 <div className="row">
                     <Box boxArr = {box}  />
-                </div>        
             </div>
             <BoxVideo />
             <BoxPopular/>
             <BoxOutstanding/>
+                </div>        
            
         </>
      );
