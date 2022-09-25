@@ -30,34 +30,34 @@ function Footer () {
                         </div>
                         <div className="col">
                             <div className="flashlink">
-                            <div className="row1">
-                                  <Link to=""> Liên hệ đối tác</Link>
-                            </div>
-                            <div className="row2">
-                                    <Link to="">Gói chuyển đổi số doanh nghiệp</Link>
-                            </div>
-                            <div className="row3">
-                                    <Link to="">Tuyển dụng</Link>
-                            </div>
-                            <div className="row4">
-                                    <Link to="">Câu hỏi thường gặp</Link>
-                            </div>
-                            <div className="row5">
-                                    <Link to="">Điều khoản sử dụng</Link>
-                            </div>
+                                <div className="row">
+                                    <Link to=""> Liên hệ đối tác</Link>
+                                </div>
+                                <div className="row">
+                                        <Link to="">Gói chuyển đổi số doanh nghiệp</Link>
+                                </div>
+                                <div className="row">
+                                        <Link to="">Tuyển dụng</Link>
+                                </div>
+                                <div className="row">
+                                        <Link to="">Câu hỏi thường gặp</Link>
+                                </div>
+                                <div className="row">
+                                        <Link to="">Điều khoản sử dụng</Link>
+                                </div>
                             </div>
                         </div>
                         <div className="col">
                             <div className="headquarters">
-                                <div className="row1">
+                                <div className="row">
                                     <h3>Trụ sở tại Hà Nội</h3>
                                     <p>28 Thành Thái, Dịch Vọng, Cầu Giấy, Hà Nội</p>
                                 </div>
-                                <div className="row2">
+                                <div className="row">
                                     <h3>Văn phòng tại TP Hồ Chí Minh</h3>
                                     <p>Số 01, Hồ Bá Kiện, Phường 15, Quận 10</p>
                                 </div>
-                                <div className="row3">
+                                <div className="row">
                                     <h3>Hỗ trợ khách hàng</h3>
                                     <p>support@bookingcare.vn (7h - 18h)</p>
                                 </div>

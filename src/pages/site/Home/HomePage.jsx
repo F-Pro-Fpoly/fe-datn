@@ -45,15 +45,13 @@ function HomePage() {
 
     return ( 
         <>
-            <Banner/>
-            <div className="container">
-                <div className="row">
-                    <Box boxArr = {box}  />
-            </div>
-            <BoxVideo />
-            <BoxPopular/>
-            <BoxOutstanding/>
-                </div>        
+         <Banner/>   
+            <div className="container">                 
+                <Box boxArr = {box}  />           
+                <BoxVideo />
+                <BoxPopular/>
+                <BoxOutstanding/>
+            </div>        
            
         </>
      );
