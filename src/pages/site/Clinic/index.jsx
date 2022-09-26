@@ -78,10 +78,10 @@ function Clinic () {
                                     Số 5 phố Xã Đàn - Đống Đa - Hà Nội</p>
                            </div>
                            <div className="price">
-                                <h3>GIÁ KHÁM: <span>400.000 <sup>đ</sup>.</span><Link to="">Xem chi tiết</Link></h3>
+                                <h3>GIÁ KHÁM: <span>400.000 <sup>đ</sup>. &nbsp;</span><Link to="">Xem chi tiết</Link></h3>
                            </div>
                             <div className="insurance">
-                                <h3>LOẠI BẢO HIỂM ÁP DỤNG.<Link to="">Xem chi tiết</Link></h3>
+                                <h3>LOẠI BẢO HIỂM ÁP DỤNG. &nbsp;<Link to="">Xem chi tiết</Link></h3>
                             </div>
                         </div>
 
