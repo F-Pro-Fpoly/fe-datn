@@ -6,12 +6,12 @@ function Category ({Catearr = []} ) {
             {Catearr.map((item, index) =>(
                 <div className="row1" key={index}>  
                    <div className="icon">
-                        <Link>
+                        <Link to="/">
                              <i className={item.icon}></i>
                         </Link>                                    
                     </div>
                     <div className="title">
-                        <Link>
+                        <Link to="/">
                         <p>{item.title}</p>
                         </Link>
                     </div>
