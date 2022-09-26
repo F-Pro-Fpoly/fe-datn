@@ -1,19 +1,20 @@
 
-
 import { Link } from "react-router-dom";
 import NavBarItem from "../NavBarItem";
 import "./NavBarAdmin.scss";
+import {useRef} from "react";
+import { useEffect } from "react";
 
 function NavBarAdmin({className}) {
     return ( 
         <aside className={`navBarAdmin ${className}`}>
-            <Link className="navBarAdmin-logo" to="/admin">
+            <Link className="navBarAdmin-logo" to="/">
                 <span className="navBarAdmin-logo-text">AppLogo</span>
             </Link>
 
             <div className="navBarAdmin-main">
                 <NavBarItem name="Dashboard" icon="bi bi-speedometer2" countTitle="5" />
-                <NavBarItem id="users" name="Quản lý user" dropdownArr={[
+                <NavBarItem id="users" name="Quản lý user" countTitle="7" dropdownArr={[
                     {
                         name: "Thêm user",
                         to: "/admin/add-user"
