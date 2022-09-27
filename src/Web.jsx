@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Dashboard from "./pages/admin/Dashboard";
 import CategoryNav from "./pages/site/CategoryNav";
 import Clinic from "./pages/site/Clinic";
+import Logout from "./pages/auth/Logout/Logout";
 
 
 
@@ -31,6 +32,7 @@ function Web() {
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
                     <Route path="/login"  element={<Login />}/>
+                    <Route path="/logout"  element={<Logout />}/>
                 </Route>
                 <Route element={ RoleMiddleware([1, 2] ,<LayoutAdmin/>) } path="admin">
                     <Route index  element={<div>admin</div>}/>
