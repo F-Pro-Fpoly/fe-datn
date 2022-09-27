@@ -3,8 +3,13 @@ import { useEffect,useRef } from "react";
 import { Link } from "react-router-dom";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import "./NavBarTop.scss";
+import {useDispatch, useSelector} from "react-redux";
+import Logout from "../../../pages/auth/Logout/Logout";
 
 function NavBarTop({navEl2}) {
+    const user = useSelector((state) => state.auth.user);
+    const dispatch = useDispatch();
+
     const handleNavM = () =>{
         navEl2.classList.toggle('admin-toggle');
     }
@@ -39,10 +44,10 @@ function NavBarTop({navEl2}) {
                 </div>
                 <div className="navBarTop-avatars dropdown" >
                     <div className="avatar">
-                        <img src="https://appstack.bootlab.io/img/avatars/avatar.jpg" alt="" />
+                        <img src={user.avatar} alt="" />
                     </div>
                     <div className="navBarTop-avatars-content dropdown-toggle" id="menu-avata" data-bs-toggle="dropdown"  aria-expanded="false" type="button">
-                        <span>Phan Van</span>
+                        <span>{user.name}</span>
                     </div>
                     <DropdownMenu id="menu-avata">
                         <ul className="navBarTop-list">
