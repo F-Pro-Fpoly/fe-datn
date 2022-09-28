@@ -52,9 +52,14 @@ function Nav (){
                 <ul>
                     {
                     user ?
+                   <>
                     <li>                                    
-                        <Link to="/admin">{user.name}</Link>                                 
+                        <Link to="/admin">{user.name}</Link>                                                                 
                     </li>
+                    <li>
+                        <Link to="/logout">Đăng xuất</Link>     
+                    </li>
+                   </>
                      : 
                    <>
                     <li>
