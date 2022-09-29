@@ -11,13 +11,10 @@ import NotFound from "./pages/NotFound/NotFound";
 import Dashboard from "./pages/admin/Dashboard";
 import CategoryNav from "./pages/site/CategoryNav";
 import Clinic from "./pages/site/Clinic";
-<<<<<<< HEAD
 import Doctor from "./pages/site/Doctor";
 import AddUser from "./pages/admin/User/AddUser/AddUser";
 import ListUser from "./pages/admin/User/ListUser/ListUser";
-=======
 import Logout from "./pages/auth/Logout/Logout";
->>>>>>> b784fb70b92c38c3314a8cfed668df02fa3a18a3
 
 
 
