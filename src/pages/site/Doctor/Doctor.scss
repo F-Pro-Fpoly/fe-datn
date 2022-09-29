@@ -44,14 +44,36 @@
         margin-top: 25px;
         margin-left: -107px;
     }
-    img{
-        width: 150%;
-        border-radius: 50%;
-    }
     a{
         text-decoration:initial;
+        color: #000000;
     }
    }
-   
-   
+
+       
+
+        .left-section .chatList{
+            overflow: hidden;
+        }
+        .left-section .chatList .img{
+            width: 60px;
+            float: left;
+            text-align: center;
+            position: relative;
+        }
+        .left-section .chatList .img img{
+            width: 100%;
+            border-radius: 100%;
+        }
+        .left-section .chatList .desc{
+            width: calc(100% - 60%);
+            float: left;
+            margin-left: 10px;
+            position: relative;
+        }
+        .left-section .chatList .desc h5{
+            margin-top: 9px;
+            
+            line-height: 7px;
+        }
 }
