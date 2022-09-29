@@ -28,7 +28,7 @@ function Nav (){
                         </Link>  
                     </li>
                     <li>
-                        <Link to="/home">
+                        <Link to="/bacsi">
                         <h4>Bác sĩ</h4>
                         <p>Chọn bác sĩ giỏi</p>    
                         </Link>  

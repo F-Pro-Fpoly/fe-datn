@@ -11,6 +11,9 @@ import NotFound from "./pages/NotFound/NotFound";
 import Dashboard from "./pages/admin/Dashboard";
 import CategoryNav from "./pages/site/CategoryNav";
 import Clinic from "./pages/site/Clinic";
+import Doctor from "./pages/site/Doctor";
+import AddUser from "./pages/admin/User/AddUser/AddUser";
+import ListUser from "./pages/admin/User/ListUser/ListUser";
 import Logout from "./pages/auth/Logout/Logout";
 
 
@@ -25,7 +28,8 @@ function Web() {
                 <Route element={<LayoutHome />}>
                     <Route path="/"  element={<HomePage />}/>
                     <Route path="/chuyenkhoa"  element={<CategoryNav />}/>
-                    <Route path="/chuyenkhoa/co-xuong-khop"  element={<Clinic />}/>
+                    <Route path="/chuyenkhoa/co-xuong-khop"  element={<Clinic />}/>             
+                    <Route path="/bacsi"  element={<Doctor />}/>             
                     <Route path="/about"  element={<h2>About</h2>}/>
                 </Route>
 
@@ -37,6 +41,9 @@ function Web() {
                 <Route element={ RoleMiddleware([1, 2] ,<LayoutAdmin/>) } path="admin">
                     <Route index  element={<div>admin</div>}/>
                     <Route  element={<Dashboard/> } path ='dashboard'/>
+                    <Route path="/admin/add-user"  element={<AddUser />}/>  
+                    <Route path="/admin/list-user"  element={<ListUser />}/>  
+
                 </Route>
             </Routes>
         </>
