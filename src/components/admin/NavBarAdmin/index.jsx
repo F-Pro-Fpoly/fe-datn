@@ -34,6 +34,16 @@ function NavBarAdmin({className}) {
                         to: "/admin/list-user"
                     },
                 ]} icon="bi bi-speedometer2" />
+                <NavBarItem id="sick" name="Danh mục vaccine" dropdownArr={[
+                    {
+                        name: "Thêm danh mục",
+                        to: "/admin/danh-muc-vaccine/add"
+                    },
+                    {
+                        name: "Danh sách danh mục",
+                        to: "/admin/danh-muc-vaccine/list"
+                    },
+                ]} icon="bi bi-speedometer2" />
             </div>
         </aside>
      );

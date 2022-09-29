@@ -22,7 +22,6 @@ function Login() {
 
     let navigate = useNavigate();
 
-    document.title = "login"
 
     // redux
     const user = useSelector((state) => state.auth.user)
@@ -32,6 +31,7 @@ function Login() {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
+        document.title = "login"
         if (user) {
             navigate('/')
         }

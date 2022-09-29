@@ -11,6 +11,7 @@ function LayoutAdmin() {
     const adminRef = useRef();
 
     useEffect(()=>{
+        document.title = "Admin";
         setNavEl2(adminRef.current)
     },[])
 
