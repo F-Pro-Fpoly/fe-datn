@@ -15,6 +15,8 @@ import Doctor from "./pages/site/Doctor";
 import AddUser from "./pages/admin/User/AddUser/AddUser";
 import ListUser from "./pages/admin/User/ListUser/ListUser";
 import Logout from "./pages/auth/Logout/Logout";
+import AddSick from "./pages/admin/Sicks/AddSick/AddSick";
+import ListSick from "./pages/admin/Sicks/ListSick/ListSick";
 
 
 
@@ -41,9 +43,13 @@ function Web() {
                 <Route element={ RoleMiddleware([1, 2] ,<LayoutAdmin/>) } path="admin">
                     <Route index  element={<div>admin</div>}/>
                     <Route  element={<Dashboard/> } path ='dashboard'/>
+
+                    <Route path="danh-muc-vaccine">
+                        <Route  element={<AddSick/> } path ='add'/>
+                        <Route  element={<ListSick/> } path ='list'/>
+                    </Route>
                     <Route path="/admin/add-user"  element={<AddUser />}/>  
                     <Route path="/admin/list-user"  element={<ListUser />}/>  
-
                 </Route>
             </Routes>
         </>
