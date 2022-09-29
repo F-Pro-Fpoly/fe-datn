@@ -12,8 +12,8 @@ import Dashboard from "./pages/admin/Dashboard";
 import CategoryNav from "./pages/site/CategoryNav";
 import Clinic from "./pages/site/Clinic";
 import Doctor from "./pages/site/Doctor";
-import AddUser from "./pages/admin/User";
-import ListUser from "./pages/admin/User";
+import AddUser from "./pages/admin/User/AddUser/AddUser";
+import ListUser from "./pages/admin/User/ListUser/ListUser";
 
 
 
