@@ -1,7 +1,7 @@
 .navBarAdmin{
     padding: 0 23px;
     padding-bottom: 23px;
-
+    transition:  0.2s;
     &-logo{
         padding: 24px 30px;
         text-align: center;
@@ -16,6 +16,7 @@
 
     &-main{
         margin-top: 10px;
+
     }
 }
 
