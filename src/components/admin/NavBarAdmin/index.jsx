@@ -13,7 +13,7 @@ function NavBarAdmin({className}) {
             </Link>
 
             <div className="navBarAdmin-main">
-                <NavBarItem name="Dashboard" icon="bi bi-speedometer2" countTitle="5" />
+                <NavBarItem name="Dashboard" icon="bi bi-speedometer2" countTitle="5" to="/admin" />
                 <NavBarItem id="users" name="Quản lý user" countTitle="7" dropdownArr={[
                     {
                         name: "Thêm user",
