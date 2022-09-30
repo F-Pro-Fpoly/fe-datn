@@ -37,7 +37,7 @@ function NavBarTop({navEl2}) {
                                 <Link to="/profile" className="navBarTop-link">Profile</Link>
                             </li>
                             <li className="navBarTop-item">
-                                <Link to="/logout" className="navBarTop-link">Logout</Link>
+                                <Link to="/logout" className="navBarTop-link">Đăng xuất</Link>
                             </li>
                         </ul>
                     </DropdownMenu>
