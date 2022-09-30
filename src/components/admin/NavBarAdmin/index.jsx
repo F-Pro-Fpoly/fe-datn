@@ -8,7 +8,7 @@ import { useEffect } from "react";
 function NavBarAdmin({className}) {
     return ( 
         <aside className={`navBarAdmin ${className}`}>
-            <Link className="navBarAdmin-logo" to="/">
+            <Link className="navBarAdmin-logo" to="/admin">
                 <span className="navBarAdmin-logo-text">AppLogo</span>
             </Link>
 
@@ -34,13 +34,13 @@ function NavBarAdmin({className}) {
                         to: "/admin/list-user"
                     },
                 ]} icon="bi bi-speedometer2" />
-                <NavBarItem id="sick" name="Danh mục vaccine" dropdownArr={[
+                <NavBarItem id="sick" name="Danh mục bệnh" dropdownArr={[
                     {
-                        name: "Thêm danh mục",
+                        name: "Thêm bệnh",
                         to: "/admin/danh-muc-vaccine/add"
                     },
                     {
-                        name: "Danh sách danh mục",
+                        name: "Danh sách bệnh",
                         to: "/admin/danh-muc-vaccine/list"
                     },
                 ]} icon="bi bi-speedometer2" />

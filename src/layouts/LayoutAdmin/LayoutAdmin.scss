@@ -8,11 +8,12 @@ $color-white-secondary: #ced4da;
 .admin{
     display: flex;
     min-height: 100vh;
-
+    transition:  0.2s;
     &-aside{
-        flex: 0 0 15%;
+        transition:  0.2s;
+        flex: 0 0 20%;
         background-color: $bg-nav-bar-admin;
-        max-width: 15%;
+        max-width: 20%;
         position: sticky;
         top: 0;
         left: 0;
@@ -21,17 +22,18 @@ $color-white-secondary: #ced4da;
     }
 
     &-main{
-        flex: 0 0 85%;
-        max-width: 85%;
+        flex: 0 0 80%;
+        max-width: 80%;
         background: $bg-admin;
         min-height: 100vh;
-
+       
     }
 
     &-toggle{
+        transition:  0.5s;
         &>.admin-aside{
             display: none;
-            
+           
         }
         &>.admin-main{
             flex: 0 0 100% !important;
@@ -41,6 +43,7 @@ $color-white-secondary: #ced4da;
     }
 
     &-content{
+        transition:  0.2s;
         padding: 20px;
     }
 }
