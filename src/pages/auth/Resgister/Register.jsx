@@ -11,6 +11,7 @@ import {registerApi} from "../../../services/AuthService";
 
 
 import "./Register.scss";
+import LoadingGlobal from '../../../components/LoadingGlobal';
 
 const schema = object({
     name: string().required('Họ tên không được bỏ trống').min(8, 'Họ tên quá ngắn'),
@@ -25,13 +26,20 @@ function Register() {
         resolver: yupResolver(schema)
     });
 
+    const [loading, setLoading] = useState(false);
+
     const onSubmit = async data => {
+        setLoading(true);
         try {
+            
             let res = await registerApi(data);
             // console.log(res);
+             setLoading(false);
+
             reset();
             toast.success("Đăng ký thành công !");
         } catch (error) {
+            setLoading(false);
             let data = error.response.data.data;
             console.log(data);
             setError('email', { type: 'custom', message: data.email[0] });
@@ -45,6 +53,7 @@ function Register() {
     document.title = "Trang đăng ký";
 
     return ( 
+        <>
         <div className="auth-wrapper">
             <ToastContainer
                 position="top-right"
@@ -90,7 +99,11 @@ function Register() {
                     Đăng ký
                 </Button>
             </Form>
+
         </div> 
+
+    {loading && <LoadingGlobal />}</>
+
     );
 }
 

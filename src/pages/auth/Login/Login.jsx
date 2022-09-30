@@ -9,6 +9,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addUser } from "../../../redux/slices/AuthSlice";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import LoadingGlobal from "../../../components/LoadingGlobal";
+import { toast,ToastContainer } from 'react-toastify';
+
 
 const schema = object({
     email: string().required('email không được bỏ trống').min(8, 'Email quá ngắn').email('email không đúng định dạng'),
@@ -19,6 +22,8 @@ function Login() {
     const {register, handleSubmit, formState: { errors }, reset, setError} = useForm({
         resolver: yupResolver(schema)
     });
+
+    const [loading, setLoading] = useState(false);
 
     let navigate = useNavigate();
 
@@ -38,30 +43,37 @@ function Login() {
     }, [user]);
 
     const onSubmit = async response => {
+        setLoading(true);
         setMessage('');
         try {
             let res = await loginApi(response);
             let data = res.data;
             if(data.errCode == 2) {
+                setLoading(false);
                 setMessage(data.message);
-            }else{
-                dispatch(addUser(data.data));
-
+                toast.error(data.message);
                 
+            }else{
+                setLoading(false);
+                dispatch(addUser(data.data));   
             }
         } catch (error) {
             // let res = error.response.data.data
             console.log(error);
+            setLoading(false);
         }
 
     }
 
     return (
+        <>
+        {loading && <LoadingGlobal />}
+
         <div className="auth-wrapper">
             <h2 className='mb-4 text-center'>Đăng Nhập</h2>
-            
+            <ToastContainer />
             <Form method='post' action='#' onSubmit={handleSubmit(onSubmit)}>
-                {message&&<p className="text-dange">{message}</p>}
+                {/* {message&&<p className="text-dange">{message}</p>} */}
                 <Form.Group className='mb-3' controlId="formBasicEmail">
                     <Form.Label>Nhập email</Form.Label>
                     <Form.Control type="email" placeholder="Nhập email" {...register('email')} />
@@ -77,6 +89,7 @@ function Login() {
                 </Button>
             </Form>
         </div>
+        </>
      );
 }
 
