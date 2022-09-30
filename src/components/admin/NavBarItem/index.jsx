@@ -1,22 +1,33 @@
 import { Link } from "react-router-dom";
 import "./NavBarItem.scss";
 
-function NavBarItem({name, dropdownArr = [], id, icon, countTitle}) {
+function NavBarItem({name, dropdownArr = [], id, icon, countTitle, to}) {
     let aAttributes = dropdownArr.length > 0 ? {
         'data-bs-toggle': "collapse", href: `#${id}`, role: "button", "aria-expanded": "false", "aria-controls": `${id}`
     } : '';
     return ( 
         <div className="navBarItem">
-            <a className="navBarItem-head"
-            {...aAttributes}
-            >
-            <div className="navBarItem-left">
+            {to ? <Link to={to} className="navBarItem-head">
+                <div className="navBarItem-left">
                 {icon && <i className={icon}></i>} <span>{name}</span>
-            </div>
-            {countTitle && 
-            <div className="navBarItem-count">
-                {countTitle}
-            </div>}</a>
+                </div>
+                {countTitle && 
+                <div className="navBarItem-count">
+                    {countTitle}
+                </div>}
+            </Link>: (
+                <a className="navBarItem-head"
+                {...aAttributes}
+                >
+                <div className="navBarItem-left">
+                    {icon && <i className={icon}></i>} <span>{name}</span>
+                </div>
+                {countTitle && 
+                <div className="navBarItem-count">
+                    {countTitle}
+                </div>}</a>
+            )}
+            
             {
                 dropdownArr.length > 0 && 
                 <ul className="navBarItem-dropdown collapse" id={id}>
