@@ -48,6 +48,9 @@ function Web() {
                         <Route  element={<AddSick/> } path ='add'/>
                         <Route  element={<ListSick/> } path ='list'/>
                     </Route>
+                    <Route path="booking">
+                        <Route  element={<ListSick/> } path ='list'/>
+                    </Route>
                     <Route path="/admin/add-user"  element={<AddUser />}/>  
                     <Route path="/admin/list-user"  element={<ListUser />}/>  
                 </Route>
