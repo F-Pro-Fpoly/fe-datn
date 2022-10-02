@@ -44,6 +44,16 @@ function NavBarAdmin({className}) {
                         to: "/admin/danh-muc-vaccine/list"
                     },
                 ]} icon="bi bi-speedometer2" />
+                <NavBarItem id="booking" name="Đặt lịch khám" dropdownArr={[
+                    // {
+                    //     name: "Thêm bệnh",
+                    //     to: "/admin/danh-muc-vaccine/add"
+                    // },
+                    {
+                        name: "Danh sách lịch khám",
+                        to: "/admin/booking/list"
+                    },
+                ]} icon="bi bi-speedometer2" />
             </div>
         </aside>
      );
