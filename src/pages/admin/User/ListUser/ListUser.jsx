@@ -4,8 +4,10 @@ import Table from 'react-bootstrap/Table';
 import {getListUsersAPI} from "../../../../services/UserService";
 import {useDispatch, useSelector} from "react-redux";
 import Loading from '../../../../components/Loading/Loading';
+import Pagination from 'react-bootstrap/Pagination';
 
 import "./ListUser.scss";
+import Paginate from '../../../../components/Paginate/Paginate';
 
 
 function ListUser() {
@@ -13,21 +15,37 @@ function ListUser() {
 
   const [listUser, getListUser] = useState([]);
   const [loading, getLoading] = useState(false);
+  const [paginate, setPaginate] = useState(null);
+  const [page, setPage] = useState(1);
+  // paginate
+
+  
 
 
   useEffect(()=>{
     const start = async () =>{
+      getListUser([]);
       getLoading(true);
-      let res = await getListUsersAPI(token);
+      let res = await getListUsersAPI(token, null, page);
       let data = res.data;
       let dataArr = data.data;
 
       getLoading(false);
       getListUser(dataArr);
+
+      // handle paginate
+      let pagination = data.meta.pagination;
+      setPaginate(pagination);
+      
     }
 
     start();
-  },[]);
+  },[page]);
+
+
+  const onChangePage = (number) =>{
+    setPage(number);
+  }
 
 
 
@@ -72,11 +90,14 @@ function ListUser() {
         
         
       </tbody>
-      
     </Table>
+
     {
       loading && <Loading />
     }
+
+    {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
+    
     </>
   );
 }

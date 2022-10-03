@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number, date, InferType, ref } from 'yup';
 import { toast,ToastContainer } from 'react-toastify';
 import Loading from "../../../../components/Loading/Loading";
+import LoadingBtn from "../../../../components/LoadingBtn/LoadingBtn";
 const schema = object({
     code: string().required('Mã bệnh không được bỏ trống'),
     name: string().required('Tên bệnh không được bỏ trống'),
@@ -72,7 +73,7 @@ function AddSick() {
                 </div>
 
                 <div className="form-group mb-2">
-                    <button className="btn btn-primary" >{loading ?  <Loading  /> : "Thêm"}</button>
+                    <button className="btn btn-primary" >{loading ?  (<LoadingBtn />) : "Thêm"}</button>
                     <Link className="btn btn-primary ms-2" to="/admin/danh-muc-vaccine/list">Danh sách</Link>
                 </div>
             </form>
