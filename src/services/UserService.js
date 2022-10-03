@@ -2,15 +2,19 @@ import API from './api';
 // import axios from 'axios';
 
 
-function getListUsersAPI(token = null, email = null) {
+function getListUsersAPI(token = null, email = null, page = 1) {
     
     try {
         let headers ={}; 
+        let url = `auth/user/list`;
         if(token){
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
-        return API.get(`auth/user/list`,{headers: headers});
+        if(page != 1){
+            url += `?page=${page}`;
+        }
+        return API.get(url, {headers: headers});
     } catch (error) {
         console.error(error);
         return [];
