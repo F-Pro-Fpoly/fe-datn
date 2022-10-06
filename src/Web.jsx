@@ -17,6 +17,7 @@ import ListUser from "./pages/admin/User/ListUser/ListUser";
 import Logout from "./pages/auth/Logout/Logout";
 import AddSick from "./pages/admin/Sicks/AddSick/AddSick";
 import ListSick from "./pages/admin/Sicks/ListSick/ListSick";
+import ListBooking from "./pages/admin/Booking/ListBooking/ListBooking";
 
 
 
@@ -44,12 +45,12 @@ function Web() {
                     <Route index  element={<div>admin</div>}/>
                     <Route  element={<Dashboard/> } path ='dashboard'/>
 
-                    <Route path="danh-muc-vaccine">
+                    <Route path="sick">
                         <Route  element={<AddSick/> } path ='add'/>
                         <Route  element={<ListSick/> } path ='list'/>
                     </Route>
                     <Route path="booking">
-                        <Route  element={<ListSick/> } path ='list'/>
+                        <Route  element={<ListBooking/> } path ='list'/>
                     </Route>
                     <Route path="/admin/add-user"  element={<AddUser />}/>  
                     <Route path="/admin/list-user"  element={<ListUser />}/>  

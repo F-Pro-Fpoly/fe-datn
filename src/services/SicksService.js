@@ -2,7 +2,7 @@ import API from './api';
 // import axios from 'axios';
 
 
-function getListServiceAPI(token = null) {
+function getListServiceAPI(token = null,page=1) {
     
     try {
         let headers ={}; 
@@ -10,7 +10,7 @@ function getListServiceAPI(token = null) {
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
-        return API.get(`auth/sick/list`,{headers: headers});
+        return API.get(`auth/sick/list?page=${page}`,{headers: headers});
     } catch (error) {
         console.error(error);
         return [];

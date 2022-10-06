@@ -48,14 +48,12 @@ function ListUser() {
   }
 
 
-
   return (
     <>
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th>#</th>
-          <th>ID</th>
+          <th>STT</th>
           <th>Name</th>
           <th>Username</th>
           <th>Email</th>
@@ -71,7 +69,6 @@ function ListUser() {
         {
           listUser.map((val, index)=>(
             <tr key={index}>
-              <td></td>
               <td>{index+1}</td>
               <td>{val.name}</td>
               <td>{val.username}</td>

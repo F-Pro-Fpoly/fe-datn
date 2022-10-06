@@ -3,37 +3,31 @@ import { useState } from "react";
 import Table from "react-bootstrap/esm/Table";
 import { useSelector } from "react-redux";
 import Loading from "../../../../components/Loading/Loading";
-import { getListServiceAPI } from "../../../../services/SicksService";
+import { getListServiceAPI } from "../../../../services/BookingService";
 import Paginate from '../../../../components/Paginate/Paginate';
-function ListSick() {
+function ListBooking() {
 
     const token = useSelector(state => state.auth.token);
 
-    const [listSick, getListSick] = useState([]);
+    const [listbooking, getListbooking] = useState([]);
     const [loading, getLoading] = useState(false);
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
-    
+
     useEffect(() => {
       
         const start = async () => {
             getLoading(true)
-            getListSick([])
+            getListbooking([])
             let res = await getListServiceAPI(token,page) 
             let data = res.data 
             let dataArr = data.data
             getLoading(false)
-            getListSick(dataArr)
-
-            // handle paginate
-            let pagination = data.meta.pagination;
-            setPaginate(pagination);
+            getListbooking(dataArr)
         }
       
         start();
     }, [page])
-
-
     const onChangePage = (number) =>{
       setPage(number);
     }
@@ -43,23 +37,31 @@ function ListSick() {
         <Table striped bordered hover >
           <thead>
             <tr>
-
               <th>STT</th>
-              <th>Mã Bệnh</th>
-              <th>Tên bệnh</th>
-              <th>Chỉnh sửa</th>
-              <th>Xóa</th>
+              <th>Mã booking</th>
+              <th>Tên người đặt</th>
+              <th>Tên phòng ban</th>
+              <th>Lịch trình</th>
+              <th>Ngày khám</th>
+              <th>Giờ khám</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            
             </tr>
           </thead>
           <tbody>
             {
-              listSick.map((val, index)=>(
+              listbooking.map((val, index)=>(
                 <tr key={index}>
                   <td>{index+1}</td>
                   <td>{val.code}</td>
-                  <td>{val.name}</td>
-                  <td><i className="fas fa-edit"></i></td>
-                  <td><i className="fa fa-trash"></i></td>
+                  <td>{val.user_name}</td>
+                  <td>{val.department_name}</td>
+                  <td>{val.schedule_name}</td>
+                  <td>{val.date}</td>
+                  <td>{val.timeSlot_start} - {val.timeSlot_end}</td>
+                  <td>{val.status}</td>
+                  <td><i className="fas fa-edit"></i> | <i className="fa fa-trash"></i></td>
                 </tr>
               ))
             }
@@ -75,4 +77,4 @@ function ListSick() {
      );
 }
 
-export default ListSick;
+export default ListBooking;

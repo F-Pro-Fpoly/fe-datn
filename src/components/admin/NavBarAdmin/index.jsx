@@ -37,18 +37,14 @@ function NavBarAdmin({className}) {
                 <NavBarItem id="sick" name="Danh mục bệnh" dropdownArr={[
                     {
                         name: "Thêm bệnh",
-                        to: "/admin/danh-muc-vaccine/add"
+                        to: "/admin/sick/add"
                     },
                     {
                         name: "Danh sách bệnh",
-                        to: "/admin/danh-muc-vaccine/list"
+                        to: "/admin/sick/list"
                     },
                 ]} icon="bi bi-speedometer2" />
                 <NavBarItem id="booking" name="Đặt lịch khám" dropdownArr={[
-                    // {
-                    //     name: "Thêm bệnh",
-                    //     to: "/admin/danh-muc-vaccine/add"
-                    // },
                     {
                         name: "Danh sách lịch khám",
                         to: "/admin/booking/list"
