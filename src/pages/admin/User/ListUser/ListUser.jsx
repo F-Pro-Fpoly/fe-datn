@@ -54,15 +54,13 @@ function ListUser() {
       <thead>
         <tr>
           <th>STT</th>
-          <th>Name</th>
-          <th>Username</th>
+          <th>Họ và tên</th>
           <th>Email</th>
-          <th>Address</th>
-          <th>Phone</th>
-          <th>Active</th>
-          <th>Avata</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          <th>Địa chỉ</th>
+          <th>Số điện thoại</th>
+          <th>Kích hoạt</th>
+          <th>Ảnh đại diện</th>
+          <th>Thao tác</th>
         </tr>
       </thead>
       <tbody>
@@ -71,7 +69,6 @@ function ListUser() {
             <tr key={index}>
               <td>{index+1}</td>
               <td>{val.name}</td>
-              <td>{val.username}</td>
               <td>{val.email}</td>
               <td>{val.address ?? null}</td>
               <td>{val.phone}</td>
@@ -79,8 +76,7 @@ function ListUser() {
               <td >
                 <img className='listUser-img' src={val.avatar} alt="Ảnh user" />
               </td>
-              <td><i className="fas fa-edit"></i></td>
-              <td><i className="fa fa-trash"></i></td>
+              <td><i style={{cursor: "pointer"}} className="fas fa-edit"></i> | <i style={{cursor: "pointer"}} className="fa fa-trash"></i></td>
             </tr>
           ))
         }

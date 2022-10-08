@@ -24,14 +24,14 @@ function NavBarAdmin({className}) {
                         to: "/admin/list-user"
                     },
                 ]} icon="bi bi-speedometer2" />
-                <NavBarItem id="category" name="Quản lý category" dropdownArr={[
+                <NavBarItem id="specialist" name="Quản lý chuyên khoa" dropdownArr={[
                     {
-                        name: "Thêm category",
-                        to: "/admin/add-user"
+                        name: "Thêm chuyên khoa",
+                        to: "/admin/specialist/add"
                     },
                     {
-                        name: "List category",
-                        to: "/admin/list-user"
+                        name: "Danh sách chuyên khoa",
+                        to: "/admin/specialist/list"
                     },
                 ]} icon="bi bi-speedometer2" />
                 <NavBarItem id="sick" name="Danh mục bệnh" dropdownArr={[
