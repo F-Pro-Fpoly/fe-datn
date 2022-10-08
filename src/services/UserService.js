@@ -22,4 +22,19 @@ function getListUsersAPI(token = null, email = null, page = 1) {
 
 }
 
-export { getListUsersAPI}
+function createUserApi({token, data}) {
+    try {
+        let headers ={}; 
+        let url = `auth/user/add`;
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        return API.post(url, data,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+export { getListUsersAPI, createUserApi}
