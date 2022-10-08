@@ -33,7 +33,7 @@ function AddSick() {
         getLoading(false);
         let data = error.response.data.data;
             console.log(data);
-            setError('code', { type: 'custom', message: data.email[0] });
+            setError('code', { type: 'custom', message: data.code[0] });
             setError('name', { type: 'custom', message: data.username[0] });
             // errors.email.message = ;
             errors.username.message = data.username[0];

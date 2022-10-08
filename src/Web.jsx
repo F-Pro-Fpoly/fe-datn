@@ -18,6 +18,8 @@ import Logout from "./pages/auth/Logout/Logout";
 import AddSick from "./pages/admin/Sicks/AddSick/AddSick";
 import ListSick from "./pages/admin/Sicks/ListSick/ListSick";
 import ListBooking from "./pages/admin/Booking/ListBooking/ListBooking";
+import AddSpecialist from "./pages/admin/Specialists/AddSpecialist/AddSpecialist";
+import ListSpecialist from "./pages/admin/Specialists/ListSpecialist/ListSpecialist";
 
 
 
@@ -48,6 +50,10 @@ function Web() {
                     <Route path="sick">
                         <Route  element={<AddSick/> } path ='add'/>
                         <Route  element={<ListSick/> } path ='list'/>
+                    </Route>
+                    <Route path="specialist">
+                        <Route  element={<AddSpecialist/> } path ='add'/>
+                        <Route  element={<ListSpecialist/> } path ='list'/>
                     </Route>
                     <Route path="booking">
                         <Route  element={<ListBooking/> } path ='list'/>

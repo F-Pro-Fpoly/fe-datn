@@ -3,13 +3,15 @@ import { useState } from "react";
 import Table from "react-bootstrap/esm/Table";
 import { useSelector } from "react-redux";
 import Loading from "../../../../components/Loading/Loading";
-import { getListServiceAPI } from "../../../../services/SicksService";
+import { getListServiceAPI } from "../../../../services/SpecialistService";
 import Paginate from '../../../../components/Paginate/Paginate';
-function ListSick() {
+import "./ListSpecialist.scss"
+
+function ListSpecialist() {
 
     const token = useSelector(state => state.auth.token);
 
-    const [listSick, getListSick] = useState([]);
+    const [ListSpecialist, getListListSpecialist] = useState([]);
     const [loading, getLoading] = useState(false);
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
@@ -18,12 +20,12 @@ function ListSick() {
       
         const start = async () => {
             getLoading(true)
-            getListSick([])
+            getListListSpecialist([])
             let res = await getListServiceAPI(token,page) 
             let data = res.data 
             let dataArr = data.data
             getLoading(false)
-            getListSick(dataArr)
+            getListListSpecialist(dataArr)
 
             // handle paginate
             let pagination = data.meta.pagination;
@@ -45,19 +47,22 @@ function ListSick() {
             <tr>
 
               <th>STT</th>
-              <th>Mã Bệnh</th>
-              <th>Tên bệnh</th>
+              <th>Mã chuyên khoa</th>
+              <th>Tên chuyên khoa</th>
+              <th>Mô tả</th>
               <th>Thao tác</th>
             </tr>
           </thead>
           <tbody>
+            {console.log(ListSpecialist)}
             {
-              listSick.map((val, index)=>(
+              ListSpecialist.map((val, index)=>(
                 <tr key={index}>
                   <td>{index+1}</td>
                   <td>{val.code}</td>
                   <td>{val.name}</td>
-                  <td><i className="fas fa-edit" style={{cursor: "pointer"}}></i> | <i style={{cursor: "pointer"}} className="fa fa-trash"></i></td>
+                  <td>{val.description}</td>
+                  <td className="button"><i className="fas fa-edit"></i> | <i className="fa fa-trash"></i></td>
                 </tr>
               ))
             }
@@ -73,4 +78,4 @@ function ListSick() {
      );
 }
 
-export default ListSick;
+export default ListSpecialist;
