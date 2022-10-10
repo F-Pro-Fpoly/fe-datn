@@ -20,7 +20,7 @@ function AddUser() {
     };
     try {
       let res = await createUserApi(req);
-
+      FormRep.current.reset();
       toast.success(res.data.message) ;     
     } catch (error) {
       let res = error.response;
@@ -33,7 +33,7 @@ function AddUser() {
 
 
   return (
-    <Form onSubmit={submitForm} ref={FormRep} enctype='multipart/form-data'>
+    <Form onSubmit={submitForm} ref={FormRep}>
       <ToastContainer
         position="top-right"
         autoClose={4000}
