@@ -20,6 +20,7 @@ import ListSick from "./pages/admin/Sicks/ListSick/ListSick";
 import ListBooking from "./pages/admin/Booking/ListBooking/ListBooking";
 import AddSpecialist from "./pages/admin/Specialists/AddSpecialist/AddSpecialist";
 import ListSpecialist from "./pages/admin/Specialists/ListSpecialist/ListSpecialist";
+import AddDepartment from "./pages/admin/Department/AddDepartment/AddDepartment";
 
 
 
@@ -58,6 +59,11 @@ function Web() {
                     <Route path="booking">
                         <Route  element={<ListBooking/> } path ='list'/>
                     </Route>
+
+                    <Route path="phong-ban">
+                        <Route element={<AddDepartment />} path="add" />
+                    </Route>
+
                     <Route path="/admin/add-user"  element={<AddUser />}/>  
                     <Route path="/admin/list-user"  element={<ListUser />}/>  
                 </Route>

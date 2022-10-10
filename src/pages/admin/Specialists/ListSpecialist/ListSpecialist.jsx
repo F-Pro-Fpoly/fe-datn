@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/esm/Table";
 import { useSelector } from "react-redux";
@@ -54,7 +54,6 @@ function ListSpecialist() {
             </tr>
           </thead>
           <tbody>
-            {console.log(ListSpecialist)}
             {
               ListSpecialist.map((val, index)=>(
                 <tr key={index}>

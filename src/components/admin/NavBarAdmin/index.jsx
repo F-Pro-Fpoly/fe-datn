@@ -50,6 +50,14 @@ function NavBarAdmin({className}) {
                         to: "/admin/booking/list"
                     },
                 ]} icon="bi bi-speedometer2" />
+
+
+                <NavBarItem id="department" name="Quản lý phòng ban" dropdownArr={[
+                    {
+                        name: "Thêm phòng ban",
+                        to: "/admin/phong-ban/add"
+                    },
+                ]} icon="bi bi-speedometer2" />
             </div>
         </aside>
      );
