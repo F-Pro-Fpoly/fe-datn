@@ -28,7 +28,7 @@ function ListSpecialist() {
             getListListSpecialist(dataArr)
 
             // handle paginate
-            let pagination = data.meta.pagination;
+            let pagination = data.meta.pagination ?? null;
             setPaginate(pagination);
         }
       
