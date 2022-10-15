@@ -74,7 +74,7 @@ function AddSick() {
 
                 <div className="form-group mb-2">
                     <button className="btn btn-primary" >{loading ?  (<LoadingBtn />) : "Thêm"}</button>
-                    <Link className="btn btn-primary ms-2" to="/admin/danh-muc-vaccine/list">Danh sách</Link>
+                    <Link className="btn btn-primary ms-2" to="/admin/sick/list">Danh sách</Link>
                 </div>
             </form>
         </div>
