@@ -6,7 +6,6 @@ class DepartmentService {
 
     }
 
-
     createDepartmentApi = (token, data) =>{
         try {
             let headers ={}; 
