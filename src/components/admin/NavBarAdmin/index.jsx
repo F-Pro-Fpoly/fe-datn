@@ -58,6 +58,7 @@ function NavBarAdmin({className}) {
                         to: "/admin/phong-ban/add"
                     },
                 ]} icon="bi bi-speedometer2" />
+                 <NavBarItem name="Về trang người dùng" icon="bi bi-speedometer2"  to="../" />
             </div>
         </aside>
      );
