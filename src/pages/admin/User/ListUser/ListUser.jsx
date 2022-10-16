@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-import {getListUsersAPI} from "../../../../services/UserService";
+import {getListUsersAPI, deleteUser} from "../../../../services/UserService";
 import {useDispatch, useSelector} from "react-redux";
 import Loading from '../../../../components/Loading/Loading';
 import Pagination from 'react-bootstrap/Pagination';
@@ -22,22 +22,22 @@ function ListUser() {
   
 
 
+  const start = async () =>{
+    getListUser([]);
+    getLoading(true);
+    let res = await getListUsersAPI(token, null, page);
+    let data = res.data;
+    let dataArr = data.data;
+
+    getLoading(false);
+    getListUser(dataArr);
+
+    // handle paginate
+    let pagination = data.meta.pagination ?? null;
+    setPaginate(pagination);
+    
+  }
   useEffect(()=>{
-    const start = async () =>{
-      getListUser([]);
-      getLoading(true);
-      let res = await getListUsersAPI(token, null, page);
-      let data = res.data;
-      let dataArr = data.data;
-
-      getLoading(false);
-      getListUser(dataArr);
-
-      // handle paginate
-      let pagination = data.meta.pagination ?? null;
-      setPaginate(pagination);
-      
-    }
 
     start();
   },[page]);
@@ -76,7 +76,12 @@ function ListUser() {
               <td >
                 <img className='listUser-img' src={val.avatar} alt="Ảnh user" />
               </td>
-              <td><i style={{cursor: "pointer"}} className="fas fa-edit"></i> | <i style={{cursor: "pointer"}} className="fa fa-trash"></i></td>
+              <td><i style={{cursor: "pointer"}} className="fas fa-edit"></i> | <i 
+              onClick={async()=>{if(window.confirm("Bạn có thật sự muốn xóa")){
+                await deleteUser({token: token, id: val.id});
+                start();
+              }}}
+              style={{cursor: "pointer"}} className="fa fa-trash"></i></td>
             </tr>
           ))
         }

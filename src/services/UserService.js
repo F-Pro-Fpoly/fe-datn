@@ -37,5 +37,19 @@ function createUserApi({token, data}) {
     }
 }
 
+function deleteUser({token, id}){
+    try {
+        let headers = {};
+        let url = `auth/user/delete/${id}`;
+        if(token) {
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+        }
+        return API.delete(url,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 
-export { getListUsersAPI, createUserApi}
+
+export { getListUsersAPI, createUserApi, deleteUser}
