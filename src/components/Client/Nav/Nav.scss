@@ -1,47 +1,102 @@
 
-
-    .nav{
+    .navb{
         display: flex;
-        flex-direction: row;
         flex-wrap: nowrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+        flex-direction: row;
         align-content: center;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
-        font-size: 18px;
+        position: fixed;
+        z-index: 2;
         h4{
             font-size: 18px;
         }
         .logo{
             margin-left: 25px;
         }
-        .main-menu{
-            padding: 25px  25px 0 25px;
-            display: flex;  
-            ul{             
-                display: flex;
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                flex-direction: row;
-                flex-wrap: nowrap;
-                align-content: center;
-                justify-content: center;
-                align-items: stretch; 
-                li{
-                    margin-right: 15px;
-                    display: inline;         
-                    padding: 5px  5px 0 5px; 
-                    a{
-                        color: #333333;
-                        text-decoration: none;
+        .Menu{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            padding: 25px 25px 0 25px;
+            align-items: flex-end;
+            .top-menu{
+                padding-bottom: 10px;
+                ul{
+                    display: flex;
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    overflow: hidden;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    align-content: center;
+                    justify-content: center;
+                    align-items: stretch;        
+                    color: white !important;
+                    li{
+                        margin-right: 15px;
+                        display: inline;         
+                        padding: 5px  5px 0 5px; 
+                        a{
+                            color: #333333;
+                            text-decoration: none;
+                        }
+                        a:hover{
+                            color: #6F7BA4; 
+                        }
+                        i{
+                            padding-right: 10px;
+                            color: white !important;
+                        }
+                        span{
+                            color: white !important;
+                        }
                     }
-                    a:hover{
-                        color: #6F7BA4; 
+                }
+    
+            }
+            .main-menu{       
+                display: flex;  
+                border-top: 1px solid #cccccc;
+                ul{             
+                    display: flex;
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    overflow: hidden;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    align-content: center;
+                    justify-content: center;
+                    align-items: stretch; 
+                    li{
+                        margin-right: 15px;
+                        display: inline;         
+                        padding: 5px  5px 0 5px; 
+                        a{
+                            color: #333333;
+                            text-decoration: none;
+                        }
+                        a:hover{
+                            color: #6F7BA4; 
+                        }
+                        h4{
+                            text-transform: uppercase;
+                            // font-size: 22px;
+                            padding: 10px;
+                            color: white;
+                        }
                     }
                 }
             }
         }
+   
         .login{
             ul{             
                 list-style-type: none;
@@ -59,6 +114,9 @@
                     }
                     a:hover{
                         color: #6F7BA4; 
+                    }
+                    span{
+                        color: white !important;
                     }
                 }
             }
