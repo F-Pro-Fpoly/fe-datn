@@ -12,7 +12,7 @@ function Category ({Catearr = []} ) {
                     </div>
                     <div className="title">
                         <Link to="/">
-                        <p>{item.title}</p>
+                            <p>{item.title}</p>
                         </Link>
                     </div>
                 </div>

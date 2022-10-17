@@ -29,7 +29,6 @@ function SpecialistClient () {
     }, [])
     
 
-
     return (
         <>
         <div className="container">

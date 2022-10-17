@@ -1,51 +1,51 @@
 import "./Banner.scss";
-import banner from "../../../image/boy-990325_1920.jpg"
+import banner from "../../../image/w1920-h960.jfif"
 import Category from "../Category";
 import { useState } from "react";
 import { useEffect } from "react";
 function Banner () {
     
-    const [Cate, setCate] = useState();
+    // const [Cate, setCate] = useState();
 
-    useEffect(() => {
-        let Arr = [
-            {      
-                'icon': "fa-regular fa-building",
-                'title':"Khám chuyên khoa A"
-            },
-            {      
-                'icon': "fa-regular fa-building",
-                'title':"Khám chuyên khoa B"
-            },
-            {      
-                'icon': "fa-regular fa-building",
-                'title':"Khám chuyên khoa C"
-            },
-            {      
-                'icon': "fa-regular fa-building",
-                'title':"Khám chuyên khoa D"
-            },
-            {      
-                'icon': "fa-regular fa-building",
-                'title':"Khám chuyên khoa E"
-            },
-        ];
-        setCate(Arr)
-    },[])
+    // useEffect(() => {
+    //     let Arr = [
+    //         {      
+    //             'icon': "fa-regular fa-building",
+    //             'title':"Khám chuyên khoa A"
+    //         },
+    //         {      
+    //             'icon': "fa-regular fa-building",
+    //             'title':"Khám chuyên khoa B"
+    //         },
+    //         {      
+    //             'icon': "fa-regular fa-building",
+    //             'title':"Khám chuyên khoa C"
+    //         },
+    //         {      
+    //             'icon': "fa-regular fa-building",
+    //             'title':"Khám chuyên khoa D"
+    //         },
+    //         {      
+    //             'icon': "fa-regular fa-building",
+    //             'title':"Khám chuyên khoa E"
+    //         },
+    //     ];
+    //     setCate(Arr)
+    // },[])
 
     return( 
 
         <div className="banner">    
+            <div className="bongmo"></div>
             <img src={banner} alt="banner" />
             <div className="text">
                 <h2 className='text1'>NỀN TẢNG Y TẾ</h2>
                 <h2 className='text2'>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</h2>
-                    <div className='input'>
-                    <i className="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder='Tìm bệnh viện' />        
-                </div>               
+            
+                <button className="btn btn-primary">Đăng ký lịch ngay</button>
+      
             </div>       
-            <Category Catearr = {Cate} />
+            {/* <Category Catearr = {Cate} /> */}
         </div>
     )
 }
