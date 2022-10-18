@@ -19,6 +19,7 @@ import ListBooking from "./pages/admin/Booking/ListBooking/ListBooking";
 import AddSpecialist from "./pages/admin/Specialists/AddSpecialist/AddSpecialist";
 import ListSpecialist from "./pages/admin/Specialists/ListSpecialist/ListSpecialist";
 import AddDepartment from "./pages/admin/Department/AddDepartment/AddDepartment";
+import UpdateUser from "./pages/admin/User/UpdateUser/UpdateUser";
 import SpecialistClient from "./pages/site/SpecialistClient";
 import Book from "./pages/site/Book";
 
@@ -66,6 +67,7 @@ function Web() {
 
                     <Route path="/admin/add-user"  element={<AddUser />}/>  
                     <Route path="/admin/list-user"  element={<ListUser />}/>  
+                    <Route path="/admin/update-user/:id"  element={<UpdateUser />}/>  
                 </Route>
             </Routes>
         </>
