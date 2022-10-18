@@ -9,9 +9,7 @@ import HomePage from "./pages/site/Home/HomePage";
 import {RoleMiddleware, AuthMiddlware} from "./Middleware";
 import NotFound from "./pages/NotFound/NotFound";
 import Dashboard from "./pages/admin/Dashboard";
-import CategoryNav from "./pages/site/CategoryNav";
 import Clinic from "./pages/site/Clinic";
-import Doctor from "./pages/site/Doctor";
 import AddUser from "./pages/admin/User/AddUser/AddUser";
 import ListUser from "./pages/admin/User/ListUser/ListUser";
 import Logout from "./pages/auth/Logout/Logout";
@@ -22,6 +20,8 @@ import AddSpecialist from "./pages/admin/Specialists/AddSpecialist/AddSpecialist
 import ListSpecialist from "./pages/admin/Specialists/ListSpecialist/ListSpecialist";
 import AddDepartment from "./pages/admin/Department/AddDepartment/AddDepartment";
 import UpdateUser from "./pages/admin/User/UpdateUser/UpdateUser";
+import SpecialistClient from "./pages/site/SpecialistClient";
+import Book from "./pages/site/Book";
 
 
 
@@ -34,9 +34,9 @@ function Web() {
                 <Route path="*" element={<NotFound/>} />
                 <Route element={<LayoutHome />}>
                     <Route path="/"  element={<HomePage />}/>
-                    <Route path="/chuyenkhoa"  element={<CategoryNav />}/>
+                    <Route path="/chuyenkhoa"  element={<SpecialistClient />}/>
                     <Route path="/chuyenkhoa/co-xuong-khop"  element={<Clinic />}/>             
-                    <Route path="/bacsi"  element={<Doctor />}/>             
+                    <Route path="/dang-ly-lich"  element={<Book />}/>             
                     <Route path="/about"  element={<h2>About</h2>}/>
                 </Route>
 
