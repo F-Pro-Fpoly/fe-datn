@@ -5,9 +5,12 @@ import NavBarTop from "../../components/admin/NavBarTop/NavBarTop";
 import "./LayoutAdmin.scss";
 import { useState } from "react";
 import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import LoadingGlobal from "../../components/LoadingGlobal";
 
 function LayoutAdmin() {
     const [navEl2, setNavEl2] = useState();
+    const loading = useSelector(state => state.interface.loading)
     const adminRef = useRef();
 
     useEffect(()=>{
@@ -26,6 +29,7 @@ function LayoutAdmin() {
                     <Outlet />
                 </div>
             </main>
+        {loading && <LoadingGlobal />}
         </div>
         </>
        

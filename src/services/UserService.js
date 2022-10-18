@@ -2,7 +2,7 @@ import API from './api';
 // import axios from 'axios';
 
 
-function getListUsersAPI(token = null, email = null, page = 1) {
+function getListUsersAPI(token = null, search = {}, page = 1) {
     
     try {
         let headers ={}; 
@@ -11,9 +11,7 @@ function getListUsersAPI(token = null, email = null, page = 1) {
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
-        if(page != 1){
-            url += `?page=${page}`;
-        }
+        url += `?page=${page}&name=${search.name ?? ""}&email=${search.email??""}&active=${search.active??""}`;
         return API.get(url, {headers: headers});
     } catch (error) {
         console.error(error);
@@ -51,5 +49,23 @@ function deleteUser({token, id}){
     }
 }
 
+function updateUser({token, id, data}){
+    let headers = {};
+    let url = `auth/user/update/${id}`;
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.put(url, data,{headers: headers});
+}
 
-export { getListUsersAPI, createUserApi, deleteUser}
+function getUser({token, id}) {
+    let headers = {};
+    let url = `auth/user/${id}`;
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.get(url,{headers: headers});
+}
+
+
+export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser }
