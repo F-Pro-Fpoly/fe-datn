@@ -1,31 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import logo from "../../../image/logo.png"
 
 import "./Nav.scss"
 
 function Nav (){
+    const path = useLocation()
     const navRef = useRef();
-
+    const pathname = path.pathname
     let user = useSelector((state => state.auth.user));
-
-    window.onscroll = function() {myFunction()};
-
-    const myFunction = () => {
-        if (document.documentElement.scrollTop > 100) {            
+    useEffect (() => {
+        console.log(pathname);
+        if(pathname === '/'){
+            const  a = navRef.current.classList
+            a.remove('bg')   
+            window.onscroll = function() {myFunction()};
+            const myFunction = () => {
+                if (document.documentElement.scrollTop > 100) {     
+                    const  a = navRef.current.classList
+                    a.add('bg')               
+                }else{
+                    const  a = navRef.current.classList
+                    a.remove('bg')
+                }    
+            }     
+        }
+        else{
             const  a = navRef.current.classList
             a.add('bg')
-        }else{
-            const  a = navRef.current.classList
-            a.remove('bg')
         }
-    }
-
-    return(
-     
-       
-      
+    }, )
+   
+    return(   
             <div className="navb" ref={navRef}>
                 <div className="logo">
                 <Link to="/">
