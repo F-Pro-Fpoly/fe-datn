@@ -22,6 +22,8 @@ import AddDepartment from "./pages/admin/Department/AddDepartment/AddDepartment"
 import UpdateUser from "./pages/admin/User/UpdateUser/UpdateUser";
 import SpecialistClient from "./pages/site/SpecialistClient";
 import Book from "./pages/site/Book";
+import ListDepartment from "./pages/admin/Department/ListDepartment/ListDepartment";
+import UpdateDepartment from "./pages/admin/Department/UpdateDepartment/UpdateDepartment";
 
 
 
@@ -63,6 +65,8 @@ function Web() {
 
                     <Route path="phong-ban">
                         <Route element={<AddDepartment />} path="add" />
+                        <Route element={<ListDepartment />} path="list" />
+                        <Route element={<UpdateDepartment />} path="update/:id" />
                     </Route>
 
                     <Route path="/admin/add-user"  element={<AddUser />}/>  

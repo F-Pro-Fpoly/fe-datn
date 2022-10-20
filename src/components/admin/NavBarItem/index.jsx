@@ -6,7 +6,7 @@ function NavBarItem({name, dropdownArr = [], id, icon, countTitle, to}) {
         'data-bs-toggle': "collapse", href: `#${id}`, role: "button", "aria-expanded": "false", "aria-controls": `${id}`
     } : '';
     return ( 
-        <div className="navBarItem">
+        <div className="navBarItem ">
             {to ? <Link to={to} className="navBarItem-head">
                 <div className="navBarItem-left">
                 {icon && <i className={icon}></i>} <span>{name}</span>
