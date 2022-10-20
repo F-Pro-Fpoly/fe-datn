@@ -22,6 +22,8 @@ import AddDepartment from "./pages/admin/Department/AddDepartment/AddDepartment"
 import UpdateUser from "./pages/admin/User/UpdateUser/UpdateUser";
 import SpecialistClient from "./pages/site/SpecialistClient";
 import Book from "./pages/site/Book";
+import ListMenu from "./pages/admin/Setttings/Menu/ListMenu/ListMenu";
+import AddMenu from "./pages/admin/Setttings/Menu/AddMenu/AddMenu";
 
 
 function Web() {
@@ -62,6 +64,11 @@ function Web() {
 
                     <Route path="phong-ban">
                         <Route element={<AddDepartment />} path="add" />
+                    </Route>
+
+                    <Route path="chinh-sua-menu">
+                        <Route element={< ListMenu />} path="list" />
+                        <Route element={< AddMenu />}  path="add" />
                     </Route>
 
                     <Route path="/admin/add-user"  element={<AddUser />}/>  
