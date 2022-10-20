@@ -1,13 +1,12 @@
-// import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useState } from 'react';
-// import { Link } from 'react-router-dom';
 import Banner from '../../../components/Client/Banner';
 import Box from '../../../components/Client/BoxNomal';
 import BoxVideo from '../../../components/Client/BoxVideo';
 import BoxPopular from '../../../components/Client/BoxPopular';
 import BoxOutstanding from '../../../components/Client/BoxOutstanding';
 import "./HomePage.scss";
+
 
 function HomePage() {
     // let user = useSelector((state => state.auth.user));
@@ -52,6 +51,7 @@ function HomePage() {
                 <BoxPopular/>
                 <BoxOutstanding/>
             </div>        
+
            
         </>
      );

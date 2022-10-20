@@ -24,7 +24,8 @@ import SpecialistClient from "./pages/site/SpecialistClient";
 import Book from "./pages/site/Book";
 import ListDepartment from "./pages/admin/Department/ListDepartment/ListDepartment";
 import UpdateDepartment from "./pages/admin/Department/UpdateDepartment/UpdateDepartment";
-
+import ListMenu from "./pages/admin/Setttings/Menu/ListMenu/ListMenu";
+import AddMenu from "./pages/admin/Setttings/Menu/AddMenu/AddMenu";
 
 
 function Web() {
@@ -67,6 +68,11 @@ function Web() {
                         <Route element={<AddDepartment />} path="add" />
                         <Route element={<ListDepartment />} path="list" />
                         <Route element={<UpdateDepartment />} path="update/:id" />
+                    </Route>
+
+                    <Route path="chinh-sua-menu">
+                        <Route element={< ListMenu />} path="list" />
+                        <Route element={< AddMenu />}  path="add" />
                     </Route>
 
                     <Route path="/admin/add-user"  element={<AddUser />}/>  

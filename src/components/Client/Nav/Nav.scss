@@ -1,7 +1,6 @@
-.bg {
-    background-color: #1A94FF;
-
-  }
+    .bg {
+        background-color: #4AC3D2;
+    }
     .navb{
         display: flex;
         flex-wrap: nowrap;
@@ -14,7 +13,6 @@
         z-index: 5;
         width: 100%;
         
-            
         h4{
             font-size: 18px;
         }
@@ -83,17 +81,24 @@
                         margin-right: 15px;
                         display: inline;         
                         padding: 5px  5px 0 5px; 
+                      
                         a{
                             color: #333333;
                             text-decoration: none;
+                            display: flex;
+                            flex-direction: row;
+                            flex-wrap: nowrap;
+                            align-content: center;
+                            align-items: center;
+                            justify-content: center;
                         }
                         a:hover{
                             color: #6F7BA4; 
                         }
-                        h4{
+                        span{
                             text-transform: uppercase;
-                            // font-size: 22px;
-                            padding: 10px;
+                            font-size: 20px;
+                            padding: 5px;
                             color: white;
                         }
                     }
