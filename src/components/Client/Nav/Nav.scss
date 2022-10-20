@@ -59,6 +59,54 @@
                         span{
                             color: white !important;
                         }
+                        .drop-down{
+                            color: #000;
+                            background-color: white;          
+                            display: none;
+                            position: absolute;
+                            width: 13%;
+                            top:62%;
+                            right: 19%;
+                            border-radius: 10px;
+                            transition:  2s;
+                            .arrow-up {
+                                width:0px;
+                                height:0px;
+                                z-index: 300;
+                                border-left:20px solid transparent;
+                                border-right:20px solid transparent;
+                                border-bottom:20px solid white; /* Tam giác phía dưới được đổ màu */
+                                position: absolute;
+                                top: -15%;
+                                left: 10%;
+                            }
+                            .drop-down-item{    
+                                              
+                                display: flex;
+                                width: 100%;
+                                flex-direction: column;
+                                flex-wrap: nowrap;
+                                align-content: center;
+                                justify-content: center;
+                                align-items: flex-start;
+                                padding-left: 5%;
+                                .drop-down-icon{
+                                    width: 100%;
+                                    border-bottom: 1px  dotted #cccccc;
+                                    padding: 5% 0 5% 0;
+                                    i, span{                             
+                                        color: #000 !important;
+                                    }
+                                }
+                                .drop-down-icon:last-child{
+                                    border-bottom: none;
+                                }
+                            }
+
+                        }
+                        &:hover .drop-down{
+                            display: block;
+                        }
                     }
                 }
     
@@ -101,6 +149,9 @@
                             padding: 5px;
                             color: white;
                         }
+
+                      
+
                     }
                 }
             }

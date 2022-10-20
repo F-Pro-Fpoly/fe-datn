@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import logo from "../../../image/logo.png"
 import { getListServiceAPI } from "../../../services/normal/MenuService";
 import "./Nav.scss"
-
 function Nav (){
     const path = useLocation()
     const navRef = useRef();
@@ -77,12 +76,29 @@ function Nav (){
                             {
                             user ?
                         <>
-                            <li>                                    
-                                <Link to="/admin"><span>{user.name}</span></Link>                                                                 
+                            <li>               
+                          
+                                <span>{user.name}</span>          
+                                <div className="drop-down">
+                                <span className="arrow-up"></span>
+                                    <div className="drop-down-item">
+                                        <div className="drop-down-icon">
+                                            <i className="fa-solid fa-user"></i>               
+                                           <span> Hồ sơ cá nhân</span>
+                                        </div>
+                                        <div className="drop-down-icon">
+                                            <i className="fa-solid fa-gears"></i>                                
+                                            <Link to="/admin"><span>Trang quản trị</span></Link> 
+                                        </div>
+                                        <div className="drop-down-icon">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                            <Link to="/logout"><span>Đăng xuất</span></Link>  
+                                        </div>
+                                    </div>
+                                </div>                                       
                             </li>
                             <li>
-                                <i className="fa-regular fa-arrow-up-left-from-circle"></i>
-                                <Link to="/logout"><span>Đăng xuất</span></Link>     
+                                  
                             </li>
                         </>
                             : 
@@ -111,11 +127,7 @@ function Nav (){
                     </Link>      
                 </li>
               ))
-            }
-
-                           
-                                                      
-                                                                
+            }                                     
                         </ul>   
                     </div>
                 </div>
