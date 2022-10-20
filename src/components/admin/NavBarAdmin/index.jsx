@@ -2,8 +2,6 @@
 import { Link } from "react-router-dom";
 import NavBarItem from "../NavBarItem";
 import "./NavBarAdmin.scss";
-import {useRef} from "react";
-import { useEffect } from "react";
 
 function NavBarAdmin({className}) {
     return ( 
@@ -58,6 +56,13 @@ function NavBarAdmin({className}) {
                         to: "/admin/phong-ban/add"
                     },
                 ]} icon="bi bi-speedometer2" />
+                <NavBarItem id="setting" name="Tiện ích mở rộng" dropdownArr={[
+                    {
+                        name: "Thiết lập Menu",
+                        to: "/admin/chinh-sua-menu/list"
+                    },
+                ]} icon="bi bi-speedometer2" />
+                
                  <NavBarItem name="Về trang người dùng" icon="bi bi-speedometer2"  to="../" />
             </div>
         </aside>

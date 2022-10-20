@@ -1,8 +1,8 @@
 import { Link, useLocation} from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import logo from "../../../image/logo.png"
-
+import { getListServiceAPI } from "../../../services/normal/MenuService";
 import "./Nav.scss"
 
 function Nav (){
@@ -10,7 +10,23 @@ function Nav (){
     const navRef = useRef();
     const pathname = path.pathname
     let user = useSelector((state => state.auth.user));
+
+    const [ListMenu, getListListMenu] = useState([]);
+
+
+
     useEffect (() => {
+
+        const start = async () => {
+            getListListMenu([])
+            let res = await getListServiceAPI() 
+            let data = res.data 
+            let dataArr = data.data 
+            getListListMenu(dataArr)
+        }
+      
+        start();
+
         console.log(pathname);
         if(pathname === '/'){
             const  a = navRef.current.classList
@@ -30,7 +46,7 @@ function Nav (){
             const  a = navRef.current.classList
             a.add('bg')
         }
-    }, )
+    }, [] )
    
     return(   
             <div className="navb" ref={navRef}>
@@ -85,41 +101,20 @@ function Nav (){
         
                     <div className="main-menu">
                         <ul>
-                            <li>
-                                <Link to="/">
-                                    <h4>Trang chủ</h4>                   
-                                </Link>      
-                            </li>
-                            <li>
-                                <Link to="/chuyenkhoa">
-                                    <h4>Cơ sở y tế</h4>                       
-                                </Link>  
-                            </li>
-                            <li>
-                                <Link to="/home">
-                                    <h4>Vaccin</h4>                    
-                                </Link>  
-                            </li>    
-                            <li>
-                                <Link to="/bacsi">
-                                    <h4>Về chúng tôi</h4>
-                                </Link>  
-                            </li>                                         
-                            <li>
-                                <Link to="/bacsi">
-                                    <h4>Về chúng tôi</h4>
-                                </Link>  
-                            </li>                                         
-                            <li>
-                                <Link to="/bacsi">
-                                    <h4>Về chúng tôi</h4>
-                                </Link>  
-                            </li>                                         
-                            <li>
-                                <Link to="/bacsi">
-                                    <h4>Về chúng tôi</h4>
-                                </Link>  
-                            </li>                                         
+                        {
+              ListMenu.map((val, index)=>(
+                    
+                <li key={val.id}>
+                    <Link to={val.slug}>
+                        <span dangerouslySetInnerHTML={{__html: val.font}} /> 
+                        <span>{val.name}</span>                   
+                    </Link>      
+                </li>
+              ))
+            }
+
+                           
+                                                      
                                                                 
                         </ul>   
                     </div>
