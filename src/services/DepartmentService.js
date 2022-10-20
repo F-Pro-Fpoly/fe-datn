@@ -1,25 +1,47 @@
 import API from './api';
 
 
-class DepartmentService {
-    constructor() {
-
-    }
-
-    createDepartmentApi = (token, data) =>{
-        try {
-            let headers ={}; 
-            if(token){
-                headers = {...headers, "Authorization": `Bearer ${token}`};
-                // console.log(configs);
-            }
-            return API.get(`auth/specialist/list?page=${page}`,{headers: headers});
-        } catch (error) {
-            console.error(error);
-            return [];
+function createDepartmentApi({token, data}){
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
         }
+        return API.post(`auth/department/add`, data,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
     }
 }
 
+function getDepartment({token, search, page = 1}) {
+    let headers ={}; 
+    let url = '';
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    if(search){
 
-export default DepartmentService;
+    }else{
+        url = `auth/department/list?page=${page}`;
+    }
+
+    return API.get(url,{headers: headers});
+}
+
+function getDepartmentOne({token, id}) {
+    let headers ={}; 
+    let url = '';
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    url = `auth/department/detail/${id}`;
+
+    return API.get(url,{headers: headers});
+}
+
+
+export  {createDepartmentApi, getDepartment, getDepartmentOne};

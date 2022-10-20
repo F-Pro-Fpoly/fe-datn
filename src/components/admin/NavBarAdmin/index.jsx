@@ -10,7 +10,7 @@ function NavBarAdmin({className}) {
                 <span className="navBarAdmin-logo-text">AppLogo</span>
             </Link>
 
-            <div className="navBarAdmin-main">
+            <div className="navBarAdmin-main accordion" id="accordionExample">
                 <NavBarItem name="Dashboard" icon="bi bi-speedometer2" countTitle="5" to="/admin" />
                 <NavBarItem id="users" name="Quản lý user" countTitle="7" dropdownArr={[
                     {
@@ -55,6 +55,10 @@ function NavBarAdmin({className}) {
                         name: "Thêm phòng ban",
                         to: "/admin/phong-ban/add"
                     },
+                    {
+                        name: "Danh sách phòng ban",
+                        to: "/admin/phong-ban/list"
+                    }
                 ]} icon="bi bi-speedometer2" />
                 <NavBarItem id="setting" name="Tiện ích mở rộng" dropdownArr={[
                     {

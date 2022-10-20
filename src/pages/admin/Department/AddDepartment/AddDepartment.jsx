@@ -1,11 +1,12 @@
-
 import { Button, Form } from "react-bootstrap";
 import "./AddDepartment.scss";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { getListServiceAPI} from "../../../../services/SpecialistService";
+import { getListServiceAPI,getListAllSpecialist, postListServiceAPI} from "../../../../services/SpecialistService";
+import { ToastContainer, toast } from "react-toastify";
+import {createDepartmentApi} from "../../../../services/DepartmentService"
 
 function AddDepartment() {
     const token = useSelector(state => state.auth.token);
@@ -17,26 +18,32 @@ function AddDepartment() {
     useEffect(()=>{
         const startApi = async () => {
             // get all specailist
-            let res = await getListServiceAPI(token, 0);
+            let res = await getListAllSpecialist({token});
 
             let data = res.data;
-            setSpecailist(data.specialist);
+            setSpecailist(data.data);
         }
 
         startApi();
     }, []);
 
-    const SubmitForm = (event) => {
+    const SubmitForm = async (event) => {
         event.preventDefault();
-        let formData = new FormData(FormRef.current);
-        formData.append("description", textEditer);
-
-
+        try {
+            let formData = new FormData(FormRef.current);
+            formData.append("description", textEditer);
+            let res = await createDepartmentApi({token, data: formData});
+            let data = res.data;
+            toast.success(data.message);
+        } catch (error) {
+            
+        }
 
     }
 
     return ( 
         <div className="addDepartment">
+            <ToastContainer />
             <Form method="post" onSubmit={SubmitForm} ref={FormRef}>
                 <div className="row">
                     <div className="col-4">

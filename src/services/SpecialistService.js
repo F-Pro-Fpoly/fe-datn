@@ -17,6 +17,20 @@ function getListServiceAPI(token = null,page=1) {
     }
 }
 
+function getListAllSpecialist({token}) {
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        return API.get(`auth/specialist/list?get=all`,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
 function postListServiceAPI(token = null, data={}) {
     
     try {
@@ -32,4 +46,4 @@ function postListServiceAPI(token = null, data={}) {
     }
 }
 
-export { getListServiceAPI,postListServiceAPI}
+export { getListServiceAPI,postListServiceAPI, getListAllSpecialist}
