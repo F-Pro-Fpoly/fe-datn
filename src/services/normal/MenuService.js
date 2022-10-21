@@ -9,7 +9,7 @@ function getListServiceAPI() {
         // if(token){
         //     headers = {...headers, "Authorization": `Bearer ${token}`};
         // }
-        return API.get(`normal/page/list`,{headers: headers});
+        return API.get(`normal/page/listNormal`,{headers: headers});
     } catch (error) {
         console.error(error);
         return [];

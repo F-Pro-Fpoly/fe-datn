@@ -1,7 +1,17 @@
 .formBooking{
-    padding: 15%  15%;
+    padding: 10% 0 10% 0;
     h3{
         text-align: center;
-        font-family: 'Poppins', sans-serif;
+        padding: 1% 0 2% 0 ;
+    }
+    .cola{
+        // text-align: center;
+        img{
+            max-width: 500px;
+            border-radius: 30px;
+        }
+    }
+    .cola:nth-child(1){
+        text-align: center;
     }
 }

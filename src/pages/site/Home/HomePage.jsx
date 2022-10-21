@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Banner from '../../../components/Client/Banner';
-import Box from '../../../components/Client/BoxNomal';
-import BoxVideo from '../../../components/Client/BoxVideo';
 import BoxPopular from '../../../components/Client/BoxPopular';
-import BoxOutstanding from '../../../components/Client/BoxOutstanding';
 import "./HomePage.scss";
 
 
@@ -45,11 +42,8 @@ function HomePage() {
     return ( 
         <>
          <Banner/>   
-            <div className="container">                 
-                <Box boxArr = {box}  />           
-                <BoxVideo />
+            <div className="container">                     
                 <BoxPopular/>
-                <BoxOutstanding/>
             </div>        
 
            
