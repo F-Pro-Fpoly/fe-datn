@@ -1,5 +1,8 @@
     .bg {
         background-color: #4AC3D2;
+        span:hover{
+            color: #000000 !important; 
+        }
     }
     .navb{
         display: flex;
@@ -58,6 +61,7 @@
                         }
                         span{
                             color: white !important;
+                           
                         }
                         .drop-down{
                             color: #000;
@@ -66,22 +70,21 @@
                             position: absolute;
                             width: 13%;
                             top:62%;
-                            right: 19%;
+                            right: 15%;
                             border-radius: 10px;
                             transition:  2s;
                             .arrow-up {
-                                width:0px;
+                                width: 30px;
                                 height:0px;
                                 z-index: 300;
                                 border-left:20px solid transparent;
                                 border-right:20px solid transparent;
                                 border-bottom:20px solid white; /* Tam giác phía dưới được đổ màu */
                                 position: absolute;
-                                top: -15%;
-                                left: 10%;
+                                top: -14%;
+                                left: 55%;
                             }
-                            .drop-down-item{    
-                                              
+                            .drop-down-item{                                 
                                 display: flex;
                                 width: 100%;
                                 flex-direction: column;
@@ -98,9 +101,13 @@
                                         color: #000 !important;
                                     }
                                 }
+                                .drop-down-icon:hover {
+                                    background-color: #cccccc25;
+                                }
                                 .drop-down-icon:last-child{
                                     border-bottom: none;
                                 }
+                              
                             }
 
                         }
@@ -128,8 +135,7 @@
                     li{
                         margin-right: 15px;
                         display: inline;         
-                        padding: 5px  5px 0 5px; 
-                      
+                        padding: 5px  5px 0 5px;                 
                         a{
                             color: #333333;
                             text-decoration: none;
@@ -140,18 +146,18 @@
                             align-items: center;
                             justify-content: center;
                         }
-                        a:hover{
-                            color: #6F7BA4; 
-                        }
+                       
                         span{
                             text-transform: uppercase;
                             font-size: 20px;
                             padding: 5px;
                             color: white;
+                            font-weight:700 ;
+                        }            
+
+                        span:hover{
+                            color: #4AC3D2; 
                         }
-
-                      
-
                     }
                 }
             }

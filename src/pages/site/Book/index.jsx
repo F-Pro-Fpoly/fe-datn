@@ -7,6 +7,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import img from '../../../image/dang-ky-ngay.jpg'
 function Book () {
+
+    
+    const Send = (e) => {
+        e.preventDefault()
+
+    }
+
     return (
      
            <div className="formBooking">
@@ -18,7 +25,7 @@ function Book () {
                             <img src={img} alt="hinh-dang-ky-lich" />
                         </Col>
                         <Col>
-                            <Form>
+                            <Form onSubmit={Send}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Họ và tên: </Form.Label>
                                     <Form.Control type="text" placeholder="Nhập họ và tên" />

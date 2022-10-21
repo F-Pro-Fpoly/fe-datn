@@ -59,30 +59,46 @@ function AddMenu() {
                 />
                 {/* Same as */}
             <ToastContainer />
-            <h2 className="addSick-heading">Thêm chuyên khoa</h2>
+            <h2 className="addSick-heading">Thêm trang mới</h2>
            
             <form method="post" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group mb-2">
-                    <label htmlFor="" className="form-label">Nhập mã chuyên khoa</label>
-                    <input type="text" {...register("code")}  className="form-control" placeholder="Mã chuyên khoa" />
+                    <label htmlFor="" className="form-label">Tên trang</label>
+                    <input type="text" {...register("code")}  className="form-control" placeholder="Nhập tên trang" />
                     <p className='text-danger'>{errors.code?.message}</p>
                 </div>
 
                 <div className="form-group mb-2">
-                    <label htmlFor="" className="form-label">Nhập tên chuyên khoa</label>
-                    <input type="text"  {...register("name")} className="form-control" placeholder="Tên chuyên khoa" />
+                    <label htmlFor="" className="form-label">Font</label>
+                    <input type="text"  {...register("name")} className="form-control" placeholder="Nhập font" />
                     <p className='text-danger'>{errors.name?.message}</p>
                 </div>
 
                 <div className="form-group mb-2">
-                    <label htmlFor="" className="form-label">Nhập mô tả</label>
-                    <input type="text"  {...register("description")} className="form-control" placeholder="Mô tả" />
-                    <p className='text-danger'>{errors.description?.message}</p>
+                    <label htmlFor="" className="form-label">Kích hoạt</label>
+                    <select name="active" id="" className="form-control">
+                        <option>--Chọn--</option>
+                        <option value="0">Không kích hoạt</option>
+                        <option value="1">Kích hoạt</option>
+                    </select>
+                </div>
+
+                <div className="form-group mb-2">
+                    <label htmlFor="" className="form-label">Sắp xếp</label>
+                    <select name="active" id="" className="form-control">
+                        <option>--Chọn--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
                 </div>
 
                 <div className="form-group mb-2">
                     <button className="btn btn-primary" >{loading ?  (<LoadingBtn />) : "Thêm"}</button>
-                    <Link className="btn btn-primary ms-2" to="/admin/specialist/list">Danh sách</Link>
+                    <Link className="btn btn-primary ms-2" to="/admin/chinh-sua-menu/list">Danh sách</Link>
                 </div>
             </form>
         </div>
