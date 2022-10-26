@@ -10,15 +10,37 @@ import { setLoading } from "../../../../redux/slices/InterfaceSile";
 import { getDepartmentOne } from "../../../../services/DepartmentService";
 
 import "./UpdateDepartment.scss";
+import { getListUsersAPI, updateUser } from "../../../../services/UserService";
 
 function UpdateDepartment() {
     const param = useParams();
+    const [search, setSearch] = useState('');
+    const [searchParam, setSearchParam] = useState([]);
+    const token = useSelector(state => state.auth.token);
 
     const SubmitForm = () => {
-        alert("hello");
+        // 
     }
 
-    const token = useSelector(state => state.auth.token);
+    const updateRole =  () =>{
+        setDepartment({...department, docters: [...department.docters, search]});
+    }
+
+    const deleteDoctor = () => {
+        
+    }
+
+    
+    const searchDocter = async (e) => {
+        try {
+            setSearch(e.target.value);
+            let resDocters = await getListUsersAPI(token, {role_code: "doctor", name: search})
+            setSearchParam(resDocters.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const dispatch = useDispatch();
     let FormRef = useRef();
 
@@ -113,17 +135,17 @@ function UpdateDepartment() {
                     <div className="col-12">
                         {
                             department.docters.map((val,index) => (
-                                <div className="row">
+                                <div className="row" key={index}>
                                     <div className="col-8">
                                         <Form.Control 
                                             type="text"
                                             disabled
                                             className="mb-2"
-                                            value={val.name}
+                                            value={val}
                                         />
                                     </div>
                                     <div className="col-4">
-                                        <button className="btn">
+                                        <button className="btn" type="button" onClick={(e) => deleteDoctor(e)}>
                                             <i className="fas fa-trash"></i>
                                         </button>
                                     </div>
@@ -143,20 +165,22 @@ function UpdateDepartment() {
                                     id="docters"
                                     name="docters"
                                     list = "docters"
+                                    value={search}
+                                    onChange={(e)=>searchDocter(e)}
                                 />
                                 <ul className="adminSearchWrapper"> 
-                                    <li></li>
+                                    {searchParam.map((val, index) => (
+                                        <li key={index}>{val.name}</li>
+                                    ))}
                                 </ul>
                             </div>
                             <div className="col-6">
-                                <Button variant="secondary">
+                                <Button variant="secondary" onClick={updateRole}>
                                     <i className="fa-solid fa-plus me-3"></i>
                                     <span>Thêm bác sĩ</span>
                                 </Button>
                             </div>
-                        </div>
-                        
-                        
+                        </div>      
                     </div>
                 </div>
                 <Form.Group className="mt-2">

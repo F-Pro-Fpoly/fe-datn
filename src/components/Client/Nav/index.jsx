@@ -1,6 +1,6 @@
 import { Link, useLocation} from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import logo from "../../../image/logo.png"
 import { getListServiceAPI } from "../../../services/normal/MenuService";
 import "./Nav.scss"
@@ -39,10 +39,13 @@ function Nav (){
         else{
             a.add('bg')
         }
+        console.log("layout");
+        
     }, [] )
    
     return(   
             <div className="navb" ref={navRef}>
+                {console.log("return")}
                 <div className="logo">
                 <Link to="/">
                     <img src={logo} alt="logo" width="60"  />
