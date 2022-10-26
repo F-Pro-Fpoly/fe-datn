@@ -1,32 +1,52 @@
-.navCate{
-    padding-top: 15px;
-    display:flex;
-    box-shadow: 0 3px #ccc;
-    width: 100%;
-    a{
-        color: #000000;
+
+    .navCate{
+        padding-top: 10%;
+        display:flex;
+        box-shadow: 0 3px #ccc;
+        width: 100%;
+        a{
+            color: #000000;
+        }
     }
-}
-.ListChuyenKhoa{
-   .rowCate{
-        display: flex;
-        padding: 10px 0;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-content: center;
-        align-items: flex-start;
-        justify-content: flex-start;    
-        border-bottom: 1px solid #ccc;
-    
-        img{
-            width: 180px;
-            border-radius: 18px;
+    .ListChuyenKhoa{
+        padding: 4% 0 4% 0 ;
+        h1{
+            z-index: 100000;
+            color: red;
         }
-        p{
-            font-size: 18px;
-            padding-left: 1%;
-            font-weight: 700;
-        }
-   }
-   
-}
+       .rowCate{
+            display: flex;
+            padding: 10px 0;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            align-items: flex-start;
+            justify-content: flex-start;    
+            border-bottom: 1px solid #ccc;
+            .image{
+                max-width: 200px;
+                img{
+                    width: 100%;
+                    border-radius: 18px;
+                }    
+            }
+            .info{
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                align-content: center;
+                justify-content: center;
+                align-items: flex-start;
+                padding-left: 1%;
+                p{
+                    font-size: 18px;    
+                    font-weight: 700;
+                }
+            }
+           
+       }
+       .rowCate:last-child{
+            border-bottom: none;
+       }
+       
+    }

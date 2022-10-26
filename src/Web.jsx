@@ -37,8 +37,8 @@ function Web() {
                 <Route path="*" element={<NotFound/>} />
                 <Route element={<LayoutHome />}>
                     <Route path="/"  element={<HomePage />}/>
-                    <Route path="/chuyenkhoa"  element={<SpecialistClient />}/>
-                    <Route path="/chuyenkhoa/co-xuong-khop"  element={<Clinic />}/>             
+                    <Route path="/chuyen-khoa"  element={<SpecialistClient />}/>
+                    <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ly-lich"  element={<Book />}/>             
                     <Route path="/about"  element={<h2>About</h2>}/>
                 </Route>

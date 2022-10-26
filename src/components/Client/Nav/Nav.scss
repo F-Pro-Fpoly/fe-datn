@@ -1,5 +1,8 @@
     .bg {
         background-color: #4AC3D2;
+        span:hover{
+            color: #000000 !important; 
+        }
     }
     .navb{
         display: flex;
@@ -58,6 +61,58 @@
                         }
                         span{
                             color: white !important;
+                           
+                        }
+                        .drop-down{
+                            color: #000;
+                            background-color: white;          
+                            display: none;
+                            position: absolute;
+                            width: 13%;
+                            top:62%;
+                            right: 15%;
+                            border-radius: 10px;
+                            transition:  2s;
+                            .arrow-up {
+                                width: 30px;
+                                height:0px;
+                                z-index: 300;
+                                border-left:20px solid transparent;
+                                border-right:20px solid transparent;
+                                border-bottom:20px solid white; /* Tam giác phía dưới được đổ màu */
+                                position: absolute;
+                                top: -14%;
+                                left: 55%;
+                            }
+                            .drop-down-item{                                 
+                                display: flex;
+                                width: 100%;
+                                flex-direction: column;
+                                flex-wrap: nowrap;
+                                align-content: center;
+                                justify-content: center;
+                                align-items: flex-start;
+                                padding-left: 5%;
+                                .drop-down-icon{
+                                    width: 100%;
+                                    border-bottom: 1px  dotted #cccccc;
+                                    padding: 5% 0 5% 0;
+                                    i, span{                             
+                                        color: #000 !important;
+                                    }
+                                }
+                                .drop-down-icon:hover {
+                                    background-color: #cccccc25;
+                                }
+                                .drop-down-icon:last-child{
+                                    border-bottom: none;
+                                }
+                              
+                            }
+
+                        }
+                        &:hover .drop-down{
+                            display: block;
                         }
                     }
                 }
@@ -80,8 +135,7 @@
                     li{
                         margin-right: 15px;
                         display: inline;         
-                        padding: 5px  5px 0 5px; 
-                      
+                        padding: 5px  5px 0 5px;                 
                         a{
                             color: #333333;
                             text-decoration: none;
@@ -92,14 +146,17 @@
                             align-items: center;
                             justify-content: center;
                         }
-                        a:hover{
-                            color: #6F7BA4; 
-                        }
+                       
                         span{
                             text-transform: uppercase;
                             font-size: 20px;
                             padding: 5px;
                             color: white;
+                            font-weight:700 ;
+                        }            
+
+                        span:hover{
+                            color: #4AC3D2; 
                         }
                     }
                 }

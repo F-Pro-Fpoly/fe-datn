@@ -4,40 +4,39 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import logo from "../../../image/logo.png"
 import { getListServiceAPI } from "../../../services/normal/MenuService";
 import "./Nav.scss"
-
 function Nav (){
     const path = useLocation()
     const navRef = useRef();
-    const pathname = path.pathname
+   
     let user = useSelector((state => state.auth.user));
 
     const [ListMenu, getListListMenu] = useState([]);
-    const start = async () => {
-        getListListMenu([])
-        let res = await getListServiceAPI() 
-        let data = res.data 
-        let dataArr = data.data 
-        getListListMenu(dataArr)
-    }
-    
-    useLayoutEffect (() => {
+
+    useEffect (() => {
+        const pathname = path.pathname
+        const start = async () => {
+            getListListMenu([])
+            let res = await getListServiceAPI() 
+            let data = res.data 
+            let dataArr = data.data 
+            getListListMenu(dataArr)
+        }
+      
         start();
+
+        const  a = navRef.current.classList
         if(pathname === '/'){
-            const  a = navRef.current.classList
             a.remove('bg')   
             window.onscroll = function() {myFunction()};
             const myFunction = () => {
-                if (document.documentElement.scrollTop > 100) {     
-                    const  a = navRef.current.classList
+                if (document.documentElement.scrollTop > 100) {             
                     a.add('bg')               
                 }else{
-                    const  a = navRef.current.classList
                     a.remove('bg')
                 }    
             }     
         }
         else{
-            const  a = navRef.current.classList
             a.add('bg')
         }
         console.log("layout");
@@ -74,12 +73,33 @@ function Nav (){
                             {
                             user ?
                         <>
-                            <li>                                    
-                                <Link to="/admin"><span>{user.name}</span></Link>                                                                 
+                            <li>           
+                              <div className="info">
+                              <span>{user.name}</span>      
+                                </div>   
+                                <div className="drop-down">
+                                <span className="arrow-up"></span>
+                                    <div className="drop-down-item">
+                                        <div className="drop-down-icon">
+                                            <i className="fa-solid fa-user"></i>               
+                                            <Link to="/profile"><span> Hồ sơ cá nhân</span></Link>
+                                        </div>
+                                        {
+                                           user.role_id == 1 &&
+                                            <div className="drop-down-icon">
+                                                <i className="fa-solid fa-gears"></i>                                
+                                                <Link to="/admin"><span>Trang quản trị</span></Link> 
+                                            </div>                         
+                                        }
+                                        <div className="drop-down-icon">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                            <Link to="/logout"><span>Đăng xuất</span></Link>  
+                                        </div>
+                                    </div>
+                                </div>                                       
                             </li>
                             <li>
-                                <i className="fa-regular fa-arrow-up-left-from-circle"></i>
-                                <Link to="/logout"><span>Đăng xuất</span></Link>     
+                                  
                             </li>
                         </>
                             : 
@@ -99,20 +119,16 @@ function Nav (){
                     <div className="main-menu">
                         <ul>
                         {
-              ListMenu.map((val, index)=>(
-                    
-                <li key={val.id}>
-                    <Link to={val.slug}>
-                        <span dangerouslySetInnerHTML={{__html: val.font}} /> 
-                        <span>{val.name}</span>                   
-                    </Link>      
-                </li>
-              ))
-            }
-
-                           
-                                                      
-                                                                
+                        ListMenu.map((val, index)=>(
+                                
+                            <li key={val.id}>
+                                <Link to={val.slug}>
+                                    <span dangerouslySetInnerHTML={{__html: val.font}} /> 
+                                    <span>{val.name}</span>                   
+                                </Link>      
+                            </li>
+                        ))
+                        }                                     
                         </ul>   
                     </div>
                 </div>

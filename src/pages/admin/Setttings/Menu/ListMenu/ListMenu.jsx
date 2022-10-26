@@ -42,10 +42,10 @@ function ListMenu() {
 
     return ( 
         <>
-        <div className="a">
-         
-            <Link to='/admin/chinh-sua-menu/add'> <button className="btn btn-primary">   Thêm trang mới  </button></Link>
-         
+        <div className="a">   
+            <Link to='/admin/chinh-sua-menu/add'>
+               <button className="btn btn-primary">Thêm trang mới</button>
+            </Link>
         </div>
 
         <Table striped bordered hover >
@@ -54,6 +54,7 @@ function ListMenu() {
               <th>STT</th>
               <th>Tên trang</th>
               <th>font</th>
+              <th>Đường dẫn trang</th>
               <th>Trạng thái</th>
               <th>Sắp xếp</th>
               <th>Ngày tạo</th>
@@ -67,7 +68,8 @@ function ListMenu() {
                   <td>{index+1}</td>
                   <td>{val.name}</td>
                   <td dangerouslySetInnerHTML={{__html: val.font}} /> 
-                  <td>{val.status}</td>
+                  <td>{val.slug}</td>
+                  <td>{val.status === 1 ? <span style={{color: "green"}}>Đang kích hoạt</span> : <span style={{color: "red"}}>Ngừng kích hoạt</span> }</td>
                   <td>{val.sort}</td>
                   <td>{val.created_at}</td>
                   <td className="button"><i className="fas fa-edit"></i> | <i className="fa fa-trash"></i></td>

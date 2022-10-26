@@ -3,23 +3,22 @@ import "./Clinic.scss";
 function Clinic () {
     return (
        <>
-            <div className="infoClinic"> 
-                {/* <div className="infoClinic-wrapper"></div>          */}
-                <div className="text">
-                    <div className="container">
-                        <h3>Cơ xương khớp</h3>
-                        <div className="">
-                            <p>Bác sĩ Cơ Xương Khớp giỏi</p>
-                            <span>Danh sách các bác sĩ uy tín đầu ngành Cơ Xương Khớp tại Việt Nam:</span>
-                            <ul>
-                                <li>Các chuyên gia có quá trình đào tạo bài bản, nhiều kinh nghiệm</li>
-                                <li>Các giáo sư, phó giáo sư đang trực tiếp nghiên cứu và giảng dạy tại Đại học Y khoa Hà Nội</li>
-                                <li>Các bác sĩ đã, đang công tác tại các bệnh viện hàng đầu Khoa Cơ Xương Khớp - Bệnh viện Bạch Mai, Bệnh viện Hữu nghị Việt Đức,Bệnh Viện E.</li>
-                                <li>Là thành viên hoặc lãnh đạo các tổ chức chuyên môn như: Hiệp hội Cơ Xương Khớp, Hội Thấp khớp học,...</li>
-                            </ul>
-                        </div>
+        <div className="infoClinic">       
+            <div className="text">
+                <div className="container">
+                    <h3>Cơ xương khớp</h3>
+                    <div className="">
+                        <p>Bác sĩ Cơ Xương Khớp giỏi</p>
+                        <span>Danh sách các bác sĩ uy tín đầu ngành Cơ Xương Khớp tại Việt Nam:</span>
+                        <ul>
+                            <li>Các chuyên gia có quá trình đào tạo bài bản, nhiều kinh nghiệm</li>
+                            <li>Các giáo sư, phó giáo sư đang trực tiếp nghiên cứu và giảng dạy tại Đại học Y khoa Hà Nội</li>
+                            <li>Các bác sĩ đã, đang công tác tại các bệnh viện hàng đầu Khoa Cơ Xương Khớp - Bệnh viện Bạch Mai, Bệnh viện Hữu nghị Việt Đức,Bệnh Viện E.</li>
+                            <li>Là thành viên hoặc lãnh đạo các tổ chức chuyên môn như: Hiệp hội Cơ Xương Khớp, Hội Thấp khớp học,...</li>
+                        </ul>
                     </div>
                 </div>
+            </div>
            </div>
            <div className="select">
                 <div className="container">
