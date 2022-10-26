@@ -23,29 +23,29 @@ function Nav (){
         }
       
         start();
-
+        const myFunction = () => {
+            if (document.documentElement.scrollTop > 100) {             
+                a.add('bg')               
+            }else{
+                a.remove('bg')
+            }    
+        }  
         const  a = navRef.current.classList
         if(pathname === '/'){
             a.remove('bg')   
-            window.onscroll = function() {myFunction()};
-            const myFunction = () => {
-                if (document.documentElement.scrollTop > 100) {             
-                    a.add('bg')               
-                }else{
-                    a.remove('bg')
-                }    
-            }     
+               
+            window.addEventListener("scroll", () =>{myFunction()});
         }
         else{
             a.add('bg')
         }
-        console.log("layout");
-        
+        return function cleanupListener() {
+            window.removeEventListener('scroll', () =>{myFunction()})
+        }
     }, [] )
    
     return(   
             <div className="navb" ref={navRef}>
-                {console.log("return")}
                 <div className="logo">
                 <Link to="/">
                     <img src={logo} alt="logo" width="60"  />
