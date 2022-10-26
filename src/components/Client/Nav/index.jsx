@@ -1,6 +1,6 @@
 import { Link, useLocation} from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import logo from "../../../image/logo.png"
 import { getListServiceAPI } from "../../../services/normal/MenuService";
 import "./Nav.scss"
@@ -12,22 +12,16 @@ function Nav (){
     let user = useSelector((state => state.auth.user));
 
     const [ListMenu, getListListMenu] = useState([]);
-
-
-
-    useEffect (() => {
-
-        const start = async () => {
-            getListListMenu([])
-            let res = await getListServiceAPI() 
-            let data = res.data 
-            let dataArr = data.data 
-            getListListMenu(dataArr)
-        }
-      
+    const start = async () => {
+        getListListMenu([])
+        let res = await getListServiceAPI() 
+        let data = res.data 
+        let dataArr = data.data 
+        getListListMenu(dataArr)
+    }
+    
+    useLayoutEffect (() => {
         start();
-
-        console.log(pathname);
         if(pathname === '/'){
             const  a = navRef.current.classList
             a.remove('bg')   
@@ -46,10 +40,13 @@ function Nav (){
             const  a = navRef.current.classList
             a.add('bg')
         }
+        console.log("layout");
+        
     }, [] )
    
     return(   
             <div className="navb" ref={navRef}>
+                {console.log("return")}
                 <div className="logo">
                 <Link to="/">
                     <img src={logo} alt="logo" width="60"  />
