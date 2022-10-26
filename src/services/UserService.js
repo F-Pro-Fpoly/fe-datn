@@ -11,7 +11,7 @@ function getListUsersAPI(token = null, search = {}, page = 1) {
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
-        url += `?page=${page}&name=${search.name ?? ""}&email=${search.email??""}&active=${search.active??""}&role_code=${search.role_code??""}`;
+        url += `?page=${page}&name=${search.name ?? ""}&email=${search.email??""}&active=${search.active??""}&role_code=${search.role_code??""}&department_id=${search.department_id??""}`;
         return API.get(url, {headers: headers});
     } catch (error) {
         console.error(error);
@@ -67,5 +67,14 @@ function getUser({token, id}) {
     return API.get(url,{headers: headers});
 }
 
+function updateUserByName({token, data}) {
+    let headers = {};
+    let url = `auth/user/updateByName`;
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.put(url, data,{headers: headers});
+}
 
-export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser }
+
+export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName }

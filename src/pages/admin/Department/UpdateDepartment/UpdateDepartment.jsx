@@ -10,36 +10,45 @@ import { setLoading } from "../../../../redux/slices/InterfaceSile";
 import { getDepartmentOne } from "../../../../services/DepartmentService";
 
 import "./UpdateDepartment.scss";
-import { getListUsersAPI, updateUser } from "../../../../services/UserService";
+import { getListUsersAPI, updateUser, updateUserByName } from "../../../../services/UserService";
+import useDebounce from "../../../../hooks/useDebounce";
 
 function UpdateDepartment() {
     const param = useParams();
     const [search, setSearch] = useState('');
-    const [searchParam, setSearchParam] = useState([]);
+    const [listSearch, setListSearch] = useState([]);
     const token = useSelector(state => state.auth.token);
+    const [doctor, setDoctor] = useState("");
+    let searchDebounce = useDebounce(doctor, 500);
 
     const SubmitForm = () => {
         // 
     }
 
-    const updateRole =  () =>{
-        setDepartment({...department, docters: [...department.docters, search]});
+    const updateRole = async () =>{
+        let department_id = param.id;
+        let data = {
+            "name": doctor,
+            "department_id": department_id
+        };
+        // console.log(data);
+        let res = await updateUserByName({token, data});
+        setDepartment({...department, docters: [...department.docters, doctor]});
     }
 
-    const deleteDoctor = () => {
-        
+    const deleteDoctor = async (name) => {
+        let department_id = param.id;
+        // console.log(name);return;
+        let data = {
+            "name": name,
+            "department_id": "null"
+        };
+        // console.log(data);
+        let res = await updateUserByName({token, data});
+        startApi();
     }
 
     
-    const searchDocter = async (e) => {
-        try {
-            setSearch(e.target.value);
-            let resDocters = await getListUsersAPI(token, {role_code: "doctor", name: search})
-            setSearchParam(resDocters.data.data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     const dispatch = useDispatch();
     let FormRef = useRef();
@@ -54,31 +63,40 @@ function UpdateDepartment() {
         "docters": []
     });
 
-    useEffect(()=>{
-        const startApi = async () => {
-            let id = param.id;
-            dispatch(setLoading(true))
-            // get all specailist
-            let res = await getListAllSpecialist({token});
-            let resDepartment = await getDepartmentOne({token, id});
+    const startApi = async () => {
+        let id = param.id;
+        dispatch(setLoading(true))
+        // get all specailist
+        let res = await getListAllSpecialist({token});
+        let resDepartment = await getDepartmentOne({token, id});
 
-            let data = res.data;
-            setSpecailist(data.data);
-            let dataDepartment = resDepartment.data.data;
-            setDepartment({
-                ...department,
-                code: dataDepartment.code ?? null,
-                name: dataDepartment.name ?? null,
-                specialist_id: dataDepartment.specialist_id ?? null,
-                active: dataDepartment.active ?? 0,
-                description: dataDepartment.description ?? "",
-                docters : dataDepartment.docters ?? []
-            });
-            dispatch(setLoading(false))
-        }
+        let data = res.data;
+        setSpecailist(data.data);
+        let dataDepartment = resDepartment.data.data;
+        setDepartment({
+            ...department,
+            code: dataDepartment.code ?? null,
+            name: dataDepartment.name ?? null,
+            specialist_id: dataDepartment.specialist_id ?? null,
+            active: dataDepartment.active ?? 0,
+            description: dataDepartment.description ?? "",
+            docters : dataDepartment.docters ?? []
+        });
+        dispatch(setLoading(false))
+    }
+    useEffect(()=>{
 
         startApi();
     }, []);
+
+    useEffect(()=>{
+        const handleSearch = async () => {
+            let res = await getListUsersAPI(token, {'name': searchDebounce, 'role_code': "doctor", "department_id": "safjdsgjk"});
+            let data = res.data;
+            setListSearch(data.data);
+        }
+        handleSearch();
+    }, [searchDebounce]);
 
     return ( 
         <div className="adminItem">
@@ -145,7 +163,7 @@ function UpdateDepartment() {
                                         />
                                     </div>
                                     <div className="col-4">
-                                        <button className="btn" type="button" onClick={(e) => deleteDoctor(e)}>
+                                        <button className="btn" type="button" onClick={()=>deleteDoctor(val)}>
                                             <i className="fas fa-trash"></i>
                                         </button>
                                     </div>
@@ -158,21 +176,15 @@ function UpdateDepartment() {
                     <div className="col-12 mt-2">
                         <div className="row">
                             <div className="col-6">
-                                <Form.Control 
-                                    type="text"
-                                    placeholder="Nhập tên bác sĩ"
-                                    className="mb-1"
-                                    id="docters"
-                                    name="docters"
-                                    list = "docters"
-                                    value={search}
-                                    onChange={(e)=>searchDocter(e)}
-                                />
-                                <ul className="adminSearchWrapper"> 
-                                    {searchParam.map((val, index) => (
-                                        <li key={index}>{val.name}</li>
-                                    ))}
-                                </ul>
+                                <Form.Group>
+                                    <Form.Control list="data" value={doctor} onChange={(e) => setDoctor(e.target.value)}/>
+                                    <datalist id="data" style={{"width": "100%"}}>
+                                        {listSearch.map((val,index) => (
+                                            <option value={val.name} key={index} />
+                                        ))}
+                                    </datalist>
+                                </Form.Group>
+                                
                             </div>
                             <div className="col-6">
                                 <Button variant="secondary" onClick={updateRole}>
