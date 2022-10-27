@@ -1,6 +1,6 @@
 import { Link, useLocation} from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import logo from "../../../image/logo.png"
 import { getListServiceAPI } from "../../../services/normal/MenuService";
 import "./Nav.scss"
@@ -23,21 +23,24 @@ function Nav (){
         }
       
         start();
-
+        const myFunction = () => {
+            if (document.documentElement.scrollTop > 100) {             
+                a.add('bg')               
+            }else{
+                a.remove('bg')
+            }    
+        }  
         const  a = navRef.current.classList
         if(pathname === '/'){
             a.remove('bg')   
-            window.onscroll = function() {myFunction()};
-            const myFunction = () => {
-                if (document.documentElement.scrollTop > 100) {             
-                    a.add('bg')               
-                }else{
-                    a.remove('bg')
-                }    
-            }     
+               
+            window.addEventListener("scroll", () =>{myFunction()});
         }
         else{
             a.add('bg')
+        }
+        return function cleanupListener() {
+            window.removeEventListener('scroll', () =>{myFunction()})
         }
     }, [] )
    

@@ -10,7 +10,7 @@ function getListServiceAPI(token = null,page = 1) {
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
-        return API.get(`auth/booking/list?page${page}`,{headers: headers});
+        return API.get(`auth/booking/list?page=${page}`,{headers: headers});
     } catch (error) {
         console.error(error);
         return [];

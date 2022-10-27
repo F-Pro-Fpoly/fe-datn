@@ -9,7 +9,7 @@
         }
     }
     .ListChuyenKhoa{
-        padding-top: 10%;
+        padding: 4% 0 4% 0 ;
         h1{
             z-index: 100000;
             color: red;
@@ -23,16 +23,30 @@
             align-items: flex-start;
             justify-content: flex-start;    
             border-bottom: 1px solid #ccc;
-        
-            img{
-                width: 180px;
-                border-radius: 18px;
+            .image{
+                max-width: 200px;
+                img{
+                    width: 100%;
+                    border-radius: 18px;
+                }    
             }
-            p{
-                font-size: 18px;
+            .info{
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                align-content: center;
+                justify-content: center;
+                align-items: flex-start;
                 padding-left: 1%;
-                font-weight: 700;
+                p{
+                    font-size: 18px;    
+                    font-weight: 700;
+                }
             }
+           
+       }
+       .rowCate:last-child{
+            border-bottom: none;
        }
        
     }

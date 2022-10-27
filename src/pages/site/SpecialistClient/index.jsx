@@ -40,18 +40,23 @@ function SpecialistClient () {
                </h3>
            </div>
            <div className="ListChuyenKhoa">
-            {console.table(ListSpecialist)}
             {
-                ListSpecialist.forEach((item,index) => {
-                    <div>
-                      <h1>{item.id}</h1>
-                      {/* <div className="rowCate" key={index}>
-                      <Link to={item.slug}>
-                           <img src={item.thumbnail_name} alt="Cơ xương khớp" />
-                      </Link>
-                       <p>{item.name}</p> */}
-                  {/* </div>    */}
+                ListSpecialist.map((item,index) => {
+                   return(
+                    <div>        
+                      <div className="rowCate" key={item.id}>
+                        <div className="image">
+                          <Link to={item.slug}>
+                              <img src={item.thumbnail_name} alt="Cơ xương khớp" />
+                          </Link>
+                        </div>
+                         <div className="info">
+                            <p>{item.name}</p>
+                            <span>{item.description}</span>
+                         </div>
+                      </div>   
                     </div>
+                   )
                     
                   })
             }
