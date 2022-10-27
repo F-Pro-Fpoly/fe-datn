@@ -3,13 +3,16 @@ import { useState } from 'react';
 import Banner from '../../../components/Client/Banner';
 import BoxPopular from '../../../components/Client/BoxPopular';
 import "./HomePage.scss";
-
+import {useDispatch} from "react-redux"
+import { setNavb } from '../../../redux/slices/InterfaceSile';
 
 function HomePage() {
     // let user = useSelector((state => state.auth.user));
 
     const [box, SetBox] = useState();
+    const dispatch = useDispatch();
     useEffect( () => {
+        dispatch(setNavb(false))
         let Arr = [
             {
                 "image":"https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA128QGB.img?w=640&h=426&m=6",

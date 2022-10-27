@@ -9,8 +9,11 @@ function Nav (){
     const navRef = useRef();
    
     let user = useSelector((state => state.auth.user));
+    let navb = useSelector((state => state.interface.navb));
 
     const [ListMenu, getListListMenu] = useState([]);
+
+
 
     useEffect (() => {
         const pathname = path.pathname
@@ -26,26 +29,22 @@ function Nav (){
         const myFunction = () => {
             if (document.documentElement.scrollTop > 100) {             
                 a.add('bg')               
-            }else{
-                a.remove('bg')
             }    
         }  
         const  a = navRef.current.classList
         if(pathname === '/'){
-            a.remove('bg')   
-               
             window.addEventListener("scroll", () =>{myFunction()});
         }
-        else{
-            a.add('bg')
-        }
+        // else{
+        //     a.add('bg')
+        // }
         return function cleanupListener() {
             window.removeEventListener('scroll', () =>{myFunction()})
         }
     }, [] )
    
     return(   
-            <div className="navb" ref={navRef}>
+            <div className={`navb ${navb && "bg"}`} ref={navRef}>
                 <div className="logo">
                 <Link to="/">
                     <img src={logo} alt="logo" width="60"  />

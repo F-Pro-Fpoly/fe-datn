@@ -2,12 +2,14 @@ import API from '../api';
 // import axios from 'axios';
 
 
-function getListServiceAPI(param = {}) {
+function getListServiceAPI(search = {}) {
     
     try {
         let headers ={}; 
-        console.log(param.status);
-        return API.get(`normal/specialist/listSpecialist?status=${param.status ?? ""}`,{headers: headers});
+        let url = `normal/specialist/listSpecialist`;
+        console.log(search.status);
+        url += `?status=${search.status??""}`;
+        return API.get(url, {headers: headers});
     } catch (error) {
         console.error(error);
         return [];
