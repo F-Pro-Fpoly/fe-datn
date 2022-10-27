@@ -43,5 +43,17 @@ function getDepartmentOne({token, id}) {
     return API.get(url,{headers: headers});
 }
 
+function updateDepartment({token, id, data}) {
+    let headers ={}; 
+    let url = '';
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    url = `auth/department/edit/${id}`;
 
-export  {createDepartmentApi, getDepartment, getDepartmentOne};
+    return API.put(url, data,{headers: headers});
+}
+
+
+export  {createDepartmentApi, getDepartment, getDepartmentOne, updateDepartment};
