@@ -26,8 +26,7 @@ import ListDepartment from "./pages/admin/Department/ListDepartment/ListDepartme
 import UpdateDepartment from "./pages/admin/Department/UpdateDepartment/UpdateDepartment";
 import ListMenu from "./pages/admin/Setttings/Menu/ListMenu/ListMenu";
 import AddMenu from "./pages/admin/Setttings/Menu/AddMenu/AddMenu";
-
-
+import About from "./pages/site/About";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -40,17 +39,16 @@ function Web() {
                     <Route path="/chuyen-khoa"  element={<SpecialistClient />}/>
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ly-lich"  element={<Book />}/>             
-                    <Route path="/about"  element={<h2>About</h2>}/>
+                    <Route path="/ve-chung-toi"  element={<About/>}/>
                 </Route>
-
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
                     <Route path="/login"  element={<Login />}/>
                     <Route path="/logout"  element={<Logout />}/>
                 </Route>
                 <Route element={ RoleMiddleware([1, 2] ,<LayoutAdmin/>) } path="admin">
-                    <Route index  element={<div>admin</div>}/>
-                    <Route  element={<Dashboard/> } path ='dashboard'/>
+                    <Route index  element={<div><Dashboard/></div>}/>
+                    <Route  element={<Dashboard/> } path ='admin'/>
 
                     <Route path="sick">
                         <Route  element={<AddSick/> } path ='add'/>
