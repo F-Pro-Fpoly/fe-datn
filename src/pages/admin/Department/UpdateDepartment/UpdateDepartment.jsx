@@ -2,12 +2,12 @@ import {useEffect, useRef, useState} from "react"
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {useParams} from "react-router-dom"
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { getListAllSpecialist } from "../../../../services/SpecialistService";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { setLoading } from "../../../../redux/slices/InterfaceSile";
-import { getDepartmentOne } from "../../../../services/DepartmentService";
+import { getDepartmentOne, updateDepartment } from "../../../../services/DepartmentService";
 
 import "./UpdateDepartment.scss";
 import { getListUsersAPI, updateUser, updateUserByName } from "../../../../services/UserService";
@@ -20,36 +20,6 @@ function UpdateDepartment() {
     const token = useSelector(state => state.auth.token);
     const [doctor, setDoctor] = useState("");
     let searchDebounce = useDebounce(doctor, 500);
-
-    const SubmitForm = () => {
-        // 
-    }
-
-    const updateRole = async () =>{
-        let department_id = param.id;
-        let data = {
-            "name": doctor,
-            "department_id": department_id
-        };
-        // console.log(data);
-        let res = await updateUserByName({token, data});
-        setDepartment({...department, docters: [...department.docters, doctor]});
-    }
-
-    const deleteDoctor = async (name) => {
-        let department_id = param.id;
-        // console.log(name);return;
-        let data = {
-            "name": name,
-            "department_id": "null"
-        };
-        // console.log(data);
-        let res = await updateUserByName({token, data});
-        startApi();
-    }
-
-    
-
     const dispatch = useDispatch();
     let FormRef = useRef();
 
@@ -62,6 +32,43 @@ function UpdateDepartment() {
         "active" : null,
         "docters": []
     });
+
+    const SubmitForm =  async (e) => {
+        let id = param.id
+        e.preventDefault();
+        try {
+            let res = await updateDepartment({token, id, data: department});
+            let message = res.data.message;
+            toast.success(message)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const updateRole = () =>{
+        let department_id = param.id;
+        let data = {
+            "doctor_name": doctor,
+        };
+        setDepartment({...department, docters: [...department.docters, data]});
+        setDoctor("");
+    }
+
+    const deleteDoctor = async (name) => {
+        // let department_id = param.id;
+        // console.log(name);return;
+        let docters = department.docters;
+
+        docters = docters.filter((item, index)=>{
+            return item.doctor_name != name;
+        })
+
+        setDepartment({...department, docters: docters});
+    }
+
+    
+
+    
 
     const startApi = async () => {
         let id = param.id;
@@ -91,7 +98,7 @@ function UpdateDepartment() {
 
     useEffect(()=>{
         const handleSearch = async () => {
-            let res = await getListUsersAPI(token, {'name': searchDebounce, 'role_code': "doctor", "department_id": "safjdsgjk"});
+            let res = await getListUsersAPI(token, {'username': searchDebounce, 'role_code': "doctor", "department_id": "safjdsgjk"});
             let data = res.data;
             setListSearch(data.data);
         }
@@ -159,11 +166,11 @@ function UpdateDepartment() {
                                             type="text"
                                             disabled
                                             className="mb-2"
-                                            value={val}
+                                            value={val.doctor_name}
                                         />
                                     </div>
                                     <div className="col-4">
-                                        <button className="btn" type="button" onClick={()=>deleteDoctor(val)}>
+                                        <button className="btn" type="button" onClick={()=>deleteDoctor(val.doctor_name)}>
                                             <i className="fas fa-trash"></i>
                                         </button>
                                     </div>
@@ -180,7 +187,7 @@ function UpdateDepartment() {
                                     <Form.Control list="data" value={doctor} onChange={(e) => setDoctor(e.target.value)}/>
                                     <datalist id="data" style={{"width": "100%"}}>
                                         {listSearch.map((val,index) => (
-                                            <option value={val.name} key={index} />
+                                            <option value={val.username} key={index} />
                                         ))}
                                     </datalist>
                                 </Form.Group>

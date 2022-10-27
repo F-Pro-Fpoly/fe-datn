@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import Table from "react-bootstrap/esm/Table";
+import Table from 'react-bootstrap/Table';
 import { useSelector } from "react-redux";
 import Loading from "../../../../components/Loading/Loading";
 import { getListServiceAPI } from "../../../../services/BookingService";
@@ -34,41 +34,42 @@ function ListBooking() {
 
     return ( 
         <>
-        <Table striped bordered hover >
-          <thead>
-            <tr>
-              <th>STT</th>
-              <th>Mã booking</th>
-              <th>Tên người đặt</th>
-              <th>Tên phòng ban</th>
-              <th>Lịch trình</th>
-              <th>Ngày khám</th>
-              <th>Giờ khám</th>
-              <th>Trạng thái</th>
-              <th>Thao tác</th>
-            
-            </tr>
-          </thead>
-          <tbody>
-            {
-              listbooking.map((val, index)=>(
-                <tr key={index}>
-                  <td>{index+1}</td>
-                  <td>{val.code}</td>
-                  <td>{val.user_name}</td>
-                  <td>{val.department_name}</td>
-                  <td>{val.schedule_name}</td>
-                  <td>{val.date}</td>
-                  <td>{val.timeSlot_start} - {val.timeSlot_end}</td>
-                  <td>{val.status}</td>
-                  <td><i className="fas fa-edit"></i> | <i className="fa fa-trash"></i></td>
+        <div className="table-responsive">
+            <Table  bordered hover>
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Mã booking</th>
+                  <th>Tên người đặt</th>
+                  <th>Tên phòng ban</th>
+                  <th>Lịch trình</th>
+                  <th>Ngày khám</th>
+                  <th>Giờ khám</th>
+                  <th>Trạng thái</th>
+                  <th>Thao tác</th>     
                 </tr>
-              ))
-            }
-            
-          </tbody>
-          
-        </Table>
+              </thead>
+              <tbody>
+                {
+                  listbooking.map((val, index)=>(
+                    <tr key={index}>
+                      <td>{index+1}</td>
+                      <td>{val.code}</td>
+                      <td>{val.user_name}</td>
+                      <td>{val.department_name}</td>
+                      <td>{val.schedule_name}</td>
+                      <td>{val.date}</td>
+                      <td>{val.timeSlot_start} - {val.timeSlot_end}</td>
+                      <td>{val.status}</td>
+                      <td><i className="fas fa-edit"></i> | <i className="fa fa-trash"></i></td>
+                    </tr>
+                  ))
+                }
+                
+              </tbody>
+              
+            </Table>
+        </div>
         {
           loading && <Loading />
         }
