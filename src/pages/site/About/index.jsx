@@ -1,4 +1,4 @@
-import "./About.scss";
+// import "./About.scss";
 function About(){
     return(
         <section>

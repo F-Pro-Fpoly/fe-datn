@@ -27,7 +27,8 @@ import UpdateDepartment from "./pages/admin/Department/UpdateDepartment/UpdateDe
 import ListMenu from "./pages/admin/Setttings/Menu/ListMenu/ListMenu";
 import AddMenu from "./pages/admin/Setttings/Menu/AddMenu/AddMenu";
 import About from "./pages/site/About";
-// import Contact from "./pages/site/Contact";
+import Contact from "./pages/site/Contact";
+import Schedule from "./pages/admin/Department/Schedule/Schedule";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -41,7 +42,7 @@ function Web() {
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ly-lich"  element={<Book />}/>             
                     <Route path="/ve-chung-toi"  element={<About />}/>
-                    {/* <Route path="/lien-he"  element={<Contact />}/> */}
+                    <Route path="/lien-he"  element={<Contact />}/>
                 </Route>
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
@@ -68,6 +69,7 @@ function Web() {
                         <Route element={<AddDepartment />} path="add" />
                         <Route element={<ListDepartment />} path="list" />
                         <Route element={<UpdateDepartment />} path="update/:id" />
+                        <Route element={<Schedule />} path=":id/lich-kham" />
                     </Route>
 
                     <Route path="chinh-sua-menu">
