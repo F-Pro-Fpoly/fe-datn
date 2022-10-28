@@ -28,6 +28,13 @@ body{
 .adminSearchWrapper{
     
 }
+.table-link{
+    cursor: pointer;
+    &:hover{
+        color: blue;
+        text-decoration: underline blue;
+    }
+}
 
 
 

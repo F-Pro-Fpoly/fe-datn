@@ -77,7 +77,7 @@ function Nav (){
                               <span>{user.name}</span>      
                                 </div>   
                                 <div className="drop-down">
-                                <span className="arrow-up"></span>
+                                    {/* <span className="arrow-up"></span> */}
                                     <div className="drop-down-item">
                                         <div className="drop-down-icon">
                                             <i className="fa-solid fa-user"></i>               
