@@ -27,6 +27,7 @@ import UpdateDepartment from "./pages/admin/Department/UpdateDepartment/UpdateDe
 import ListMenu from "./pages/admin/Setttings/Menu/ListMenu/ListMenu";
 import AddMenu from "./pages/admin/Setttings/Menu/AddMenu/AddMenu";
 import About from "./pages/site/About";
+import Schedule from "./pages/admin/Department/Schedule/Schedule";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -66,6 +67,7 @@ function Web() {
                         <Route element={<AddDepartment />} path="add" />
                         <Route element={<ListDepartment />} path="list" />
                         <Route element={<UpdateDepartment />} path="update/:id" />
+                        <Route element={<Schedule />} path=":id/lich-kham" />
                     </Route>
 
                     <Route path="chinh-sua-menu">
