@@ -36,4 +36,5 @@ function listScheduleDetail({token, search = {}}) {
 }
 
 
+
 export {createSchedule, listSchedule, listScheduleDetail}
