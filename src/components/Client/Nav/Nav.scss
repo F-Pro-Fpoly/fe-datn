@@ -65,14 +65,15 @@
                         }
                         .drop-down{
                             color: #000;
-                            background-color: white;          
+                            background-color: transparent;          
                             display: none;
                             position: absolute;
                             width: 13%;
-                            top:62%;
+                            // top:62%;
+                            // top: 100%;
                             right: 15%;
-                            border-radius: 10px;
                             transition:  2s;
+                            padding-top: 20px;
                             .arrow-up {
                                 width: 30px;
                                 height:0px;
@@ -84,8 +85,10 @@
                                 top: -14%;
                                 left: 55%;
                             }
-                            .drop-down-item{                                 
+                            .drop-down-item{ 
+                                background-color: #fff;                                
                                 display: flex;
+                                border-radius: 10px;
                                 width: 100%;
                                 flex-direction: column;
                                 flex-wrap: nowrap;
@@ -93,6 +96,8 @@
                                 justify-content: center;
                                 align-items: flex-start;
                                 padding-left: 5%;
+                                position: relative;
+                                z-index: 1000;
                                 .drop-down-icon{
                                     width: 100%;
                                     border-bottom: 1px  dotted #cccccc;
@@ -100,6 +105,7 @@
                                     i, span{                             
                                         color: #000 !important;
                                     }
+                                    
                                 }
                                 .drop-down-icon:hover {
                                     background-color: #cccccc25;
@@ -107,7 +113,17 @@
                                 .drop-down-icon:last-child{
                                     border-bottom: none;
                                 }
-                              
+                                &::after{
+                                    content: "";
+                                    position: absolute;
+                                    z-index: 999;
+                                    width: 20px;
+                                    height: 20px;
+                                    background-color: #fff;
+                                    top: -5%;
+                                    right: 20%;
+                                    transform: rotate(45deg);
+                                }
                             }
 
                         }

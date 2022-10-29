@@ -78,6 +78,13 @@ a{
         color: white !important;
     }
 }
+.table-link{
+    cursor: pointer;
+    &:hover{
+        color: blue;
+        text-decoration: underline blue;
+    }
+}
 
 
 image-box {
