@@ -9,14 +9,49 @@ function Nav (){
     const navRef = useRef();
    
     let user = useSelector((state => state.auth.user));
-    let navb = useSelector((state => state.interface.navb));
+    // let navb = useSelector((state => state.interface.navb));
 
     const [ListMenu, getListListMenu] = useState([]);
     const [pathName, setPathName]     = useState(path.pathname);
 
     useEffect(() => {
         const pathname = path.pathname
+        const myFunction = () => {
+            if (document.documentElement.scrollTop > 100) {             
+                a.add('bg')               
+            } 
+            else{
+                a.remove('bg')
+            }
+        }
+        
+        const  a = navRef.current.classList
+        if(pathname == '/'){
+            // handleClassNav();
+            if(document.documentElement.scrollTop < 100) {
+                if(a.contains('bg')) {
+                    a.remove('bg');
+                }
+            }
+            window.addEventListener("scroll", myFunction);
+        }
+        if(pathname != "/"){
+            // window.addEventListener("scroll", () =>{console.log(123);});
+            window.removeEventListener('scroll', myFunction);
+            // handleClassNav()
+            if(!a.contains('bg')) {
+                a.add('bg');
+            }
+        }
+        // else{
+        //     a.add('bg')
+        // }
+        return function cleanupListener() {
+            window.removeEventListener('scroll', myFunction)
+        }
+    }, [path])
 
+    useEffect(() => {
         const start = async () => {
             getListListMenu([])
             let res = await getListServiceAPI() 
@@ -26,33 +61,10 @@ function Nav (){
         }
       
         start();
-        const myFunction = () => {
-            if (document.documentElement.scrollTop > 100) {             
-                a.add('bg')               
-            } 
-            else{
-                a.remove('bg')
-            }
-        }  
-        const  a = navRef.current.classList
-        if(pathname == '/'){
-            window.addEventListener("scroll", () =>{myFunction()});
-        }
-        if(pathname != "/"){
-            console.log(1);
-            window.removeEventListener('scroll', () =>{myFunction()})
-        }
-        // else{
-        //     a.add('bg')
-        // }
-        return function cleanupListener() {
-            window.removeEventListener('scroll', () =>{myFunction()})
-        }
-    }, [path])
-
+    }, [])
    
     return(   
-            <div className={`navb ${navb && "bg"}`} ref={navRef}>
+            <div className={`navb`} ref={navRef}>
                 <div className="logo">
                 <Link to="/">
                     <img src={logo} alt="logo" width="60"  />
