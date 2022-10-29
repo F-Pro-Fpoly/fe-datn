@@ -222,7 +222,7 @@ function About(){
                                     <i></i>
                                 </span>
                                 <div className="info-li-pp">
-                                    <label for="">Oxygen (O3)</label>
+                                    <label htmlFor=""></label>
                                     <p>Hỗ trợ điều trị viêm âm đạo, viêm cổ tử cung, viêm vùng chậu,…hiệu quả đến 98,5%.</p>
                                     <a href="">Tư vấn</a>
                                 </div>

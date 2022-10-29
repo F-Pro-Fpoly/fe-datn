@@ -12,11 +12,11 @@ function Nav (){
     let navb = useSelector((state => state.interface.navb));
 
     const [ListMenu, getListListMenu] = useState([]);
+    const [pathName, setPathName]     = useState(path.pathname);
 
-
-
-    useEffect (() => {
+    useEffect(() => {
         const pathname = path.pathname
+
         const start = async () => {
             getListListMenu([])
             let res = await getListServiceAPI() 
@@ -29,11 +29,18 @@ function Nav (){
         const myFunction = () => {
             if (document.documentElement.scrollTop > 100) {             
                 a.add('bg')               
-            }    
+            } 
+            else{
+                a.remove('bg')
+            }
         }  
         const  a = navRef.current.classList
-        if(pathname === '/'){
+        if(pathname == '/'){
             window.addEventListener("scroll", () =>{myFunction()});
+        }
+        if(pathname != "/"){
+            console.log(1);
+            window.removeEventListener('scroll', () =>{myFunction()})
         }
         // else{
         //     a.add('bg')
@@ -41,7 +48,8 @@ function Nav (){
         return function cleanupListener() {
             window.removeEventListener('scroll', () =>{myFunction()})
         }
-    }, [] )
+    }, [path])
+
    
     return(   
             <div className={`navb ${navb && "bg"}`} ref={navRef}>

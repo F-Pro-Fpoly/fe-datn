@@ -40,7 +40,7 @@ function Web() {
                     <Route path="/chuyen-khoa"  element={<SpecialistClient />}/>
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ly-lich"  element={<Book />}/>             
-                    <Route path="/ve-chung-toi"  element={<About/>}/>
+                    {/* <Route path="/ve-chung-toi"  element={<About/>}/> */}
                 </Route>
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
