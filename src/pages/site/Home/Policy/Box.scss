@@ -1,0 +1,105 @@
+
+ .infoWPolicy{
+    padding: 2% 0 2% 0;
+    text-align: center;
+    color: #144E78;
+    width: 100%;
+    .service{
+       font-size: 29px;
+       font-weight: 700;
+    }
+    .line{
+        width: 5rem;
+        height: 2px;
+        background-image: linear-gradient(to right, #cfab44, #f4d95d 60%, #cfab44);
+        margin: auto;
+        margin-top: 10px;
+       
+    }
+    .outstanding{
+        color: #D90030 !important;
+    }
+}
+
+.Policy{
+    .Register{
+        text-align:center;
+        .btn-type1{
+            background-image: url('../../../../image/background_2.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            color: #000000 !important;
+            min-width: 12rem;    
+        }
+    }
+    .abc{
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        .small-box{
+            padding: 0 15px;
+            width: calc(100%/3);
+            transition: 0.3s;
+            margin-bottom: 30px;
+            &:hover{
+                transform:translateY(-5%);
+            }
+            .special-box{
+                border-radius: 10px;
+                box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 20%);
+                padding: 15px;
+                margin-top: 40px;
+                transition: 0.5s;
+                margin-bottom: 30px;
+                height: calc(100% - 60px);
+              
+                .wrapImg{
+                    width: 20%;
+                    margin: auto;
+                    position: relative;
+                    top: -40px;
+                    margin-bottom: -10px;
+                    .imgPart{
+                        padding-bottom: 100%;
+                        position: relative;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                        }
+                    }
+                    .imgPart::before{
+                        content: "";
+                        position: absolute;
+                        top: -13px;
+                        left: -13px;
+                        right: -13px;
+                        bottom: -13px;
+                        border-radius: 100%;
+                        padding: 2px;
+                        background: linear-gradient(to right, #cfab44, #f4d95d 60%, #cfab44);
+                        -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+                        -webkit-mask-composite: destination-out;
+                    }
+                }
+                .textPart{
+                    .spText_1{
+                        text-align: center;
+                        font-weight: 700;
+                        margin-bottom: 10px;
+                    }
+                    .spText_2{
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+      
+    }
+}

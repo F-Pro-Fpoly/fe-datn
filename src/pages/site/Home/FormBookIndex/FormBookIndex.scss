@@ -1,0 +1,97 @@
+.formindex{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    padding-top: 5% ;
+    padding-bottom: 5%;
+    .itemLeft{
+        background-color: #144E78;
+        width:40%;
+        position: absolute;
+        bottom: 45%;
+        transform: translateY(50%);
+        z-index: 2;
+        margin: auto;
+        text-align: center;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        left:3% ;
+        .i {
+            background-color: var(--mau_chu_dao_1);
+            color: #ffffff;
+            padding: 30px;
+            position: relative;
+            width: calc(100% + 40px);
+            text-align: center;
+            .titleleft{
+                p{
+                    font-size: 35px;
+                    font-weight: 700;
+                    font-style: italic;
+                }
+                span{
+                    font-style: italic;
+                    font-weight: 700;
+                }
+            }
+        }
+        
+    }
+    .itemright{
+        display: flex;
+        z-index: 1;
+        width:60%;
+        position: relative;
+        left: 40%;
+        box-shadow: 3px 4px 10px 0px rgb(0 0 0 / 38%);
+        min-height: 50vh;
+        padding: 30px 20px 30px 80px;
+        .imgPart{
+            width: 35%;
+            // margin: auto;
+            padding: 0 15px;
+            img{
+                vertical-align: middle;
+                border-style: none;
+                width: 100%;
+            }
+        }
+        .rightArea{
+            width: 60%;
+           .formRegisterBlock_3{
+                input{
+                    width: 100%;
+                }      
+           }
+        }
+        .form{
+            .titleright{
+                text-align: center;
+                p{
+                    font-weight: 700;
+                  
+                }
+            }
+            .area_2{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-content: center;
+                justify-content: space-around;
+                align-items: center;             
+                .forminput{
+                    display: flex;
+                   
+                    
+                }
+            }
+           
+        }
+       
+    }
+}
