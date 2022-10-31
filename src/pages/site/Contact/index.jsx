@@ -1,7 +1,45 @@
 import "./Contact.scss";
+import {useDispatch, useSelector} from "react-redux";
+import { toast,ToastContainer } from 'react-toastify';
+import { useEffect, useMemo, useRef } from 'react';
+import {creatContactApi} from "../../../services/ContactService"
 function Contact(){
+    const token = useSelector((state)=>state.auth.token);
+    const FormRep = useRef();
+    const submitContact = async (event) =>{
+      event.preventDefault();
+      const formData = new FormData(FormRep.current);
+      const req = {
+        "token": token,
+        "data": formData
+      };
+      try {
+        let res = await creatContactApi(req);
+        FormRep.current.reset();
+        toast.success(res.data.message) ;     
+      } catch (error) {
+        let res = error.response;
+        let data = res.data;
+        let messages = data.message;
+        toast.error(messages);
+      }
+  
+    }
     return(
             <main role="main">
+                  <ToastContainer
+                                position="top-right"
+                                autoClose={4000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                                />
+                                {/* Same as */}
+                    <ToastContainer />
                 <div className="container mt-2">
                     <img src="./img/banner-lienhe001.jpg" alt="đa khoa cần thơ" />
                     <h1 className="text-center">Liên hệ với chúng tôi</h1>
@@ -9,17 +47,17 @@ function Contact(){
                         <div className="col col-md-6">
                             <img src="https://khothietke.net/wp-content/uploads/2021/03/PNG00194-bac-sy-gia-dinh-png.png" />
                         </div>
-                        <div className="col col-md-6 ">
-                        <form className="cf form fe">
-                            <div className="half left cf">
-                                <input type="text" className="input" id="input-name" placeholder="Họ tên" />
-                                <input type="email" className="input" id="input-email" placeholder="Email" />
-                                <input type="text" className="input" id="input-subject" placeholder="Chủ đề" />
-                            </div>
-                            <div className="half right cf">
-                                <textarea name="message" type="text" className="textarea" id="input-message" placeholder="Nội dung gửi đi"></textarea>
-                            </div>  
-                            <input type="submit" className="input" value="Gửi" id="input-submit" />
+                        <div className="col col-md-6">
+                            <form className="cf form fe" onSubmit={submitContact} ref={FormRep} method="post">
+                          
+                                <div className="half left cf">
+                                    <input type="text" className="input" id="input-name" name="name" placeholder="Họ tên" />
+                                    <input type="email" className="input" id="input-email" name="email" placeholder="Email" />
+                                </div>
+                                <div className="half right cf">
+                                    <textarea name="contents" type="text" className="textarea" id="input-message" placeholder="Nội dung gửi đi"></textarea>
+                                </div>  
+                                <button type="submit" className="input" id="input-submit">Gửi đi</button>
                             </form>
                         </div>
                     </div>
