@@ -1,20 +1,30 @@
 import { useEffect, useState } from "react";
 import {useParams} from "react-router-dom";
-import {Button, Form, Table} from "react-bootstrap"
+import {Button, Form, Modal, Table} from "react-bootstrap"
 import { createSchedule, listSchedule, listScheduleDetail } from "../../../../services/ScheduleService";
 import {ToastContainer, toast} from "react-toastify"
 import { useSelector } from "react-redux";
 import Loading from "../../../../components/Loading/Loading";
 import ScheduleTime from "./ScheduleTime";
+import { getTimeSlotBySchedule } from "../../../../services/TimeSlotService";
+import "./Schedule.scss";
 
 function Schedule() {
+    // param
     const param = useParams();
     const [loading, setLoading] = useState(false);
     const [scheduleDetail, setScheduleDetail] = useState([]);
+    const [show, setShow] = useState(false);
     let id = param.id
     const token = useSelector(state=>state.auth.token);
     const [addS, setAddS] = useState(false);
     const [listSche, setListSche] = useState([]);
+    const [timeSlot, setTimeSlot] = useState({
+        'select': "",
+        "listTimeSlot": []
+    });
+
+    // handle event
     const [schedule, setSchedule] = useState({
         "date": "",
         "description": ""
@@ -45,17 +55,14 @@ function Schedule() {
             console.log(error);
         }
     }
-    useEffect(()=>{
-        console.log(id);
-        start();
-    },[]);
     const SuSubmit = async (e) => {
         e.preventDefault();
+        //  setSchedule({...schedule, "department_id": id})
+        let scheduleData = {...schedule, "department_id": id};
         try {
-            setSchedule({...schedule, "department_id": id})
-            // console.log(schedule);
+            // console.log(scheduleData);
             // return;
-            let res = await createSchedule({token, data: schedule});
+            let res = await createSchedule({token, data: scheduleData});
             let message = res.data.message;
             toast.success(message);
             setSchedule({
@@ -68,6 +75,31 @@ function Schedule() {
             toast.error(message);
         }
     }
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const handleTimeSlotSelect = async (e) =>{
+        let id = e.target.value;
+        if(id === ''){
+            return;
+        }
+        // setTimeSlot({...timeSlot, select: id});
+        try {
+            let res = await getTimeSlotBySchedule({token, id});
+            let data = res.data.data;
+            setTimeSlot({...timeSlot, listTimeSlot: data, select: id})
+        } catch (error) {
+            
+        }
+    }
+
+    // useEffect
+    useEffect(()=>{
+        console.log(id);
+        start();
+    },[]);
+    
     return ( 
         <div className="adminItem">
             <h4>Lịch khám của phòng</h4>
@@ -79,11 +111,61 @@ function Schedule() {
                     setAddS(true)
                 }
             }}>{addS ? "Close" : "Tạo lịch khám"}</button>
+
+            <button className="btn btn-primary ms-2" onClick={handleShow}>Tạo thời gian khám</button>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Tạo thời gian khám</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className="p-3 timeSlot">
+                        <Form.Group>
+                            <Form.Select value={timeSlot.select} onChange={(e) => handleTimeSlotSelect(e)}>
+                                <option value="">--Chọn--</option>
+                                {listSche.map((item, index)=>{
+                                    return (
+                                        <option value={item.id} key={index}>{`${item.code} - ${item.date}`}</option>
+                                    );
+                                })}
+                            </Form.Select>
+                            
+                            
+                            <div className="timeSlot-list">
+                                {/* <div className="timeSlot-item">
+                                    <span>8:00:00</span>
+                                    <span>-</span>
+                                    <span>8:30:00</span>
+                                </div> */}
+                                {
+                                    timeSlot.listTimeSlot.map((item, index) => {
+                                        return (
+                                            <div className="timeSlot-item" key={index}>
+                                                <span>{item.time_start}</span>
+                                                <span>-</span>
+                                                <span>{item.time_end}</span>
+                                            </div>
+                                        );
+                                    })
+                                }
+                            </div>
+                            
+                        </Form.Group>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             {addS && (
                <Form onSubmit={SuSubmit}>
                 <Form.Group>
                     <Form.Label>Chọn ngày</Form.Label>
-                    <Form.Control type="date" value={schedule.date} onChange={(e)=>setSchedule({...schedule,date:e.target.value})} />
+                    <Form.Control type="date" value={schedule.date} onChange={(e)=> setSchedule({...schedule,date:e.target.value})} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Mô tả</Form.Label>

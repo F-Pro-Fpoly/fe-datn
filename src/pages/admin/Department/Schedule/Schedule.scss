@@ -1,0 +1,27 @@
+.timeSlot{
+    font-size: 14px;
+   &-list{
+    display: flex;
+    gap: 10px;
+    padding: 20px 0;
+    flex-wrap: wrap;
+   }
+   &-item{
+    background-color: gray;
+    padding: 10px;
+    border-radius: 5px;
+    width: calc(50% - 10px);
+    text-align: center;
+    cursor: pointer;
+    & span{
+        color: #eee;
+
+    }
+    &:hover{
+        background-color: rgb(205, 202, 202);
+        & span{
+            color: #333;
+        }
+    }
+   } 
+}
