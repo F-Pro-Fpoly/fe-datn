@@ -52,9 +52,7 @@ function ListDepartment() {
                             <tr key={index}>
                                 <td>{index+1}</td>
                                 <td>
-                                    <Link to={`/admin/phong-ban/${val.id}/lich-kham`} style={{"textDecoration": "none"}}>
-                                        {val.name}
-                                    </Link>
+                                {val.name}
                                 </td>
                                 <td>{val.code}</td>
                                 <td>{val.specialist_name}</td>

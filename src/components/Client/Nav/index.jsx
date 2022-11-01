@@ -104,7 +104,7 @@ function Nav (){
                                             <Link to="/profile"><span> Hồ sơ cá nhân</span></Link>
                                         </div>
                                         {
-                                           user.role_id == 1 &&
+                                           (user.role_id == 1 || user.role_id == 2) &&
                                             <div className="drop-down-icon">
                                                 <i className="fa-solid fa-gears"></i>                                
                                                 <Link to="/admin"><span>Trang quản trị</span></Link> 
