@@ -84,7 +84,7 @@ function Nav (){
                             </li>
                             <li>
                             <i className="fa-duotone fa-user-headset"></i>                                                              
-                                <Link>
+                                <Link to={"lien-he"}>
                                     <i className="fa-solid fa-head-side-cough"></i>
                                     <span>Liên hệ</span>  
                                 </Link>             
