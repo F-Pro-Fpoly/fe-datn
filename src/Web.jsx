@@ -28,7 +28,7 @@ import ListMenu from "./pages/admin/Setttings/Menu/ListMenu/ListMenu";
 import AddMenu from "./pages/admin/Setttings/Menu/AddMenu/AddMenu";
 import About from "./pages/site/About";
 import Contact from "./pages/site/Contact";
-import Schedule from "./pages/admin/Department/Schedule/Schedule";
+import CreateDalandar from "./pages/admin/Calendar/Create/CreateDelandar";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -63,13 +63,14 @@ function Web() {
                     </Route>
                     <Route path="booking">
                         <Route  element={<ListBooking/> } path ='list'/>
+                        <Route  element={<CreateDalandar/> } path ='add'/>
                     </Route>
 
                     <Route path="phong-ban">
                         <Route element={<AddDepartment />} path="add" />
                         <Route element={<ListDepartment />} path="list" />
                         <Route element={<UpdateDepartment />} path="update/:id" />
-                        <Route element={<Schedule />} path=":id/lich-kham" />
+                        {/* <Route element={<Schedule />} path=":id/lich-kham" /> */}
                     </Route>
 
                     <Route path="chinh-sua-menu">

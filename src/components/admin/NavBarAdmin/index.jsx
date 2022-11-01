@@ -8,7 +8,24 @@ import { useSelector } from "react-redux";
 
 function NavBarAdmin({className}) {
     const token = useSelector((state) => state.auth.token);
+    const user = useSelector(state => state.auth.user);
     const [counts, setCounts] = useState({});
+    let NavLich = [
+        {
+            name: "Danh sách lịch khám",
+            to: "/admin/booking/list"
+        },
+    ]
+
+    if(user.role_id == 2) {
+        NavLich = [
+            ...NavLich,
+            {
+                "name": "Tạo lịch",
+                to: "/admin/booking/add"
+            }
+        ];
+    }
 
     const start = async () =>{
         try {
@@ -33,6 +50,8 @@ function NavBarAdmin({className}) {
             </Link>
 
             <div className="navBarAdmin-main accordion" id="accordionExample">
+                {user.role_id == 1 && (
+                <>
                 <NavBarItem name="Dashboard" icon="bi bi-speedometer2" to="/admin" />
                 <NavBarItem id="users" name="Quản lý người dùng" countTitle={`${counts['user-count']}`} dropdownArr={[
                     {
@@ -64,15 +83,19 @@ function NavBarAdmin({className}) {
                         to: "/admin/sick/list"
                     },
                 ]} icon="bi bi-hospital" />
-                <NavBarItem id="booking" name="Đặt lịch khám" countTitle={`${counts['booking-count']}`} dropdownArr={[
-                    {
-                        name: "Danh sách lịch khám",
-                        to: "/admin/booking/list"
-                    },
-                ]} icon="bi bi-bookmark-plus" />
+                </>
+                
+                )}
+                
+                
+                <NavBarItem id="booking" name="Đặt lịch khám" countTitle={`${counts['booking-count']}`} dropdownArr={NavLich} icon="bi bi-bookmark-plus" />
+                
+                
 
-
-                <NavBarItem id="department" name="Quản lý phòng ban" countTitle={`${counts['Department-count']}`} dropdownArr={[
+                {
+                    user.role_id ==1 && (
+                    <>
+                    <NavBarItem id="department" name="Quản lý phòng ban" countTitle={`${counts['Department-count']}`} dropdownArr={[
                     {
                         name: "Thêm phòng ban",
                         to: "/admin/phong-ban/add"
@@ -81,13 +104,16 @@ function NavBarAdmin({className}) {
                         name: "Danh sách phòng ban",
                         to: "/admin/phong-ban/list"
                     }
-                ]} icon="bi bi-layout-text-sidebar" />
-                <NavBarItem id="setting" name="Tiện ích mở rộng" dropdownArr={[
-                    {
-                        name: "Thiết lập Menu",
-                        to: "/admin/chinh-sua-menu/list"
-                    },
-                ]} icon="bi bi-file-break" />
+                    ]} icon="bi bi-layout-text-sidebar" />
+                    <NavBarItem id="setting" name="Tiện ích mở rộng" dropdownArr={[
+                        {
+                            name: "Thiết lập Menu",
+                            to: "/admin/chinh-sua-menu/list"
+                        },
+                    ]} icon="bi bi-file-break" />
+                    </>
+                    )
+                }
                 
                  <NavBarItem name="Về trang người dùng" icon="bi bi-house"  to="/" />
             </div>
