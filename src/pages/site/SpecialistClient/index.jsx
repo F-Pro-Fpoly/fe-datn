@@ -13,17 +13,18 @@ function SpecialistClient () {
   const [loading, getLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
+    document.title = "Chuyên khoa"
     dispatch(setNavb(true))
-      const start = async () => {
-          getLoading(true)
-          getSpecialistClient([])
-          let res = await getListServiceAPI({status: 1})
-          let data = res.data
-          let dataArr = data.data
-          getLoading(false)
-          getSpecialistClient(dataArr)
-       
-      }
+    const start = async () => {
+        getLoading(true)
+        getSpecialistClient([])
+        let res = await getListServiceAPI({status: 1})
+        let data = res.data
+        let dataArr = data.data
+        getLoading(false)
+        getSpecialistClient(dataArr)
+      
+    }
 
       start()
   
