@@ -42,7 +42,7 @@ function Contact(){
                     <ToastContainer />
                 <div className="container mt-2">
                     <img src="./img/banner-lienhe001.jpg" alt="đa khoa cần thơ" />
-                    <h1 className="text-center">Liên hệ với chúng tôi</h1>
+                    <h1 className="text-center h1">Liên hệ với chúng tôi</h1>
                     <div className="row">
                         <div className="col col-md-6">
                             <img src="https://khothietke.net/wp-content/uploads/2021/03/PNG00194-bac-sy-gia-dinh-png.png" />
