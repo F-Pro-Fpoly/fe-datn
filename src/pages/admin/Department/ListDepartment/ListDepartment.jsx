@@ -34,7 +34,7 @@ function ListDepartment() {
 
     return ( 
         <div className="adminItem">
-            <Table striped bordered hover className='table-striped'>
+            <Table striped bordered hover responsive className='table-striped'>
                 <thead>
                     <tr>
                         <th>STT</th>

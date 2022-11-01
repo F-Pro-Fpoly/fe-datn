@@ -49,7 +49,7 @@ function NavBarTop({navEl2}) {
                     <div className="navBarTop-avatars-content dropdown-toggle" id="menu-avata" data-bs-toggle="dropdown"  aria-expanded="false" type="button">
                         <span>{user.name}</span>
                     </div>
-                    <DropdownMenu id="menu-avata">
+                    <DropdownMenu id="menu-avata" className="menu-avata">
                         <ul className="navBarTop-list">
                             <li className="navBarTop-item">
                                 <Link to="/profile" className="navBarTop-link">Profile</Link>

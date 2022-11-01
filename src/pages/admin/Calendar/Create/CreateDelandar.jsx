@@ -74,6 +74,8 @@ function CreateDalandar() {
     },[date])
 
     return ( 
+
+        user.specailist_id ? (
         <div className="danlandar">
             <ToastContainer />
             <div className="adminItem">
@@ -86,13 +88,15 @@ function CreateDalandar() {
                     <button className="btn btn-primary" onClick={handleShow}>Tạo</button>
                 </div>
                 <div className="danlandar-body">
-                    {date && listSchedule.map((item, index) => (
+                    {(date && listSchedule.length > 0) ? listSchedule.map((item, index) => (
                         <div className="danlandar-item"  key={index}>
                             <span>{item.time_start}</span>
                             <span>-</span>
                             <span>{item.time_end}</span>
                         </div>
-                    ))}
+                    )):(
+                        <h4>Không có lịch khám cho ngày {date}</h4>
+                    )}
                 </div>
                 <Modal show={show} onHide={handleClose}>
                     <Form ref={formRef} onSubmit={handleSubmitModal}>  
@@ -128,6 +132,10 @@ function CreateDalandar() {
                 </Modal>
             </div>
         </div>
+        ):(
+            <h3>Vui lòng cập nhập profile đầy đủ</h3>
+        )
+        
      );
 }
 
