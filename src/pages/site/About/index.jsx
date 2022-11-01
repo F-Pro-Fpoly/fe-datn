@@ -6,7 +6,7 @@ function About(){
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
-                            <h1>ABOUT US</h1>
+                            <h1>Về chúng tôi</h1>
                         </div>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ function Contact(){
   
     }
     return(
-            <main role="main">
+            <main role="main" className="formBooking">
                   <ToastContainer
                                 position="top-right"
                                 autoClose={4000}
