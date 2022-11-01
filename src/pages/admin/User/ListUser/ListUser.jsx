@@ -85,7 +85,7 @@ function ListUser() {
       </div>
       <div className='table_admin'>
         
-        <Table striped bordered hover className='table-striped'>
+        <Table striped bordered hover responsive className='table-striped'>
           <thead>
             <tr>
               <th>STT</th>
