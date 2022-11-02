@@ -20,34 +20,27 @@ function Clinic () {
                 </div>
             </div>
            </div>
-           <div className="select">
-                <div className="container">
-                    <select name="" id="">
-                        <option value="">Toàn quốc</option>
-                        <option value="">Hà Nội</option>
-                        <option value="">Hồ Chí Minh</option>
-                    </select>
-                </div>
-           </div>
+     
             <div className="content">
                 <div className="container">            
                     <div className="boxcontent">
+                 
+                      
                         <div className="image">
-                            <img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA128QGB.img?w=640&h=426&m=6" alt="" />
-                            <Link to="">Xem thêm</Link>
-                        </div>
-                        <div className="infocontent">
-                            <h3>Giáo sư, Tiến sĩ, Bác sĩ Trần Ngọc Ân</h3>
-                            <span>Nguyên Trưởng khoa Cơ xương khớp, Bệnh viện Bạch Mai
-                                Chủ tịch Hội Thấp khớp học Việt Nam
-                                Giáo sư đầu ngành với gần 50 năm kinh nghiệm điều trị các bệnh lý liên quan đến Cơ xương khớp
-                                Bác sĩ khám cho người bệnh từ 14 tuổi trở lên
-                            </span>
-                            <div className="local">
-                                <i className="fa-solid fa-location-dot"></i>&nbsp;
-                                <span>Hà Nội</span>
+                                <img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA128QGB.img?w=640&h=426&m=6" alt="" />
+                                <Link to="">Xem thêm</Link>
                             </div>
-                        </div>
+                            <div className="infocontent">                       
+                                <h3>Giáo sư, Tiến sĩ, Bác sĩ Trần Ngọc Ân</h3>
+                                <span>Nguyên Trưởng khoa Cơ xương khớp, Bệnh viện Bạch Mai
+                                    Chủ tịch Hội Thấp khớp học Việt Nam
+                                    Giáo sư đầu ngành với gần 50 năm kinh nghiệm điều trị các bệnh lý liên quan đến Cơ xương khớp
+                                    Bác sĩ khám cho người bệnh từ 14 tuổi trở lên
+                                </span>                                              
+                      
+                
+                       </div>
+
                         <div className="schedule">
                             <select name="" id="">
                                 <option value="">Thứ 2 - 26/09</option>                     
@@ -58,35 +51,94 @@ function Clinic () {
                                 <span>LỊCH KHÁM</span>
                            </div>
                            <div className="time">
-                                <div className="boxtime">
-                                    <p>08:00 - 08:30</p>
-                                </div>
-                                <div className="boxtime">
-                                    <p>08:00 - 08:30</p>
-                                </div>
-                                <div className="boxtime">
-                                    <p>08:00 - 08:30</p>
-                                </div>
-                           </div>
-                            <div className="descep">
-                                <span>Chọn <i className="fa-regular fa-hand-point-up"></i> và đặt (Phí đặt lịch 0đ)</span>
+                              <div className="container-fluid">
+                                    <div className="row">                     
+                                        <div className="col">
+                                        <div className="boxtime">
+                                                <input type="checkbox" class="btn-check" id="btn-check-outlined-1" autocomplete="off"  />
+                                                <label class="btn btn-outline-primary non-border "  for="btn-check-outlined-1"> 09:30 - 10:00</label><br />
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                        <div className="boxtime">
+                                                <input type="checkbox" class="btn-check" id="btn-check-outlined-2" autocomplete="off"  />
+                                                <label class="btn btn-outline-primary non-border "  for="btn-check-outlined-2"> 09:30 - 10:00</label><br />
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="boxtime">
+                                                <input type="checkbox" class="btn-check" id="btn-check-outlined-3" autocomplete="off" disabled />
+                                                <label class="btn btn-outline-primary non-border "  for="btn-check-outlined-3"> 09:30 - 10:00</label><br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">                            
+                                        <div className="col">
+                                            <div className="boxtime">
+                                                09:30 - 10:00
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="boxtime">
+                                                09:30 - 10:00
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <div className="boxtime">
+                                                09:30 - 10:00
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div className="collapse" id="collapseExample">
+                                        <div className="row">                            
+                                            <div className="col">
+                                                <div className="boxtime">
+                                                    09:30 - 10:00
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                <div className="boxtime">
+                                                    09:30 - 10:00
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                <div className="boxtime">
+                                                    09:30 - 10:00
+                                                </div>
+                                            </div>
+                                        </div>  
+                                        <div className="row">                            
+                                            <div className="col">
+                                                <div className="boxtime">
+                                                    09:30 - 10:00
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                <div className="boxtime">
+                                                    09:30 - 10:00
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                <div className="boxtime">
+                                                    09:30 - 10:00
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>     
+                                    <p className="showmore">
+                                        <Link  data-bs-toggle="collapse" to="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        Xem thêm <i className="bi bi-caret-down-fill"></i>
+                                        </Link>                               
+                                    </p>    
+                                </div>  
+                             
                             </div>
-                           <div className="address">
-                                <h3>ĐỊA CHỈ KHÁM</h3>
-                                <p>Bệnh viện Đa khoa Đông Đô
-                                    Số 5 phố Xã Đàn - Đống Đa - Hà Nội</p>
-                           </div>
-                           <div className="price">
-                                <h3>GIÁ KHÁM: <span>400.000 <sup>đ</sup>. &nbsp;</span><Link to="">Xem chi tiết</Link></h3>
-                           </div>
-                            <div className="insurance">
-                                <h3>LOẠI BẢO HIỂM ÁP DỤNG. &nbsp;<Link to="">Xem chi tiết</Link></h3>
-                            </div>
+                         
+                                       
+                                 
                         </div>
-
                     </div>
                 </div>
-
            </div>
        </>
     );
