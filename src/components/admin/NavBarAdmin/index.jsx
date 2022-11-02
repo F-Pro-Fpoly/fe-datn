@@ -110,7 +110,15 @@ function NavBarAdmin({className}) {
                             name: "Thiết lập Menu",
                             to: "/admin/chinh-sua-menu/list"
                         },
-                    ]} icon="bi bi-file-break" />
+                        {
+                        name: "Quản lí banner",
+                        to: "/admin/quan-ly-banner/list"
+                    },
+                    {
+                        name: "Cấu hình chung",
+                        to: "/admin/cau-hinh-chung/list"
+                    },
+                ]} icon="bi bi-file-break" />
                     </>
                     )
                 }
