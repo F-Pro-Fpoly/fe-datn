@@ -33,35 +33,34 @@
         align-items: flex-end;
         .top-menu{
             padding-bottom: 10px;
-            ul{
+            &>ul{
                 display: flex;
                 list-style-type: none;
                 margin: 0;
                 padding: 0;
-                overflow: hidden;
-                flex-direction: row;
                 flex-wrap: nowrap;
                 align-content: center;
                 justify-content: center;
-                align-items: stretch;        
+                align-items: center;
+                // align-items: stretch;        
                 color: white !important;
-                li{
+                &>li{
                     margin-right: 15px;
                     display: inline;         
                     padding: 5px  5px 0 5px; 
-                    a{
+                    &>a{
                         color: #333333;
                         text-decoration: none;
                     }
                     &:hover{
                         color: #1A94FF; 
                     }
-                    i{
+                    &>i{
                         padding-right: 10px;
                         color: white !important;
                     }
-                    span{
-                        color: white !important;
+                    &>span{
+                        color: white;
                         
                     }
                     .drop-down{

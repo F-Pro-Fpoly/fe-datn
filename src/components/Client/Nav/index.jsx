@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import logo from "../../../image/logo.png"
 import { getListServiceAPI } from "../../../services/normal/MenuService";
 import "./Nav.scss"
+import ProfileNav from "../ProfileNav/ProfileNav";
 function Nav (){
     const path = useLocation()
     const navRef = useRef();
@@ -88,56 +89,14 @@ function Nav (){
                                     <i className="fa-regular fa-envelope"></i>
                                     <span>example.job@gmail.com</span>
                                 </li>
-                                <li>
-                                <i className="fa-duotone fa-user-headset"></i>                                                              
-                                    <Link to={"lien-he"}>
+                                <li className="text-light">
+                                    <i className="fa-duotone fa-user-headset"></i>                                                              
+                                    <Link to={"lien-he"} className="text-light">
                                         <i className="fa-solid fa-head-side-cough"></i>
                                         <span>Liên hệ</span>  
                                     </Link>             
                                 </li>
-                                {
-                                user ?
-                                <>
-                                    <li>           
-                                    <div className="info">
-                                    <span>{user.name}</span>      
-                                        </div>   
-                                        <div className="drop-down">
-                                            {/* <span className="arrow-up"></span> */}
-                                            <div className="drop-down-item">
-                                                <div className="drop-down-icon">
-                                                    <i className="fa-solid fa-user"></i>               
-                                                    <Link to="/profile"><span> Hồ sơ cá nhân</span></Link>
-                                                </div>
-                                                {
-                                                (user.role_id == 1 || user.role_id == 2) &&
-                                                    <div className="drop-down-icon">
-                                                        <i className="fa-solid fa-gears"></i>                                
-                                                        <Link to="/admin"><span>Trang quản trị</span></Link> 
-                                                    </div>                         
-                                                }
-                                                <div className="drop-down-icon">
-                                                <i class="fa-solid fa-right-from-bracket"></i>
-                                                    <Link to="/logout"><span>Đăng xuất</span></Link>  
-                                                </div>
-                                            </div>
-                                        </div>                                       
-                                    </li>
-                                <li>
-                                    
-                                </li>
-                                </>
-                                : 
-                                <>
-                                    <li>
-                                        <i className="fa-solid fa-right-to-bracket"></i>
-                                        <Link to="/login"><span>Đăng nhập</span></Link>  
-                                    </li>
-                                    <li>                       
-                                        <Link to="/register"><span>Đăng ký</span></Link>                         
-                                    </li>
-                                </>
-                                }
+                                <ProfileNav />
                             </ul>
                         </div>
             
