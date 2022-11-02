@@ -32,6 +32,7 @@ import CreateDalandar from "./pages/admin/Calendar/Create/CreateDelandar";
 import ListConfig from "./pages/admin/Setttings/Config/ListConfig/ListConfig";
 import AddConfig from "./pages/admin/Setttings/Config/AddConfig";
 import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
+import Profile from "./pages/site/Profile";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -46,7 +47,7 @@ function Web() {
                     <Route path="/dang-ly-lich"  element={<Book />}/>             
                     <Route path="/ve-chung-toi"  element={<About />}/>
                     <Route path="/lien-he"  element={<Contact />}/>
-                    <Route path="/ho-so-ca-nhan"  element={<Book />}/>  
+                    <Route path="/ho-so-ca-nhan/*"  element={<Profile />}/>  
                 </Route>
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
