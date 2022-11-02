@@ -73,3 +73,40 @@
         }
     }
 }
+
+@media screen and (max-width: 750px) {
+    .footer1{
+        .cot1:first-child{
+            text-align: center;
+        }
+        .flashlink{
+            margin: 0;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 20px;
+        }
+        .headquarters{
+            display: none;
+        }
+    }
+    .newsletter{
+        flex-wrap: wrap;
+        h3{
+            width: auto;
+            max-width: 100%;
+            flex: 0 0 100%;
+            text-align: center;
+        }
+        .send{
+            width: auto;
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .footer1{
+        font-size: 14px;
+    }
+}

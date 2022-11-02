@@ -17,7 +17,7 @@ function Footer () {
             <div className="footer1">
                 <div className="container">
                     <div className="row">
-                        <div className="col">
+                        <div className="col-xl-4 col-md-4 col-12">
                             <div className="cot1">
                                 <div className="logo">
                                     <img src={logo} alt="logo" width="100" height="100" />
@@ -35,7 +35,7 @@ function Footer () {
                                 </div>
                             </div>
                         </div>
-                        <div className="col">
+                        <div className="col-xl-4 col-md-4 col-12">
                             <div className="flashlink">
                                 <div className="row">
                                     <Link to=""> Liên hệ đối tác</Link>
@@ -54,7 +54,7 @@ function Footer () {
                                 </div>
                             </div>
                         </div>
-                        <div className="col">
+                        <div className="col-xl-4 col-md-4 col-12">
                             <div className="headquarters">
                                 <div className="row">
                                     <h3>Trụ sở tại Hà Nội</h3>

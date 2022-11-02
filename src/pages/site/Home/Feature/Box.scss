@@ -54,3 +54,18 @@
     font-size: 30px;
     
 }
+
+@media screen and (max-width: 750px) {
+    .des{
+        display: none;
+    }
+    .infoSpecial-title{
+        text-transform: capitalize;
+        display:-webkit-box;
+        -webkit-line-clamp:1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+    }
+}

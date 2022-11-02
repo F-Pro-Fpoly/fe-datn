@@ -63,3 +63,22 @@
     }
     
 }
+
+@media screen and (max-width: 700px) {
+    .banner{
+        height: auto;
+        .text{
+            h2{
+                font-size: 17px;
+            }
+        }
+        img{
+            width:100%;
+            height: auto;
+            object-fit:cover;
+        }
+        button{
+            font-size: 14px;
+        }
+    }
+}

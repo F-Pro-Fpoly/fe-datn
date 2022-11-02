@@ -103,3 +103,13 @@
       
     }
 }
+
+@media screen and (max-width: 800px) {
+    .abc{
+        .small-box{
+            width: auto;
+            max-width: 50%;
+            flex: 0 0 50%;
+        }
+    }
+}
