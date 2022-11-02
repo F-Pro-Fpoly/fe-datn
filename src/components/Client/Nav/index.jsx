@@ -84,7 +84,7 @@ function Nav (){
                             </li>
                             <li>
                             <i className="fa-duotone fa-user-headset"></i>                                                              
-                                <Link>
+                                <Link to={"lien-he"}>
                                     <i className="fa-solid fa-head-side-cough"></i>
                                     <span>Liên hệ</span>  
                                 </Link>             
@@ -104,7 +104,7 @@ function Nav (){
                                             <Link to="/ho-so-ca-nhan"><span> Hồ sơ cá nhân</span></Link>
                                         </div>
                                         {
-                                           user.role_id == 1 &&
+                                           (user.role_id == 1 || user.role_id == 2) &&
                                             <div className="drop-down-icon">
                                                 <i className="fa-solid fa-gears"></i>                                
                                                 <Link to="/admin"><span>Trang quản trị</span></Link> 

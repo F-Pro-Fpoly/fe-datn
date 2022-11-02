@@ -7,10 +7,10 @@ function createSchedule({token, data}) {
         headers = {...headers, "Authorization": `Bearer ${token}`};
         // console.log(configs);
     }
-    return API.post(`auth/schedule/create`, data ,{headers: headers});
+    return API.post(`auth/schedule/add`, data ,{headers: headers});
 }
 
-function listSchedule({token, search = {}}) {
+function listScheduleApi({token, search = {}}) {
     let headers = {}
     if(token){
         headers = {...headers, "Authorization": `Bearer ${token}`};
@@ -35,6 +35,20 @@ function listScheduleDetail({token, search = {}}) {
     return API.get(url,{headers: headers});
 }
 
+function listTimeslot({token, search = {}}) {
+    let headers = {}
+
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    let url = `auth/timeslot/list?`;
+    for(let se in search) {
+        url += `${se}=${search[se]}&`;
+    }
+    return API.get(url,{headers: headers});
+}
 
 
-export {createSchedule, listSchedule, listScheduleDetail}
+
+export {createSchedule, listScheduleApi, listScheduleDetail, listTimeslot}

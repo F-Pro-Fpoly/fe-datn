@@ -9,9 +9,9 @@ p{
 body{
     font-family: 'Poppins', sans-serif !important;
 }
-.container {
-    margin-top: 0;
-}
+// .container {
+//     margin-top: 0;
+// }
 
 .ck-content{
     min-height: 500px;
@@ -97,5 +97,9 @@ image-box {
     display: block;
     padding-top: 56.25%;
     /* initial ratio of 16:9*/
+}
+
+th,td {
+    white-space: nowrap;
 }
 

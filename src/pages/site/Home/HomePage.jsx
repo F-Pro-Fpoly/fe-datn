@@ -16,6 +16,7 @@ import FormBookIndexx from './FormBookIndexx';
 function HomePage() {
     const dispatch = useDispatch();
     useEffect( () => {
+        document.title = "Trang chủ - fpro.newweb.vn - Đặt lịch khám, tiêm vaccine trực tuyến"
         dispatch(setNavb(false))
     }, [])
 

@@ -27,7 +27,8 @@ import UpdateDepartment from "./pages/admin/Department/UpdateDepartment/UpdateDe
 import ListMenu from "./pages/admin/Setttings/Menu/ListMenu/ListMenu";
 import AddMenu from "./pages/admin/Setttings/Menu/AddMenu/AddMenu";
 import About from "./pages/site/About";
-import Schedule from "./pages/admin/Department/Schedule/Schedule";
+import Contact from "./pages/site/Contact";
+import CreateDalandar from "./pages/admin/Calendar/Create/CreateDelandar";
 import ListConfig from "./pages/admin/Setttings/Config/ListConfig/ListConfig";
 import AddConfig from "./pages/admin/Setttings/Config/AddConfig";
 import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
@@ -43,7 +44,8 @@ function Web() {
                     <Route path="/chuyen-khoa"  element={<SpecialistClient />}/>
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ly-lich"  element={<Book />}/>             
-                    {/* <Route path="/ve-chung-toi"  element={<About/>}/> */}
+                    <Route path="/ve-chung-toi"  element={<About />}/>
+                    <Route path="/lien-he"  element={<Contact />}/>
                     <Route path="/ho-so-ca-nhan"  element={<Book />}/>  
                 </Route>
                 <Route element={<LayoutAuth />}>
@@ -65,13 +67,14 @@ function Web() {
                     </Route>
                     <Route path="booking">
                         <Route  element={<ListBooking/> } path ='list'/>
+                        <Route  element={<CreateDalandar/> } path ='add'/>
                     </Route>
 
                     <Route path="phong-ban">
                         <Route element={<AddDepartment />} path="add" />
                         <Route element={<ListDepartment />} path="list" />
                         <Route element={<UpdateDepartment />} path="update/:id" />
-                        <Route element={<Schedule />} path=":id/lich-kham" />
+                        {/* <Route element={<Schedule />} path=":id/lich-kham" /> */}
                     </Route>
 
                     <Route path="chinh-sua-menu">

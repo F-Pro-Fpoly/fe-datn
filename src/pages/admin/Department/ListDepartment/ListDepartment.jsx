@@ -34,7 +34,7 @@ function ListDepartment() {
 
     return ( 
         <div className="adminItem">
-            <Table striped bordered hover className='table-striped'>
+            <Table striped bordered hover responsive className='table-striped'>
                 <thead>
                     <tr>
                         <th>STT</th>
@@ -52,9 +52,7 @@ function ListDepartment() {
                             <tr key={index}>
                                 <td>{index+1}</td>
                                 <td>
-                                    <Link to={`/admin/phong-ban/${val.id}/lich-kham`} style={{"textDecoration": "none"}}>
-                                        {val.name}
-                                    </Link>
+                                {val.name}
                                 </td>
                                 <td>{val.code}</td>
                                 <td>{val.specialist_name}</td>
