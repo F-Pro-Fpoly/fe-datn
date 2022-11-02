@@ -28,6 +28,9 @@ import ListMenu from "./pages/admin/Setttings/Menu/ListMenu/ListMenu";
 import AddMenu from "./pages/admin/Setttings/Menu/AddMenu/AddMenu";
 import About from "./pages/site/About";
 import Schedule from "./pages/admin/Department/Schedule/Schedule";
+import ListConfig from "./pages/admin/Setttings/Config/ListConfig/ListConfig";
+import AddConfig from "./pages/admin/Setttings/Config/AddConfig";
+import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -41,6 +44,7 @@ function Web() {
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ly-lich"  element={<Book />}/>             
                     {/* <Route path="/ve-chung-toi"  element={<About/>}/> */}
+                    <Route path="/ho-so-ca-nhan"  element={<Book />}/>  
                 </Route>
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
@@ -73,6 +77,12 @@ function Web() {
                     <Route path="chinh-sua-menu">
                         <Route element={< ListMenu />} path="list" />
                         <Route element={< AddMenu />}  path="add" />
+                    </Route>
+
+                    <Route path="cau-hinh-chung">
+                        <Route element={< ListConfig />} path="list" />
+                        <Route element={< AddConfig />}  path="add" />
+                        <Route element={< UpdateConfig />} path="update/:id" />
                     </Route>
 
                     <Route path="/admin/add-user"  element={<AddUser />}/>  

@@ -87,6 +87,14 @@ function NavBarAdmin({className}) {
                         name: "Thiết lập Menu",
                         to: "/admin/chinh-sua-menu/list"
                     },
+                    {
+                        name: "Quản lí banner",
+                        to: "/admin/quan-ly-banner/list"
+                    },
+                    {
+                        name: "Cấu hình chung",
+                        to: "/admin/cau-hinh-chung/list"
+                    },
                 ]} icon="bi bi-file-break" />
                 
                  <NavBarItem name="Về trang người dùng" icon="bi bi-house"  to="/" />

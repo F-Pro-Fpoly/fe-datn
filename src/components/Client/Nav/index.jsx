@@ -101,7 +101,7 @@ function Nav (){
                                     <div className="drop-down-item">
                                         <div className="drop-down-icon">
                                             <i className="fa-solid fa-user"></i>               
-                                            <Link to="/profile"><span> Hồ sơ cá nhân</span></Link>
+                                            <Link to="/ho-so-ca-nhan"><span> Hồ sơ cá nhân</span></Link>
                                         </div>
                                         {
                                            user.role_id == 1 &&
