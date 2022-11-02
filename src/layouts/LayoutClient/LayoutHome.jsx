@@ -7,12 +7,15 @@ import "./LayoutHome.scss"
 function LayoutHome() {
  
     return ( 
+        <>
+        <Nav />
         <div className="main">        
-            <Nav/>           
+                       
             <Outlet />  
             <ScrollToTop />      
             <Footer/>    
         </div>
+        </>
      );
    
 }

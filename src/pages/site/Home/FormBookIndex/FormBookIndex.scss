@@ -95,3 +95,35 @@
        
     }
 }
+
+@media screen and (max-width: 800px) {
+    .formindex{
+        .itemLeft{
+            flex: 0 0 100%;
+            max-width: 100%;
+            width: auto;
+            position: relative;
+            bottom: auto;
+            transform: translateY(0);
+            left: 0;
+            margin-bottom: 20px;
+            .titleleft{
+                font-size: 17px;
+                p{
+                    font-size: 17px;
+                }
+            }
+            .message{
+                font-size: 15px;
+                margin-top: 10px;
+            }
+        }
+        .itemright{
+            flex: 0 0 100%;
+            max-width: 100%;
+            width: auto;
+            left: 0;
+            padding-left: 20px;
+        }
+    }
+}

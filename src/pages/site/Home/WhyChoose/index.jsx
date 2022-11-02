@@ -52,21 +52,23 @@ function WhyChoose () {
                 </div>
             </div>
             <div className="container">
-                <div className="col-12">
-                    <div className="image_flex">        
-                            <div className="col-3 ">
-                                <img src="https://nhakhoathanhan.vn/uploads/img/aanh_1.jpg" alt=""/>
-                            </div>
-                            <div className="col-3 ">
-                                <img src="https://nhakhoathanhan.vn/uploads/img/img_26.jpg" alt="" />
-                            </div>
-                            <div className="col-3 ">
-                                <img src="https://nhakhoathanhan.vn/uploads/img/img_27.jpg" alt=""  />
-                            </div>
-                            <div className="col-3 ">
-                                <img src="https://nhakhoathanhan.vn/uploads/img/aanh_4.jpg" alt=""  />
-                            </div>
+                <div className="row">
+                    <div className="col-12">
+                        <div className="image_flex">        
+                                <div className="col-xl-3  col-md-3 col-6">
+                                    <img src="https://nhakhoathanhan.vn/uploads/img/aanh_1.jpg" alt=""/>
+                                </div>
+                                <div className="col-xl-3  col-md-3 col-6">
+                                    <img src="https://nhakhoathanhan.vn/uploads/img/img_26.jpg" alt="" />
+                                </div>
+                                <div className="col-xl-3  col-md-3 col-6">
+                                    <img src="https://nhakhoathanhan.vn/uploads/img/img_27.jpg" alt=""  />
+                                </div>
+                                <div className="col-xl-3  col-md-3 col-6">
+                                    <img src="https://nhakhoathanhan.vn/uploads/img/aanh_4.jpg" alt=""  />
+                                </div>
 
+                        </div>
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@
 .flex-Introduce{
     .btn_type2{
         min-width: 10rem;
-    margin-top: 25px;
+        margin-top: 25px;
     }
 
     display: flex;
@@ -66,4 +66,23 @@
        
     }
    
+}
+
+@media screen and (max-width: 800px) {
+    .flex-Introduce{
+        flex-wrap: wrap;
+        .pleft{
+            transition: .2 all linear;
+            margin-bottom: 20px;
+            &.more{
+                display:-webkit-box;
+                -webkit-line-clamp:5;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                word-break: break-word;
+                position: relative;
+            }
+        }
+    }
 }

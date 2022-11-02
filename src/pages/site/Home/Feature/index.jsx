@@ -26,8 +26,18 @@ function Feature () {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000,
-        rtl: true
-
+        rtl: true,
+        responsive: [
+            {
+                breakpoint: 750,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: false
+                }
+            }
+        ]
       };
 
     useEffect(() => {
@@ -76,7 +86,7 @@ function Feature () {
                                 </div>
                                 <div className="infoSpecial">
                                     <Figure.Caption>
-                                        <b><p>{item.name}</p></b>
+                                        <b><p className="infoSpecial-title">{item.name}</p></b>
                                         <p className="des">{item.description} </p>
                                     </Figure.Caption>
                                 </div>
