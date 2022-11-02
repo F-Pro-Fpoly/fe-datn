@@ -26,23 +26,20 @@ function ProfileNav() {
                     </div>
                     <ul className="profile-dropdown-item ul-list">
                         <li>
-                            <Link to="/"><i className="fa-regular fa-bookmark"></i><span>My Booking</span></Link>
+                            <Link to="/ho-so-ca-nhan"><i className="fa-regular fa-bookmark"></i><span>Hồ sơ cá nhân</span></Link>
                         </li>
                         <li>
-                            <Link to="/"><i className="fa-regular fa-user"></i><span>My Account</span></Link>
-                        </li>
-                        <li>
-                            <Link to="/"><i className="fa-solid fa-gear"></i><span>Setting</span></Link>
+                            <Link to="/ho-so-ca-nhan/lich-kham"><i className="fa-regular fa-user"></i><span>Quản lí lịch khám</span></Link>
                         </li>
                         {
                             (user.role_id == 2 || user.role_id == 1) ? (
                                 <li>
-                                    <Link to="/admin"><i className="fa-solid fa-screwdriver-wrench"></i><span>Admin</span></Link>
+                                    <Link to="/admin"><i className="fa-solid fa-screwdriver-wrench"></i><span>Trang quản trị</span></Link>
                                 </li>
                             ):""
                         }
                         <li>
-                            <Link to="/logout"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></Link>
+                            <Link to="/logout"><i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></Link>
                         </li>
                     </ul>
                 </div>
