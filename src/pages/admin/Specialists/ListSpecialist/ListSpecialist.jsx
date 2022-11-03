@@ -49,7 +49,6 @@ function ListSpecialist() {
               <th>STT</th>
               <th>Mã chuyên khoa</th>
               <th>Tên chuyên khoa</th>
-              <th>Mô tả</th>
               <th>Thao tác</th>
             </tr>
           </thead>
@@ -60,7 +59,6 @@ function ListSpecialist() {
                   <td>{index+1}</td>
                   <td>{val.code}</td>
                   <td>{val.name}</td>
-                  <td>{val.description}</td>
                   <td className="button"><i className="fas fa-edit"></i> | <i className="fa fa-trash"></i></td>
                 </tr>
               ))

@@ -11,10 +11,10 @@ function NavBarItem({name, dropdownArr = [], id, icon, countTitle, to}) {
                 <div className="navBarItem-left">
                 {icon && <i className={icon}></i>} <span>{name}</span>
                 </div>
-                {countTitle && 
+                {countTitle ?  
                 <div className="navBarItem-count">
                     {countTitle}
-                </div>}
+                </div>:""}
             </Link>: (
                 <a className="navBarItem-head"
                 {...aAttributes}
@@ -22,10 +22,10 @@ function NavBarItem({name, dropdownArr = [], id, icon, countTitle, to}) {
                 <div className="navBarItem-left">
                     {icon && <i className={icon}></i>} <span>{name}</span>
                 </div>
-                {countTitle && 
+                {countTitle ? 
                 <div className="navBarItem-count">
                     {countTitle}
-                </div>}</a>
+                </div>:""}</a>
             )}
             
             {
