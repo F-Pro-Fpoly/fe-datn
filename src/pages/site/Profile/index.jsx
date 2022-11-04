@@ -1,17 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Profile.scss"
 import {  Route, Routes  } from "react-router-dom";
 import Info from './Info';
 import Booking from './Booking';
 import Menu from './Menu';
+import { useSelector } from 'react-redux';
+import { getInfo } from '../../../services/UserService';
+
 
 function Profile () {
 
+    const token = useSelector(state => state.auth.token )
+
+    const [infoUser, setInfoUser] = useState({
+        "username": "",
+        "password": "",
+        "email": "",
+        "name": "",
+        "active": "",
+        "role_id": ""
+    })
+
+    const start  = async () =>{
+        let res =  await  getInfo({token})
+        let data =  res.data.data;
+        setInfoUser(data)
+    }
+
+    useEffect(() => {
+        start()
+    }, [])
+    
     return (
+
+        
         <section className="pt-3">
             <div className="container pad">
             <div className="row ">
-                <Menu />
+                <Menu infoUser = {infoUser} />
                 <div className="col-lg-8 col-xl-9 ps-xl-5">
 
                     <div className="d-grid mb-0 d-lg-none w-100">
@@ -20,8 +46,8 @@ function Profile () {
                         </button>
                     </div>       
                     <Routes>
-                        <Route path="/" element={<Info />} />
-                        <Route path="/lich-kham" element={<Booking />} />
+                        <Route path="/" element={<Info infoUser={infoUser}  />} />
+                        <Route path="/lich-kham" element={<Booking  />} />
                     </Routes>
                    
                 </div>
