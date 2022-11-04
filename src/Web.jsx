@@ -33,6 +33,7 @@ import ListConfig from "./pages/admin/Setttings/Config/ListConfig/ListConfig";
 import AddConfig from "./pages/admin/Setttings/Config/AddConfig";
 import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
 import Profile from "./pages/site/Profile";
+import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateSpecialist";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -65,6 +66,7 @@ function Web() {
                     <Route path="specialist">
                         <Route  element={<AddSpecialist/> } path ='add'/>
                         <Route  element={<ListSpecialist/> } path ='list'/>
+                        <Route  element={<UpdateSpecialist/> } path ='update/:id'/>
                     </Route>
                     <Route path="booking">
                         <Route  element={<ListBooking/> } path ='list'/>

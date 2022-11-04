@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Await, Link } from "react-router-dom";
-import { postListServiceAPI } from "../../../../services/SpecialistService";
+import { Await, Link, useParams } from "react-router-dom";
+import { getSpecialist, postListServiceAPI } from "../../../../services/SpecialistService";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number, date, InferType, ref } from 'yup';
@@ -13,19 +13,18 @@ import {CKEditor} from "@ckeditor/ckeditor5-react"
 // import { InlineEditor } from "@ckeditor/ckeditor5-build-inline";
 import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
 
-
 const schema = object({
     code: string().required('Mã chuyên khoa không được bỏ trống'),
     name: string().required('Tên chuyên khoa không được bỏ trống'),
     description: string().required('Mô tả không được bỏ trống'),
- 
 }).required();
 
-function AddSpecialist() {
-
+function UpdateSpecialist() {
     const token = useSelector(state => state.auth.token);
+    const param = useParams();
+    const id = param.id;
     const [loading, getLoading] = useState(false);
-    const { register, handleSubmit, watch, formState: { errors } ,reset, setError } = useForm({
+    const { register, handleSubmit, watch, formState: { errors } ,reset, setError, setValue } = useForm({
         resolver: yupResolver(schema)
     });
     const [selectedFile, setSelectedFile] = useState();
@@ -67,6 +66,21 @@ function AddSpecialist() {
         // I've kept this example simple by using the first image instead of multiple
         setSelectedFile(e.target.files[0])
     }
+    const start = async () => {
+        try {
+            let res = await getSpecialist({token, id});
+            let data = res.data.data;
+            setValue('code', data.code);
+            setValue('name', data.name);
+            setValue('description', data.description);
+            setValue('description', data.description);
+            setValue('status', (data.status == 1) ? true : false);
+            setValue('slug', data.slug);
+            setPreview(`${process.env.REACT_APP_BE}${data.thumbnail_name}`)
+        } catch (error) {
+            
+        }
+    }
 
     useEffect(() => {
         if(!selectedFile){
@@ -77,6 +91,10 @@ function AddSpecialist() {
         setPreview(objectUrl);
         return () => URL.revokeObjectURL(objectUrl);
     },[selectedFile])
+
+    useEffect(() => {
+        start();
+    },[])
 
     return ( 
         <div className="addSick">
@@ -132,7 +150,7 @@ function AddSpecialist() {
 
                     <div className="col-6 ">
                         <div className="mt-4" style={{width: "200px",height:"200px", background: "gray", borderRadius: "8px", border: "1px solid black", overflow:"hidden",     }}> 
-                            {selectedFile &&  <img src={preview} style={{'width': "100%","height":"100%", "objectFit": "cover"}} /> }
+                            {preview &&  <img src={preview} style={{'width': "100%","height":"100%", "objectFit": "cover"}} /> }
                         </div>
                     </div>
                 </div>
@@ -145,4 +163,4 @@ function AddSpecialist() {
      );
 }
 
-export default AddSpecialist;
+export default UpdateSpecialist;
