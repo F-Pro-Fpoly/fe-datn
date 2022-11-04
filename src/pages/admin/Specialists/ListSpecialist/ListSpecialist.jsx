@@ -6,6 +6,7 @@ import Loading from "../../../../components/Loading/Loading";
 import { getListServiceAPI } from "../../../../services/SpecialistService";
 import Paginate from '../../../../components/Paginate/Paginate';
 import "./ListSpecialist.scss"
+import { Link } from "react-router-dom";
 
 function ListSpecialist() {
 
@@ -59,7 +60,9 @@ function ListSpecialist() {
                   <td>{index+1}</td>
                   <td>{val.code}</td>
                   <td>{val.name}</td>
-                  <td className="button"><i className="fas fa-edit"></i> | <i className="fa fa-trash"></i></td>
+                  <td className="button">
+                  <Link to={`/admin/specialist/update/${val.id}`}><i className="fas fa-edit"></i></Link>  
+                  | <i className="fa fa-trash"></i></td>
                 </tr>
               ))
             }

@@ -46,4 +46,14 @@ function postListServiceAPI(token = null, data={}) {
     }
 }
 
-export { getListServiceAPI,postListServiceAPI, getListAllSpecialist}
+function getSpecialist({token, id}) {
+    let headers ={}; 
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    console.log();
+    return API.get(`auth/specialist/detail/${id}`, {headers:headers});
+}
+
+export { getListServiceAPI,postListServiceAPI, getListAllSpecialist, getSpecialist}
