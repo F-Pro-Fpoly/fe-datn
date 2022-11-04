@@ -75,6 +75,24 @@ function updateUserByName({token, data}) {
     }
     return API.put(url, data,{headers: headers});
 }
+function updatePassWord({token, data, id}) {
+    let headers = {};
+    let url = `auth/user/changePassword/${id}`;
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.put(url, data,{headers: headers});
+}
 
 
-export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName }
+function getInfo({token}) {
+    let headers = {};
+    let url = "auth/user/info";
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.get(url,{headers: headers});
+}
+
+
+export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord}

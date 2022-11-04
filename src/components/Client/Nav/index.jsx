@@ -2,7 +2,7 @@ import { Link, useLocation} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import logo from "../../../image/logo.png"
-import { getListServiceAPI } from "../../../services/normal/MenuService";
+import {  getListServiceAPI } from "../../../services/normal/MenuService";
 import "./Nav.scss"
 import ProfileNav from "../ProfileNav/ProfileNav";
 function Nav (){
@@ -15,10 +15,12 @@ function Nav (){
     const [ListMenu, getListListMenu] = useState([]);
     const [pathName, setPathName]     = useState(path.pathname);
     const [showMenuMobile, setShowMenuMobile] = useState(false);
+    const [setting, setSetting ] = useState({})
+  
+
 
     
-
-    useEffect(() => {
+    useEffect(() => {  
         const pathname = path.pathname
         setShowMenuMobile(false);
         const myFunction = () => {
@@ -29,7 +31,6 @@ function Nav (){
                 a.remove('bg')
             }
         }
-        
         const  a = navRef.current.classList
         if(pathname == '/'){
             // handleClassNav();
@@ -48,12 +49,12 @@ function Nav (){
                 a.add('bg');
             }
         }
-        // else{
-        //     a.add('bg')
-        // }
         return function cleanupListener() {
             window.removeEventListener('scroll', myFunction)
         }
+
+      
+   
     }, [path])
 
     useEffect(() => {
@@ -63,8 +64,9 @@ function Nav (){
             let data = res.data 
             let dataArr = data.data 
             getListListMenu(dataArr)
+        
         }
-      
+    
         start();
     }, [])
    
