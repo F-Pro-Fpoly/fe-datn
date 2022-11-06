@@ -235,4 +235,10 @@
     font-size: 16px;
     color: #000;
 }
-
+@media (max-width:1023px){
+    .container{
+        max-width: 1023px;
+        min-width: 200px;
+        margin: 0 auto;
+    }
+}

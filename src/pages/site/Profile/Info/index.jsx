@@ -20,11 +20,8 @@ function Info(infoUser) {
 
     const [pass, setPass] = useState([])
 
-
-
     const onSubmit  = async (e) => {
         e.preventDefault();
-    
         const data = {
             ...user,
             "active":1
@@ -53,6 +50,7 @@ function Info(infoUser) {
         }
         try {
             let res = await updatePassWord({token, data, id});
+         
             let message = res.data.message;
             toast.success(message);
         } catch (error) {
@@ -71,22 +69,23 @@ function Info(infoUser) {
 
 
     return(
-
+       <>
+        <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        />
+        {/* Same as */}
+    <ToastContainer />             
+   
         <div className="vstack gap-4">
-             <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                />
-                {/* Same as */}
-            <ToastContainer />             
-           
+      
         <div className="bg-light rounded p-3">
             
             <div className="overflow-hidden">
@@ -183,19 +182,30 @@ function Info(infoUser) {
                         <div className="d-flex gap-4">
 
                             <div className="form-check radio-bg-light">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" defaultChecked={infoUser.infoUser.gender === 0 ? true : false} />
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                                   value="1"
+                                  onChange={(e) => setUser({...user, "gender": e.target.value})}
+                                defaultChecked={infoUser.infoUser.gender == 0 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault1">
                                    Nam
                                 </label>
                             </div>
                             <div className="form-check radio-bg-light">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" defaultChecked={infoUser.infoUser.gender === 1 ? true : false} />
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" 
+                                value="2"
+                                id="flexRadioDefault2"
+                                  onChange={(e) => setUser({...user, "gender": e.target.value})}
+                                defaultChecked={infoUser.infoUser.gender == 1 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault2">
                                     Nữ
                                 </label>
                             </div>
                             <div className="form-check radio-bg-light">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" defaultChecked={infoUser.infoUser.gender === 2 ? true : false} />
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" 
+                                value="3"
+                                id="flexRadioDefault3"
+                                  onChange={(e) => setUser({...user, "gender": e.target.value})}
+                                defaultChecked={infoUser.infoUser.gender == 2 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault3">
                                     Khác
                                 </label>
@@ -285,6 +295,7 @@ function Info(infoUser) {
         
     </div>
     </div>  
+       </>
     )
 }
 export default Info

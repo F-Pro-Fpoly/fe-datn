@@ -1,7 +1,12 @@
 import "./About.scss";
+// import useWindowSize  from "../../../services/ResponsiveAbout"
 function About(){
     return(
+        <div>
+   
         <div className="about-box-main formBooking">
+         
+               
             <div className="all-title-box">
                 <div className="container">
                     <div className="row">
@@ -171,7 +176,10 @@ function About(){
                     </div>
                 </div>
             </div>
-    </div>
+           
+
+    </div>   
+          </div>
     );
 };
 export default About;
