@@ -77,7 +77,7 @@ function SpecialistClient () {
                                       <p className="desNews">
                                       {item.description}
                                         </p>
-                                        <a href="" className="btnType_1">Xem thêm</a>
+                                        <Link to={item.slug} className="btnType_1">Xem thêm</Link>
                                   </div>
                               </div>
                           </div>
