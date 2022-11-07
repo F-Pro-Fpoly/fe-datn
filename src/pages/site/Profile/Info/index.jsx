@@ -4,22 +4,28 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { toast,ToastContainer } from 'react-toastify';
 import { updatePassWord, updateUser } from '../../../../services/UserService';
+import Moment from 'moment';
+import { useEffect } from 'react';
 function Info(infoUser) {
     const token = useSelector(state => state.auth.token )
     const id = infoUser.infoUser.id
+
     const [user, setUser] = useState([{
         "name": infoUser.infoUser.name,
         "email": infoUser.infoUser.email,
         "username": infoUser.infoUser.username,
         "address": infoUser.infoUser.address,
         "phone": infoUser.infoUser.phone,
-        "date": infoUser.infoUser.date,
+        "date":  Moment(infoUser.infoUser.date).format("Y/M/D"),
         "gender": infoUser.infoUser.gender,
+        "user_info": infoUser.infoUser.user_info,
         "active":1
     }]) 
 
     const [pass, setPass] = useState([])
-
+    const [selectedFile, setSelectedFile] = useState();
+    const [preview, setPreview] = useState();
+    console.log(preview);
     const onSubmit  = async (e) => {
         e.preventDefault();
         const data = {
@@ -66,6 +72,25 @@ function Info(infoUser) {
         }
     }
 
+    const onSelectFile = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(undefined)
+            return
+        }
+
+        // I've kept this example simple by using the first image instead of multiple
+        setSelectedFile(e.target.files[0])
+    }
+    useEffect(() => {
+        if(!selectedFile){
+            setSelectedFile(undefined);
+            return
+        }
+        const objectUrl = URL.createObjectURL(selectedFile);
+        setPreview(objectUrl);
+        return () => URL.revokeObjectURL(objectUrl);
+    },[selectedFile])
+    
 
 
     return(
@@ -85,7 +110,7 @@ function Info(infoUser) {
     <ToastContainer />             
    
         <div className="vstack gap-4">
-      
+{/*       
         <div className="bg-light rounded p-3">
             
             <div className="overflow-hidden">
@@ -113,7 +138,7 @@ function Info(infoUser) {
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> */}
 
         
         <div className="card border">
@@ -128,17 +153,24 @@ function Info(infoUser) {
                 <form className="row g-3" method='PUT' onSubmit={onSubmit}>
                     
                     <div className="col-12">
-                        <label className="form-label">Thêm ảnh đại diện<span className="text-danger">*</span></label>
+                       
                         <div className="d-flex align-items-center">
                             <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
-                                
+                          
                                 <span className="avatar avatar-xl">
-                                    <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={infoUser.infoUser.avatar}  alt="Avatar" />
+                                    <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={infoUser.infoUser.avatar}                         
+                                    alt="Avatar" />                      
                                 </span>
+                               
+                                { selectedFile &&  <span className="avatar avatar-xl"> <img src={preview}  className="avatar-img rounded-circle border border-white border-3 shadow"/>    </span>}
+                             
                             </label>
                             
                             <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
-                            <input id="uploadfile-1" className="form-control d-none" type="file" />
+                            <input id="uploadfile-1"
+                            onInput={(e) => onSelectFile(e) }
+                             className="form-control d-none" 
+                             type="file" />
                         </div>
                     </div>
 
@@ -153,7 +185,7 @@ function Info(infoUser) {
                     
                     <div className="col-md-6">
                         <label className="form-label">Email<span className="text-danger">*</span></label>
-                        <input type="email" className="form-control" defaultValue={infoUser.infoUser.email} 
+                        <input type="email" disabled className="form-control" defaultValue={infoUser.infoUser.email} 
                         onChange={(e) => setUser({...user, "email": e.target.value})}
                         placeholder="Nhập địa chỉ email" />
                     </div>
@@ -163,17 +195,26 @@ function Info(infoUser) {
                         <label className="form-label">Số điện thoại<span className="text-danger">*</span></label>
                         <input type="text" className="form-control" defaultValue={infoUser.infoUser.phone}
                         onChange={(e) => setUser({...user, "phone": e.target.value})}
-                        placeholder="Enter your mobile number" />
+                        placeholder="Nhập số điện thoại" />
                     </div>
 
-               
-
-                    
+                     
                     <div className="col-md-6">
                         <label className="form-label">Ngày sinh<span className="text-danger">*</span></label>
-                        <input type="date" className="form-control flatpickr flatpickr-input" defaultValue={infoUser.infoUser.date}
+                        <input type="date" className="form-control" value={infoUser.infoUser.date}
                         onChange={(e) => setUser({...user, "date": e.target.value})}
-                        placeholder="Nhập ngày sinh" data-date-format="d-m-Y"  />
+                        placeholder="Nhập ngày sinh"  />
+                    </div>
+                    <div className="col-md-6">
+                        <label className="form-label">Chuyên khoa</label>
+                        <input type="text" className="form-control" value={infoUser.infoUser.specailist_name}
+                       
+                       disabled  />
+                    </div>
+                    <div className="col-md-6">
+                        <label className="form-label">Phòng ban</label>
+                        <input type="text" className="form-control" value={infoUser.infoUser.department_name}
+                        disabled />
                     </div>
 
                     
@@ -218,6 +259,17 @@ function Info(infoUser) {
                         <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.address}   onChange={(e) => setUser({...user, "address": e.target.value})}></textarea>
                     </div>
               
+                    {
+                         infoUser.infoUser.role_id === 2 ?
+
+                          <div className="col-12">
+                            <label className="form-label">Thông tin bác sĩ</label>
+                            <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.user_info}   onChange={(e) => setUser({...user, "address": e.target.value})}></textarea>
+                        </div>
+                        :
+                        ""
+                    }
+              
                     <div className="col-12 text-end">
                         <button type='submit'  className="btn btn-primary mb-0">Lưu thay đổi</button>
                     </div>
@@ -228,7 +280,7 @@ function Info(infoUser) {
         </div>
         
         
-        <div className="card border">
+        {/* <div className="card border">
             
             <div className="card-header border-bottom">
                 <h4 className="card-header-title">Xác thực email</h4>
@@ -248,7 +300,7 @@ function Info(infoUser) {
                 </form>	
             </div>
             
-        </div>
+        </div> */}
         
 
         

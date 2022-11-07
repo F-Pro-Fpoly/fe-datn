@@ -29,6 +29,7 @@ function SpecialistClient () {
       start()
   
   }, [])
+
     return (
       
           <div className="container-fluid" id="spec">
@@ -67,7 +68,11 @@ function SpecialistClient () {
                               <div className="specialBlock_20">
                                   <div className="wrapImgPart">
                                       <Link className="imgPart figure1" to={item.slug}>
-                                        <img src={item.thumbnail_name} alt="" />
+                                        <img 
+                                      
+                                        src={`${process.env.REACT_APP_BE}${item.thumbnail_name}`}                      
+                                        alt="" />
+                                        
                                       </Link>
                                   </div>
                                   <div className="textPart">
@@ -78,7 +83,7 @@ function SpecialistClient () {
                                       <p className="desNews">
                                       {item.description}
                                         </p>
-                                        <a href="" className="btnType_1">Xem thêm</a>
+                                        <Link to={item.slug} className="btnType_1">Xem thêm</Link>
                                   </div>
                               </div>
                           </div>

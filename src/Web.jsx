@@ -48,7 +48,7 @@ function Web() {
                     <Route path="/dang-ly-lich"  element={<Book />}/>             
                     <Route path="/ve-chung-toi"  element={<About />}/>
                     <Route path="/lien-he"  element={<Contact />}/>
-                    <Route path="/ho-so-ca-nhan/*"  element={<Profile />}/>  
+                    <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                 </Route>
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>

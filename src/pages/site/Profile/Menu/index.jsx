@@ -13,7 +13,7 @@ function Menu(infoUser) {
             <div className="offcanvas-body p-3 p-lg-0">
                 <div className="card bg-light w-100">                   
                     <div className="position-absolute top-0 end-0 p-3">
-                        <Link to="#" className="text-primary-hover" data-bs-toggle="tooltip" data-bs-title="Edit profile">
+                        <Link to="/ho-so-ca-nhan" className="text-primary-hover" data-bs-toggle="tooltip" data-bs-title="Edit profile">
                             <i className="bi bi-pencil-square"></i>
                         </Link>
                     </div>
@@ -24,7 +24,7 @@ function Menu(infoUser) {
                                 <img className="avatar-img rounded-circle border border-2 border-white" src={infoUser.infoUser.avatar} alt="Avatar" />
                             </div>
                             <h6 className="mb-0">{infoUser.infoUser.name}</h6>
-                            <Link to="#" className="text-reset text-primary-hover small">{infoUser.infoUser.email}</Link>
+                            <Link to="#" className="text-reset text-primary-hover small">{infoUser.infoUser.role_name}</Link>
                             <hr />
                         </div>
                         
@@ -34,20 +34,34 @@ function Menu(infoUser) {
                                     <i className="bi bi-person fa-fw me-2"></i>Thông tin cá nhân
                                 </NavLink>
                             </li>
-    
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/ho-so-ca-nhan/lich-kham">
-                                    <i className="bi bi-people fa-fw me-2"></i>Quản lí lịch khám
-                                </NavLink>
-                            </li>
-                            {/* <li className="nav-item">
-                                <Link className="nav-link" to="account-payment-details.html"><i className="bi bi-wallet fa-fw me-2"></i>Payment Details</Link>
-                            </li> */}
+                            {
+                                infoUser.infoUser.role_id === 2 ?
+                               <>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/ho-so-ca-nhan/lich-kham">
+                                        <i className="bi bi-people fa-fw me-2"></i>Danh sách lịch khám
+                                    </NavLink>
+                                </li>
+                                 <li className="nav-item">
+                                 <NavLink className="nav-link" to="/ho-so-ca-nhan/dat-lich-kham">
+                                     <i className="bi bi-people fa-fw me-2"></i>Đặt lịch khám
+                                 </NavLink>
+                                </li>
+                               </>
+                                :
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/ho-so-ca-nhan/lich-kham">
+                                        <i className="bi bi-people fa-fw me-2"></i>Lịch khám của tôi
+                                    </NavLink>
+                                 </li>
+                            }
+                           
+{/* 
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/ho-so-ca-nhan/chinh-sua">
                                     <i className="bi bi-gear fa-fw me-2"></i>Chỉnh sửa
                                 </NavLink>
-                            </li>
+                            </li> */}
                             <li className="nav-item">
                                 <Link className="nav-link text-danger bg-danger-soft-hover" to="/logout">
                               

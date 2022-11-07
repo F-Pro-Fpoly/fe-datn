@@ -15618,11 +15618,11 @@ textarea.form-control-lg {
 }
 
 .btn {
-  letter-spacing: 0.5px;
-  position: relative;
-  overflow: hidden;
-  outline: 0;
-  margin-bottom: 6px;
+  // letter-spacing: 0.5px;
+  // position: relative;
+  // overflow: hidden;
+  // outline: 0;
+  // margin-bottom: 6px;
 }
 
 .input-group .btn {
@@ -18172,11 +18172,11 @@ small,
   font-size: 0.875rem;
 }
 
-input[type=date]::-webkit-inner-spin-button,
-input[type=date]::-webkit-calendar-picker-indicator {
-  display: none;
-  -webkit-appearance: none;
-}
+// input[type=date]::-webkit-inner-spin-button,
+// input[type=date]::-webkit-calendar-picker-indicator {
+//   display: none;
+//   -webkit-appearance: none;
+// }
 
 .form-control-inline .form-control-inline-text {
   font-family: "Poppins", sans-serif;
@@ -18836,7 +18836,7 @@ a.text-primary-hover:hover, button.text-primary-hover:hover {
   font-size: 0.8rem;
 }
 
-.icon-lg {
+.p-icon-lg {
   width: 3.5rem;
   height: 3.5rem;
   line-height: 3.5rem;
