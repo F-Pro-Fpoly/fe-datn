@@ -49,6 +49,19 @@ function listTimeslot({token, search = {}}) {
     return API.get(url,{headers: headers});
 }
 
+function getScheduleByDate({token, search = {}, id}) {
+    let headers = {}
+
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    let url = `normal/schedule/get-by-date/${id}?`;
+    for(let se in search) {
+        url += `${se}=${search[se]}&`;
+    }
+    return API.get(url,{headers: headers});
+}
 
 
-export {createSchedule, listScheduleApi, listScheduleDetail, listTimeslot}
+export {createSchedule, listScheduleApi, listScheduleDetail, listTimeslot, getScheduleByDate}

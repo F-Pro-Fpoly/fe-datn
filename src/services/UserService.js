@@ -94,5 +94,24 @@ function getInfo({token}) {
     return API.get(url,{headers: headers});
 }
 
+function getListUsersV2({token, search = {}, limit = 6, page = 1}) {
+    try {
+        let headers ={}; 
+        let url = `normal/user/list?`;
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        for (const key in search) {
+            url += `${key}=${search[key]}&`;
+        }
+        url += `limit=${limit}&page=${page}`;
+        return API.get(url, {headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 
-export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord}
+
+export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2}

@@ -58,21 +58,15 @@ function SpecialistClient () {
                
                         <div className="leftBlock">
                              
-                    {
-          loading && <Loading />
-        }
+                        {loading && <Loading />}
                         {
                     ListSpecialist.map((item,index) => {
                     return(
                           <div className="wrapManyNews" key={index}>                          
-                              <div className="specialBlock_20">
-                                  <div className="wrapImgPart">
-                                      <Link className="imgPart figure1" to={item.slug}>
-                                        <img 
-                                      
-                                        src={`${process.env.REACT_APP_BE}${item.thumbnail_name}`}                      
-                                        alt="" />
-                                        
+                                    <div className="specialBlock_20">
+                                        <div className="wrapImgPart">
+                                            <Link className="imgPart figure1" to={item.slug}>
+                                        <img src={item.thumbnail_name} alt="" />
                                       </Link>
                                   </div>
                                   <div className="textPart">
@@ -83,14 +77,14 @@ function SpecialistClient () {
                                       <p className="desNews">
                                       {item.description}
                                         </p>
-                                        <Link to={item.slug} className="btnType_1">Xem thêm</Link>
+                                        <a href="" className="btnType_1">Xem thêm</a>
                                   </div>
                               </div>
                           </div>
                            )
                                           
                           })
-                        }
+                          }
                         </div>
                      
 
