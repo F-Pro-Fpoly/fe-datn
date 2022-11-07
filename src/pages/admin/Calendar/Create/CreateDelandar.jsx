@@ -56,7 +56,9 @@ function CreateDalandar() {
         e.preventDefault();
         let formData = new FormData(formRef.current);
         // console.log(formData.getAll('timeslot'));
-        let dateFormat = moment(new Date(date)).format('MM-DD-YYYY');
+        let dateFormat = moment(new Date(date)).format('YYYY-MM-DD');
+        console.log(dateFormat);
+        // return 
         formData.append("date", dateFormat);
         try {
             let res = await createSchedule({token, data:formData});
