@@ -82,7 +82,7 @@ function Feature () {
                                 <div className="image">
                                     <Figure.Image
                                         alt={item.name}
-                                        src={item.thumbnail_name}
+                                        src={`${process.env.REACT_APP_BE}${item.thumbnail_name}`}
                                     />
                                 </div>
                                 <div className="infoSpecial">

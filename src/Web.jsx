@@ -35,6 +35,7 @@ import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
 import Profile from "./pages/site/Profile";
 import Blog from "./pages/site/Blog";
 import DetailBlog from "./pages/site/DetailBlog";
+import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateSpecialist";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -51,7 +52,7 @@ function Web() {
                     <Route path="/tin-tuc"  element={<Blog />}/>
                     <Route path="/tin-chi-tiet"  element={<DetailBlog />}/>
                     <Route path="/lien-he"  element={<Contact />}/>
-                    <Route path="/ho-so-ca-nhan/*"  element={<Profile />}/>  
+                    <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                 </Route>
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
@@ -69,6 +70,7 @@ function Web() {
                     <Route path="specialist">
                         <Route  element={<AddSpecialist/> } path ='add'/>
                         <Route  element={<ListSpecialist/> } path ='list'/>
+                        <Route  element={<UpdateSpecialist/> } path ='update/:id'/>
                     </Route>
                     <Route path="booking">
                         <Route  element={<ListBooking/> } path ='list'/>

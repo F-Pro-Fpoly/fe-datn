@@ -53,7 +53,7 @@ function NavBarAdmin({className}) {
                 {user.role_id == 1 && (
                 <>
                 <NavBarItem name="Dashboard" icon="bi bi-speedometer2" to="/admin" />
-                <NavBarItem id="users" name="Quản lý người dùng" countTitle={`${counts['user-count']}`} dropdownArr={[
+                <NavBarItem id="users" name="Quản lý người dùng" countTitle={counts['user-count']} dropdownArr={[
                     {
                         name: "Thêm user",
                         to: "/admin/add-user"
@@ -63,7 +63,7 @@ function NavBarAdmin({className}) {
                         to: "/admin/list-user"
                     },
                 ]} icon="bi bi-people-fill" />
-                <NavBarItem id="specialist" name="Quản lý chuyên khoa" countTitle={`${counts['specialist-count']}`} dropdownArr={[
+                <NavBarItem id="specialist" name="Quản lý chuyên khoa" countTitle={counts['specialist-count']} dropdownArr={[
                     {
                         name: "Thêm chuyên khoa",
                         to: "/admin/specialist/add"
@@ -73,7 +73,7 @@ function NavBarAdmin({className}) {
                         to: "/admin/specialist/list"
                     },
                 ]} icon="bi bi-people-fill" />
-                <NavBarItem id="sick" name="Danh mục bệnh" countTitle={`${counts['sick-count']}`} dropdownArr={[
+                <NavBarItem id="sick" name="Danh mục bệnh" countTitle={counts['sick-count']} dropdownArr={[
                     {
                         name: "Thêm bệnh",
                         to: "/admin/sick/add"
@@ -88,14 +88,14 @@ function NavBarAdmin({className}) {
                 )}
                 
                 
-                <NavBarItem id="booking" name="Đặt lịch khám" countTitle={`${counts['booking-count']}`} dropdownArr={NavLich} icon="bi bi-bookmark-plus" />
+                <NavBarItem id="booking" name="Đặt lịch khám" countTitle={counts['booking-count']} dropdownArr={NavLich} icon="bi bi-bookmark-plus" />
                 
                 
 
                 {
                     user.role_id ==1 && (
                     <>
-                    <NavBarItem id="department" name="Quản lý phòng ban" countTitle={`${counts['Department-count']}`} dropdownArr={[
+                    <NavBarItem id="department" name="Quản lý phòng ban" countTitle={counts['Department-count']} dropdownArr={[
                     {
                         name: "Thêm phòng ban",
                         to: "/admin/phong-ban/add"

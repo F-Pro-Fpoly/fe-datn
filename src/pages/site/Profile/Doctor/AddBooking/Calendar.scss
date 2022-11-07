@@ -1,0 +1,56 @@
+.danlandar{
+    &-body{
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+    &-item{
+        flex: 0 0 calc(20% - 10px);
+        padding: 10px;
+        background-color: #ccc;
+        text-align: center;
+    }
+    &-modal{
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        &-item{
+            flex: 0 0 calc(50% - 10px);
+            max-width: 50%;            
+        }
+        &-label {   
+            transition: .2s all; 
+            cursor: pointer;
+            background-color: #ccc;
+            padding: 10px;
+            text-align: center;
+            display: block;
+            &:hover{
+                background-color: gray;
+                color: white;
+            }
+        }
+        &-box{
+            display: none;
+        }
+        &-box[type="checkbox"]:checked~.danlandar-modal-label{
+            background-color: gray ;
+            color: white;
+        }
+        // &>.danlandar-item{
+        //     flex: 0 0 calc(50% - 10px);
+        //     max-width: 50%;
+        //     cursor: pointer;
+        //     transition: .2s all;
+        //     &:hover{
+        //         background-color: gray;
+        //         color: white;
+        //     }
+        //     &.active{
+        //         background-color: gray;
+        //         color: white;
+        //     }
+        // }
+    }
+}

@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 import { Button, Form, Modal, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { createSchedule, listScheduleApi, listTimeslot } from "../../../../services/ScheduleService";
-import {setLoading} from "../../../../redux/slices/InterfaceSile"
-import moment from 'moment/moment.js'
-import "../Calendar.scss";
+import { createSchedule, listScheduleApi, listTimeslot } from "../../../../../services/ScheduleService";
+import {setLoading} from "../../../../../redux/slices/InterfaceSile"
+import "./Calendar.scss";
 import { useRef } from "react";
 function CreateDalandar() {
     const token = useSelector(state=>state.auth.token);
@@ -24,7 +23,7 @@ function CreateDalandar() {
             dispatch(setLoading(true));
             let res = await listScheduleApi({token, search:{
                 "create_by": user.id,
-                "date": moment(new Date(date)).format('YYYY-MM-DD')
+                "date": date
             }});
             let data = res.data.data;
             setListSchedule(data);
@@ -56,10 +55,7 @@ function CreateDalandar() {
         e.preventDefault();
         let formData = new FormData(formRef.current);
         // console.log(formData.getAll('timeslot'));
-        let dateFormat = moment(new Date(date)).format('YYYY-MM-DD');
-        console.log(dateFormat);
-        // return 
-        formData.append("date", dateFormat);
+        formData.append("date", date);
         try {
             let res = await createSchedule({token, data:formData});
             let message = res.data.message;

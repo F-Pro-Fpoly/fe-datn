@@ -2,18 +2,115 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { toast,ToastContainer } from 'react-toastify';
+import { updatePassWord, updateUser } from '../../../../services/UserService';
+import Moment from 'moment';
+import { useEffect } from 'react';
+function Info(infoUser) {
+    const token = useSelector(state => state.auth.token )
+    const id = infoUser.infoUser.id
+
+    const [user, setUser] = useState([{
+        "name": infoUser.infoUser.name,
+        "email": infoUser.infoUser.email,
+        "username": infoUser.infoUser.username,
+        "address": infoUser.infoUser.address,
+        "phone": infoUser.infoUser.phone,
+        "date":  Moment(infoUser.infoUser.date).format("Y/M/D"),
+        "gender": infoUser.infoUser.gender,
+        "user_info": infoUser.infoUser.user_info,
+        "active":1
+    }]) 
+
+    const [pass, setPass] = useState([])
+    const [selectedFile, setSelectedFile] = useState();
+    const [preview, setPreview] = useState();
+    console.log(preview);
+    const onSubmit  = async (e) => {
+        e.preventDefault();
+        const data = {
+            ...user,
+            "active":1
+        }
+        try {
+            let res = await updateUser({token,id,data})
+            let message = res.data.message;
+            toast.success(message);
+        } catch (error) {
+            console.log(error);
+            let res = error.response;
+            let status = res.status;
+            console.log(status);
+            if(status === 422){
+                let data = res.data;
+                let message = data.message;
+                toast.error(message);
+            }
+        }
+    }
+
+    const ChangePassWord = async (e) => {
+        e.preventDefault();
+        const data = {
+            ...pass,
+        }
+        try {
+            let res = await updatePassWord({token, data, id});
+         
+            let message = res.data.message;
+            toast.success(message);
+        } catch (error) {
+            console.log(error);
+            let res = error.response;
+            let status = res.status;
+            console.log(status);
+            if(status === 401){
+                let data = res.data;
+                let message = data.message;
+                toast.error(message);
+            }
+        }
+    }
+
+    const onSelectFile = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(undefined)
+            return
+        }
+
+        // I've kept this example simple by using the first image instead of multiple
+        setSelectedFile(e.target.files[0])
+    }
+    useEffect(() => {
+        if(!selectedFile){
+            setSelectedFile(undefined);
+            return
+        }
+        const objectUrl = URL.createObjectURL(selectedFile);
+        setPreview(objectUrl);
+        return () => URL.revokeObjectURL(objectUrl);
+    },[selectedFile])
+    
 
 
-function Info() {
-    const infoUserr = useSelector(state => state.auth.user )
-
-    const [infoUser, setInfoUser] = useState({
-        ...infoUserr
-    })
     return(
-
+       <>
+        <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        />
+        {/* Same as */}
+    <ToastContainer />             
+   
         <div className="vstack gap-4">
-                        
+{/*       
         <div className="bg-light rounded p-3">
             
             <div className="overflow-hidden">
@@ -41,7 +138,7 @@ function Info() {
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> */}
 
         
         <div className="card border">
@@ -53,48 +150,79 @@ function Info() {
             
             <div className="card-body">
                 
-                <form className="row g-3">
+                <form className="row g-3" method='PUT' onSubmit={onSubmit}>
                     
                     <div className="col-12">
-                        <label className="form-label">Thêm ảnh đại diện<span className="text-danger">*</span></label>
+                       
                         <div className="d-flex align-items-center">
                             <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
-                                
+                          
                                 <span className="avatar avatar-xl">
-                                    <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={infoUser.avatar}  alt="Avatar" />
+                                    <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={infoUser.infoUser.avatar}                         
+                                    alt="Avatar" />                      
                                 </span>
+                               
+                                { selectedFile &&  <span className="avatar avatar-xl"> <img src={preview}  className="avatar-img rounded-circle border border-white border-3 shadow"/>    </span>}
+                             
                             </label>
                             
                             <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
-                            <input id="uploadfile-1" className="form-control d-none" type="file" />
+                            <input id="uploadfile-1"
+                            onInput={(e) => onSelectFile(e) }
+                             className="form-control d-none" 
+                             type="file" />
                         </div>
                     </div>
 
                     
                     <div className="col-md-6">
                         <label className="form-label">Họ và tên<span className="text-danger">*</span></label>
-                        <input type="text" className="form-control" defaultValue={infoUser.name} placeholder="Nhập họ và tên" />
+                        <input type="text" className="form-control" defaultValue={infoUser.infoUser.name}
+                        onChange={(e) => setUser({...user, "name": e.target.value})}
+                        placeholder="Nhập họ và tên" />
                     </div>
 
                     
                     <div className="col-md-6">
                         <label className="form-label">Email<span className="text-danger">*</span></label>
-                        <input type="email" className="form-control" defaultValue={infoUser.email} placeholder="Nhập địa chỉ email" />
+                        <input type="email" disabled className="form-control" defaultValue={infoUser.infoUser.email} 
+                        onChange={(e) => setUser({...user, "email": e.target.value})}
+                        placeholder="Nhập địa chỉ email" />
                     </div>
 
                     
                     <div className="col-md-6">
                         <label className="form-label">Số điện thoại<span className="text-danger">*</span></label>
-                        <input type="text" className="form-control" defaultValue={infoUser.phone}  placeholder="Enter your mobile number" />
+                        <input type="text" className="form-control" defaultValue={infoUser.infoUser.phone}
+                        onChange={(e) => setUser({...user, "phone": e.target.value})}
+                        placeholder="Nhập số điện thoại" />
                     </div>
 
-               
-
-                    
+                     
                     <div className="col-md-6">
                         <label className="form-label">Ngày sinh<span className="text-danger">*</span></label>
-                        <input type="date" className="form-control flatpickr flatpickr-input" defaultValue={infoUser.date}   placeholder="Nhập ngày sinh" data-date-format="Y-m-d" readOnly="readonly" />
+                        <input type="date" className="form-control" value={infoUser.infoUser.date}
+                        onChange={(e) => setUser({...user, "date": e.target.value})}
+                        placeholder="Nhập ngày sinh"  />
                     </div>
+                    {
+                        infoUser.infoUser.role_id == 2 ? 
+                        <>
+                           <div className="col-md-6">
+                        <label className="form-label">Chuyên khoa</label>
+                        <input type="text" className="form-control" value={infoUser.infoUser.specailist_name}
+                       
+                        disabled  />
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label">Phòng ban</label>
+                            <input type="text" className="form-control" value={infoUser.infoUser.department_name}
+                            disabled />
+                        </div>
+                        </>
+                        : ""
+                        
+                    }
 
                     
                     <div className="col-md-6">
@@ -102,19 +230,30 @@ function Info() {
                         <div className="d-flex gap-4">
 
                             <div className="form-check radio-bg-light">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" defaultChecked={infoUser.gender == 0 ? true : false} />
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                                   value="1"
+                                  onChange={(e) => setUser({...user, "gender": e.target.value})}
+                                defaultChecked={infoUser.infoUser.gender == 0 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault1">
                                    Nam
                                 </label>
                             </div>
                             <div className="form-check radio-bg-light">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" defaultChecked={infoUser.gender == 1 ? true : false} />
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" 
+                                value="2"
+                                id="flexRadioDefault2"
+                                  onChange={(e) => setUser({...user, "gender": e.target.value})}
+                                defaultChecked={infoUser.infoUser.gender == 1 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault2">
                                     Nữ
                                 </label>
                             </div>
                             <div className="form-check radio-bg-light">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" defaultChecked={infoUser.gender == 3 ? true : false} />
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" 
+                                value="3"
+                                id="flexRadioDefault3"
+                                  onChange={(e) => setUser({...user, "gender": e.target.value})}
+                                defaultChecked={infoUser.infoUser.gender == 2 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault3">
                                     Khác
                                 </label>
@@ -124,11 +263,22 @@ function Info() {
                    
                     <div className="col-12">
                         <label className="form-label">Địa chỉ</label>
-                        <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.address}></textarea>
+                        <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.address}   onChange={(e) => setUser({...user, "address": e.target.value})}></textarea>
                     </div>
               
+                    {
+                         infoUser.infoUser.role_id === 2 ?
+
+                          <div className="col-12">
+                            <label className="form-label">Thông tin bác sĩ</label>
+                            <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.user_info}   onChange={(e) => setUser({...user, "address": e.target.value})}></textarea>
+                        </div>
+                        :
+                        ""
+                    }
+              
                     <div className="col-12 text-end">
-                        <Link to="#" className="btn btn-primary mb-0">Lưu thay đổi</Link>
+                        <button type='submit'  className="btn btn-primary mb-0">Lưu thay đổi</button>
                     </div>
                 </form>
                 
@@ -137,7 +287,7 @@ function Info() {
         </div>
         
         
-        <div className="card border">
+        {/* <div className="card border">
             
             <div className="card-header border-bottom">
                 <h4 className="card-header-title">Xác thực email</h4>
@@ -146,18 +296,18 @@ function Info() {
 
             
             <div className="card-body">
-                <form>
+                <form >
                     
                     <label className="form-label">Địa chỉ email của bạn<span className="text-danger">*</span></label>
                     <input type="email" id='xt' className="form-control" placeholder="Nhập địa chỉ email" />
 
                     <div className="text-end mt-3">
-                        <Link to="#" className="btn btn-primary mb-0">Xác nhận</Link>
+                        <button className='btn btn-primary mb-0' type='submit'>Xác nhận</button>
                     </div>
                 </form>	
             </div>
             
-        </div>
+        </div> */}
         
 
         
@@ -167,17 +317,21 @@ function Info() {
                 <h4 className="card-header-title">Thay đổi mật khẩu</h4>
             </div>
             
-            <form className="card-body">
+            <form className="card-body" onSubmit={ChangePassWord} method="PUT">
                 
                 <div className="mb-3">
                     <label className="form-label">Mật khẩu hiện tại</label>
-                    <input className="form-control" type="password" placeholder="Nhập mật khẩu hiện tại" />
+                    <input className="form-control"
+                     onChange={(e) => setPass({...pass, "old_pass": e.target.value})}
+                    type="password" placeholder="Nhập mật khẩu hiện tại" />
                 </div>
                 
                 <div className="mb-3">
                     <label className="form-label">Mật khẩu mới</label>
                     <div className="input-group">
-                        <input className="form-control fakepassword" placeholder="Nhập mật khẩu mới" type="password" id="psw-input" />
+                        <input className="form-control fakepassword"
+                        onChange={(e) => setPass({...pass, "new_pass": e.target.value})}
+                        placeholder="Nhập mật khẩu mới" type="password" id="psw-input" />
                         <span className="input-group-text p-0 bg-transparent">
                             <i className="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
                         </span>
@@ -186,11 +340,13 @@ function Info() {
                 
                 <div className="mb-3">
                     <label className="form-label">Nhập lại mật khẩu</label>
-                    <input className="form-control" type="password" placeholder="Nhập lại mật khẩu" />
+                    <input className="form-control" type="password"
+                    onChange={(e) => setPass({...pass, "comfirm_pass": e.target.value})}
+                    placeholder="Nhập lại mật khẩu" />
                 </div>
 
                 <div className="text-end">
-                    <Link to="#" className="btn btn-primary mb-0">Xác nhận</Link>
+                 <button className='btn btn-primary mb-0' type='submit'>Xác nhận</button>
                 </div>
             </form>
             
@@ -198,6 +354,7 @@ function Info() {
         
     </div>
     </div>  
+       </>
     )
 }
 export default Info

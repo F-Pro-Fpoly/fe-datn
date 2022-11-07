@@ -46,4 +46,45 @@ function postListServiceAPI(token = null, data={}) {
     }
 }
 
-export { getListServiceAPI,postListServiceAPI, getListAllSpecialist}
+function getSpecialist({token, id}) {
+    let headers ={}; 
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    console.log();
+    return API.get(`auth/specialist/detail/${id}`, {headers:headers});
+}
+
+function getListSpecialistClient({token, search = {}, limit = null}) {
+    let headers ={}; 
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    let url = `normal/specialist/list-specialist-client?`;
+    for (const key in search) {
+        url += `${search[key]}&`;
+    }
+    if(limit) {
+        url += `limit=${limit}`;
+    }
+    return API.get(url, {headers:headers});
+}
+
+function getSpecialistClient({token, slug}) {
+    let headers ={}; 
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    let url = `normal/specialist/specialist-client/${slug}`;
+    return API.get(url, {headers:headers});
+}
+
+// function updateSpecialist()
+
+export { 
+    getListServiceAPI,postListServiceAPI, getListAllSpecialist, 
+    getSpecialist, getListSpecialistClient, getSpecialistClient
+}

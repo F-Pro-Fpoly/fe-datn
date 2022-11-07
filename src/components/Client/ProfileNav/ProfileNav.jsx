@@ -26,20 +26,44 @@ function ProfileNav() {
                     </div>
                     <ul className="profile-dropdown-item ul-list">
                         <li>
-                            <Link to="/ho-so-ca-nhan"><i className="fa-regular fa-bookmark"></i><span>Hồ sơ cá nhân</span></Link>
+                            <Link to="/ho-so-ca-nhan"><i className="fa-regular fa-bookmark"></i><span>Hồ sơ cá nhân</span>
+                            </Link>
                         </li>
-                        <li>
-                            <Link to="/ho-so-ca-nhan/lich-kham"><i className="fa-regular fa-user"></i><span>Quản lí lịch khám</span></Link>
-                        </li>
+
+
                         {
-                            (user.role_id == 2 || user.role_id == 1) ? (
+                            user.role_id == 2 ? 
+                            <>
+                               <li className="nav-item">
+                                    <Link className="nav-link" to="/ho-so-ca-nhan/lich-kham">
+                                        <i className="bi bi-people fa-fw me-2"></i>Danh sách lịch khám
+                                    </Link>
+                                </li>
+                                 <li className="nav-item">
+                                 <Link className="nav-link" to="/ho-so-ca-nhan/them-lich-kham">
+                                     <i className="bi bi-people fa-fw me-2"></i>Thêm lịch khám
+                                 </Link>
+                                </li>
+                            </>
+                            :
+                            <li>
+                                <Link to="/ho-so-ca-nhan/quan-li-lich-kham"><i className="fa-regular fa-user"></i><span>Quản lí lịch khám</span>
+                                </Link>
+                            </li>
+                        }
+
+                     
+
+
+                        {
+                            (user.role_id == 1) ? (
                                 <li>
                                     <Link to="/admin"><i className="fa-solid fa-screwdriver-wrench"></i><span>Trang quản trị</span></Link>
                                 </li>
                             ):""
                         }
                         <li>
-                            <Link to="/logout"><i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></Link>
+                            <Link to="/logout"><i className="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></Link>
                         </li>
                     </ul>
                 </div>

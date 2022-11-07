@@ -75,6 +75,43 @@ function updateUserByName({token, data}) {
     }
     return API.put(url, data,{headers: headers});
 }
+function updatePassWord({token, data, id}) {
+    let headers = {};
+    let url = `auth/user/changePassword/${id}`;
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.put(url, data,{headers: headers});
+}
 
 
-export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName }
+function getInfo({token}) {
+    let headers = {};
+    let url = "auth/user/info";
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.get(url,{headers: headers});
+}
+
+function getListUsersV2({token, search = {}, limit = 6, page = 1}) {
+    try {
+        let headers ={}; 
+        let url = `normal/user/list?`;
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        for (const key in search) {
+            url += `${key}=${search[key]}&`;
+        }
+        url += `limit=${limit}&page=${page}`;
+        return API.get(url, {headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+
+export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2}
