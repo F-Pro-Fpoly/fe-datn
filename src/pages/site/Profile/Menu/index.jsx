@@ -30,7 +30,7 @@ function Menu(infoUser) {
                         
                         <ul className="nav nav-pills-primary-soft flex-column">
                             <li className="nav-item">
-                                <NavLink className="nav-link"  to="/ho-so-ca-nhan/">
+                                <NavLink className="nav-link"  to="/ho-so-ca-nhan/" end>
                                     <i className="bi bi-person fa-fw me-2"></i>Thông tin cá nhân
                                 </NavLink>
                             </li>
@@ -43,8 +43,8 @@ function Menu(infoUser) {
                                     </NavLink>
                                 </li>
                                  <li className="nav-item">
-                                 <NavLink className="nav-link" to="/ho-so-ca-nhan/dat-lich-kham">
-                                     <i className="bi bi-people fa-fw me-2"></i>Đặt lịch khám
+                                 <NavLink className="nav-link" to="/ho-so-ca-nhan/them-lich-kham">
+                                     <i className="bi bi-people fa-fw me-2"></i>Thêm lịch khám
                                  </NavLink>
                                 </li>
                                </>
