@@ -24,7 +24,7 @@ function CreateDalandar() {
             dispatch(setLoading(true));
             let res = await listScheduleApi({token, search:{
                 "create_by": user.id,
-                "date": date
+                "date": moment(new Date(date)).format('YYYY-MM-DD')
             }});
             let data = res.data.data;
             setListSchedule(data);
