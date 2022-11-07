@@ -39,7 +39,7 @@ function ProfileNav() {
                             ):""
                         }
                         <li>
-                            <Link to="/logout"><i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></Link>
+                            <Link to="/logout"><i className="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></Link>
                         </li>
                     </ul>
                 </div>
