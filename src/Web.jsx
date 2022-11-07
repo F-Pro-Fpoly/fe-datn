@@ -33,6 +33,8 @@ import ListConfig from "./pages/admin/Setttings/Config/ListConfig/ListConfig";
 import AddConfig from "./pages/admin/Setttings/Config/AddConfig";
 import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
 import Profile from "./pages/site/Profile";
+import Blog from "./pages/site/Blog";
+import DetailBlog from "./pages/site/DetailBlog";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -46,6 +48,8 @@ function Web() {
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ly-lich"  element={<Book />}/>             
                     <Route path="/ve-chung-toi"  element={<About />}/>
+                    <Route path="/tin-tuc"  element={<Blog />}/>
+                    <Route path="/tin-chi-tiet"  element={<DetailBlog />}/>
                     <Route path="/lien-he"  element={<Contact />}/>
                     <Route path="/ho-so-ca-nhan/*"  element={<Profile />}/>  
                 </Route>
