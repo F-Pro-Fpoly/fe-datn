@@ -5,10 +5,13 @@ import Nav from '../../components/Client/Nav';
 import ScrollToTop from '../../components/Scroll/Scroll';
 import { ListConfigService } from '../../services/normal/ConfigService';
 import "./LayoutHome.scss"
+import LoadingGlobal from "../../components/LoadingGlobal";
+import { useSelector } from 'react-redux';
 
 function LayoutHome() {
     const path = useLocation()
     const [showTopBtn, setShowTopBtn] = useState(false);
+    const loadingGlobal = useSelector(state => state.interface.loading);
     useEffect(() => {
         if(window.scrollY != 0) {
             goToTop(); 
@@ -44,6 +47,7 @@ function LayoutHome() {
   
     return ( 
         <>
+            {loadingGlobal && <LoadingGlobal />}
             <Nav />
             <div className="main">                           
                 <Outlet />  
