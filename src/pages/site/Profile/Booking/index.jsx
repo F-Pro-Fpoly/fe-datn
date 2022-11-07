@@ -42,7 +42,7 @@ function Booking() {
                         <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
                             
                             <div className="d-flex align-items-center">
-                                <div className="icon-lg bg-light rounded-circle flex-shrink-0">
+                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
                                    
                                 <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" /> 
                                 </div>	
@@ -91,7 +91,7 @@ function Booking() {
                         <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
                             
                             <div className="d-flex align-items-center">
-                                <div className="icon-lg bg-light rounded-circle flex-shrink-0"><i className="fa-solid fa-car"></i></div>	
+                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0"><i className="fa-solid fa-car"></i></div>	
                                 
                                 <div className="ms-2">
                                     <h6 className="card-title mb-0">Chicago to San Antonio</h6>
@@ -142,7 +142,7 @@ function Booking() {
                         <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
                             
                             <div className="d-flex align-items-center">
-                                <div className="icon-lg bg-light rounded-circle flex-shrink-0">
+                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
                                     <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" /> 
                                 </div>
                                     

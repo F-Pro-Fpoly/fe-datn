@@ -91,10 +91,10 @@ function Nav (){
                                     <i className="fa-regular fa-envelope"></i>
                                     <span>example.job@gmail.com</span>
                                 </li>
-                                <li className="text-light">
-                                    <i className="fa-duotone fa-user-headset"></i>                                                              
+                                <li >
+                                                                                             
+                                        <i className="fa-regular fa-envelope" ></i>
                                     <Link to={"lien-he"} className="text-light">
-                                        <i className="fa-solid fa-head-side-cough"></i>
                                         <span>Liên hệ</span>  
                                     </Link>             
                                 </li>

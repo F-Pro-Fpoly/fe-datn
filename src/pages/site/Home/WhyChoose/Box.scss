@@ -80,14 +80,11 @@
     }
 
     .image_flex{
-        position: absolute;
+        transform: translateY(-50%);
         display: flex;
-        top: 75%;
-        width:85%;
-        height: 200px;
-   
+        width: 100%;
         img{
-            padding-left: 5%;
+            padding-left: 10%;
             width: 100%;
             object-fit: cover;
             height: 100%;          
