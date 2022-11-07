@@ -6,6 +6,7 @@ import Booking from './Booking';
 import Menu from './Menu';
 import { useSelector } from 'react-redux';
 import { getInfo } from '../../../services/UserService';
+import CreateDalandar from './Doctor/AddBooking';
 
 
 function Profile () {
@@ -48,6 +49,7 @@ function Profile () {
                     <Routes>
                         <Route path="/" element={<Info infoUser={infoUser}  />} />
                         <Route path="/lich-kham" element={<Booking  />} />
+                        <Route path="/them-lich-kham" element={<CreateDalandar  />} />
                     </Routes>
                    
                 </div>

@@ -63,7 +63,7 @@ function ClinicUiTime({dataItem}) {
                             {/* <ClinicUiTime schedule={val}  /> */}
                             <input type="radio" className="schedule-time-input" id={`scheduleTime${val.id}`} name='schedule_time' />
                             <label htmlFor={`scheduleTime${val.id}`} name="schedule_time" className="schedule-time-item">
-                                {val.time_start} - {val.time_end}
+                                <span>{val.time_start} - {val.time_end}</span>
                             </label>
                         </div>
                     ))}                                    

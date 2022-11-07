@@ -205,17 +205,24 @@ function Info(infoUser) {
                         onChange={(e) => setUser({...user, "date": e.target.value})}
                         placeholder="Nhập ngày sinh"  />
                     </div>
-                    <div className="col-md-6">
+                    {
+                        infoUser.infoUser.role_id == 2 ? 
+                        <>
+                           <div className="col-md-6">
                         <label className="form-label">Chuyên khoa</label>
                         <input type="text" className="form-control" value={infoUser.infoUser.specailist_name}
                        
-                       disabled  />
-                    </div>
-                    <div className="col-md-6">
-                        <label className="form-label">Phòng ban</label>
-                        <input type="text" className="form-control" value={infoUser.infoUser.department_name}
-                        disabled />
-                    </div>
+                        disabled  />
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label">Phòng ban</label>
+                            <input type="text" className="form-control" value={infoUser.infoUser.department_name}
+                            disabled />
+                        </div>
+                        </>
+                        : ""
+                        
+                    }
 
                     
                     <div className="col-md-6">
