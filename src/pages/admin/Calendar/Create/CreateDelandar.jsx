@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { createSchedule, listScheduleApi, listTimeslot } from "../../../../services/ScheduleService";
 import {setLoading} from "../../../../redux/slices/InterfaceSile"
+import moment from 'moment/moment.js'
 import "../Calendar.scss";
 import { useRef } from "react";
 function CreateDalandar() {
@@ -55,7 +56,8 @@ function CreateDalandar() {
         e.preventDefault();
         let formData = new FormData(formRef.current);
         // console.log(formData.getAll('timeslot'));
-        formData.append("date", date);
+        let dateFormat = moment(new Date(date)).format('MM-DD-YYYY');
+        formData.append("date", dateFormat);
         try {
             let res = await createSchedule({token, data:formData});
             let message = res.data.message;
