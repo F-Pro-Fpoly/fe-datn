@@ -7,21 +7,16 @@ import Menu from './Menu';
 import { useSelector } from 'react-redux';
 import { getInfo } from '../../../services/UserService';
 import CreateDalandar from './Doctor/AddBooking';
+import ListBooking from './Doctor/ListBooking';
 
 
 function Profile () {
 
     const token = useSelector(state => state.auth.token )
 
-    const [infoUser, setInfoUser] = useState({
-        "username": "",
-        "password": "",
-        "email": "",
-        "name": "",
-        "active": "",
-        "role_id": ""
-    })
-
+    const [infoUser, setInfoUser] = useState([]
+      )
+    console.log(infoUser);
     const start  = async () =>{
         let res =  await  getInfo({token})
         let data =  res.data.data;
@@ -29,7 +24,10 @@ function Profile () {
     }
 
     useEffect(() => {
+        document.title = "Trang hồ sơ cá nhân"
         start()
+
+        
     }, [])
     
     return (
@@ -49,6 +47,7 @@ function Profile () {
                     <Routes>
                         <Route path="/" element={<Info infoUser={infoUser}  />} />
                         <Route path="/lich-kham" element={<Booking  />} />
+                        <Route path="/danh-sach-lich-kham" element={<ListBooking  />} />
                         <Route path="/them-lich-kham" element={<CreateDalandar  />} />
                     </Routes>
                    

@@ -34,6 +34,7 @@ import AddConfig from "./pages/admin/Setttings/Config/AddConfig";
 import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
 import Profile from "./pages/site/Profile";
 import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateSpecialist";
+import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function Web() {
                     <Route path="/ve-chung-toi"  element={<About />}/>
                     <Route path="/lien-he"  element={<Contact />}/>
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
+                    <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
                 </Route>
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
