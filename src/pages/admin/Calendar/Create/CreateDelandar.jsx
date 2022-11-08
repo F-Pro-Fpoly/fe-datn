@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { createSchedule, listScheduleApi, listTimeslot } from "../../../../services/ScheduleService";
 import {setLoading} from "../../../../redux/slices/InterfaceSile"
-import moment from 'moment/moment.js'
+import moment from 'moment/moment.js';
 import "../Calendar.scss";
 import { useRef } from "react";
 function CreateDalandar() {
