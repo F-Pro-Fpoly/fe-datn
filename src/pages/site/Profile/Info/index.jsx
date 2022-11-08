@@ -10,22 +10,8 @@ function Info(infoUser) {
     const token = useSelector(state => state.auth.token )
     const id = infoUser.infoUser.id
 
-    const [user, setUser] = useState([{
-        "name": infoUser.infoUser.name,
-        "email": infoUser.infoUser.email,
-        "username": infoUser.infoUser.username,
-        "address": infoUser.infoUser.address,
-        "phone": infoUser.infoUser.phone,
-        "date":  Moment(infoUser.infoUser.date).format("Y/M/D"),
-        "gender": infoUser.infoUser.gender,
-        "user_info": infoUser.infoUser.user_info,
-        "active":1
-    }]) 
-
     const [pass, setPass] = useState([])
-    const [selectedFile, setSelectedFile] = useState();
-    const [preview, setPreview] = useState();
-    console.log(preview);
+    const [user, setUser] = useState() 
     const onSubmit  = async (e) => {
         e.preventDefault();
         const data = {
@@ -55,8 +41,7 @@ function Info(infoUser) {
             ...pass,
         }
         try {
-            let res = await updatePassWord({token, data, id});
-         
+            let res = await updatePassWord({token, data, id});   
             let message = res.data.message;
             toast.success(message);
         } catch (error) {
@@ -72,24 +57,10 @@ function Info(infoUser) {
         }
     }
 
-    const onSelectFile = e => {
-        if (!e.target.files || e.target.files.length === 0) {
-            setSelectedFile(undefined)
-            return
-        }
 
-        // I've kept this example simple by using the first image instead of multiple
-        setSelectedFile(e.target.files[0])
-    }
     useEffect(() => {
-        if(!selectedFile){
-            setSelectedFile(undefined);
-            return
-        }
-        const objectUrl = URL.createObjectURL(selectedFile);
-        setPreview(objectUrl);
-        return () => URL.revokeObjectURL(objectUrl);
-    },[selectedFile])
+       
+    },[])
     
 
 
@@ -97,7 +68,7 @@ function Info(infoUser) {
        <>
         <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -106,9 +77,7 @@ function Info(infoUser) {
         draggable
         pauseOnHover
         />
-        {/* Same as */}
-    <ToastContainer />             
-   
+ 
         <div className="vstack gap-4">
 {/*       
         <div className="bg-light rounded p-3">
@@ -150,7 +119,7 @@ function Info(infoUser) {
             
             <div className="card-body">
                 
-                <form className="row g-3" method='PUT' onSubmit={onSubmit}>
+                <form className="row g-3" method='PUT' onSubmit={onSubmit} enctype="multipart/form-data">
                     
                     <div className="col-12">
                        
@@ -161,14 +130,11 @@ function Info(infoUser) {
                                     <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={infoUser.infoUser.avatar}                         
                                     alt="Avatar" />                      
                                 </span>
-                               
-                                { selectedFile &&  <span className="avatar avatar-xl"> <img src={preview}  className="avatar-img rounded-circle border border-white border-3 shadow"/>    </span>}
-                             
+                                                    
                             </label>
                             
                             <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
-                            <input id="uploadfile-1"
-                            onInput={(e) => onSelectFile(e) }
+                            <input id="uploadfile-1" onChange={(e) => setUser({...user, "avatar": e.target.files[0].name})}
                              className="form-control d-none" 
                              type="file" />
                         </div>
@@ -201,10 +167,12 @@ function Info(infoUser) {
                      
                     <div className="col-md-6">
                         <label className="form-label">Ngày sinh<span className="text-danger">*</span></label>
-                        <input type="date" className="form-control" value={infoUser.infoUser.date}
+                        <input type="date"  defaultValue={infoUser.infoUser.date} className="form-control"
                         onChange={(e) => setUser({...user, "date": e.target.value})}
                         placeholder="Nhập ngày sinh"  />
                     </div>
+
+
                     {
                         infoUser.infoUser.role_id == 2 ? 
                         <>
@@ -213,7 +181,7 @@ function Info(infoUser) {
                         <input type="text" className="form-control" value={infoUser.infoUser.specailist_name}
                        
                         disabled  />
-                        </div>
+                        </div>  
                         <div className="col-md-6">
                             <label className="form-label">Phòng ban</label>
                             <input type="text" className="form-control" value={infoUser.infoUser.department_name}
@@ -233,7 +201,7 @@ function Info(infoUser) {
                                 <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
                                    value="1"
                                   onChange={(e) => setUser({...user, "gender": e.target.value})}
-                                defaultChecked={infoUser.infoUser.gender == 0 ? true : false} />
+                                defaultChecked={infoUser.infoUser.gender == 1 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault1">
                                    Nam
                                 </label>
@@ -243,7 +211,7 @@ function Info(infoUser) {
                                 value="2"
                                 id="flexRadioDefault2"
                                   onChange={(e) => setUser({...user, "gender": e.target.value})}
-                                defaultChecked={infoUser.infoUser.gender == 1 ? true : false} />
+                                defaultChecked={infoUser.infoUser.gender == 2 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault2">
                                     Nữ
                                 </label>
@@ -253,7 +221,7 @@ function Info(infoUser) {
                                 value="3"
                                 id="flexRadioDefault3"
                                   onChange={(e) => setUser({...user, "gender": e.target.value})}
-                                defaultChecked={infoUser.infoUser.gender == 2 ? true : false} />
+                                defaultChecked={infoUser.infoUser.gender == 3 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault3">
                                     Khác
                                 </label>
@@ -271,7 +239,7 @@ function Info(infoUser) {
 
                           <div className="col-12">
                             <label className="form-label">Thông tin bác sĩ</label>
-                            <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.user_info}   onChange={(e) => setUser({...user, "address": e.target.value})}></textarea>
+                            <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.user_info}   onChange={(e) => setUser({...user, "user_info": e.target.value})}></textarea>
                         </div>
                         :
                         ""
