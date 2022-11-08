@@ -36,6 +36,12 @@ import Profile from "./pages/site/Profile";
 import Blog from "./pages/site/Blog";
 import DetailBlog from "./pages/site/DetailBlog";
 import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateSpecialist";
+import AddNews from "./pages/admin/News";
+import ListNews from "./pages/admin/News/ListNews";
+import UpdateNews from "./pages/admin/News/UpdateNews";
+
+
+
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -94,6 +100,12 @@ function Web() {
                         <Route element={< AddConfig />}  path="add" />
                         <Route element={< UpdateConfig />} path="update/:id" />
                     </Route>
+                    <Route path="tin-tuc">
+                        <Route element={< ListNews />} path="list" />
+                        <Route element={< AddNews />}  path="add" />
+                        <Route element={< UpdateNews />} path="update/:id" />
+                    </Route>
+
 
                     <Route path="/admin/add-user"  element={<AddUser />}/>  
                     <Route path="/admin/list-user"  element={<ListUser />}/>  

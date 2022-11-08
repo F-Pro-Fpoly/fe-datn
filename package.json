@@ -61,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "@ckeditor/ckeditor5-alignment": "^35.3.0",
     "sass": "^1.54.0"
   }
 }
