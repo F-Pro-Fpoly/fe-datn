@@ -1,10 +1,7 @@
 import "./Footer.scss"
-import fb from "../../../image/facebook-square.svg"
-import yb from "../../../image/youtube-square.svg"
 import { Link } from "react-router-dom";
-import logo from "../../../image/logo.png"
-function Footer () {
-
+function Footer (getconfig) {
+    console.log(getconfig);
     return (
         <>
             <div className="newsletter">        
@@ -20,14 +17,14 @@ function Footer () {
                         <div className="col-xl-4 col-md-4 col-12">
                             <div className="cot1">
                                 <div className="logo">
-                                    <img src={logo} alt="logo" width="100" height="100" />
+                                <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.logo ? getconfig.getconfig.logo.description : ""}`} alt="logo" width="220"  />
                                 </div>
                                 <div className="address">
                                     <div className="row1">
-                                        <h3>Công ty Cổ phần Công nghệ Fpro</h3>
+                                        <h3>{ getconfig.getconfig.NameCompany ? getconfig.getconfig.NameCompany.description : ""}</h3>
                                     </div>
                                     <div className="row2">
-                                        <p>310 30/4 Ninh kiều, Cần Thơ</p>
+                                        <p>{ getconfig.getconfig.address ? getconfig.getconfig.address.description : ""}</p>
                                     </div>
                                     <div className="row3">
                                         <p>ĐKKD số: 0106790291. Sở KHĐT Hà Nội cấp ngày 16/03/2015</p>
@@ -76,11 +73,23 @@ function Footer () {
             <div className="footer2">
                 <div className="container">
                     <div className="coppyright">
-                        2022 Fpro.
+                        {getconfig.getconfig.copyright ?getconfig.getconfig.copyright.description  : ""}
                     </div>
                     <div className="social">
-                        <img src={fb} alt="fb" width={32} height={32} />
-                        <img src={yb} alt="yb" width={32} height={32} />
+                        <Link   
+                           onClick={()=> window.open(
+                            getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.link : ""
+                            , "_blank")}
+                        >
+                        <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.description : ""}`} alt="fb" width={32} height={32} />
+                        </Link>
+                        <Link   
+                           onClick={()=> window.open(
+                            getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.link : ""
+                            , "_blank")}
+                        >
+                        <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.description : ""}`} alt="yb" width={32} height={32} />
+                        </Link>
                     </div>
                 </div>
             </div>

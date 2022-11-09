@@ -92,7 +92,7 @@ function ProfileDoctor() {
                                 <div className="wrapOwlSlideTab">
       
                                     
-                                    <Link to="#td" className="btn btn-primary" style={{marginRight: "2%"}}>Trình độ chuyên môn</Link>
+                                    <Link to="#td" className="btn btn-primary" style={{marginRight: "2%"}}>Trình độ</Link>
                                     <Link className="btn btn-primary" style={{marginRight: "2%"}}>Giới thiệu</Link>
                                     <Link className="btn btn-primary" style={{marginRight: "2%"}}>Kinh nghiệm</Link>
                                     <Link className="btn btn-primary" style={{marginRight: "2%"}}>Bài viết</Link>

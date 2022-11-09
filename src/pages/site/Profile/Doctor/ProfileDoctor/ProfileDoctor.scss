@@ -210,3 +210,57 @@
         }
     }
 }
+
+/* =========================== Responesive ================================  */
+
+
+@media screen and (max-width: 1150px) {
+    #spec {
+        .rightBlock{      
+            .wrapOwlSlideTab{
+               
+              &>a{
+                color: white;
+                margin-right: 2%;
+                width: 16%;
+                // font-size: 1px;
+              } 
+            }
+        }
+       
+    }
+}
+
+@media screen and (max-width: 898px) {
+    #spec {
+        .rightBlock{     
+            .wrapOwlSlideTab{
+                display: none;     
+            }
+        }
+       
+    }
+}
+
+@media screen and (max-width: 769px) {
+    #spec {
+        .peopleBlock{
+            display: flex;
+            flex-wrap: wrap;
+            padding-bottom: 0px;
+            position: relative;
+            flex-direction: column;
+            .wrapImg{
+                width: 100% !important;
+            }
+            .rightBlock{
+                width: 100% !important;
+                 padding-left: 0 !important; 
+                 padding-bottom: 0 !important; 
+                 margin-top: 0  !important;
+            }
+        }
+       
+       
+    }
+}
