@@ -94,6 +94,16 @@ function getInfo({token}) {
     return API.get(url,{headers: headers});
 }
 
+
+function getInfoDoctor({token,id}) {
+    let headers = {};
+    let url = `normal/user/infoDoctor/${id}`;
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.get(url,{headers: headers});
+}
+
 function getListUsersV2({token, search = {}, limit = 6, page = 1}) {
     try {
         let headers ={}; 
@@ -114,4 +124,6 @@ function getListUsersV2({token, search = {}, limit = 6, page = 1}) {
 }
 
 
-export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2}
+
+
+export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor}

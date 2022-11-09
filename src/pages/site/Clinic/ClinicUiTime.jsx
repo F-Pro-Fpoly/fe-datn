@@ -6,6 +6,7 @@ import {setLoading} from "../../../redux/slices/InterfaceSile";
 
 function ClinicUiTime({dataItem}) {
     const [item, setItem] = useState(dataItem);
+    console.log(item);
     const [timeSlots, setTimeSlot] = useState(dataItem.schedule_data ?? []);
     const [date, setDate] = useState();
     const token = useSelector(state => state.auth.token);
@@ -35,7 +36,7 @@ function ClinicUiTime({dataItem}) {
         <>           
             <div className="image">
                 <img src={item.avatar} alt="" />
-                <Link to="">Xem thêm</Link>
+                <Link to={"/doi-ngu-bac-si/"+item.slug_name+"/"+item.id}>Xem thêm</Link>
             </div>
             <div className="infocontent"> 
                 <h3>{item.name}</h3>
