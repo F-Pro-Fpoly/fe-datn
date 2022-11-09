@@ -11,19 +11,16 @@ import { useSelector } from 'react-redux';
 function LayoutHome() {
     const path = useLocation()
     const [showTopBtn, setShowTopBtn] = useState(false);
+    const [getconfig, setConfig] = useState([])
+
     const loadingGlobal = useSelector(state => state.interface.loading);
+
     useEffect(() => {
         if(window.scrollY != 0) {
             goToTop(); 
         }
     }, [path]);
-    // const scrollToTop = () =>{
-    //     if (window.scrollY > 400) {
-    //         setShowTopBtn(true);
-    //     } else {
-    //         setShowTopBtn(false);
-    //     }
-    // }
+
 
     const goToTop = () => {
         window.scrollTo({
@@ -32,27 +29,33 @@ function LayoutHome() {
         });
     };
  
-    // const [getconfig, setConfig] = useState([])
+   const start = async () => {
+  
+        let respon = await ListConfigService()
+        let dataa = respon.data;
+        let dataArrr = dataa.data;
+        setConfig(dataArrr)
+   }
 
-    // useEffect(() => {
-    //     const config = async () => {
-    //         let respon = await ListConfigService()
-    //         let dataa = respon.data;
-    //         let dataArrr = dataa.data;
-    //         setConfig(dataArrr)
-    //     }
-     
-    //     config();
-    // }, [])
+    useEffect(() => {
+        start()
+
+        const favicon =  document.getElementById("favicon");
+        
+        let a = process.env.REACT_APP_BE
+        let  b = getconfig.favicon ? getconfig.favicon.description : "" 
+        a += b
+        favicon.href = a
+    }, [])
   
     return ( 
         <>
             {loadingGlobal && <LoadingGlobal />}
-            <Nav />
+            <Nav getconfig = {getconfig} />
             <div className="main">                           
                 <Outlet />  
                 <ScrollToTop />      
-                <Footer />    
+                <Footer getconfig = {getconfig} />    
             </div>
         </>
      );
