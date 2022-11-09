@@ -35,6 +35,7 @@ import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
 import Profile from "./pages/site/Profile";
 import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateSpecialist";
 import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
+import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -85,6 +86,7 @@ function Web() {
                     <Route path="chinh-sua-menu">
                         <Route element={< ListMenu />} path="list" />
                         <Route element={< AddMenu />}  path="add" />
+                        <Route element={< UpdateMenu />}  path="update/:id" />
                     </Route>
 
                     <Route path="cau-hinh-chung">
