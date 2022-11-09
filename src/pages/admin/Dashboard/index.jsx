@@ -1,102 +1,116 @@
-import "./Dashboard.scss";
+
 function Dashboard () {
     return (
-        <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-        <div className="container-fluid py-4">
-          <div className="row">
-            <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-              <div className="card">
-                <div className="card-header p-3 pt-2">
-                  <div className="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                    <i className="fa fa-usd opacity-10"></i>
-                  </div>
-                  <div className="text-end pt-1">
-                    <p className="text-sm mb-0 text-capitalize">Today's Money</p>
-                    <h4 className="mb-0">$53k</h4>
-                  </div>
-                </div>
-              <hr className="dark horizontal my-0"></hr>
-                <div className="card-footer p-3">
-                  <p className="mb-0"><span className="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-              <div className="card">
-                <div className="card-header p-3 pt-2">
-                  <div className="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                    <i className="fa fa-user opacity-10"></i>
-                  </div>
-                  <div className="text-end pt-1">
-                    <p className="text-sm mb-0 text-capitalize">Today's Users</p>
-                    <h4 className="mb-0">2,300</h4>
-                  </div>
-                </div>
-                <hr className="dark horizontal my-0"></hr>
-                <div className="card-footer p-3">
-                  <p className="mb-0"><span className="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-              <div className="card">
-                <div className="card-header p-3 pt-2">
-                  <div className="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                    <i className="fa fa-eye opacity-10"></i>
-                  </div>
-                  <div className="text-end pt-1">
-                    <p className="text-sm mb-0 text-capitalize">New Clients</p>
-                    <h4 className="mb-0">3,462</h4>
-                  </div>
-                </div>
-                <hr className="dark horizontal my-0"></hr>
-                <div className="card-footer p-3">
-                  <p className="mb-0"><span className="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-3 col-sm-6">
-              <div className="card">
-                <div className="card-header p-3 pt-2">
-                  <div className="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                    <i className="fa fa-bar-chart-o opacity-10"></i>
-                  </div>
-                  <div className="text-end pt-1">
-                    <p className="text-sm mb-0 text-capitalize">New Clients</p>
-                    <h4 className="mb-0">3,462</h4>
-                  </div>
-                </div>
-                <hr className="dark horizontal my-0"></hr>
-                <div className="card-footer p-3">
-                  <p className="mb-0"><span className="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row mt-4">
-            <div className="col-lg-12 mt-4 mb-4">
-              <div className="card z-index-2 ">
-                <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                  <div className="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                    <div className="chart">
-                      <canvas id="chart-bars" className="chart-canvas" height="170"></canvas>
+      <div className="body flex-grow-1 px-3">
+         <div class="container-lg">
+            <div class="row">
+              <div class="col-sm-6 col-lg-3">
+                <div class="card mb-4 text-white bg-primary">
+                  <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="fs-4 fw-semibold">26K 
+                        <span class="fs-6 fw-normal">
+                          (-12.4%
+                            <i className="fa fa-long-arrow-down"></i>
+                           )
+                        </span>
+                      </div>
+                      <div>Người dùng</div>
                     </div>
                   </div>
                 </div>
-                <div className="card-body">
-                  <h6 className="mb-0 ">Website Views</h6>
-                  <p className="text-sm ">Last Campaign Performance</p>
-                  <hr className="dark horizontal my-0"></hr>
-                  <div className="d-flex ">
-                    <i className="material-icons text-sm my-auto me-1">schedule</i>
-                    <p className="mb-0 text-sm"> campaign sent 2 days ago </p>
+              </div>
+            
+              <div class="col-sm-6 col-lg-3">
+                <div class="card mb-4 text-white bg-info">
+                  <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="fs-4 fw-semibold">$6.200
+                        <span class="fs-6 fw-normal">
+                          (-12.4%
+                           <i className="fa fa-long-arrow-up"></i> 
+                           )
+                        </span>
+                       </div> 
+                      <div>Đặt lịch khám</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-sm-6 col-lg-3">
+                <div class="card mb-4 text-white bg-warning">
+                  <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="fs-4 fw-semibold">2.49%
+                          <span class="fs-6 fw-normal">
+                            (-12.4%
+                          <i className="fa fa-long-arrow-up"></i>
+                          )
+                          </span>
+                      </div>
+                      <div>Chuyên khoa</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-sm-6 col-lg-3">
+                <div class="card mb-4 text-white bg-danger">
+                  <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                    <div className="row">
+                      <div class="fs-4 fw-semibold col-md-8">44K
+                        <span class="fs-6 fw-normal">(-12.4%
+                          <i className="fa fa-long-arrow-down"></i>
+                        )
+                        </span>
+                      </div>
+                      <div className="clo-md-4">Danh mục bệnh nhân</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h4 class="card-title mb-0">Biểu đồ</h4>
+                    <div class="small text-medium-emphasis">Năm 2020</div>
+                  </div>
+                </div>
+                <div class="c-chart-wrapper" >
+                  <canvas class="chart" id="main-chart" height="600" width="1350" ></canvas>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="row row-cols-1 row-cols-md-5 text-center">
+                  <div class="col mb-sm-2 mb-0">
+                    <div class="text-medium-emphasis">Visits</div>
+                    <div class="fw-semibold">29.703 Users (40%)</div>
+                  </div>
+                  <div class="col mb-sm-2 mb-0">
+                    <div class="text-medium-emphasis">Unique</div>
+                    <div class="fw-semibold">24.093 Users (20%)</div>
+                  </div>
+                  <div class="col mb-sm-2 mb-0">
+                    <div class="text-medium-emphasis">Pageviews</div>
+                    <div class="fw-semibold">78.706 Views (60%)</div>
+                  </div>
+                  <div class="col mb-sm-2 mb-0">
+                    <div class="text-medium-emphasis">New Users</div>
+                    <div class="fw-semibold">22.123 Users (80%)</div>
+                  </div>
+                  <div class="col mb-sm-2 mb-0">
+                    <div class="text-medium-emphasis">Bounce Rate</div>
+                    <div class="fw-semibold">40.15%</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
+      </div>
     
             );
 }

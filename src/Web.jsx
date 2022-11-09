@@ -33,7 +33,13 @@ import ListConfig from "./pages/admin/Setttings/Config/ListConfig/ListConfig";
 import AddConfig from "./pages/admin/Setttings/Config/AddConfig";
 import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
 import Profile from "./pages/site/Profile";
+import Blog from "./pages/site/Blog";
+import DetailBlog from "./pages/site/DetailBlog";
 import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateSpecialist";
+import AddNews from "./pages/admin/News";
+import ListNews from "./pages/admin/News/ListNews";
+import UpdateNews from "./pages/admin/News/UpdateNews";
+
 import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
 function Web() {
@@ -49,6 +55,8 @@ function Web() {
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ly-lich"  element={<Book />}/>             
                     <Route path="/ve-chung-toi"  element={<About />}/>
+                    <Route path="/tin-tuc"  element={<Blog />}/>
+                    <Route path="/tin-chi-tiet"  element={ AuthMiddlware (<DetailBlog />)}/>
                     <Route path="/lien-he"  element={<Contact />}/>
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                     <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
@@ -94,6 +102,12 @@ function Web() {
                         <Route element={< AddConfig />}  path="add" />
                         <Route element={< UpdateConfig />} path="update/:id" />
                     </Route>
+                    <Route path="tin-tuc">
+                        <Route element={< ListNews />} path="list" />
+                        <Route element={< AddNews />}  path="add" />
+                        <Route element={< UpdateNews />} path="update/:id" />
+                    </Route>
+
 
                     <Route path="/admin/add-user"  element={<AddUser />}/>  
                     <Route path="/admin/list-user"  element={<ListUser />}/>  
