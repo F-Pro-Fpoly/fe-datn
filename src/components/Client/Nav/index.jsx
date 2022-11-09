@@ -78,7 +78,7 @@ function Nav (getconfig){
                 <div className={`navb`} ref={navRef}>
                     <div className="logo">
                     <Link to="/">
-                        <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.logo ? getconfig.getconfig.logo.description : ""}`} alt="logo" width="170"  />
+                        <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.logo ? getconfig.getconfig.logo.description : ""}`} alt="logo" width="120"  />
                     </Link>
                     </div>
 
