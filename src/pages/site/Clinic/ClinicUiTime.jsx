@@ -61,11 +61,9 @@ function ClinicUiTime({dataItem}) {
                 <div className="row schedule-time">
                     {timeSlots.map((val, index) => (
                         <div className="col-4 schedule-time-col" key={index}>
-                            {/* <ClinicUiTime schedule={val}  /> */}
-                            <input type="radio" className="schedule-time-input" id={`scheduleTime${val.id}`} name='schedule_time' />
-                            <label htmlFor={`scheduleTime${val.id}`} name="schedule_time" className="schedule-time-item">
+                            <Link to={"/"} className="schedule-time-item">
                                 <span>{val.time_start} - {val.time_end}</span>
-                            </label>
+                            </Link>
                         </div>
                     ))}                                    
                 </div> 

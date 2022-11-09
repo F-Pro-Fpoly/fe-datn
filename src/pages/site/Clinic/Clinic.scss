@@ -119,6 +119,7 @@
             }
             &-time{
                 gap: 10px 0;
+                width: 100%;
                 &-item{
                     background-color: #eee;
                     text-align: center;
@@ -129,6 +130,11 @@
                     cursor: pointer;
                     user-select: none;
                     white-space: nowarp;
+                    color: #333;
+                    &:hover{
+                        background-color: #ccc;
+                        color: #337AB7;
+                    }
                 }
                 &-input{
                     display: none;
