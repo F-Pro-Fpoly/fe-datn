@@ -7,7 +7,9 @@ p{
     margin-bottom: 0 !important;
 }
 body{
-    font-family: 'Poppins', sans-serif !important;
+    // font-family: 'Poppins', sans-serif !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
 }
 // .container {
 //     margin-top: 0;
@@ -101,5 +103,24 @@ image-box {
 
 th,td {
     white-space: nowrap;
+}
+
+.row{
+    &>.col-form-label{
+        padding-top: calc(.375rem + 1px);
+        padding-bottom: calc(.375rem + 1px);
+        margin-bottom: 0;
+        font-size: inherit;
+        line-height: 1.5;
+        color: #333;
+        &--required{
+            &::after{
+                content: "(*)";
+                color: red;
+                margin-left: 10px;
+                font-size: 16px;
+            }
+        }
+    }
 }
 

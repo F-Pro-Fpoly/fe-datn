@@ -40,8 +40,8 @@ import AddNews from "./pages/admin/News";
 import ListNews from "./pages/admin/News/ListNews";
 import UpdateNews from "./pages/admin/News/UpdateNews";
 
-
-
+import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
+import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -59,6 +59,7 @@ function Web() {
                     <Route path="/tin-chi-tiet"  element={ AuthMiddlware (<DetailBlog />)}/>
                     <Route path="/lien-he"  element={<Contact />}/>
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
+                    <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
                 </Route>
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
@@ -93,6 +94,7 @@ function Web() {
                     <Route path="chinh-sua-menu">
                         <Route element={< ListMenu />} path="list" />
                         <Route element={< AddMenu />}  path="add" />
+                        <Route element={< UpdateMenu />}  path="update/:id" />
                     </Route>
 
                     <Route path="cau-hinh-chung">

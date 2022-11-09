@@ -5,7 +5,7 @@ import logo from "../../../image/logo.png"
 import {  getListServiceAPI } from "../../../services/normal/MenuService";
 import "./Nav.scss"
 import ProfileNav from "../ProfileNav/ProfileNav";
-function Nav (){
+function Nav (getconfig){
     const path = useLocation()
     const navRef = useRef();
    
@@ -15,9 +15,11 @@ function Nav (){
     const [ListMenu, getListListMenu] = useState([]);
     const [pathName, setPathName]     = useState(path.pathname);
     const [showMenuMobile, setShowMenuMobile] = useState(false);
-    const [setting, setSetting ] = useState({})
-  
+    // const [setting, setSetting ] = useState({
+    //     ...getconfig.getconfig,
 
+    // })
+//   console.log(setting);
 
     
     useEffect(() => {  
@@ -66,17 +68,17 @@ function Nav (){
             getListListMenu(dataArr)
         
         }
-    
+        console.log(getconfig);
         start();
     }, [])
-   
+
     return(   
         <>
             <div className="header">
                 <div className={`navb`} ref={navRef}>
                     <div className="logo">
                     <Link to="/">
-                        <img src={logo} alt="logo" width="60"  />
+                        <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.logo ? getconfig.getconfig.logo.description : ""}`} alt="logo" width="120"  />
                     </Link>
                     </div>
 
@@ -85,11 +87,11 @@ function Nav (){
                             <ul>
                                 <li>
                                     <i className="fa-solid fa-phone"></i>
-                                    <span>0794248804</span>
+                                    <span>{getconfig.getconfig.phone ? getconfig.getconfig.phone.description : ""}</span>
                                 </li>
                                 <li>
                                     <i className="fa-regular fa-envelope"></i>
-                                    <span>example.job@gmail.com</span>
+                                    <span>{getconfig.getconfig.email ? getconfig.getconfig.email.description : ""}</span>
                                 </li>
                                 <li >
                                                                                              

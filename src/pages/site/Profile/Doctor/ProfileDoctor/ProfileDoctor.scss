@@ -1,0 +1,266 @@
+#spec{
+    padding: 0;
+    max-width: 2000px;
+    padding-top: 8%;
+    .specialBlock_19{
+        background-color: #f4f4f4;
+        position: relative;
+        .containerFix{
+            position: relative;
+            z-index: 2;
+            .wrapBox{
+                padding-top: 5vh;
+                padding-bottom: 5vh;
+                .text_1{
+                    font-size: 30px;
+                    font-weight: 700;
+                    color: #144E78;
+                    margin-bottom: 15px;
+                    .breadcrumbFix{
+                        background-color: transparent;
+                        padding: 0;
+                        .breadcrumb-item{
+                            font-size: 14px;
+                            display: inline;
+                            color: #ffffff;
+                            span{
+                                color: #000000 !important;
+                                font-size: 14px !important;
+                                transition: all 0.3s !important;
+                                line-height: 1.5 !important; 
+                                font-weight: normal !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } 
+    .specialBlock_19::before{
+        content: "";
+        background-image: url(https://nhakhoathanhan.vn/uploads/img/background_14.png);
+        background-position: 0 0;
+        background-size: contain;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.6;
+        z-index: 1;
+    }
+
+    .section_1{
+        padding-top: 30px;
+        margin-bottom: 30px;
+        .wrapPeopleBlock{
+            padding-bottom: 30px;
+            .peopleBlock{
+                display: flex;
+                flex-wrap: wrap;
+                padding-bottom: 0px;
+                position: relative;
+                &>.wrapImg{
+                    display: block;
+                    width: 30%;
+                    margin: auto;
+                &>a{
+                    transition: all 0.3s;
+                    color: #000000;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    font-weight: normal;
+                }
+                    .imgPart{
+                        position: relative;
+                        padding-bottom: 133.33%;
+                        &>img{
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 100%;
+                            height: 110%;
+                            object-fit: contain;
+                            transition: 0.3s;
+                            vertical-align: middle;
+                            border-style: none;
+                        }
+                    } 
+                    .figure1{
+                        overflow: hidden;
+                    }
+                    .figure1::before{
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        z-index: 2;
+                        display: block;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        background: rgba(255,255,255,0.2);
+                        border-radius: 100%;
+                        -webkit-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+                        opacity: 0;
+                    }
+                }
+                .rightBlock{
+                    width: 70%;
+                    padding-left: 30px;
+                    padding-bottom: 50px;
+                    margin-top: 2.5%;
+                    .basicInfo{
+                        .namePeople{
+                            font-size: 20px;
+                            font-weight: 500;
+                            display: block;
+                        }
+                        .career{
+                            font-size: 15px;
+                            margin-bottom: 15px;
+                        }
+                        .wrapSocialBlock{
+                            margin-bottom: 15px;
+                            .socialBlock_1{
+                                display: flex;
+                                flex-wrap: wrap;
+                                padding: 3px 0;
+                                .wrapSocialPart{
+                                    width: 36px;
+                                    padding: 7px;
+                                    border: 1px solid;
+                                    border-color: transparent;
+                                    border-radius: 100%;
+                                    display: block;
+                                    transition: 0.3s;
+                                    .imgSocialPart{
+                                        width: 100%;
+                                        padding-bottom: 100%;
+                                        position: relative;
+                                        &>img{
+                                            position: absolute;
+                                            width: 100%;
+                                            height: 100%;
+                                            object-fit: contain;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translate(-50%, -50%);
+                                        }
+                                    }
+                                }
+                                .textInfo{
+                                    margin-bottom: 15px;
+                                    text-align: justify;
+                                }
+                            }
+                        }
+                    }
+                    .wrapOwlSlideTab{
+                        position: absolute;
+                        bottom: 33px;
+                        width: calc(70% - 25px);
+                      &>a{
+                        color: white;
+                        margin-right: 2%;
+                        min-width: 21%;
+                      }
+                    }
+                }
+            }
+        }
+    }
+
+
+    .section_introduce{
+        margin-bottom: 40px;
+        .containerFix{
+            padding: 20px;
+            box-shadow: 3px 3px 10px 0px rgb(0 0 0 / 20%);
+            border-radius: 10px;
+            .titleBlock_2{
+                .text_1{
+                    font-size: 18px;
+                    font-weight: 700;
+                    position: relative;
+                    padding-bottom: 10px;
+                    margin-bottom: 20px;
+                    display: inline-block;
+                }
+                .text_1:before{
+                    content: "";
+                    width: 100%;
+                    height: 2px;
+                    background-color: #144E78;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
+            .data_contents {
+                padding: 0;
+                margin-top: 1rem;
+                &>p{
+                    font-size: 16px;
+                    overflow-wrap: break-word;
+                   line-height: 32px;
+                }
+            }
+        }
+    }
+}
+
+/* =========================== Responesive ================================  */
+
+
+@media screen and (max-width: 1150px) {
+    #spec {
+        .rightBlock{      
+            .wrapOwlSlideTab{
+               
+              &>a{
+                color: white;
+                margin-right: 2%;
+                width: 16%;
+                // font-size: 1px;
+              } 
+            }
+        }
+       
+    }
+}
+
+@media screen and (max-width: 898px) {
+    #spec {
+        .rightBlock{     
+            .wrapOwlSlideTab{
+                display: none;     
+            }
+        }
+       
+    }
+}
+
+@media screen and (max-width: 769px) {
+    #spec {
+        .peopleBlock{
+            display: flex;
+            flex-wrap: wrap;
+            padding-bottom: 0px;
+            position: relative;
+            flex-direction: column;
+            .wrapImg{
+                width: 100% !important;
+            }
+            .rightBlock{
+                width: 100% !important;
+                 padding-left: 0 !important; 
+                 padding-bottom: 0 !important; 
+                 margin-top: 0  !important;
+            }
+        }
+       
+       
+    }
+}

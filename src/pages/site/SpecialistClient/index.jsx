@@ -41,10 +41,10 @@ function SpecialistClient () {
                     <div className="">
                       <ol className="breadcrumb breadcrumbFix">
                         <li className="breadcrumb-item">
-                          <Link href="/"><span>Trang chủ</span></Link>
+                          <Link to="/"><span>Trang chủ</span></Link>
                         </li>
                         <li className="breadcrumb-item">
-                          <Link href="chuyen-khoa" ><span>Chuyên khoa</span></Link>
+                          <Link to="chuyen-khoa" ><span>Chuyên khoa</span></Link>
                         </li>
                       </ol>
                     </div>
