@@ -9,7 +9,6 @@ function RoleMiddleware(role = [], Element) {
         let next = false;
         role.forEach((val)=>{
             if (user.role_id === val) {
-                console.log("Role ok");
                 next = true;
             }
         });

@@ -123,7 +123,30 @@ function getListUsersV2({token, search = {}, limit = 6, page = 1}) {
     }
 }
 
+function updateUserClient ({token, data}) {
+    let headers = {};
+    let url = "normal/user/update-client";
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }else{
+        throw "Bạn chưa đăng nhập";
+    }
+    return API.put(url, data,{headers: headers});
+}
+
+function getUserClientService({token}) {
+    let headers = {};
+    let url = "normal/user/get-user";
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }else{
+        throw "Bạn chưa đăng nhập";
+    }
+    return API.get(url,{headers: headers});
+}
 
 
 
-export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor}
+
+
+export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor, updateUserClient, getUserClientService}

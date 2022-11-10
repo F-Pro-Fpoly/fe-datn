@@ -8,6 +8,11 @@ import "./book.scss";
 import { getCityService, getDistrictService, getWardService } from '../../../services/normal/CityService';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
+import { toast, ToastContainer } from 'react-toastify';
+import { getInfoDoctor, getUserClientService, updateUserClient } from '../../../services/UserService';
+import { useEffect } from 'react';
+import moment from 'moment/moment';
+import { useNavigate } from 'react-router-dom';
 function Book () {
     const token = useSelector(state=>state.auth.token);
     const [showModal, setShowModal] = useState(false);
@@ -18,32 +23,114 @@ function Book () {
     const [optionWard, setOptionWard] = useState([]);
     const [optionWardSelect, setOptionWardSelect] = useState('');
     const [address, setAddress] = useState('');
+    const [doctor, setDoctor] = useState({
+        'id': '',
+        'name': '',
+        'birthday': '',
+        'city_name': '',
+        'district_name': "",
+        'ward_name': "",
+        'avatar': "",
+    });
+    const [booking2, setBooking2] = useState({
+        'date': '',
+        'time_start': '',
+        'time_end': ''
+    }) 
+    const navigate = useNavigate();
     const [paymentInfo, setPaymentInfo] = useState({
         'phone': '',
         'name' : '',
         'birthday': '',
+        'city_name': '',
+        'district_name': "",
+        'ward_name': "",
+        'avatar': "",
+        
     });
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        let dataAddress = {
-            ...paymentInfo,
-            'city_code': optionCitySelect.value ?? null,
-            'city_name': optionCitySelect.label ?? null,
-            'district_code': optionDistrictSelect.value ?? null,
-            'district_name': optionDistrictSelect.label ?? null,
-            'ward_code': optionWardSelect.value ?? null,
-            'ward_name': optionWardSelect.label ?? null,
-            'address' : address
-        };
-        if(token){
-
+    const start = async () => {
+        let dataDoctor = await handleDataDoctor();
+        if(dataDoctor){
+            let dataUser = getDataUserNoAuth();
+            let dataBooking2 = getDataBooking2();
+            setDoctor({
+                ...doctor, 
+                'id': dataDoctor.id ?? null,
+                'name': dataDoctor.name ?? '',
+                'birthday': dataDoctor.birthday ?? null,
+                'city_name': dataDoctor.city_name ?? null,
+                'district_name': dataDoctor.district_name ?? null,
+                ward_name: dataDoctor.ward_name ?? null,
+                avatar: dataDoctor.avatar ?? '',
+            });
+            setBooking2({...booking2, 
+                'date': dataBooking2.date,
+                'time_start': dataBooking2.time_start,
+                'time_end': dataBooking2.time_end
+            })
+            // console.log(dataDoctor);
         }else{
-            sessionStorage['booking_info']= JSON.stringify(dataAddress);
+            navigate('/');
+            return;
+        }
+
+        if(token){
+            let dataUser = await handleGetUser();
+            handleDataUserForm(dataUser);
+        }else{
+            let dataUser = getDataUserNoAuth();
+            handleDataUserForm(dataUser);
+        }
+    }
+    const handleSubmit = async (e) =>{
+        try {
+            e.preventDefault();
+            let dataAddress = {
+                ...paymentInfo,
+                'city_code': optionCitySelect.value ?? null,
+                'city_name': optionCitySelect.label ?? null,
+                'district_code': optionDistrictSelect.value ?? null,
+                'district_name': optionDistrictSelect.label ?? null,
+                'ward_code': optionWardSelect.value ?? null,
+                'ward_name': optionWardSelect.label ?? null,
+                'address' : address,
+                'birthday': moment(new Date(paymentInfo.birthday)).format("YYYY-MM-DD")
+            };
+            if(token){
+                let res = await updateUserClient({token, data: dataAddress});
+                let message = res.data.message;
+                toast.success(message);
+                let dataUser = await handleGetUser();
+                handleDataUserForm(dataUser);
+                setShowModal(false);
+                return;
+            }else{
+                sessionStorage['booking_info']= JSON.stringify(dataAddress);
+                setShowModal(false);
+                return;
+            }
+        } catch (error) {
+            if(error.response){
+                let message = error.response.data.message;
+                toast.error(message);
+                return;
+            }
+            
+            toast.error(error);
         }
     }
     const hanleShowModal = async (is_show) => {
         try {
+            // get dataUser;
+            if(token){
+                let resUser = await getUserClientService({token});
+                let dataUser = resUser.data.data;
+                handleDataUserForm(dataUser);
+            }else{
+                let dataUser = getDataUserNoAuth();
+                handleDataUserForm(dataUser)
+            }
             let res = await getCityService({token});
             let data = res.data.data;
             let handleData = data.map((item, index)=>{
@@ -89,20 +176,87 @@ function Book () {
     }
     const handleOnChangeWard = (dataWard) => {
         setOptionWardSelect(dataWard);
-    }  
+    } 
+    const handleGetUser = async () => {
+        try {
+            let res = await getUserClientService({token});
+            let data = res.data.data;
+            return data;
+        } catch (error) {
+            if(error.response){
+                let message = error.response.data.message;
+                toast.error(message);
+                return;
+            }
+            
+            toast.error(error);
+        }
+    }
+    const handleDataUserForm = (dataUser) => {
+        if(dataUser) {
+            setPaymentInfo({...paymentInfo, 
+                phone: dataUser.phone??"", 
+                name: dataUser.name??"", 
+                birthday: dataUser.birthday?dataUser.birthday:"",
+                city_name: dataUser.city_name??'',
+                district_name: dataUser.district_name??'',
+                ward_name: dataUser.ward_name??'',
+            });
+            setOptionCitySelect(dataUser.city_code ?? "");
+            setOptionDistrictSelect(dataUser.district_code??"");
+            setOptionWardSelect(dataUser.ward_code??'');
+            setAddress(dataUser.address);
+        }
+    }
+    const getDataUserNoAuth = () => {
+        if(sessionStorage['booking_info']) {
+            return JSON.parse(sessionStorage['booking_info']);
+        }else{
+            return null;
+        }
+    }
+    const handleDataDoctor = async () =>{
+        try {
+            console.log("handle doctor");
+            if(sessionStorage['booking_info2']) {
+                let booking_info2 = JSON.parse(sessionStorage['booking_info2']);
+                let res = await getInfoDoctor({token, id: booking_info2.doctor_id});
+                return res.data.data;
+            }
+        } catch (error) {
+            if(error.response){
+                let message = error.response.data.message;
+                toast.error(message);
+            }else{
+                toast.error(error)
+            }
+        }
+    }
+    const getDataBooking2 = () => {
+        if(sessionStorage['booking_info2']){
+            return JSON.parse(sessionStorage['booking_info2']);
+        }
+
+        return null;
+    }
+
+    useEffect(() => {
+        start()
+    },[]) ;
 
     return (
         <section className='booking'>
+            <ToastContainer />
             <div className="booking-header">
                 <div className="booking-container">
                     <div className="booking-header-wrapper">
                         <div className="booking-header-avatar">
-                            <img src="https://cdn.bookingcare.vn/fr/w100/2018/04/09/151800292142135730131997187173031663525568184320n.jpg" alt="" />
+                            <img src={doctor.avatar} alt="" />
                         </div>
                         <div className="booking-header-right">
                             <h4 className='booking-header-text booking-header-text--resgiter'>Đăng ký khám</h4>
-                            <h3 className='booking-header-text booking-header-text--title'>Giáo sư, Tiến sĩ, Bác sĩ Trần Ngọc Ân</h3>
-                            <h4 className='booking-header-text booking-header-text--date'>Sáng - Thứ 4 - 09/11/2022</h4>
+                            <h3 className='booking-header-text booking-header-text--title'>Giáo sư, Tiến sĩ, Bác sĩ {doctor.name}</h3>
+                            <h4 className='booking-header-text booking-header-text--date'>{booking2.date} - ({booking2.time_start} - {booking2.time_end})</h4>
                         </div>
                     </div>
                 </div>
@@ -123,12 +277,18 @@ function Book () {
                             </div>
                             <div className="booking-main-address-bottom fs-6">
                                 <div className='' style={{whiteSpace: "nowrap", textAlign:"center"}}>
-                                    <span className='fw-bold'>Phan Tường Văn</span>
+                                    <span className='fw-bold'>{paymentInfo.name ?? ""}</span>
                                     <br />
-                                    <span>0774091023</span>
+                                    <span>{paymentInfo.phone ?? ""}</span>
                                 </div>
                                 <div className="">
-                                    <span>222 Nguyễn Văn Linh, Phường An Khánh, Quận Ninh Kiều, Thành phố Cần Thơ</span>
+                                    {
+                                        (address && paymentInfo.ward_name && paymentInfo.district_name && paymentInfo.city_name)
+                                        ?(
+                                            <span>{address??""}, {paymentInfo.ward_name??''}, {paymentInfo.district_name??''}, {paymentInfo.city_name??''}</span>
+                                        ):""
+                                    }
+                                    
                                 </div>
                             </div>
                         </div>

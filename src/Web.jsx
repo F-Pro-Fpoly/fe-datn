@@ -53,7 +53,7 @@ function Web() {
                     <Route path="/"  element={<HomePage />}/>
                     <Route path="/chuyen-khoa"  element={<SpecialistClient />}/>
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
-                    <Route path="/dang-ly-lich"  element={<Book />}/>             
+                    <Route path="/dang-ky-lich"  element={<Book />}/>             
                     <Route path="/ve-chung-toi"  element={<About />}/>
                     <Route path="/tin-tuc"  element={<Blog />}/>
                     <Route path="/tin-chi-tiet"  element={ AuthMiddlware (<DetailBlog />)}/>
