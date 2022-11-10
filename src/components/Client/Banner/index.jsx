@@ -16,7 +16,7 @@ function Banner () {
                     <div className="text">
                         <h2 className='text1'>NỀN TẢNG Y TẾ</h2>
                         <h2 className='text2'>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</h2>           
-                        <Link to={'/dang-ly-lich'}><button className="btn btn-primary">Đăng ký lịch ngay</button></Link>    
+                        <Link to={'/dang-ky-lich'}><button className="btn btn-primary">Đăng ký lịch ngay</button></Link>    
                     </div>            
                 </div>
             </Carousel.Item>
@@ -27,7 +27,7 @@ function Banner () {
                     <div className="text">
                         <h2 className='text1'>NỀN TẢNG Y TẾ</h2>
                         <h2 className='text2'>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</h2>           
-                        <Link to={'/dang-ly-lich'}><button className="btn btn-primary">Đăng ký lịch ngay</button></Link>     
+                        <Link to={'/dang-ky-lich'}><button className="btn btn-primary">Đăng ký lịch ngay</button></Link>     
                     </div>            
                 </div>
             </Carousel.Item>
@@ -38,7 +38,7 @@ function Banner () {
                     <div className="text">
                         <h2 className='text1'>NỀN TẢNG Y TẾ</h2>
                         <h2 className='text2'>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</h2>           
-                        <Link to={'/dang-ly-lich'}><button className="btn btn-primary">Đăng ký lịch ngay</button></Link>     
+                        <Link to={'/dang-ky-lich'}><button className="btn btn-primary">Đăng ký lịch ngay</button></Link>     
                     </div>            
                 </div>
             </Carousel.Item>
