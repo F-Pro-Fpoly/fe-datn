@@ -48,8 +48,10 @@ function ClinicUiTime({dataItem}) {
                 'doctor_username' :dataItem.username,
                 'doctor_id': dataItem.id,
                 'doctor_email': dataItem.email,
-                'date':date
+                'date':date,
+                'schedule_id': val.id
             };
+            console.log(val);
             sessionStorage['booking_info2'] = JSON.stringify(data);
             console.log("save booking");
             navigate("/dang-ky-lich")
