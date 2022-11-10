@@ -1,6 +1,7 @@
 import "./Footer.scss"
 import { Link } from "react-router-dom";
 function Footer (getconfig) {
+
     return (
         <>
             <div className="newsletter">        
