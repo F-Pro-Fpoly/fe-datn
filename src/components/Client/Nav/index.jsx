@@ -10,16 +10,10 @@ function Nav (getconfig){
     const navRef = useRef();
    
     let user = useSelector((state => state.auth.user));
-    // let navb = useSelector((state => state.interface.navb));
 
     const [ListMenu, getListListMenu] = useState([]);
     const [pathName, setPathName]     = useState(path.pathname);
     const [showMenuMobile, setShowMenuMobile] = useState(false);
-    // const [setting, setSetting ] = useState({
-    //     ...getconfig.getconfig,
-
-    // })
-//   console.log(setting);
 
     
     useEffect(() => {  
@@ -68,7 +62,6 @@ function Nav (getconfig){
             getListListMenu(dataArr)
         
         }
-        console.log(getconfig);
         start();
     }, [])
 

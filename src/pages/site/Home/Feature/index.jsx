@@ -78,7 +78,8 @@ function Feature () {
                     ListFeature.map((item,index) => {
                         return (
                             <div className="col-3"  key = {index}>       
-                                           
+                                <Link to={`/chuyen-khoa/${item.slug}`}>
+                                               
                                 <div className="image">
                                     <Figure.Image
                                         alt={item.name}
@@ -91,6 +92,7 @@ function Feature () {
                                         <p className="des">{item.description} </p>
                                     </Figure.Caption>
                                 </div>
+                                </Link>
                                
                             </div>
                         )
