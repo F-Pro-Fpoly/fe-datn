@@ -50,7 +50,7 @@
         left: 40%;
         box-shadow: 3px 4px 10px 0px rgb(0 0 0 / 38%);
         min-height: 50vh;
-        padding: 30px 20px 30px 80px;
+        padding: 10px 20px 30px 50px;
         .imgPart{
             width: 35%;
             // margin: auto;
@@ -63,6 +63,7 @@
         }
         .rightArea{
             width: 60%;
+            padding-top: 5%;
            .formRegisterBlock_3{
                 input{
                     width: 100%;

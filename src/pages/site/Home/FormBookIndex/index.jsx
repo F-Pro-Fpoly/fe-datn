@@ -5,24 +5,36 @@ import img from '../../../../image/img_15.png'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRef } from "react";
-
+import { creatContactApi } from "../../../../services/ContactService";
+import { toast,ToastContainer } from 'react-toastify';
 function FormBookIndex () {
 
     const formRef = useRef();
  
     const handleSubmit = async (e) => {
+     
+        e.preventDefault();
+        const formData = new FormData(formRef.current)
+        const req  = {
+            "data" : formData
+        }
         try {
-            e.preventDefault();
-            const formData = new FormData(formRef.current)
-            console.log(formData);
+            const res =  await creatContactApi(req) 
+            formRef.current.reset();
+            toast.success(res.data.message) ; 
         } catch (error) {
-            
+            let res = error.response;
+            let data = res.data;
+            let messages = data.message;
+            toast.error(messages);
         }
     }
 
     return ( 
   
         <Container>
+              <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} 
+                    newestOnTop={false} closeOnClick rtl={false}  pauseOnFocusLoss draggable pauseOnHover />
             <div className="formindex">
                 <div className="itemLeft">
                     <div className="i">
@@ -52,21 +64,31 @@ function FormBookIndex () {
                                     <Form ref = {formRef} method = "Post" onSubmit={handleSubmit}>
                                         <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
                                          
-                                            <Form.Control type="text" className="form-control" placeholder="Nhập họ tên" />
-                                            
+                                            <Form.Control type="text" name="name" className="form-control" placeholder="Nhập họ tên" />
+                                           
+                                        </Form.Group>
+                                        <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
+                                         
+                                        <Form.Control type="hidden" name="type" className="form-control" value="1" />
+                                           
                                         </Form.Group>
                                         <Form.Group className="mb-3 form-group " controlId="formBasicEmail">
                                          
-                                            <Form.Control type="text" className="form-control" placeholder="Nhập số điện thoại" />
+                                         <Form.Control type="email" name="email" className="form-control" placeholder="Nhập địa chỉ email" />
+                                         
+                                     </Form.Group>
+                                        <Form.Group className="mb-3 form-group " controlId="formBasicEmail">
+                                         
+                                            <Form.Control type="text" name="phone" className="form-control" placeholder="Nhập số điện thoại" />
                                             
                                         </Form.Group>
                                         <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
                                       
-                                            <Form.Control type="email" className="form-control" placeholder="Nhập vấn đề quan tâm" />
+                                            <Form.Control type="text" name="contents" className="form-control" placeholder="Nhập vấn đề quan tâm" />
                                             
                                         </Form.Group>
-
                                         
+
                                         <Button variant="primary" type="submit" >
                                             Xác nhận
                                         </Button>
