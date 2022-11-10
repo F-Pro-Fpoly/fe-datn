@@ -4,7 +4,21 @@ import Container from 'react-bootstrap/Container';
 import img from '../../../../image/img_15.png'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useRef } from "react";
+
 function FormBookIndex () {
+
+    const formRef = useRef();
+ 
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+            const formData = new FormData(formRef.current)
+            console.log(formData);
+        } catch (error) {
+            
+        }
+    }
 
     return ( 
   
@@ -35,7 +49,7 @@ function FormBookIndex () {
                             </div>
                             <div className="rightArea">
                                 <div className="formRegisterBlock_3">
-                                    <Form>
+                                    <Form ref = {formRef} method = "Post" onSubmit={handleSubmit}>
                                         <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
                                          
                                             <Form.Control type="text" className="form-control" placeholder="Nhập họ tên" />
@@ -47,8 +61,8 @@ function FormBookIndex () {
                                             
                                         </Form.Group>
                                         <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
-                                         
-                                            <Form.Control type="email" className="form-control" placeholder="Nhập địa chỉ email" />
+                                      
+                                            <Form.Control type="email" className="form-control" placeholder="Nhập vấn đề quan tâm" />
                                             
                                         </Form.Group>
 

@@ -10,7 +10,6 @@ function Contact(){
       event.preventDefault();
       const formData = new FormData(FormRep.current);
       const req = {
-        "token": token,
         "data": formData
       };
       try {
@@ -29,7 +28,7 @@ function Contact(){
             <main role="main" className="formBooking main2">
                 <div className="container mt-2">
                     <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} 
-                    newestOnTop={false} closeOnClick rtl={false}  pauseOnFocusLoss draggable pauseOnHover /><ToastContainer />
+                    newestOnTop={false} closeOnClick rtl={false}  pauseOnFocusLoss draggable pauseOnHover />
                     <img src="./img/banner-lienhe001.jpg" alt="đa khoa cần thơ" />
                     <h1 className="text-center loc">Liên hệ với chúng tôi</h1>
                     <div className="row">
@@ -45,6 +44,7 @@ function Contact(){
                                 <div className="half right cf">
                                     <textarea name="contents" type="text" className="textarea" id="input-message" placeholder="Nội dung gửi đi"></textarea>
                                 </div>  
+                                <input type="hidden" className="input" id="input-name" name="type"value="0" />
                                 <button type="submit" className="input" id="input-submit">Gửi đi</button>
                             </form>
                         </div>
