@@ -13,6 +13,7 @@ import { getInfoDoctor, getUserClientService, updateUserClient } from '../../../
 import { useEffect } from 'react';
 import moment from 'moment/moment';
 import { useNavigate } from 'react-router-dom';
+import Payment from './Payment';
 function Book () {
     const token = useSelector(state=>state.auth.token);
     const [showModal, setShowModal] = useState(false);
@@ -292,9 +293,11 @@ function Book () {
                                 </div>
                             </div>
                         </div>
+                        <Payment />
                     </div>
                 </div>
             </div>
+
             <Modal show={showModal} onHide={()=>setShowModal(false)} size="lg">
                 <Modal.Header closeButton>
                     <div className='d-flex justify-content-center'>
