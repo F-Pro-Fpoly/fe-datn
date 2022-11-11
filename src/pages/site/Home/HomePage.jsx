@@ -27,7 +27,7 @@ function HomePage() {
             <Feature/>
             <Introduce/>
             <WhyChoose/>
-            <ListDoctor/>
+            {/* <ListDoctor/> */}
             <Certificate/>
             <Policy/>
             <FormBookIndexx/>

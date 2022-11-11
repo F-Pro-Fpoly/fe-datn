@@ -52,10 +52,11 @@ function deleteUser({token, id}){
 function updateUser({token, id, data}){
     let headers = {};
     let url = `auth/user/update/${id}`;
+    url += `?_method=PUT`
     if(token) {
         headers = {...headers, "Authorization": `Bearer ${token}`};
     }
-    return API.put(url, data,{headers: headers});
+    return API.post(url, data,{headers: headers});
 }
 
 function getUser({token, id}) {

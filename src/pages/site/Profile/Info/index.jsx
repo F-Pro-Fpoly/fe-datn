@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -6,20 +6,29 @@ import { toast,ToastContainer } from 'react-toastify';
 import { updatePassWord, updateUser } from '../../../../services/UserService';
 import Moment from 'moment';
 import { useEffect } from 'react';
+
+
 function Info(infoUser) {
+
+  
     const token = useSelector(state => state.auth.token )
     const id = infoUser.infoUser.id
 
-    const [pass, setPass] = useState([])
-    const [user, setUser] = useState() 
+    const formRef = useRef();
+    const [file, setFile] = useState(null);
     const onSubmit  = async (e) => {
         e.preventDefault();
-        const data = {
-            ...user,
-            "active":1
+        const formData = new FormData(formRef.current)
+
+        const req = {
+            "token" : token,
+            "id" : id,
+            "data": formData,  
         }
+      
+
         try {
-            let res = await updateUser({token,id,data})
+            let res = await updateUser(req)
             let message = res.data.message;
             toast.success(message);
         } catch (error) {
@@ -35,27 +44,27 @@ function Info(infoUser) {
         }
     }
 
-    const ChangePassWord = async (e) => {
-        e.preventDefault();
-        const data = {
-            ...pass,
-        }
-        try {
-            let res = await updatePassWord({token, data, id});   
-            let message = res.data.message;
-            toast.success(message);
-        } catch (error) {
-            console.log(error);
-            let res = error.response;
-            let status = res.status;
-            console.log(status);
-            if(status === 401){
-                let data = res.data;
-                let message = data.message;
-                toast.error(message);
-            }
-        }
-    }
+    // const ChangePassWord = async (e) => {
+    //     e.preventDefault();
+    //     const data = {
+    //         ...pass,
+    //     }
+    //     try {
+    //         let res = await updatePassWord({token, data, id});   
+    //         let message = res.data.message;
+    //         toast.success(message);
+    //     } catch (error) {
+    //         console.log(error);
+    //         let res = error.response;
+    //         let status = res.status;
+    //         console.log(status);
+    //         if(status === 401){
+    //             let data = res.data;
+    //             let message = data.message;
+    //             toast.error(message);
+    //         }
+    //     }
+    // }
 
 
     useEffect(() => {
@@ -119,22 +128,27 @@ function Info(infoUser) {
             
             <div className="card-body">
                 
-                <form className="row g-3" method='PUT' onSubmit={onSubmit} enctype="multipart/form-data">
+                <form className="row g-3" method='Post' onSubmit={onSubmit} ref={formRef} encType="multipart/form-data"> 
                     
                     <div className="col-12">
                        
                         <div className="d-flex align-items-center">
                             <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
-                          
+                          {console.log()}
                                 <span className="avatar avatar-xl">
-                                    <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={infoUser.infoUser.avatar}                         
+                                    <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={`${process.env.REACT_APP_BE}${infoUser.infoUser.thumbnail_name}`}                         
                                     alt="Avatar" />                      
                                 </span>
                                                     
                             </label>
                             
                             <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
-                            <input id="uploadfile-1" onChange={(e) => setUser({...user, "avatar": e.target.files[0].name})}
+                            <input id="uploadfile-1"
+                            name='avatar'
+
+                            // onChange={e => {
+                            //     setFile(e.target.files[0]);
+                            //   }}
                              className="form-control d-none" 
                              type="file" />
                         </div>
@@ -144,7 +158,7 @@ function Info(infoUser) {
                     <div className="col-md-6">
                         <label className="form-label">Họ và tên<span className="text-danger">*</span></label>
                         <input type="text" className="form-control" defaultValue={infoUser.infoUser.name}
-                        onChange={(e) => setUser({...user, "name": e.target.value})}
+                        name="name"
                         placeholder="Nhập họ và tên" />
                     </div>
 
@@ -152,7 +166,7 @@ function Info(infoUser) {
                     <div className="col-md-6">
                         <label className="form-label">Email<span className="text-danger">*</span></label>
                         <input type="email" disabled className="form-control" defaultValue={infoUser.infoUser.email} 
-                        onChange={(e) => setUser({...user, "email": e.target.value})}
+                        name="email"
                         placeholder="Nhập địa chỉ email" />
                     </div>
 
@@ -160,7 +174,7 @@ function Info(infoUser) {
                     <div className="col-md-6">
                         <label className="form-label">Số điện thoại<span className="text-danger">*</span></label>
                         <input type="text" className="form-control" defaultValue={infoUser.infoUser.phone}
-                        onChange={(e) => setUser({...user, "phone": e.target.value})}
+                        name ="phone"
                         placeholder="Nhập số điện thoại" />
                     </div>
 
@@ -168,7 +182,7 @@ function Info(infoUser) {
                     <div className="col-md-6">
                         <label className="form-label">Ngày sinh<span className="text-danger">*</span></label>
                         <input type="date"  defaultValue={infoUser.infoUser.date} className="form-control"
-                        onChange={(e) => setUser({...user, "date": e.target.value})}
+                        name = "date"
                         placeholder="Nhập ngày sinh"  />
                     </div>
 
@@ -200,7 +214,7 @@ function Info(infoUser) {
                             <div className="form-check radio-bg-light">
                                 <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
                                    value="1"
-                                  onChange={(e) => setUser({...user, "gender": e.target.value})}
+                            
                                 defaultChecked={infoUser.infoUser.gender == 1 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault1">
                                    Nam
@@ -210,7 +224,7 @@ function Info(infoUser) {
                                 <input className="form-check-input" type="radio" name="flexRadioDefault" 
                                 value="2"
                                 id="flexRadioDefault2"
-                                  onChange={(e) => setUser({...user, "gender": e.target.value})}
+                             
                                 defaultChecked={infoUser.infoUser.gender == 2 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault2">
                                     Nữ
@@ -220,7 +234,7 @@ function Info(infoUser) {
                                 <input className="form-check-input" type="radio" name="flexRadioDefault" 
                                 value="3"
                                 id="flexRadioDefault3"
-                                  onChange={(e) => setUser({...user, "gender": e.target.value})}
+                               
                                 defaultChecked={infoUser.infoUser.gender == 3 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault3">
                                     Khác
@@ -231,7 +245,9 @@ function Info(infoUser) {
                    
                     <div className="col-12">
                         <label className="form-label">Địa chỉ</label>
-                        <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.address}   onChange={(e) => setUser({...user, "address": e.target.value})}></textarea>
+                        <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.address}   
+                        name="address"
+                        ></textarea>
                     </div>
               
                     {
@@ -239,7 +255,7 @@ function Info(infoUser) {
 
                           <div className="col-12">
                             <label className="form-label">Thông tin bác sĩ</label>
-                            <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.user_info}   onChange={(e) => setUser({...user, "user_info": e.target.value})}></textarea>
+                            <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.user_info} ></textarea>
                         </div>
                         :
                         ""
@@ -285,12 +301,12 @@ function Info(infoUser) {
                 <h4 className="card-header-title">Thay đổi mật khẩu</h4>
             </div>
             
-            <form className="card-body" onSubmit={ChangePassWord} method="PUT">
+            <form className="card-body"  method="PUT">
                 
                 <div className="mb-3">
                     <label className="form-label">Mật khẩu hiện tại</label>
                     <input className="form-control"
-                     onChange={(e) => setPass({...pass, "old_pass": e.target.value})}
+                    
                     type="password" placeholder="Nhập mật khẩu hiện tại" />
                 </div>
                 
@@ -298,7 +314,7 @@ function Info(infoUser) {
                     <label className="form-label">Mật khẩu mới</label>
                     <div className="input-group">
                         <input className="form-control fakepassword"
-                        onChange={(e) => setPass({...pass, "new_pass": e.target.value})}
+                     
                         placeholder="Nhập mật khẩu mới" type="password" id="psw-input" />
                         <span className="input-group-text p-0 bg-transparent">
                             <i className="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
@@ -309,7 +325,7 @@ function Info(infoUser) {
                 <div className="mb-3">
                     <label className="form-label">Nhập lại mật khẩu</label>
                     <input className="form-control" type="password"
-                    onChange={(e) => setPass({...pass, "comfirm_pass": e.target.value})}
+                  
                     placeholder="Nhập lại mật khẩu" />
                 </div>
 

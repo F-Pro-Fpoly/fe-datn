@@ -1,8 +1,17 @@
 
 import "./Box.scss"
 
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 function Policy () {
   
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
 
     return ( 
 
@@ -96,8 +105,30 @@ function Policy () {
                     </div>
                 </div>
 
+
+                    
+                    <Modal show={show} onHide={handleClose}>
+                        
+                    <div class="mod" > 
+                        <Modal.Header closeButton>
+                        <Modal.Title>Liên hệ tư vấn</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                        <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Đóng
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                            Lưu
+                        </Button>
+                        </Modal.Footer>
+                    </div>
+                    </Modal>
+            
+
+
                <div className="Register">
-                    <div className="btn-type1">LIÊN HỆ TƯ VẤN</div>
+                    <button onClick={handleShow} className="btn-type1" style={{border:"none"}}>LIÊN HỆ TƯ VẤN</button>
                </div>
             </div>
         </div>

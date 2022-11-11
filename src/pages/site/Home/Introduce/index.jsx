@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import img from '../../../../image/img_15.png'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import imga from "../../../../image/rsz_dt1.jpg"
 import { useState } from "react";
 function Introduce () {
     const [more, setMore] = useState(true);
@@ -24,12 +25,12 @@ function Introduce () {
                 <p>Để làm được điều đó, ở Nha khoa Thành An luôn đặt tiêu chí chất lượng dịch vụ lên hàng đầu, tập trung đầu tư vào công nghệ, đội ngũ bác sĩ không ngừng nâng cao tay nghề, phải tâm niệm mỗi bệnh nhân đều là một đối tượng “ưu tiên đặc biệt” để chăm sóc và đãi ngộ.</p>
                 <p>Với bất kỳ ai sử dụng dịch vụ chỉnh nha mục tiêu là nụ cười đẹp thôi chưa đủ, còn phải an toàn và khỏe mạnh bền lâu mới là nguyện vọng của tất cả mọi người. Thành An tin rằng, chỉ có đáp ứng đúng-đủ-đồng điệu với nhu cầu của khách hàng bằng chất lượng dịch vụ tốt nhất, mới đảm bảo có được sự hài lòng tuyệt đối và lòng tin bền vững theo thời gian.</p>
 
-                <Link href="" className="btn_type2">XEM THÊM</Link>
+                <Link to="/ve-chung-toi" className="btn_type2">XEM THÊM</Link>
             </div>
             <div className="pright col-xl-5 col-md-5 col-12">
                 <div className="ani">
                 <div className="imageI figure2">
-                    <img src="https://nhakhoathanhan.vn/uploads/img/img_24.jpg" alt="" />
+                    <img src={imga} alt="" />
                 </div>
                 </div>
             </div>
