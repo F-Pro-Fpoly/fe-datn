@@ -12,6 +12,8 @@ function SpecialistClient () {
   const [ListSpecialist, getSpecialistClient] = useState([]);
   const [loading, getLoading] = useState(false);
   const dispatch = useDispatch();
+
+  
   useEffect(() => {
     document.title = "Chuyên khoa"
     dispatch(setNavb(true))

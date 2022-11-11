@@ -16,7 +16,10 @@ function Profile () {
 
     const [infoUser, setInfoUser] = useState([]
       )
-    console.log(infoUser);
+
+
+
+
     const start  = async () =>{
         let res =  await  getInfo({token})
         let data =  res.data.data;
@@ -29,7 +32,8 @@ function Profile () {
 
         
     }, [])
-    
+  
+
     return (
 
         

@@ -21,7 +21,7 @@ function Menu(infoUser) {
                     <div className="card-body p-3">                              
                         <div className="text-center mb-3">                                    
                             <div className="avatar avatar-xl mb-2">
-                                <img className="avatar-img rounded-circle border border-2 border-white" src={infoUser.infoUser.avatar} alt="Avatar" />
+                                <img className="avatar-img rounded-circle border border-2 border-white" src={`${process.env.REACT_APP_BE}${infoUser.infoUser.thumbnail_name}`} alt="Avatar" />
                             </div>
                             <h6 className="mb-0">{infoUser.infoUser.name}</h6>
                             <Link to="#" className="text-reset text-primary-hover small">{infoUser.infoUser.role_name}</Link>
