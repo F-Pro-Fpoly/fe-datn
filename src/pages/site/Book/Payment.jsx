@@ -1,6 +1,8 @@
 import {useEffect, useState} from 'react';
 import { Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import { createBookingService } from '../../../services/normal/BookingService';
 
 
 function Payment() {
@@ -53,18 +55,31 @@ function Payment() {
             let booking_info = JSON.parse(sessionStorage['booking_info'] ?? "{}");
             let booking_info2 = JSON.parse(sessionStorage['booking_info2'] ?? "{}");
             let dataReq = {
-                ...booking_info,
-                ...booking_info2
+                ...booking_info2,
+                'specialist_code': booking_info2.code,
             };
-            console.log(dataReq);
-        } catch (error) {
+            if(!token){
+                dataReq = {
+                    ...dataReq,
+                    ...booking_info,
+                    'customer_name': booking_info.name
+                }
+            }
+
             
+            let res = await createBookingService({token, data: dataReq});
+            let message = res.data.message;
+            toast.success(message);
+        } catch (error) {
+            let message = error.response.data.message;
+            toast.error(message);
         } 
     }
 
 
     return ( 
         <div className='payment booking-main-address mt-3'>
+            {/* <ToastContainer /> */}
             <div className='payment-checks'>
                 {/*  */}
                 <div className="row" onChange={handleOnchangePaymentMethod}>
