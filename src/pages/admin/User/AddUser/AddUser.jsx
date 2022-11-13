@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { useEffect, useRef } from 'react';
+=======
+// import { get } from 'immer/dist/internal';
+import { useEffect, useMemo, useRef } from 'react';
+>>>>>>> 6699c11b93fbaa67c5033fa4638287bb19f83f41
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import {useDispatch, useSelector} from "react-redux";
@@ -19,7 +24,7 @@ function AddUser() {
     };
     try {
       let res = await createUserApi(req);
-
+      FormRep.current.reset();
       toast.success(res.data.message) ;     
     } catch (error) {
       let res = error.response;
@@ -30,9 +35,8 @@ function AddUser() {
 
   }
 
-
   return (
-    <Form onSubmit={submitForm} ref={FormRep} enctype='multipart/form-data'>
+    <Form onSubmit={submitForm} ref={FormRep}>
       <ToastContainer
         position="top-right"
         autoClose={4000}

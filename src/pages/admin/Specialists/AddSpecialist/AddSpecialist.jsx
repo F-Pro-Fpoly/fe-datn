@@ -8,6 +8,10 @@ import { object, string, number, date, InferType, ref } from 'yup';
 import { toast,ToastContainer } from 'react-toastify';
 import Loading from "../../../../components/Loading/Loading";
 import LoadingBtn from "../../../../components/LoadingBtn/LoadingBtn";
+import { FormControlLabel, FormGroup, FormLabel, Input, Switch } from "@mui/material";
+import {CKEditor} from "@ckeditor/ckeditor5-react"
+// import { InlineEditor } from "@ckeditor/ckeditor5-build-inline";
+import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
 
 
 const schema = object({
@@ -24,17 +28,28 @@ function AddSpecialist() {
     const { register, handleSubmit, watch, formState: { errors } ,reset, setError } = useForm({
         resolver: yupResolver(schema)
     });
+    const [selectedFile, setSelectedFile] = useState();
+    const [preview, setPreview] = useState();
 
     const onSubmit = async data => {
+        // console.log(data);
+        // return;
         try {
             getLoading(true);
-                let add = await postListServiceAPI(token,data);
-                getLoading(false);
-                reset();
-                toast.success("Thêm chuyên khoa thành công !");
+            let specialist = new FormData();
+            specialist.append('name', data.name);
+            specialist.append('code', data.code);
+            specialist.append('description', data.description);
+            specialist.append('file', data.file[0]);
+            specialist.append('slug', data.slug);
+            specialist.append('status', data.status);
+            let add = await postListServiceAPI(token,specialist);
+            getLoading(false);
+            reset();
+            toast.success("Thêm chuyên khoa thành công !");
         } catch (error) {
                 getLoading(false);
-                let data = error.response.data.data;
+                let data = error.response.data;
                 console.log(data);
                 setError('code', { type: 'custom', message: data.code[0] });
                 setError('name', { type: 'custom', message: data.username[0] });
@@ -43,10 +58,29 @@ function AddSpecialist() {
                 errors.username.message = data.username[0];
         }
     }
+    const onSelectFile = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(undefined)
+            return
+        }
+
+        // I've kept this example simple by using the first image instead of multiple
+        setSelectedFile(e.target.files[0])
+    }
+
+    useEffect(() => {
+        if(!selectedFile){
+            setSelectedFile(undefined);
+            return
+        }
+        const objectUrl = URL.createObjectURL(selectedFile);
+        setPreview(objectUrl);
+        return () => URL.revokeObjectURL(objectUrl);
+    },[selectedFile])
 
     return ( 
         <div className="addSick">
-                   <ToastContainer
+            <ToastContainer
                 position="top-right"
                 autoClose={5000}
                 hideProgressBar={false}
@@ -56,9 +90,8 @@ function AddSpecialist() {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                />
+            />
                 {/* Same as */}
-            <ToastContainer />
             <h2 className="addSick-heading">Thêm chuyên khoa</h2>
            
             <form method="post" onSubmit={handleSubmit(onSubmit)}>
@@ -77,10 +110,33 @@ function AddSpecialist() {
                 <div className="form-group mb-2">
                     <label htmlFor="" className="form-label">Nhập mô tả</label>
                     <input type="text"  {...register("description")} className="form-control" placeholder="Mô tả" />
+                    
                     <p className='text-danger'>{errors.description?.message}</p>
                 </div>
+                <div className="row">
+                    <FormGroup className="col-6">
+                        <FormControlLabel control={<Switch defaultChecked={true} {...register("status")} />} label="Trạng thái" />
+                    </FormGroup>
 
-                <div className="form-group mb-2">
+                    <FormGroup className="col-6">
+                        <FormLabel htmlFor="file">Chọn hình ảnh</FormLabel>
+                        <input onInput={(e) => onSelectFile(e)} type="file" id="file" {...register("file")} className="form-control" />
+                    </FormGroup>
+                </div>
+
+                <div className="row">
+                    <FormGroup className="col-6">
+                        <FormLabel htmlFor="slug">Slug</FormLabel>
+                        <input type="text" id="slug" {...register("slug")} className="form-control" />
+                    </FormGroup>
+
+                    <div className="col-6 ">
+                        <div className="mt-4" style={{width: "200px",height:"200px", background: "gray", borderRadius: "8px", border: "1px solid black", overflow:"hidden",     }}> 
+                            {selectedFile &&  <img src={preview} style={{'width': "100%","height":"100%", "objectFit": "cover"}} /> }
+                        </div>
+                    </div>
+                </div>
+                <div className="form-group my-2">
                     <button className="btn btn-primary" >{loading ?  (<LoadingBtn />) : "Thêm"}</button>
                     <Link className="btn btn-primary ms-2" to="/admin/specialist/list">Danh sách</Link>
                 </div>

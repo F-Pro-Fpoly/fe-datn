@@ -1,0 +1,58 @@
+
+ .infolistDoctor{
+    padding: 2% 0 2% 0;
+    text-align: center;
+    color: #144E78;
+    width: 100%;
+    z-index: 1000;
+    .service{
+       font-size: 29px;
+       font-weight: 700;
+       z-index: 1000;
+    }
+    .line{
+        width: 5rem;
+        height: 2px;
+        background-image: linear-gradient(to right, #cfab44, #f4d95d 60%, #cfab44);
+        margin: auto;
+        margin-top: 10px;
+       
+    }
+    .outstanding{
+        z-index: 1000;
+        color: #D90030 !important;
+    }
+}
+
+   
+   .LD{
+
+    .aaaa{
+        z-index: 2;
+        color: #000000;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.8),rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 1));
+        height: 100%;
+        line-height: 30px;
+        width: 100%;
+        position: absolute;
+    }
+    .listDoctor{
+        background-image: url("https://nhakhoathanhan.vn/uploads/img/background_7.jpg");
+        background-repeat: no-repeat;
+        background-position: right top;
+        background-size:cover;
+        background-position: center;
+        z-index: 1;
+        background-attachment: fixed;
+        height: 500px;  
+        position: relative;
+        
+    }
+    .button_popup{
+        text-align: center;
+        padding-bottom: 2%;
+       .text_1{
+        font-weight: 700;
+       }
+    }
+   }

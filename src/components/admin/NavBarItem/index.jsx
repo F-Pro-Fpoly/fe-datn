@@ -6,15 +6,15 @@ function NavBarItem({name, dropdownArr = [], id, icon, countTitle, to}) {
         'data-bs-toggle': "collapse", href: `#${id}`, role: "button", "aria-expanded": "false", "aria-controls": `${id}`
     } : '';
     return ( 
-        <div className="navBarItem">
+        <div className="navBarItem ">
             {to ? <Link to={to} className="navBarItem-head">
                 <div className="navBarItem-left">
                 {icon && <i className={icon}></i>} <span>{name}</span>
                 </div>
-                {countTitle && 
+                {countTitle ?  
                 <div className="navBarItem-count">
                     {countTitle}
-                </div>}
+                </div>:""}
             </Link>: (
                 <a className="navBarItem-head"
                 {...aAttributes}
@@ -22,10 +22,10 @@ function NavBarItem({name, dropdownArr = [], id, icon, countTitle, to}) {
                 <div className="navBarItem-left">
                     {icon && <i className={icon}></i>} <span>{name}</span>
                 </div>
-                {countTitle && 
+                {countTitle ? 
                 <div className="navBarItem-count">
                     {countTitle}
-                </div>}</a>
+                </div>:""}</a>
             )}
             
             {

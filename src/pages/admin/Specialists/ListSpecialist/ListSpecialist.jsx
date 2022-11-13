@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/esm/Table";
 import { useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import Loading from "../../../../components/Loading/Loading";
 import { getListServiceAPI } from "../../../../services/SpecialistService";
 import Paginate from '../../../../components/Paginate/Paginate';
 import "./ListSpecialist.scss"
+import { Link } from "react-router-dom";
 
 function ListSpecialist() {
 
@@ -28,7 +29,7 @@ function ListSpecialist() {
             getListListSpecialist(dataArr)
 
             // handle paginate
-            let pagination = data.meta.pagination;
+            let pagination = data.meta.pagination ?? null;
             setPaginate(pagination);
         }
       
@@ -42,27 +43,26 @@ function ListSpecialist() {
 
     return ( 
         <>
-        <Table striped bordered hover >
+        <Table striped bordered hover responsive >
           <thead>
             <tr>
 
               <th>STT</th>
               <th>Mã chuyên khoa</th>
               <th>Tên chuyên khoa</th>
-              <th>Mô tả</th>
               <th>Thao tác</th>
             </tr>
           </thead>
           <tbody>
-            {console.log(ListSpecialist)}
             {
               ListSpecialist.map((val, index)=>(
                 <tr key={index}>
                   <td>{index+1}</td>
                   <td>{val.code}</td>
                   <td>{val.name}</td>
-                  <td>{val.description}</td>
-                  <td className="button"><i className="fas fa-edit"></i> | <i className="fa fa-trash"></i></td>
+                  <td className="button">
+                  <Link to={`/admin/specialist/update/${val.id}`}><i className="fas fa-edit"></i></Link>  
+                  | <i className="fa fa-trash"></i></td>
                 </tr>
               ))
             }

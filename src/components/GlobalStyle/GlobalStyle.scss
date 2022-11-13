@@ -1,8 +1,126 @@
 *{
     // line-height: 1;
     box-sizing: border-box;
+    
+}
+p{
+    margin-bottom: 0 !important;
+}
+body{
+    // font-family: 'Poppins', sans-serif !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+}
+// .container {
+//     margin-top: 0;
+// }
 
+.ck-content{
+    min-height: 500px;
 }
-.container {
-    margin-top: 0;
+
+a{
+    text-decoration: none !important;
 }
+.adminItem{
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(19, 19, 19, 0.208) 0px 8px 10px ;
+    a.btn:hover{
+        color: blue;
+    }
+}
+
+.btn-type1{
+    display: inline-block;
+    padding: 7px 15px;
+    background-image: linear-gradient(to bottom, #15486d, #0c1e38);
+    color: #ffffff !important;
+    font-size: 15px;
+    transition: 0.3s;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+    text-align: center;
+    min-width: 12rem;
+}
+.btn_type2{
+    background-image: url('../../image/background_2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    padding: 7px 15px;
+    border-radius: 30px;
+    color: #000000 !important;
+    cursor: pointer;
+    box-shadow: 4px 4px 10px 0 rgb(0 0 0 / 20%);
+    display: inline-block;
+    text-align: center;
+    &:hover{
+        transition: 0.3s;
+        color: white !important;
+    }
+}
+.btn_type3{
+    min-width: 30%;
+    border-radius: 15px;
+    background-image: url('../../image/background_2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    padding: 7px 15px;
+    color: #000000 !important;
+    cursor: pointer;
+    box-shadow: 4px 4px 10px 0 rgb(0 0 0 / 20%);
+    display: inline-block;
+    text-align: center;
+    &:hover{
+        transition: 0.3s;
+        color: white !important;
+    }
+}
+.table-link{
+    cursor: pointer;
+    &:hover{
+        color: blue;
+        text-decoration: underline blue;
+    }
+}
+
+
+image-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-box::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+    /* initial ratio of 16:9*/
+}
+
+th,td {
+    white-space: nowrap;
+}
+
+.row{
+    &>.col-form-label{
+        padding-top: calc(.375rem + 1px);
+        padding-bottom: calc(.375rem + 1px);
+        margin-bottom: 0;
+        font-size: inherit;
+        line-height: 1.5;
+        color: #333;
+        &--required{
+            &::after{
+                content: "(*)";
+                color: red;
+                margin-left: 10px;
+                font-size: 16px;
+            }
+        }
+    }
+}
+

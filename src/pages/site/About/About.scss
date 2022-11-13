@@ -1,0 +1,244 @@
+.all-title-box{
+    background: url("img/all-bg-title.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    text-align: center;
+    background-attachment: fixed;
+    padding: 70px 0px;
+    position: relative;
+}
+.all-title-box::before{
+    background: rgba(0,0,0,0.6);
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+}
+.all-title-box h1{
+    font-size: 45px;
+    font-weight: 700;
+    color: #ffffff;
+    padding: 10px 0px;
+    position: relative;
+}
+.noo-sh-title{
+    font-size: 28px;
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.noo-sh-title-top{
+    font-size: 28px;
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+.about-box-main{
+    padding: 70px 0px;
+}
+
+.about-box-main p{
+    padding-bottom: 20px;
+}
+.service-block-inner {
+    padding: 15px 20px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.about-box-main a{
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 700;
+	border: none;
+}
+
+.about-box-main a.btn{
+	padding: 12px 15px;
+}
+.service-block-inner::before {
+    content: "";
+    width: 100%;
+    height: 5px;
+    border-radius: 0px;
+    background: #000000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.5s ease 0s;
+}
+.service-block-inner::after {
+    content: "";
+    width: 100%;
+    height: 0;
+    border-radius: 0px;
+    background: #4AC3D2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.5s ease 0s;
+}
+.service-block-inner h3 {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.service-block-inner p {
+    margin: 0px;
+    font-size: 17px;
+    font-weight: 300;
+    padding-bottom: 0px;
+}
+.service-block-inner:hover::after {
+    height: 100%;
+}
+
+.service-block-inner:hover h3{
+   color: #ffffff;
+   transition: all 0.5s ease 0s;
+}
+
+.service-block-inner:hover p{
+   color: #ffffff;
+   transition: all 0.5s ease 0s;
+}
+
+.our-team{
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease 0s;
+}
+.our-team:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.our-team img{
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease-in-out 0s;
+}
+.our-team:hover img{
+    opacity: 0.5;
+}
+.our-team .team-content{
+    color: #000;
+    opacity: 1;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: #ffffff;
+    padding-left: 55px;
+    width: 100%;
+    transition: all 0.3s ease 0s;
+}
+.our-team .title{
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 7px 0;
+}
+.our-team .post{
+    display: block;
+    font-size: 15px;
+}
+.our-team .social{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 35px;
+    text-align: center;
+    opacity: 0;
+    position: absolute;
+    bottom: 35px;
+    right: 0px;
+    transition: all 0.3s ease 0s;
+}
+.our-team:hover .social{
+    opacity: 1;
+}
+.our-team .social li{
+    display: block;
+}
+.our-team .social li a{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    background: #000000;
+    font-size: 17px;
+    color: #fff;
+    opacity: 0.9;
+    position: relative;
+    transform: translate(35px, -35px);
+    transition: all 0.3s ease-in-out 0s 
+}
+.our-team .social li a:hover{
+    width: 35px;
+    background: #4AC3D2;
+    transition-delay: 0s;
+}
+.our-team .icon{
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    background: #4AC3D2;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+}
+.team-description{
+    padding: 20px 0px;
+}
+.team-description p{
+    font-size: 14px;
+    margin: 0px;
+}
+.hover-team:hover .social{
+    opacity: 1;
+}
+.hover-team:hover .social li:nth-child(1) a{
+    transition-delay: 0.3s;
+}
+.hover-team:hover .social li:nth-child(2) a{
+    transition-delay: 0.2s;
+}
+.hover-team:hover .social li:nth-child(3) a{
+    transition-delay: 0.1s;
+}
+.hover-team:hover .social li:nth-child(4) a{
+    transition-delay: 0.0s;
+}
+.hover-team:hover .social li a{
+    transform: translate(0, 0) 
+}
+.hover-team:hover img{
+    opacity: 0.5;
+}
+.hover-team .team-content .title{
+    border-bottom: 2px solid #4AC3D2;
+}
+.i{
+    font-size: 20px;
+    color: red;
+}
+.b{
+    font-size: 16px;
+    color: #000;
+}
+@media (max-width:1023px){
+    .container{
+        max-width: 1023px;
+        min-width: 200px;
+        margin: 0 auto;
+    }
+}

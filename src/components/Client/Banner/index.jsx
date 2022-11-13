@@ -1,52 +1,48 @@
 import "./Banner.scss";
-import banner from "../../../image/boy-990325_1920.jpg"
-import Category from "../Category";
-import { useState } from "react";
-import { useEffect } from "react";
-function Banner () {
-    
-    const [Cate, setCate] = useState();
+import banner1 from "../../../image/banner-1.jpg"
+import banner2 from "../../../image/banner-2.jpg"
+import banner3 from "../../../image/banner-3.jpg"
 
-    useEffect(() => {
-        let Arr = [
-            {      
-                'icon': "fa-regular fa-building",
-                'title':"Khám chuyên khoa A"
-            },
-            {      
-                'icon': "fa-regular fa-building",
-                'title':"Khám chuyên khoa B"
-            },
-            {      
-                'icon': "fa-regular fa-building",
-                'title':"Khám chuyên khoa C"
-            },
-            {      
-                'icon': "fa-regular fa-building",
-                'title':"Khám chuyên khoa D"
-            },
-            {      
-                'icon': "fa-regular fa-building",
-                'title':"Khám chuyên khoa E"
-            },
-        ];
-        setCate(Arr)
-    },[])
+import Carousel from 'react-bootstrap/Carousel';
+import { Link } from "react-router-dom";
+function Banner () {
 
     return( 
-
-        <div className="banner">    
-            <img src={banner} alt="banner" />
-            <div className="text">
-                <h2 className='text1'>NỀN TẢNG Y TẾ</h2>
-                <h2 className='text2'>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</h2>
-                    <div className='input'>
-                    <i className="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder='Tìm bệnh viện' />        
-                </div>               
-            </div>       
-            <Category Catearr = {Cate} />
-        </div>
+        <Carousel>
+            <Carousel.Item>
+                <div className="banner">    
+                    <div className="bongmo"></div>
+                    <img src={banner1} alt="banner" />
+                    <div className="text">
+                        <h2 className='text1'>NỀN TẢNG Y TẾ</h2>
+                        <h2 className='text2'>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</h2>           
+                        <Link to={'/dang-ky-lich'}><button className="btn btn-primary">Đăng ký lịch ngay</button></Link>    
+                    </div>            
+                </div>
+            </Carousel.Item>
+            <Carousel.Item>
+                <div className="banner">    
+                    <div className="bongmo"></div>
+                    <img src={banner2} alt="banner" />
+                    <div className="text">
+                        <h2 className='text1'>NỀN TẢNG Y TẾ</h2>
+                        <h2 className='text2'>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</h2>           
+                        <Link to={'/dang-ky-lich'}><button className="btn btn-primary">Đăng ký lịch ngay</button></Link>     
+                    </div>            
+                </div>
+            </Carousel.Item>
+            <Carousel.Item>
+                <div className="banner">    
+                    <div className="bongmo"></div>
+                    <img src={banner3} alt="banner" />
+                    <div className="text">
+                        <h2 className='text1'>NỀN TẢNG Y TẾ</h2>
+                        <h2 className='text2'>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</h2>           
+                        <Link to={'/dang-ky-lich'}><button className="btn btn-primary">Đăng ký lịch ngay</button></Link>     
+                    </div>            
+                </div>
+            </Carousel.Item>
+        </Carousel>
     )
 }
 export default Banner;
