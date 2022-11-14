@@ -19,7 +19,7 @@ function Profile () {
 
     const start  = async () =>{
         let res =  await  getInfo({token})
-        let data =  res.data.data;
+        let data =  res.data.data
         setInfoUser(data)
     }
 
