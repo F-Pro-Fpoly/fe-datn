@@ -7,7 +7,6 @@ import LoadingBtn from "../../../../../components/LoadingBtn/LoadingBtn";
 import {useParams} from "react-router-dom";
 function UpdateConfig() {
 
-
     const formRef = useRef();
     const param = useParams();
     const id = param.id;
@@ -22,17 +21,12 @@ function UpdateConfig() {
     )
     const start = async () => {
        try {
+      
         const res = await getDetailSettingServiceAPI({token, id})
         const data = res.data;
         const dataArr = data.data;
-        setDetailConfig(
-            {
-                ...getDetailConfig,
-                "code" : dataArr.code,
-                "description": dataArr.description,
-                "status": dataArr.status
-            }
-        )
+       
+        setDetailConfig(dataArr)
        } catch (error) {
             console.log(error);
        }
@@ -43,19 +37,20 @@ function UpdateConfig() {
 
     }, [])
     
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = {
-            "code" : getDetailConfig.code,
-            "description": getDetailConfig.description,
-            "status": getDetailConfig.status
+        const formData = new FormData(formRef.current)
+        formData.append('status', getDetailConfig.status == true ? 1 : 0 );
+        const req = {
+            "token" : token,
+            "id" : id,
+            "data": formData,  
         }
-
         try {
-
-            let res = await putSettingServiceAPI({token, id , data});
+            getLoading(true)
+            let res = await putSettingServiceAPI(req);
             let message = res.data.message;
+            getLoading(false)
             toast.success(message);
         } catch (error) {
             console.log(error);
@@ -83,31 +78,99 @@ function UpdateConfig() {
                 draggable
                 pauseOnHover
                 />
-                {/* Same as */}
-            <ToastContainer />
-            <h2 className="addSick-heading">Thêm cofig</h2>
+ 
+            <h2 className="addSick-heading">Cập nhật cofig</h2>
             
             <form method="POST" onSubmit={handleSubmit} ref={formRef}>
                 <div className="form-group mb-2">
                     <label htmlFor="" className="form-label">Mã</label>
-                    <input type="text"  id="code" name ="code" value={getDetailConfig.code} 
-                    onChange={(e) => setDetailConfig({...getDetailConfig, "code": e.target.value})}
+                    <input type="text"  id="code" name ="code" defaultValue={getDetailConfig.code}     
                     className="form-control" placeholder="Nhập mã" />
                 </div>
 
-                <div className="form-group mb-2">
+                {
+                    getDetailConfig.code == "Logo"
+                    ?
+                        <div className="d-flex align-items-center">
+                        <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
+                            <span className="avatar avatar-xl">
+                                <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={`${process.env.REACT_APP_BE}${getDetailConfig.description}`}                            
+                                alt="logo" />                      
+                            </span>                       
+                        </label>
+                        
+                        <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
+                        <input id="uploadfile-1"
+                        name='logo'
+                        className="form-control d-none" 
+                        type="file" />
+                        </div>
+                    :
+
+                    getDetailConfig.code == "Favicon"
+                    ?
+                        <div className="d-flex align-items-center">
+                        <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
+                            <span className="avatar avatar-xl">
+                                <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={`${process.env.REACT_APP_BE}${getDetailConfig.description}`}                            
+                                alt="favicon" />                      
+                            </span>                       
+                        </label>
+                        
+                        <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
+                        <input id="uploadfile-1"
+                        name='favicon'
+                        className="form-control d-none" 
+                        type="file" />
+                        </div>
+                    :
+                    getDetailConfig.code == "SocialFaceBook"
+                    ?
+                        <div className="d-flex align-items-center">
+                        <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
+                            <span className="avatar avatar-xl">
+                                <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={`${process.env.REACT_APP_BE}${getDetailConfig.description}`}                            
+                                alt="SocialFaceBook" />                      
+                            </span>                       
+                        </label>
+                        
+                        <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
+                        <input id="uploadfile-1"
+                        name='socialFaceBook'
+                        className="form-control d-none" 
+                        type="file" />
+                        </div>
+                    :
+                    getDetailConfig.code == "SocialYoutube"
+                    ?
+                        <div className="d-flex align-items-center">
+                        <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
+                            <span className="avatar avatar-xl">
+                                <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={`${process.env.REACT_APP_BE}${getDetailConfig.description}`}                            
+                                alt="SocialYoutube" />                      
+                            </span>                       
+                        </label>
+                        
+                        <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
+                        <input id="uploadfile-1"
+                        name='socialYoutube'
+                        className="form-control d-none" 
+                        type="file" />
+                        </div>
+                    :
+                    <div className="form-group mb-2">
                     <label htmlFor="" className="form-label">Mô tả</label>
-                    <input type="text" id="description" name ="description" value={getDetailConfig.description} 
-                      onChange={(e) => setDetailConfig({...getDetailConfig, "description": e.target.value})}
+                    <input type="text" id="description" name ="description" defaultValue={getDetailConfig.description}          
                     className="form-control" placeholder="Nhập mô tả" />
-                </div>
+                    </div>
+                }
 
                 <div className="form-group mb-2">
                     <label htmlFor="status" className="form-label">Trạng thái</label>
                     <span>
                         <label className="switch"> 
-                            <input type="checkbox" defaultChecked={getDetailConfig.status == 1 ? true : false}  name="status" id="status"
-                            onChange={(e) => setDetailConfig({...getDetailConfig, "status": e.target.checked})}
+                            <input type="checkbox" checked={getDetailConfig.status == 1 ? true : false}  name="status" id="status" 
+                              onChange={(e) => setDetailConfig({...getDetailConfig, "status": e.target.checked})}     
                             />
                             
                             <span className="slider round"></span>
@@ -116,7 +179,7 @@ function UpdateConfig() {
                 </div>
 
                 <div className="form-group mb-2">
-                    <button className="btn btn-primary" type="submit" >{loading ?  (<LoadingBtn />) : "Thêm"}</button>
+                    <button className="btn btn-primary" type="submit" >{loading ?  (<LoadingBtn />) : "Cập nhật"}</button>
                     <Link className="btn btn-primary ms-2" to="/admin/cau-hinh-chung/list">Danh sách</Link>
                 </div>
             </form>

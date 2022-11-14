@@ -64,16 +64,37 @@ function ListConfig() {
                                     <tr key={index}>
                                         <td>{index + 1}</td>
                                         <td>{item.code}</td>
-                                        <td>{item.description}</td>
-                                        <td>{                                         
-                                            <label className="switch">
-                                                <input type="checkbox" value={item.status} onChange={click} 
-                                                id = {`in_${index}`}
-                                                defaultChecked={item.status == 1 ? true : false}  />
-                                                <span className="slider round"></span>
-                                            </label>                                  
-                                        }</td>
-                                        <td>{item.created_at}</td>
+                                        <td>
+                                        {
+                                            item.code == "Logo"
+                                            ? 
+                                                <img src={`${process.env.REACT_APP_BE}${item.description}`} alt="logo" width={80} />
+                                            : 
+                                            item.code == "Favicon"
+                                            ? 
+                                                <img src={`${process.env.REACT_APP_BE}${item.description}`} alt="favicon" width={80} />
+                                            :
+                                            item.code == "SocialFaceBook"
+                                            ? 
+                                                <img src={`${process.env.REACT_APP_BE}${item.description}`} alt="SocialFaceBook" width={80} />
+                                            :
+                                            item.code == "SocialYoutube"
+                                            ? 
+                                                <img src={`${process.env.REACT_APP_BE}${item.description}`} alt="SocialYoutube" width={80} />
+                                            :
+                                            item.description
+                                         }       
+                                        </td>
+                                        <td>
+                                            {                                         
+                                                item.status == 1 
+                                                ?                                    
+                                                    <p className="text-success">Đang kích hoạt</p>               
+                                                : 
+                                                    <p className="text-warning">Đã tắt</p>               
+                                            }
+                                        </td>
+                                        <td>{item.updated_at}</td>
                                         <td>
                                             <Link to={`/admin/cau-hinh-chung/update/${item.id}`} className="btn">
                                                 <i className="fas fa-edit"></i>

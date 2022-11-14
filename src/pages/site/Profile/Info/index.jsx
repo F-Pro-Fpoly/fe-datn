@@ -15,6 +15,7 @@ function Info(infoUser) {
     const id = infoUser.infoUser.id
 
     const formRef = useRef();
+    const formRefPass = useRef();
     const [file, setFile] = useState(null);
     const onSubmit  = async (e) => {
         e.preventDefault();
@@ -45,27 +46,31 @@ function Info(infoUser) {
         }
     }
 
-    // const ChangePassWord = async (e) => {
-    //     e.preventDefault();
-    //     const data = {
-    //         ...pass,
-    //     }
-    //     try {
-    //         let res = await updatePassWord({token, data, id});   
-    //         let message = res.data.message;
-    //         toast.success(message);
-    //     } catch (error) {
-    //         console.log(error);
-    //         let res = error.response;
-    //         let status = res.status;
-    //         console.log(status);
-    //         if(status === 401){
-    //             let data = res.data;
-    //             let message = data.message;
-    //             toast.error(message);
-    //         }
-    //     }
-    // }
+    const ChangePassWord = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(formRefPass.current)
+
+        const req = {
+            "token" : token,
+            "data": formData,  
+            "id" : id,
+        }
+        try {
+            let res = await updatePassWord(req);   
+            let message = res.data.message;
+            toast.success(message);
+        } catch (error) {
+            console.log(error);
+            let res = error.response;
+            let status = res.status;
+            console.log(status);
+            if(status === 401){
+                let data = res.data;
+                let message = data.message;
+                toast.error(message);
+            }
+        }
+    }
 
 
     useEffect(() => {
@@ -135,7 +140,6 @@ function Info(infoUser) {
                        
                         <div className="d-flex align-items-center">
                             <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
-                          {console.log()}
                                 <span className="avatar avatar-xl">
                                     <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={`${process.env.REACT_APP_BE}${infoUser.infoUser.thumbnail_name}`}                         
                                     alt="Avatar" />                      
@@ -146,10 +150,6 @@ function Info(infoUser) {
                             <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
                             <input id="uploadfile-1"
                             name='avatar'
-
-                            // onChange={e => {
-                            //     setFile(e.target.files[0]);
-                            //   }}
                              className="form-control d-none" 
                              type="file" />
                         </div>
@@ -213,7 +213,7 @@ function Info(infoUser) {
                         <div className="d-flex gap-4">
 
                             <div className="form-check radio-bg-light">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                                <input className="form-check-input" type="radio" name="gender" id="flexRadioDefault1"
                                    value="1"
                             
                                 defaultChecked={infoUser.infoUser.gender == 1 ? true : false} />
@@ -222,7 +222,7 @@ function Info(infoUser) {
                                 </label>
                             </div>
                             <div className="form-check radio-bg-light">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" 
+                                <input className="form-check-input" type="radio" name="gender" 
                                 value="2"
                                 id="flexRadioDefault2"
                              
@@ -232,7 +232,7 @@ function Info(infoUser) {
                                 </label>
                             </div>
                             <div className="form-check radio-bg-light">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" 
+                                <input className="form-check-input" type="radio" name="gender" 
                                 value="3"
                                 id="flexRadioDefault3"
                                
@@ -302,12 +302,12 @@ function Info(infoUser) {
                 <h4 className="card-header-title">Thay đổi mật khẩu</h4>
             </div>
             
-            <form className="card-body"  method="PUT">
+            <form className="card-body" ref={formRefPass}   method="Post" onSubmit={ChangePassWord}>
                 
                 <div className="mb-3">
                     <label className="form-label">Mật khẩu hiện tại</label>
                     <input className="form-control"
-                    
+                    name = "old_pass"
                     type="password" placeholder="Nhập mật khẩu hiện tại" />
                 </div>
                 
@@ -315,7 +315,7 @@ function Info(infoUser) {
                     <label className="form-label">Mật khẩu mới</label>
                     <div className="input-group">
                         <input className="form-control fakepassword"
-                     
+                        name='new_pass'
                         placeholder="Nhập mật khẩu mới" type="password" id="psw-input" />
                         <span className="input-group-text p-0 bg-transparent">
                             <i className="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
@@ -326,7 +326,7 @@ function Info(infoUser) {
                 <div className="mb-3">
                     <label className="form-label">Nhập lại mật khẩu</label>
                     <input className="form-control" type="password"
-                  
+                    name='comfirm_pass'
                     placeholder="Nhập lại mật khẩu" />
                 </div>
 
