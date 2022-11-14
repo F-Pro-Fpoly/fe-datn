@@ -207,7 +207,7 @@ function Info(infoUser) {
                     }
 
                     
-                    <div className="col-md-6">
+                    <div className="col-md-12">
                         <label className="form-label">Giới tính<span className="text-danger">*</span></label>
                         <div className="d-flex gap-4">
 
