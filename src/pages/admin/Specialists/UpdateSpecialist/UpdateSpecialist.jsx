@@ -24,7 +24,7 @@ function UpdateSpecialist() {
     const param = useParams();
     const id = param.id;
     const [loading, getLoading] = useState(false);
-    const { register, handleSubmit, watch, formState: { errors } ,reset, setError, setValue } = useForm({
+    const { register, handleSubmit, watch, formState: { errors } ,reset, setError, setValue, getValues } = useForm({
         resolver: yupResolver(schema)
     });
     const [selectedFile, setSelectedFile] = useState();
@@ -84,6 +84,7 @@ function UpdateSpecialist() {
             setValue('status', (data.status == 1) ? true : false);
             setValue('slug', data.slug);
             setPreview(`${process.env.REACT_APP_BE}${data.thumbnail_name}`)
+            console.log(getValues('status'));
         } catch (error) {
             
         }
@@ -151,7 +152,7 @@ function UpdateSpecialist() {
                 </div>
                 <div className="row">
                     <FormGroup className="col-6">
-                        <FormControlLabel control={<Switch defaultChecked={true} {...register("status")} />} label="Trạng thái" />
+                        <FormControlLabel control={<Switch checked={getValues('status')??false} {...register("status")} />} label="Trạng thái" />
                     </FormGroup>
 
                     <FormGroup className="col-6">
