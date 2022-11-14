@@ -82,9 +82,16 @@ function getSpecialistClient({token, slug}) {
     return API.get(url, {headers:headers});
 }
 
-// function updateSpecialist()
+function updateSpecialist({token, data, id}) {
+    let headers ={}; 
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    return API.put(`auth/specialist/edit/${id}`,data,{headers: headers});
+}
 
 export { 
     getListServiceAPI,postListServiceAPI, getListAllSpecialist, 
-    getSpecialist, getListSpecialistClient, getSpecialistClient
+    getSpecialist, getListSpecialistClient, getSpecialistClient, updateSpecialist
 }

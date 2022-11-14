@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Await, Link, useParams } from "react-router-dom";
-import { getSpecialist, postListServiceAPI } from "../../../../services/SpecialistService";
+import { getSpecialist, postListServiceAPI, updateSpecialist } from "../../../../services/SpecialistService";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number, date, InferType, ref } from 'yup';
@@ -11,12 +11,12 @@ import LoadingBtn from "../../../../components/LoadingBtn/LoadingBtn";
 import { FormControlLabel, FormGroup, FormLabel, Input, Switch } from "@mui/material";
 import {CKEditor} from "@ckeditor/ckeditor5-react"
 // import { InlineEditor } from "@ckeditor/ckeditor5-build-inline";
-import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { uploadFileService } from "../../../../services/normal/FileService";
 
 const schema = object({
     code: string().required('Mã chuyên khoa không được bỏ trống'),
     name: string().required('Tên chuyên khoa không được bỏ trống'),
-    description: string().required('Mô tả không được bỏ trống'),
 }).required();
 
 function UpdateSpecialist() {
@@ -29,23 +29,30 @@ function UpdateSpecialist() {
     });
     const [selectedFile, setSelectedFile] = useState();
     const [preview, setPreview] = useState();
+    const [textEditer, setTextEditer] = useState('');
 
-    const onSubmit = async data => {
-        // console.log(data);
-        // return;
+    const onSubmit = async (data) => {
         try {
             getLoading(true);
-            let specialist = new FormData();
-            specialist.append('name', data.name);
-            specialist.append('code', data.code);
-            specialist.append('description', data.description);
-            specialist.append('file', data.file[0]);
-            specialist.append('slug', data.slug);
-            specialist.append('status', data.status);
-            let add = await postListServiceAPI(token,specialist);
+            let file = new FormData();
+            let fileName = null;
+            if(data.file[0]){
+                file.append('file', data.file[0]);
+                let resFile = await uploadFileService({token, data: file});
+                fileName = resFile.data.data.file_name;
+            }
+            let dataRes = {
+                'name': data.name,
+                'short_description': data.short_description,
+                'description': textEditer ?? null,
+                'status': data.status,
+                'slug': data.slug,
+                'file_name': fileName ?? null
+            };
+
+            let res = await updateSpecialist({token, data: dataRes, id});
             getLoading(false);
-            reset();
-            toast.success("Thêm chuyên khoa thành công !");
+            toast.success("Cập nhập chuyên khoa thành công !");
         } catch (error) {
                 getLoading(false);
                 let data = error.response.data;
@@ -72,8 +79,8 @@ function UpdateSpecialist() {
             let data = res.data.data;
             setValue('code', data.code);
             setValue('name', data.name);
-            setValue('description', data.description);
-            setValue('description', data.description);
+            setTextEditer(data.description);
+            setValue('short_description', data.short_description);
             setValue('status', (data.status == 1) ? true : false);
             setValue('slug', data.slug);
             setPreview(`${process.env.REACT_APP_BE}${data.thumbnail_name}`)
@@ -110,7 +117,7 @@ function UpdateSpecialist() {
                 pauseOnHover
             />
                 {/* Same as */}
-            <h2 className="addSick-heading">Thêm chuyên khoa</h2>
+            <h2 className="addSick-heading">Cập nhập chuyên khoa</h2>
            
             <form method="post" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group mb-2">
@@ -126,10 +133,21 @@ function UpdateSpecialist() {
                 </div>
 
                 <div className="form-group mb-2">
+                    <label htmlFor="" className="form-label">Nhập mô tả ngắn</label>
+                    <input type="text"  {...register("short_description")} className="form-control" placeholder="Mô tả ngắn" />
+                    <p className='text-danger'>{errors.name?.short_description}</p>
+                </div>
+
+                <div className="form-group mb-2">
                     <label htmlFor="" className="form-label">Nhập mô tả</label>
-                    <input type="text"  {...register("description")} className="form-control" placeholder="Mô tả" />
-                    
-                    <p className='text-danger'>{errors.description?.message}</p>
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={textEditer}
+                            onChange={(event, editor) => {
+                                setTextEditer(editor.data.get())
+                            }}
+                        />
+                    {/* <p className='text-danger'>{errors.description?.message}</p> */}
                 </div>
                 <div className="row">
                     <FormGroup className="col-6">
@@ -155,7 +173,7 @@ function UpdateSpecialist() {
                     </div>
                 </div>
                 <div className="form-group my-2">
-                    <button className="btn btn-primary" >{loading ?  (<LoadingBtn />) : "Thêm"}</button>
+                    <button className="btn btn-primary" >{loading ?  (<LoadingBtn />) : "Cập nhập"}</button>
                     <Link className="btn btn-primary ms-2" to="/admin/specialist/list">Danh sách</Link>
                 </div>
             </form>
