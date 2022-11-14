@@ -18,6 +18,22 @@ function getListServiceAPI(token = null,page = 1) {
 
 }
 
+function getMyBookingServiceAPI(token = null, user_id = null) {
+    
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        return API.get(`auth/booking/mylist/user_id=${user_id}`,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+
+}
+
 // function postListServiceAPI(token = null, data={}) {
     
 //     try {
@@ -33,4 +49,4 @@ function getListServiceAPI(token = null,page = 1) {
 //     }
 // }
 
-export { getListServiceAPI}
+export { getListServiceAPI,getMyBookingServiceAPI}
