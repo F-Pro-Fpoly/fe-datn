@@ -44,7 +44,7 @@ function NavBarTop({navEl2}) {
                 </div>
                 <div className="navBarTop-avatars dropdown" >
                     <div className="avatar">
-                        <img src={user.avatar} alt="" />
+                        <img src={`${user.avatar}`} alt="" />
                     </div>
                     <div className="navBarTop-avatars-content dropdown-toggle" id="menu-avata" data-bs-toggle="dropdown"  aria-expanded="false" type="button">
                         <span>{user.name}</span>

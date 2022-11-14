@@ -40,22 +40,26 @@ function LayoutHome() {
     useEffect(() => {
         start()
 
-        const favicon =  document.getElementById("favicon");
-        
-        let a = process.env.REACT_APP_BE
-        let  b = getconfig.favicon ? getconfig.favicon.description : "" 
-        a += b
-        favicon.href = a
     }, [])
-  
+    
+
+    const favicon =  document.getElementById("favicon");
+        
+    let a = process.env.REACT_APP_BE
+    let  b = getconfig.favicon ? getconfig.favicon.description : "" 
+    a += b
+    favicon.href = a
+
     return ( 
         <>
+
+
             {loadingGlobal && <LoadingGlobal />}
             <Nav getconfig = {getconfig} />
             <div className="main">                           
                 <Outlet />  
                 <ScrollToTop />      
-                <Footer getconfig = {getconfig} />    
+                <Footer getconfig = {getconfig}/>    
             </div>
         </>
      );

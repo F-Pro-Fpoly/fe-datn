@@ -14,15 +14,12 @@ function Profile () {
 
     const token = useSelector(state => state.auth.token )
 
-    const [infoUser, setInfoUser] = useState([]
-      )
-
-
+    const [infoUser, setInfoUser] = useState([])
 
 
     const start  = async () =>{
         let res =  await  getInfo({token})
-        let data =  res.data.data;
+        let data =  res.data.data
         setInfoUser(data)
     }
 
