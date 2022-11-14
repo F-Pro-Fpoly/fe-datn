@@ -14,10 +14,7 @@ function Profile () {
 
     const token = useSelector(state => state.auth.token )
 
-    const [infoUser, setInfoUser] = useState([]
-      )
-
-
+    const [infoUser, setInfoUser] = useState([])
 
 
     const start  = async () =>{
