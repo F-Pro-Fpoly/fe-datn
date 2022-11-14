@@ -47,7 +47,7 @@ function ProfileNav() {
                             </>
                             :
                             <li>
-                                <Link to="/ho-so-ca-nhan/quan-li-lich-kham"><i className="fa-regular fa-user"></i><span>Quản lí lịch khám</span>
+                                <Link to="/ho-so-ca-nhan/lich-kham"><i className="fa-regular fa-user"></i><span>Lịch khám của tôi</span>
                                 </Link>
                             </li>
                         }
