@@ -2,50 +2,48 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Await, Link } from "react-router-dom";
 import { postListServiceAPI } from "../../../../services/SpecialistService";
-import { useForm } from "react-hook-form";
+import { get, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number, date, InferType, ref } from 'yup';
 import { toast,ToastContainer } from 'react-toastify';
 import Loading from "../../../../components/Loading/Loading";
 import LoadingBtn from "../../../../components/LoadingBtn/LoadingBtn";
 import { FormControlLabel, FormGroup, FormLabel, Input, Switch } from "@mui/material";
-import {CKEditor} from "@ckeditor/ckeditor5-react"
-// import { InlineEditor } from "@ckeditor/ckeditor5-build-inline";
-import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
-
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const schema = object({
     code: string().required('Mã chuyên khoa không được bỏ trống'),
     name: string().required('Tên chuyên khoa không được bỏ trống'),
-    description: string().required('Mô tả không được bỏ trống'),
+    // description: string().required('Mô tả không được bỏ trống'),
  
 }).required();
 
 function AddSpecialist() {
-
     const token = useSelector(state => state.auth.token);
     const [loading, getLoading] = useState(false);
-    const { register, handleSubmit, watch, formState: { errors } ,reset, setError } = useForm({
+    const { register, handleSubmit, watch, formState: { errors } ,reset, setError, setValue, getValues, trigger } = useForm({
         resolver: yupResolver(schema)
     });
     const [selectedFile, setSelectedFile] = useState();
     const [preview, setPreview] = useState();
+    const [textEditer, setTextEditer] = useState('');
 
     const onSubmit = async data => {
-        // console.log(data);
-        // return;
         try {
             getLoading(true);
             let specialist = new FormData();
             specialist.append('name', data.name);
             specialist.append('code', data.code);
-            specialist.append('description', data.description);
+            specialist.append('description', textEditer);
             specialist.append('file', data.file[0]);
             specialist.append('slug', data.slug);
             specialist.append('status', data.status);
+            specialist.append("short_description", data.short_description);
             let add = await postListServiceAPI(token,specialist);
             getLoading(false);
             reset();
+            setTextEditer("");
             toast.success("Thêm chuyên khoa thành công !");
         } catch (error) {
                 getLoading(false);
@@ -67,6 +65,7 @@ function AddSpecialist() {
         // I've kept this example simple by using the first image instead of multiple
         setSelectedFile(e.target.files[0])
     }
+    
 
     useEffect(() => {
         if(!selectedFile){
@@ -108,11 +107,24 @@ function AddSpecialist() {
                 </div>
 
                 <div className="form-group mb-2">
-                    <label htmlFor="" className="form-label">Nhập mô tả</label>
-                    <input type="text"  {...register("description")} className="form-control" placeholder="Mô tả" />
-                    
-                    <p className='text-danger'>{errors.description?.message}</p>
+                    <label htmlFor="" className="form-label">Nhập mô tả ngắn</label>
+                    <input type="text"  {...register("short_description")} className="form-control" placeholder="Mô tả ngắn" />
+                    <p className='text-danger'>{errors.name?.short_description}</p>
                 </div>
+
+                <div className="form-group mb-2">
+                    <label htmlFor="" className="form-label">Nhập mô tả</label>
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={textEditer}
+                            onChange={(event, editor) => {
+                                setTextEditer(editor.data.get())
+                            }}
+                        />
+                    {/* <p className='text-danger'>{errors.description?.message}</p> */}
+                </div>
+
+
                 <div className="row">
                     <FormGroup className="col-6">
                         <FormControlLabel control={<Switch defaultChecked={true} {...register("status")} />} label="Trạng thái" />
