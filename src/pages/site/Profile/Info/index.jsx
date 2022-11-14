@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { toast,ToastContainer } from 'react-toastify';
-import { updatePassWord, updateUser } from '../../../../services/UserService';
+import { getInfo, updatePassWord, updateUser } from '../../../../services/UserService';
 import Moment from 'moment';
 import { useEffect } from 'react';
 
@@ -31,6 +31,7 @@ function Info(infoUser) {
             let res = await updateUser(req)
             let message = res.data.message;
             toast.success(message);
+            
         } catch (error) {
             console.log(error);
             let res = error.response;

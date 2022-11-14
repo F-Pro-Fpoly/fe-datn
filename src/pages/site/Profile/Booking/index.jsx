@@ -2,9 +2,37 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { getMyBookingServiceAPI } from '../../../../services/BookingService';
+import { useEffect } from 'react';
+import Loading from '../../../../components/Loading/Loading';
 
 
 function Booking() {
+
+    const token = useSelector(state => state.auth.token )
+    const user_id =useSelector(state => state.auth.user.id )
+
+    const [getBooking, setBooking ] = useState();
+    const [loading, getLoading] = useState(false);
+    const start  =  async () => {
+        getLoading(true)
+        setBooking([])
+        let res = await getMyBookingServiceAPI(token,user_id) 
+        let data = res.data
+        let dataArr = data.data
+        let count =  dataArr.length
+        getLoading(false)
+        setBooking(dataArr)
+    }
+
+
+
+    useEffect(() => {
+        start()
+    
+
+    }, [])
+    
     return(
 
 
@@ -33,156 +61,132 @@ function Booking() {
             
             <div className="tab-content p-2 p-sm-4" id="nav-tabContent">
 
-                
-                <div className="tab-pane fade active show" id="tab-1" role="tabpanel">
-                    <h6>Lịch khám đã đặt (2)</h6>
-    
-                    <div className="card border mb-4">
-                        
-                        <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
-                            
-                            <div className="d-flex align-items-center">
-                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
+            <div className="tab-pane fade active show" id="tab-1" role="tabpanel">
+                            <h6>Lịch khám đã đặt</h6>
+            
+                {
+                    getBooking &&   getBooking.map((item, index) => {
+                        return(
+                          
+                               item.status_id == 1 &&  <div className="card border mb-4" key={index}>
+                                
+                               <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
                                    
-                                <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" /> 
-                                </div>	
-                                
-                                <div className="ms-2">
-                                    <h6 className="card-title mb-0">Cơ xương khớp</h6>
-                                    <ul className="nav nav-divider small">
-                                        <li className="nav-item">Mã đặt lịch: CGDSUAHA12548</li>
-                                        <li className="nav-item">Phòng: ABC</li>
-                                    </ul>
-                                </div>
-                            </div>
-
+                                   <div className="d-flex align-items-center">
+                                       <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
+                                          
+                                       <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" /> 
+                                       </div>	
+                                       
+                                       <div className="ms-2">
+                                           <h6 className="card-title mb-0">Cơ xương khớp</h6>
+                                           <ul className="nav nav-divider small">
+                                               <li className="nav-item">Mã đặt lịch: {item.code && item.code }</li>
+                                               <li className="nav-item">Phòng: {item.department_name && item.department_name}</li>
+                                           </ul>
+                                       </div>
+                                   </div>
+       
+                                   
+                                   <div className="mt-2 mt-md-0">
+                                        {/* <p className="text-primary text-md-end mb-0">Thanh toán {item.payment_method && item.payment_method}</p> */}
+                                        <>
+                                        {item.payment_method == "default" ? 
+                                            <p className="text-info text-md-end mb-0"> chưa đặt cọc</p>
+                                            : 
+                                            <p className="text-success text-md-end mb-0">Đã đặt cọc</p>
+                                        }
+                                        </>
+                                   </div>
+                               </div>
+       
+                               
+                               <div className="card-body">
+                                   <div className="row g-3" style={{textAlign: "center"}}>
+                                       <div className="col-sm-6 col-md-4">
+                                           <span>Giờ bắt đầu</span>
+                                           <h6 className="mb-0">07:00:00</h6>
+                                       </div>
+       
+                                       <div className="col-sm-6 col-md-4">
+                                           <span>Giờ kết thúc</span>
+                                           <h6 className="mb-0">07:30:00</h6>
+                                       </div>
+       
+                                       <div className="col-md-4">
+                                           <span>Ngày khám</span>
+                                           <h6 className="mb-0">02/11/2022</h6>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
                             
-                            <div className="mt-2 mt-md-0">
-                                <Link href="#" className="btn btn-primary-soft mb-0">Xem chi tiết</Link>
-                                <p className="text-success text-md-end mb-0">Đã đặt cọc</p>
-                            </div>
-                        </div>
-
-                        
-                        <div className="card-body">
-                            <div className="row g-3">
-                                <div className="col-sm-6 col-md-4">
-                                    <span>Giờ bắt đầu</span>
-                                    <h6 className="mb-0">07:00:00</h6>
-                                </div>
-
-                                <div className="col-sm-6 col-md-4">
-                                    <span>Giờ kết thúc</span>
-                                    <h6 className="mb-0">07:30:00</h6>
-                                </div>
-
-                                <div className="col-md-4">
-                                    <span>Ngày khám</span>
-                                    <h6 className="mb-0">02/11/2022</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     
-
-                    
-                    {/* <div className="card border">
-                        
-                        <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
-                            
-                            <div className="d-flex align-items-center">
-                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0"><i className="fa-solid fa-car"></i></div>	
-                                
-                                <div className="ms-2">
-                                    <h6 className="card-title mb-0">Chicago to San Antonio</h6>
-                                    <ul className="nav nav-divider small">
-                                        <li className="nav-item">Booking ID: CGDSUAHA12548</li>
-                                        <li className="nav-item">Camry, Accord</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            
-                            <div className="mt-2 mt-md-0">
-                                <a href="#" className="btn btn-primary-soft mb-0">Manage Booking</a>
-                            </div>
-                        </div>
-
-                        
-                        <div className="card-body">
-                            <div className="row g-3">
-                                <div className="col-sm-6 col-md-4">
-                                    <span>Pickup address</span>
-                                    <h6 className="mb-0">40764 Winchester Rd</h6>
-                                </div>
-
-                                <div className="col-sm-6 col-md-4">
-                                    <span>Drop address</span>
-                                    <h6 className="mb-0">11185 Mary Ball Rd</h6>
-                                </div>
-
-                                <div className="col-md-4">
-                                    <span>Booked by</span>
-                                    <h6 className="mb-0">Frances Guerrero</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
-                    
+                        )
+                    })
+                }
+                {
+                loading && <Loading />
+                }
                 </div>
                 
 
                 
                 <div className="tab-pane fade" id="tab-2" role="tabpanel">
-                    <h6>Lịch khám đã hủy (1)</h6>
+                    <h6>Lịch khám đã hủy</h6>
 
-                    
-                    <div className="card border">
-                        
-                        <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
+                    {
+                    getBooking &&   getBooking.map((item, index) => {
+                        return(
+                            item.status_id == 5 && 
+                            <div className="card border" key={index}>
                             
-                            <div className="d-flex align-items-center">
-                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
-                                    <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" /> 
+                            <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
+                                
+                                <div className="d-flex align-items-center">
+                                    <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
+                                        <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" /> 
+                                    </div>
+                                        
+                                    <div className="ms-2">
+                                        <h6 className="card-title mb-0">Cơ xương khớp</h6>
+                                        <ul className="nav nav-divider small">
+                                            <li className="nav-item">Mã đặt lịch: CGDSUAHA12548</li>
+                                            <li className="nav-item">Phòng: ABC</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                    
-                                <div className="ms-2">
-                                    <h6 className="card-title mb-0">Cơ xương khớp</h6>
-                                    <ul className="nav nav-divider small">
-                                        <li className="nav-item">Mã đặt lịch: CGDSUAHA12548</li>
-                                        <li className="nav-item">Phòng: ABC</li>
-                                    </ul>
+
+                                
+                                <div className="mt-2 mt-md-0">
+                                    <p className="text-danger text-md-end mb-0">Đã hủy</p>
                                 </div>
                             </div>
 
                             
-                            <div className="mt-2 mt-md-0">
-                                <a href="#" className="btn btn-primary-soft mb-0">Xem chi tiết</a>
-                                <p className="text-danger text-md-end mb-0">Đã hủy</p>
-                            </div>
-                        </div>
+                            <div className="card-body">
+                                <div className="row g-3"  style={{textAlign: "center"}}>
+                                    <div className="col-sm-6 col-md-4">
+                                        <span>Giờ bắt đầu</span>
+                                        <h6 className="mb-0">07:00:00</h6>
+                                    </div>
 
-                        
-                        <div className="card-body">
-                            <div className="row g-3">
-                                <div className="col-sm-6 col-md-4">
-                                    <span>Giờ bắt đầu</span>
-                                    <h6 className="mb-0">07:00:00</h6>
-                                </div>
+                                    <div className="col-sm-6 col-md-4">
+                                        <span>Giờ kết thúc</span>
+                                        <h6 className="mb-0">07:30:00</h6>
+                                    </div>
 
-                                <div className="col-sm-6 col-md-4">
-                                    <span>Giờ kết thúc</span>
-                                    <h6 className="mb-0">07:30:00</h6>
-                                </div>
-
-                                <div className="col-md-4">
-                                    <span>Ngày khám</span>
-                                    <h6 className="mb-0">02/11/2022</h6>
+                                    <div className="col-md-4">
+                                        <span>Ngày khám</span>
+                                        <h6 className="mb-0">02/11/2022</h6>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                            </div>
                     
+                        )
+                        })
+                     }
                 </div>
                 
 
