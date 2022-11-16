@@ -49,9 +49,6 @@ function EditUserApi({token, data}) {
     }
 }
 
-<<<<<<< HEAD
-export { getListUsersAPI, createUserApi,EditUserApi}
-=======
 function deleteUser({token, id}){
     try {
         let headers = {};
@@ -168,4 +165,3 @@ function getUserClientService({token}) {
 
 
 export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor, updateUserClient, getUserClientService}
->>>>>>> 6699c11b93fbaa67c5033fa4638287bb19f83f41

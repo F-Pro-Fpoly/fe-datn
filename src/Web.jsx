@@ -33,12 +33,17 @@ import ListConfig from "./pages/admin/Setttings/Config/ListConfig/ListConfig";
 import AddConfig from "./pages/admin/Setttings/Config/AddConfig";
 import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
 import Profile from "./pages/site/Profile";
-import Blog from "./pages/site/Blog";
-import DetailBlog from "./pages/site/DetailBlog";
+import News from "./pages/site/News";
+import DetailNews from "./pages/site/DetailBlog";
 import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateSpecialist";
-import AddNews from "./pages/admin/News";
+
+import AddNews from "./pages/admin/News/AddNews";
 import ListNews from "./pages/admin/News/ListNews";
 import UpdateNews from "./pages/admin/News/UpdateNews";
+
+import AddNewsCategory from "./pages/admin/NewsCategory/AddNewsCategory";
+import ListNewsCategory from "./pages/admin/NewsCategory/ListNewsCategory";
+import UpdateNewsCategory from "./pages/admin/NewsCategory/Update";
 
 import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
@@ -55,8 +60,9 @@ function Web() {
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ky-lich"  element={<Book />}/>             
                     <Route path="/ve-chung-toi"  element={<About />}/>
-                    <Route path="/tin-tuc"  element={<Blog />}/>
-                    <Route path="/tin-chi-tiet"  element={ AuthMiddlware (<DetailBlog />)}/>
+                    <Route path="/tin-tuc"  element={<News />}/>
+                    <Route path="/tin-tuc/:slug"  element={ (<DetailNews />)}/>
+                    <Route path="/tin-tuc/:slug/:slug"  element={ (<DetailNews />)}/>
                     <Route path="/lien-he"  element={<Contact />}/>
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                     <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
@@ -105,7 +111,12 @@ function Web() {
                     <Route path="tin-tuc">
                         <Route element={< ListNews />} path="list" />
                         <Route element={< AddNews />}  path="add" />
-                        <Route element={< UpdateNews />} path="update/:id" />
+                        <Route element={< UpdateNews />} path="edit/:id" />
+                    </Route>
+                    <Route path="danh-muc">
+                        <Route element={< ListNewsCategory />} path="list" />
+                        <Route element={< AddNewsCategory />}  path="add" />
+                        <Route element={< UpdateNewsCategory />} path="update/:id" />
                     </Route>
 
 
