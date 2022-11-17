@@ -42,6 +42,7 @@ import UpdateNews from "./pages/admin/News/UpdateNews";
 
 import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
+import ChartCovid from "./pages/site/ChartCovid";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function Web() {
                     <Route path="/dang-ky-lich"  element={<Book />}/>             
                     <Route path="/ve-chung-toi"  element={<About />}/>
                     <Route path="/tin-tuc"  element={<Blog />}/>
+                    <Route path="/bieu-do-covid"  element={<ChartCovid />}/>
                     <Route path="/tin-chi-tiet"  element={ AuthMiddlware (<DetailBlog />)}/>
                     <Route path="/lien-he"  element={<Contact />}/>
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
