@@ -53,9 +53,10 @@ function putSettingServiceAPI({token = null, id = null,data={}}) {
         let headers ={}; 
         if(token){
             headers = {...headers, "Authorization": `Bearer ${token}`};
-            // console.log(configs);
         }
-        return API.put(`auth/setting/edit/${id}`,data,{headers: headers});
+        let url = `auth/setting/edit/${id}`
+        url += `?_method=PUT`
+        return API.post(url,data,{headers: headers});
     } catch (error) {
         console.error(error);
         return [];

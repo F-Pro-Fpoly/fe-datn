@@ -93,10 +93,11 @@ function updateUserByName({token, data}) {
 function updatePassWord({token, data, id}) {
     let headers = {};
     let url = `auth/user/changePassword/${id}`;
+    url += `?_method=PUT`
     if(token) {
         headers = {...headers, "Authorization": `Bearer ${token}`};
     }
-    return API.put(url, data,{headers: headers});
+    return API.post(url, data,{headers: headers});
 }
 
 

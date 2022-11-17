@@ -89,7 +89,7 @@ function Feature () {
                                 <div className="infoSpecial">
                                     <Figure.Caption>
                                         <b><p className="infoSpecial-title">{item.name}</p></b>
-                                        <p className="des">{item.description} </p>
+                                        <p className="des">{item.short_description} </p>
                                     </Figure.Caption>
                                 </div>
                                 </Link>
