@@ -43,6 +43,7 @@ import UpdateNews from "./pages/admin/News/UpdateNews";
 import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
 import ChartCovid from "./pages/site/ChartCovid";
+import Vaccine from "./pages/site/Vaccine/Vaccine";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -62,6 +63,7 @@ function Web() {
                     <Route path="/lien-he"  element={<Contact />}/>
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                     <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
+                    <Route path="/vaccine" element={ <Vaccine /> } />
                 </Route>
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>

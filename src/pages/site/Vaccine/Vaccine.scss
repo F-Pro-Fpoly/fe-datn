@@ -1,0 +1,180 @@
+.vaccine{
+    padding-top: 123px;
+
+    &-title{
+        &-left{
+            flex: 0 0 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+            gap: 0 20px;
+            align-items: center;
+        }
+        &-list{
+            position: absolute;
+            left: 0;
+            top: 120%;
+            white-space: nowrap;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            padding-top: 5px;
+            visibility: hidden;
+            opacity: 0;
+            transition: all .2s linear;
+            &>li{
+                &>a{
+                    display: block;
+                    padding: 10px 20px;
+                    color: white;
+                    background-color: #f39021;
+                    &:hover{
+                        background-color: #C2731A;
+                    }
+                }
+            }
+        }
+        &-right{
+            flex: 0 0 50%;
+            max-width: 50%;
+            justify-content: flex-end;
+        }
+        &-category {
+            position: relative;
+            &>button{
+                outline: none;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 8px;
+                background-color: #f39021;
+                color: white;
+                font-weight: 600;
+                box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+                &>i{
+                    margin: 0 5px;
+                }
+            }
+            &:hover>.vaccine-title-list{
+                opacity: 1;
+                visibility: visible;
+                top: 100%;
+            }
+        }
+        &-h3{
+            font-size: 24px;
+            font-weight: 600;
+            color: #2A3895;
+        }
+        &-search{
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: rgba(0, 0, 0, 0.252) 0px 1px 4px;
+            &>input{
+                padding: 10px 20px;
+                border: none;
+                outline: none;
+                background-color: #eee;
+            }
+            &>button{
+                border: none;
+                outline: none;
+                background-color: #eee;
+                padding: 10px 20px;
+            }
+        }
+    }
+
+    &-content{ 
+        background-color: #F2F3F7;
+        
+        &-item{
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+        &-header{
+            padding: 10px 20px;
+            background-position: 50%;
+            background-size: cover;
+            background-color: #E3F0FE;
+            border-radius: 10px;
+
+            &>div{
+                background-image: url('https://vax.vnvc.vn/_nuxt/img/ImageVaccine_Item.e99c854.png');
+                &>h4{
+                    font-size: 16px;
+                    font-weight: 600;
+                }   
+                &>p{
+                    font-size: 14px;
+                }
+            }
+        }
+        &-body{
+            padding: 10px 20px;
+            font-size: 14px;
+            &>span{
+                font-size: 16px;
+            }
+        }
+        &-price{
+            margin: 10px 0;
+            &>span{
+                font-size: 20px;
+                color: #2A388F;
+                font-weight: 600;
+            }
+        }
+    }
+
+    &-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0;
+        background-color: #2A388F;
+        color: #fff;
+        font-weight: 700;
+        font-size: 18px;
+        text-transform: uppercase;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.456) 0px 1px 4px;
+    }
+
+    &-row{
+        gap: 20px 0;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .vaccine {
+        &-title{
+            &-left{
+               flex: 0 0 100%;
+               max-width: 100%; 
+            }
+
+            &-right{
+                flex: 100%;
+                max-width: 100%;
+                justify-content: center;
+                &>.vaccine-title-item{
+                    max-width: 100%;
+                    flex:  0 0 100%;
+                }
+            }
+            &-row{
+                flex-wrap: wrap;
+            }
+            &-search{
+                width: 100%;
+                margin-top: 15px;
+                &>input{
+                    width: 90%;
+                }
+                &>button{
+                    width: 10%;
+                }
+            }
+        }
+    }
+}
