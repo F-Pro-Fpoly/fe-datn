@@ -1,12 +1,13 @@
 import API from './api';
 // import axios from 'axios';
 
-
-
-function creatContactApi({data}) {
+function creatContactApi({data,token}) {
     try {
         let headers ={}; 
         let url = `normal/contact/add`;
+        if(token) {
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+        }
         return API.post(url, data,{headers: headers});
     } catch (error) {
         console.error(error);
@@ -30,20 +31,11 @@ function deleteContact({token, id}){
 
 
 
-function getContact({token, id}) {
-    let headers = {};
-    let url = `auth/contact/${id}`;
-    if(token) {
-        headers = {...headers, "Authorization": `Bearer ${token}`};
-    }
-    return API.get(url,{headers: headers});
-}
-
 function getListContactAPI(token = null, search = {}, page = 1) {
     
     try {
         let headers ={}; 
-        let url = `auth/contact/list`;
+        let url = `normal/contact/list`;
         if(token){
             headers = {...headers};
             // console.log(configs);
@@ -57,4 +49,4 @@ function getListContactAPI(token = null, search = {}, page = 1) {
 
 }
 
-export { creatContactApi, deleteContact,getContact,getListContactAPI }
+export { creatContactApi, deleteContact,getListContactAPI }
