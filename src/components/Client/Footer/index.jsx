@@ -90,7 +90,7 @@ function Footer (getconfig) {
             <div className="footer2">
                 <div className="container">
                     <div className="coppyright">
-                        {getconfig.getconfig.copyright ?getconfig.getconfig.copyright.description  : ""}
+                                <span> {getconfig.getconfig.copyright ?getconfig.getconfig.copyright.description  : ""}</span>
                     </div>                 
                 </div>
             </div>

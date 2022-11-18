@@ -47,6 +47,7 @@ import UpdateNewsCategory from "./pages/admin/NewsCategory/Update";
 
 import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
+import ChartCovid from "./pages/site/ChartCovid";
 import Vaccine from "./pages/site/Vaccine/Vaccine";
 function Web() {
     const user = useSelector((state) => state.auth.user);
@@ -63,7 +64,7 @@ function Web() {
                     <Route path="/ve-chung-toi"  element={<About />}/>
                     <Route path="/tin-tuc"  element={<News />}/>
                     <Route path="/tin-tuc/:slug"  element={ (<DetailNews />)}/>
-                    <Route path="/tin-tuc/:slug/:slug"  element={ (<DetailNews />)}/>
+                    <Route path="/bieu-do-covid"  element={<ChartCovid />}/>
                     <Route path="/lien-he"  element={<Contact />}/>
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                     <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
