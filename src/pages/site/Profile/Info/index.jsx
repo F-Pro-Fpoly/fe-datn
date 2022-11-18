@@ -216,7 +216,7 @@ function Info(infoUser) {
                                 <input className="form-check-input" type="radio" name="gender" id="flexRadioDefault1"
                                    value="1"
                             
-                                defaultChecked={infoUser.infoUser.gender == 1 ? true : false} />
+                                defaultChecked={infoUser.infoUser.gender === 1 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault1">
                                    Nam
                                 </label>
@@ -226,7 +226,7 @@ function Info(infoUser) {
                                 value="2"
                                 id="flexRadioDefault2"
                              
-                                defaultChecked={infoUser.infoUser.gender == 2 ? true : false} />
+                                defaultChecked={infoUser.infoUser.gender === 2 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault2">
                                     Nữ
                                 </label>
@@ -236,7 +236,7 @@ function Info(infoUser) {
                                 value="3"
                                 id="flexRadioDefault3"
                                
-                                defaultChecked={infoUser.infoUser.gender == 3 ? true : false} />
+                                defaultChecked={infoUser.infoUser.gender === 3 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault3">
                                     Khác
                                 </label>
