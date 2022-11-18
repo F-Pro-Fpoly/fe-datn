@@ -10,7 +10,7 @@ function Contact(){
       event.preventDefault();
       const formData = new FormData(FormRep.current);
       const req = {
-        "data": formData
+        "data": formData,
       };
       try {
         let res = await creatContactApi(req,token);
@@ -25,14 +25,14 @@ function Contact(){
   
     }
     return(
-            <main>
+            <div className="formBooking">
+                            <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} 
+                              newestOnTop={false} closeOnClick rtl={false}  pauseOnFocusLoss draggable pauseOnHover />
                           <div className="map">
                             <iframe className="iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15698.422472557833!2d105.69991259999999!3d10.37338475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1668744996140!5m2!1svi!2s" width="100%" height="100%"></iframe>
                           </div>
-                          <div className="content">
-                            <div className="contact">
-                            <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} 
-                              newestOnTop={false} closeOnClick rtl={false}  pauseOnFocusLoss draggable pauseOnHover />
+                          <div className="content1">
+                            <div className="contact1">
                               <div className="other">
                                 <div className="info">
                                   <h2>Phòng Khám </h2>
@@ -69,6 +69,15 @@ function Contact(){
                                     <label>Số điện thoại</label>
                                   </div>
                                   <div className="flex-rev">
+                                      
+                                      <select name="type" id="" className="select2">
+                                          <option>--Chọn--</option>
+                                          <option value="0">Chưa đăng ký</option>
+                                          <option value="1">Đã đăng ký</option>
+                                      </select>
+                                      <label>Đăng ký lịch khám </label>
+                                    </div>
+                                  <div className="flex-rev">
                                     <textarea placeholder="Nhập nội dung vào ô này !...." name="contents" ></textarea>
                                     <label >Nội dung</label>
                                   </div>
@@ -77,7 +86,7 @@ function Contact(){
                               </div>
                             </div>
                           </div>
-            </main>
+            </div>
     );
 };
 export default Contact;

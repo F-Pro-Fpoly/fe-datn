@@ -2,15 +2,17 @@ import API from './api';
 // import axios from 'axios';
 
 
-function getListNewsCatgoryAPI(token = null,page=1) {
+function getListNewsCatgoryAPI(token = null,page=1, search = {}) {
     
     try {
         let headers ={}; 
+        let url = `auth/news_category/list`;
         if(token){
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
-        return API.get(`auth/news_category/list?page=${page}`,{headers: headers});
+        url += `?page=${page}&name=${search.name ?? ""}&code=${search.code??""}&status=${search.status??""}&slug=${search.slug??""}`;
+        return API.get(url, {headers: headers});
     } catch (error) {
         console.error(error);
         return [];

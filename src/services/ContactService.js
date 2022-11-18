@@ -40,7 +40,7 @@ function getListContactAPI(token = null, search = {}, page = 1) {
             headers = {...headers};
             // console.log(configs);
         }
-        url += `?page=${page}&name=${search.name ?? ""}&email=${search.email??""}&active=${search.active??""}&role_code=${search.role_code??""}&department_id=${search.department_id??""}&username=${search.username ?? ""}`;
+        url += `?page=${page}&name=${search.name ?? ""}&email=${search.email??""}&contents=${search.contents??""}&phone=${search.phone??""}`;
         return API.get(url, {headers: headers});
     } catch (error) {
         console.error(error);

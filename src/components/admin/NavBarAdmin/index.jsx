@@ -93,6 +93,12 @@ function NavBarAdmin({className}) {
                         to: "/admin/danh-muc/list"
                     },
                 ]} icon="bi bi-people-fill" />
+                <NavBarItem id="listContact" name="Quản lý liên hệ" countTitle={counts['Contact-count']} dropdownArr={[
+                    {
+                        name: "Danh sách danh mục tin",
+                        to: "/admin/contact/list"
+                    },
+                ]} icon="bi bi-people-fill" />
                 <NavBarItem id="sick" name="Danh mục bệnh" countTitle={counts['sick-count']} dropdownArr={[
                     {
                         name: "Thêm bệnh",

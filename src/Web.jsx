@@ -45,6 +45,8 @@ import AddNewsCategory from "./pages/admin/NewsCategory/AddNewsCategory";
 import ListNewsCategory from "./pages/admin/NewsCategory/ListNewsCategory";
 import UpdateNewsCategory from "./pages/admin/NewsCategory/Update";
 
+import ListContact from "./pages/admin/Contact/ListContact";
+
 import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
 import ChartCovid from "./pages/site/ChartCovid";
@@ -120,6 +122,9 @@ function Web() {
                         <Route element={< ListNewsCategory />} path="list" />
                         <Route element={< AddNewsCategory />}  path="add" />
                         <Route element={< UpdateNewsCategory />} path="update/:id" />
+                    </Route>
+                    <Route path="contact">
+                        <Route element={< ListContact />} path="list" />
                     </Route>
 
 
