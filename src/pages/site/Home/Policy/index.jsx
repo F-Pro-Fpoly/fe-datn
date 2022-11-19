@@ -4,7 +4,10 @@ import "./Box.scss"
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import { creatContactApi } from "../../../../services/ContactService";
+import { toast,ToastContainer } from 'react-toastify';
+import Form from 'react-bootstrap/Form';
+import { useRef } from "react";
 function Policy () {
   
     const [show, setShow] = useState(false);
@@ -12,6 +15,27 @@ function Policy () {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+
+    const formRef = useRef();
+ 
+    const handleSubmit = async (e) => {
+     
+        e.preventDefault();
+        const formData = new FormData(formRef.current)
+        const req  = {
+            "data" : formData
+        }
+        try {
+            const res =  await creatContactApi(req) 
+            formRef.current.reset();
+            toast.success(res.data.message) ; 
+        } catch (error) {
+            let res = error.response;
+            let data = res.data;
+            let messages = data.message;
+            toast.error(messages);
+        }
+    }
 
     return ( 
 
@@ -113,15 +137,46 @@ function Policy () {
                         <Modal.Header closeButton>
                         <Modal.Title>Liên hệ tư vấn</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                        <Form ref = {formRef} method = "Post" onSubmit={handleSubmit}>
+                        <Modal.Body>
+       
+                                        <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
+                                         
+                                            <Form.Control type="text" name="name" className="form-control" placeholder="Nhập họ tên" />
+                                           
+                                        </Form.Group>
+                                        <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
+                                         
+                                        <Form.Control type="hidden" name="type" className="form-control" value="1" />
+                                           
+                                        </Form.Group>
+                                        <Form.Group className="mb-3 form-group " controlId="formBasicEmail">
+                                         
+                                         <Form.Control type="email" name="email" className="form-control" placeholder="Nhập địa chỉ email" />
+                                         
+                                     </Form.Group>
+                                        <Form.Group className="mb-3 form-group " controlId="formBasicEmail">
+                                         
+                                            <Form.Control type="text" name="phone" className="form-control" placeholder="Nhập số điện thoại" />
+                                            
+                                        </Form.Group>
+                                        <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
+                                      
+                                            <Form.Control type="text" name="contents" className="form-control" placeholder="Nhập vấn đề quan tâm" />
+                                            
+                                        </Form.Group>
+                                
+                                
+                        </Modal.Body>
                         <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             Đóng
                         </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            Lưu
+                        <Button variant="primary" type="submit"  onClick={handleClose}>
+                            Xác nhận
                         </Button>
                         </Modal.Footer>
+                        </Form>
                     </div>
                     </Modal>
             
