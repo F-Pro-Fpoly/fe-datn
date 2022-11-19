@@ -59,11 +59,6 @@ function ChartCovid() {
 
     }, [])
     
-   
-
-
-
-    console.log(location);
     return (  
 
         <div className="container-fluid pd" id="tb" >
@@ -148,7 +143,7 @@ function ChartCovid() {
                       <th scope="col">Tử vong</th>
                     </tr>
                   </thead>
-                    {/* <div className="adds"> */}
+                  
                   <tbody >
                     {
                          location.map((item,index) =>{
@@ -170,7 +165,7 @@ function ChartCovid() {
                       }
                       
                   </tbody>
-                    {/* </div> */}
+                 
                 </table>
               </div>
 {/*              
