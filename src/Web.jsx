@@ -45,12 +45,12 @@ import AddNewsCategory from "./pages/admin/NewsCategory/AddNewsCategory";
 import ListNewsCategory from "./pages/admin/NewsCategory/ListNewsCategory";
 import UpdateNewsCategory from "./pages/admin/NewsCategory/Update";
 
-import ListContact from "./pages/admin/Contact/ListContact";
-
 import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
 import ChartCovid from "./pages/site/ChartCovid";
 import Vaccine from "./pages/site/Vaccine/Vaccine";
+import ListContact from "./pages/admin/Contact/ListContact";
+import ListContactBooking from "./pages/admin/Contact/ListContactBooking";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -99,6 +99,13 @@ function Web() {
                         <Route element={<AddDepartment />} path="add" />
                         <Route element={<ListDepartment />} path="list" />
                         <Route element={<UpdateDepartment />} path="update/:id" />
+                        {/* <Route element={<Schedule />} path=":id/lich-kham" /> */}
+                    </Route>
+
+                    <Route path="lien-he">
+                        <Route element={<ListContact />} path="danh-sach-lien-he" />
+                        <Route element={<ListContactBooking />} path="danh-sach-dang-ky-lich-kham" />
+                        {/* <Route element={<UpdateDepartment />} path="update/:id" /> */}
                         {/* <Route element={<Schedule />} path=":id/lich-kham" /> */}
                     </Route>
 

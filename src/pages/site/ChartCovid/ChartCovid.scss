@@ -234,18 +234,25 @@
 
         }
 
-        &>.box-conent{
+        .box-conent{
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
             align-content: center;
             justify-content: space-between;
             align-items: flex-start;
-            &>.border{
-                border: 1px dashed #cccccc;
+            padding-bottom: 5%;
+          
+        }
+        .border{
+            border: 1px dashed #cccccc;
+            max-height: 500px !important;
+            overflow-y: auto !important;
+            thead{
+                position: sticky;
+                top: 0;
             }
         }
-       
     }
    
 
