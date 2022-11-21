@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import Table from "react-bootstrap/esm/Table";
 import { useSelector } from "react-redux";
 
-import "./listContac.scss";
-import { getContact } from "../../../../services/ContactService";
+// import "./listContac.scss";
+import { getContactBooking } from "../../../../services/ContactService";
 import Paginate from "../../../../components/Paginate/Paginate";
 import Loading from "../../../../components/Loading/Loading";
 
 
-function ListContact() {
+function ReplyContactBooking() {
 
     const token = useSelector(state => state.auth.token);
 
@@ -24,7 +24,7 @@ function ListContact() {
         const start = async () => {
             getLoading(true)
             setListContact([])
-            let res = await getContact({token,page}) 
+            let res = await getContactBooking({token,page}) 
             let data = res.data 
             let dataArr = data.data
             getLoading(false)
@@ -65,16 +65,15 @@ function ListContact() {
             <tbody>
               {
                 listContact.map((val, index)=>(
-                  <tr key={index   }>
-                    <td >{index+1}</td>
+                  <tr key={index}>
+                    <td>{index+1}</td>
                     <td>{val.name}</td>
-                    <td>{val.email} </td>
-                    <td>{val.content}</td>
+                    <td >{val.email} </td>
+                    <td>{val.content}</td>                 
                     <td>{val.status}</td>
                     <td>{val.created_at}</td>
-                    <td className="button" >
-
-                    <Link to={`/admin/chinh-sua-menu/update/${val.id}`  } className="btn">
+                    <td className="button">
+                    <Link to={`/admin/lien-he/tra-loi-dang-ky-lich/${val.id}`} className="btn">
                                                 <i className="fas fa-edit"></i>
                     </Link> |
                       <i className="fa fa-trash"></i>
@@ -96,4 +95,4 @@ function ListContact() {
      );
 }
 
-export default ListContact;
+export default ReplyContactBooking;
