@@ -21,7 +21,8 @@ function AddCateVaccine({handleHideModel, handleShowModel}) {
         },
         'short_description': '',
         'description': '',
-        'active': true
+        'active': true,
+        'slug': ''
     });
     const [optionParentCategory, setOptionParentCategory] = useState([]);
 
@@ -47,7 +48,8 @@ function AddCateVaccine({handleHideModel, handleShowModel}) {
                 },
                 'short_description': '',
                 'description': '',
-                'active': true
+                'active': true,
+                'slug': ''
             })
             handleHideModel();
         } catch (error) {
@@ -190,7 +192,7 @@ function AddCateVaccine({handleHideModel, handleShowModel}) {
                     </Form.Group>
                 </div>
                 <div className="row">
-                    <FormGroup className="col-12">
+                    <FormGroup className="col-4">
                         <FormControlLabel
                          control={<Switch
                          checked={dataVaccine.active}
@@ -198,6 +200,14 @@ function AddCateVaccine({handleHideModel, handleShowModel}) {
                         //  inputProps={{ 'aria-label': 'controlled' }}
                         />} label="Kích hoạt" />
                     </FormGroup>
+                    <Form.Group className="col-4">
+                        <Form.Label className="form-lable-fro">Slug</Form.Label>
+                        <Form.Control 
+                            type="text"
+                            value={dataVaccine.slug}
+                            onChange={(e) => setDataVaccine({...dataVaccine, slug:e.target.value})}
+                        />
+                    </Form.Group>
                 </div>
                 <div className="row my-3">
                     <Form.Group className="col-12">

@@ -1,10 +1,16 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { Form, Modal, Table } from "react-bootstrap";   
+import { useSelector } from "react-redux";
+import { listVaccineCategory } from "../../../../services/VaccineCategory";
 import AddCateVaccine from "./AddCateVaccine";
+import ReactPaginate from 'react-paginate';
 
 function ListCateVaccine() {
     const [modal, setModal] = useState(false);
-
+    const token = useSelector(state => state.auth.token);
+    const [listCate, setListCate] = useState([]);
+    const [pagination, setPagination] = useState({});
 
     const handleShowModel = () => {
 
@@ -14,6 +20,28 @@ function ListCateVaccine() {
 
         setModal(false);
     }
+    const start = async () => {
+        try {
+            let res = await listVaccineCategory({token, limit: 10});
+            let data = res.data.data;
+            let pagination = res.data.meta.pagination ?? {};
+            setListCate(data);
+            setPagination(pagination);
+        } catch (error) {
+            
+        }
+    }
+    const handlePageClick = async (page) =>{
+        try {
+            page = page + 1; 
+            let res = await listVaccineCategory({token, limit: 10, page: page ?? null});
+            let data = res.data.data;
+            setListCate(data);
+        } catch (error) {
+            
+        }
+    }
+    useEffect(() => {start()}, [])
 
     return ( 
         <div className="adminWrapper">
@@ -46,24 +74,44 @@ function ListCateVaccine() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>
-                                <button type="button" className="btn">
-                                    <i className="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                <button type="button" className="btn">
-                                    <i className="fa-solid fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        {
+                            listCate.map((item, index) => (
+                                <tr key={index}>
+                                    <td>{index}</td>
+                                    <td>{item.code}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.slug}</td>
+                                    <td>{item.parent_name ?? "Không"}</td>
+                                    <td>
+                                        <button type="button" className="btn">
+                                            <i className="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                        <button type="button" className="btn">
+                                            <i className="fa-solid fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                        
                     </tbody>
                 </Table>
-
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="next >"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pagination.total_pages ?? null}
+                    previousLabel="< previous"
+                    className="pagination"
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    activeClassName="active"
+                    previousClassName="page-item"
+                    nextClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextLinkClassName="page-link"
+                />
             </div>
             <Modal size="lg" show={modal} onHide={handleHideModel}>
                 <Modal.Header closeButton>
