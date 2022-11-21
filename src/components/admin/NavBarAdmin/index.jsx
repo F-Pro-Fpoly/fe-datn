@@ -73,6 +73,26 @@ function NavBarAdmin({className}) {
                         to: "/admin/specialist/list"
                     },
                 ]} icon="bi bi-people-fill" />
+                <NavBarItem id="News" name="Quản lý tin tức" countTitle={counts['News-count']} dropdownArr={[
+                    {
+                        name: "Thêm tin tức ",
+                        to: "/admin/tin-tuc/add"
+                    },
+                    {
+                        name: "Danh sách tin tức",
+                        to: "/admin/tin-tuc/list"
+                    },
+                ]} icon="bi bi-people-fill" />
+                <NavBarItem id="NewsCategory" name="Quản lý danh mục tin" countTitle={counts['NewsCategory-count']} dropdownArr={[
+                    {
+                        name: "Thêm danh mục tin",
+                        to: "/admin/danh-muc/add"
+                    },
+                    {
+                        name: "Danh sách danh mục tin",
+                        to: "/admin/danh-muc/list"
+                    },
+                ]} icon="bi bi-people-fill" />
                 <NavBarItem id="sick" name="Danh mục bệnh" countTitle={counts['sick-count']} dropdownArr={[
                     {
                         name: "Thêm bệnh",
@@ -118,7 +138,7 @@ function NavBarAdmin({className}) {
                     }
                     ]} icon="bi bi-layout-text-sidebar" />
 
-                    <NavBarItem id="contact" name="Quản lý liên hệ" countTitle={counts['contact-count']} dropdownArr={[
+                    <NavBarItem id="contact" name="Quản lý liên hệ" countTitle={counts['Contact-count']} dropdownArr={[
 
                     {
                         name: "Danh sách liên hệ",

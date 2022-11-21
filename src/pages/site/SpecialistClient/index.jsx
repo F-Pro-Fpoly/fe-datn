@@ -88,9 +88,6 @@ function SpecialistClient () {
                           })
                           }
                         </div>
-                     
-
-
                         <div className="rightBlock" id="sidebarBlock">
                           <div className="wrapSticky sidebar__inner">
                             <div className="smallBlock">
@@ -141,8 +138,6 @@ function SpecialistClient () {
                     </div>
                   </div>
               </div>
-
-              
           </div>
     )
 

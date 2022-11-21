@@ -1,12 +1,13 @@
 import API from './api';
 // import axios from 'axios';
 
-
-
-function creatContactApi({data}) {
+function creatContactApi({data,token}) {
     try {
         let headers ={}; 
         let url = `normal/contact/add`;
+        if(token) {
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+        }
         return API.post(url, data,{headers: headers});
     } catch (error) {
         console.error(error);
@@ -27,6 +28,7 @@ function deleteContact({token, id}){
         return [];
     }
 }
+
 
 
 function getContact({token,page=1}) {
@@ -93,12 +95,12 @@ function getListContactAPI(token = null, search = {}, page = 1) {
     
     try {
         let headers ={}; 
-        let url = `auth/contact/list`;
+        let url = `normal/contact/list`;
         if(token){
             headers = {...headers};
             // console.log(configs);
         }
-        url += `?page=${page}&name=${search.name ?? ""}&email=${search.email??""}&active=${search.active??""}&role_code=${search.role_code??""}&department_id=${search.department_id??""}&username=${search.username ?? ""}`;
+        url += `?page=${page}&name=${search.name ?? ""}&email=${search.email??""}&contents=${search.contents??""}&phone=${search.phone??""}`;
         return API.get(url, {headers: headers});
     } catch (error) {
         console.error(error);
@@ -106,5 +108,7 @@ function getListContactAPI(token = null, search = {}, page = 1) {
     }
 
 }
+
+
 
 export { creatContactApi, deleteContact,getContact,getListContactAPI,getContactBooking, getDetailContact,putReplyContact}
