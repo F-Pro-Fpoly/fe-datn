@@ -104,8 +104,6 @@ function NavBarAdmin({className}) {
                 
                 <NavBarItem id="booking" name="Đặt lịch khám" countTitle={counts['booking-count']} dropdownArr={NavLich} icon="bi bi-bookmark-plus" />
                 
-                
-
                 {
                     user.role_id ==1 && (
                     <>
@@ -119,6 +117,19 @@ function NavBarAdmin({className}) {
                         to: "/admin/phong-ban/list"
                     }
                     ]} icon="bi bi-layout-text-sidebar" />
+
+                    <NavBarItem id="contact" name="Quản lý liên hệ" countTitle={counts['contact-count']} dropdownArr={[
+
+                    {
+                        name: "Danh sách liên hệ",
+                        to: "/admin/lien-he/danh-sach-lien-he"
+                    },
+                    {
+                        name: "Danh sách đăng ký lịch khám",
+                        to: "/admin/lien-he/danh-sach-dang-ky-lich-kham"
+                    }
+                    ]} icon="bi bi-layout-text-sidebar" />
+
                     <NavBarItem id="setting" name="Tiện ích mở rộng" dropdownArr={[
                         {
                             name: "Thiết lập Menu",

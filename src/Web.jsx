@@ -44,7 +44,12 @@ import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
 import ChartCovid from "./pages/site/ChartCovid";
 import Vaccine from "./pages/site/Vaccine/Vaccine";
+<<<<<<< HEAD
 import ListCateVaccine from "./pages/admin/Vaccine/ListCateVaccine/ListCateVaccine";
+=======
+import ListContact from "./pages/admin/Contact/ListContact";
+import ListContactBooking from "./pages/admin/Contact/ListContactBooking";
+>>>>>>> e2d3e1fee24d67a331d10efdebae83863bf3bcf2
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -93,6 +98,13 @@ function Web() {
                         <Route element={<AddDepartment />} path="add" />
                         <Route element={<ListDepartment />} path="list" />
                         <Route element={<UpdateDepartment />} path="update/:id" />
+                        {/* <Route element={<Schedule />} path=":id/lich-kham" /> */}
+                    </Route>
+
+                    <Route path="lien-he">
+                        <Route element={<ListContact />} path="danh-sach-lien-he" />
+                        <Route element={<ListContactBooking />} path="danh-sach-dang-ky-lich-kham" />
+                        {/* <Route element={<UpdateDepartment />} path="update/:id" /> */}
                         {/* <Route element={<Schedule />} path=":id/lich-kham" /> */}
                     </Route>
 
