@@ -18,7 +18,14 @@ function ListUser() {
 
   const [listUser, getListUser] = useState([]);
   const [loading, getLoading] = useState(false);
-  const [paginate, setPaginate] = useState(null);
+  const [paginate, setPaginate] = useState({
+    'total': '',
+    'count': '',
+    'per_page':'',
+    'current_page': '',
+    'total_pages': '',
+    'links': {}
+  });
   const [search, setSearch] = useState({
     "name": "",
     "email": "",
@@ -158,7 +165,7 @@ function ListUser() {
             nextLabel="next >"
             onPageChange={handlePageClick}
             pageRangeDisplayed={5}
-            pageCount={paginate.total_pages ?? null}
+            pageCount={paginate.total_pages ?? 0}
             previousLabel="< previous"
             className="pagination"
             pageClassName="page-item"

@@ -77,7 +77,7 @@ function ListCateVaccine() {
                         {
                             listCate.map((item, index) => (
                                 <tr key={index}>
-                                    <td>{index}</td>
+                                    <td>{index+1}</td>
                                     <td>{item.code}</td>
                                     <td>{item.name}</td>
                                     <td>{item.slug}</td>
@@ -118,7 +118,7 @@ function ListCateVaccine() {
                     <h4>THÊM DANH MỤC VACCINE</h4>
                 </Modal.Header>
                 <Modal.Body style={{maxHeight: "600px"}} className="overflow-auto">
-                    <AddCateVaccine handleHideModel={handleHideModel} handleShowModel={handleShowModel} />
+                    <AddCateVaccine handleHideModel={handleHideModel} handleShowModel={handleShowModel} startList={start} />
                 </Modal.Body>
             </Modal>
         </div>
