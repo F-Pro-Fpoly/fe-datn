@@ -103,6 +103,20 @@ function NavBarAdmin({className}) {
                         to: "/admin/sick/list"
                     },
                 ]} icon="bi bi-hospital" />
+                <NavBarItem id="vaccine" name="Vaccine"  dropdownArr={[
+                    {
+                        name: "Thêm vaccine",
+                        to: "/admin/sick/add"
+                    },
+                    {
+                        name: "Danh sách vaccine",
+                        to: "/admin/sick/list"
+                    },
+                    {
+                        name: "Danh mục vaccine",
+                        to: "/admin/vaccine/list-cate"
+                    },
+                ]} icon="bi bi-capsule" />
                 </>
                 
                 )}

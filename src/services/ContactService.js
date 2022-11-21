@@ -45,6 +45,7 @@ function getContact({token,page=1}) {
     }
 }
 
+
 function getContactBooking({token, page=1}) {
     try {
         let headers ={}; 
@@ -58,6 +59,38 @@ function getContactBooking({token, page=1}) {
         return [];
     }
 }
+
+function getDetailContact({token,id}) {
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        return API.get(`auth/contact/detail/${id}`,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+function putReplyContact({token,id,data}) {
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        let url = `auth/contact/replyContact/${id}`
+        url += `?_method=PUT`
+        return API.post(url,data,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+
 function getListContactAPI(token = null, search = {}, page = 1) {
     
     try {
@@ -77,5 +110,5 @@ function getListContactAPI(token = null, search = {}, page = 1) {
 }
 
 
-export { creatContactApi, deleteContact,getContact,getListContactAPI,getContactBooking}
 
+export { creatContactApi, deleteContact,getContact,getListContactAPI,getContactBooking, getDetailContact,putReplyContact}

@@ -5,6 +5,8 @@ import {getListUsersAPI, deleteUser} from "../../../../services/UserService";
 import {useDispatch, useSelector} from "react-redux";
 import Loading from '../../../../components/Loading/Loading';
 import Pagination from 'react-bootstrap/Pagination';
+import ReactPaginate from 'react-paginate';
+
 
 import "./ListUser.scss";
 import Paginate from '../../../../components/Paginate/Paginate';
@@ -43,7 +45,7 @@ function ListUser() {
   useEffect(()=>{
 
     start();
-  },[page]);
+  },[]);
 
   const hanleSearch = async () =>{
     getListUser([]);
@@ -63,6 +65,25 @@ function ListUser() {
 
   const onChangePage = (number) =>{
     setPage(number);
+  }
+  const handlePageClick = async  (page) => {
+    try {
+      page = page + 1;
+      getListUser([]);
+      getLoading(true);
+      let res = await getListUsersAPI(token, {}, page);
+      let data = res.data;
+      let dataArr = data.data;
+
+      getLoading(false);
+      getListUser(dataArr);
+
+      // handle paginate
+      // let pagination = data.meta.pagination ?? null;
+      // setPaginate(pagination);
+    } catch (error) {
+      
+    }
   }
 
 
@@ -131,7 +152,23 @@ function ListUser() {
         loading && <Loading />
       }
 
-      {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
+      {/* {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />} */}
+      <ReactPaginate
+            breakLabel="..."
+            nextLabel="next >"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={paginate.total_pages ?? null}
+            previousLabel="< previous"
+            className="pagination"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            activeClassName="active"
+            previousClassName="page-item"
+            nextClassName="page-item"
+            previousLinkClassName="page-link"
+            nextLinkClassName="page-link"
+        />
     </>
   );
 }
