@@ -44,8 +44,12 @@ import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
 import ChartCovid from "./pages/site/ChartCovid";
 import Vaccine from "./pages/site/Vaccine/Vaccine";
+<<<<<<< HEAD
+import ListCateVaccine from "./pages/admin/Vaccine/ListCateVaccine/ListCateVaccine";
+=======
 import ListContact from "./pages/admin/Contact/ListContact";
 import ListContactBooking from "./pages/admin/Contact/ListContactBooking";
+>>>>>>> e2d3e1fee24d67a331d10efdebae83863bf3bcf2
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -119,6 +123,9 @@ function Web() {
                         <Route element={< ListNews />} path="list" />
                         <Route element={< AddNews />}  path="add" />
                         <Route element={< UpdateNews />} path="update/:id" />
+                    </Route>
+                    <Route path="vaccine">
+                        <Route element={< ListCateVaccine />} path="list-cate" />
                     </Route>
 
 
