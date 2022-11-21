@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import "./listContac.scss";
 import { getContact, getDetailContact, putReplyContact } from "../../../../services/ContactService";
 import Loading from "../../../../components/Loading/Loading";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate  } from "react-router-dom";
 import LoadingBtn from "../../../../components/LoadingBtn/LoadingBtn";
 import { useForm } from "react-hook-form";
 import { toast,ToastContainer } from 'react-toastify';
@@ -14,7 +14,7 @@ function ReplyContact() {
     const token = useSelector(state => state.auth.token);
     const param = useParams();
     const id = param.id;
-
+    const navigate = useNavigate();
     const [listContact, setListContact] = useState([]);
     const [loading, getLoading] = useState(false);
 
@@ -44,6 +44,7 @@ function ReplyContact() {
             let res =  await putReplyContact(req);
             let message = res.data.message;
             getLoading(false)
+            navigate("/admin/lien-he/danh-sach-lien-he")
             toast.success(message);
         } catch (error) {
             console.log(error);
@@ -101,8 +102,6 @@ function ReplyContact() {
                     <textarea  name="reply_contact" id="" className="form-control"
                     defaultValue={listContact.reply_contact ? listContact.reply_contact : "" }
                     disabled = {listContact.reply_contact ? true : false}
-                    // flase
-                    // disabled={true}
                     style={{resize: "none"}} cols="10" rows="5"  >
                     
 
@@ -114,8 +113,6 @@ function ReplyContact() {
                     <Link className="btn btn-primary ms-2" to="/admin/lien-he/danh-sach-lien-he">Danh sách</Link>
                 </div>
             </form>
-
-       
          </div>
         </>
      );
