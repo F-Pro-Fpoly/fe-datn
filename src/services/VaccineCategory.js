@@ -10,6 +10,12 @@ function listVaccineCategory ({token, search = {}, limit = null, page = null}) {
     for(let se in search) {
         url += `${se}=${search[se]}&`;
     }
+    if(limit) {
+        url += `limit=${limit}&`;
+    }
+    if(page) {
+        url += `page=${page}&`;
+    }
 
     return API.get(url, {headers: headers});
 }
