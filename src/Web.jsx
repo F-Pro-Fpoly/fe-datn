@@ -44,9 +44,13 @@ import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
 import ChartCovid from "./pages/site/ChartCovid";
 import Vaccine from "./pages/site/Vaccine/Vaccine";
+
 import ListCateVaccine from "./pages/admin/Vaccine/ListCateVaccine/ListCateVaccine";
-import ListContact from "./pages/admin/Contact/ListContact";
-import ListContactBooking from "./pages/admin/Contact/ListContactBooking";
+import ListContact from "./pages/admin/Contact/ListContact/ListContact";
+import ListContactBooking from "./pages/admin/Contact/ListContactBooking/ListContactBooking";
+
+import ReplyContactBooking from "./pages/admin/Contact/ListContactBooking/replyContactBooking";
+import ReplyContact from "./pages/admin/Contact/ListContact/replyContact";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -101,8 +105,9 @@ function Web() {
                     <Route path="lien-he">
                         <Route element={<ListContact />} path="danh-sach-lien-he" />
                         <Route element={<ListContactBooking />} path="danh-sach-dang-ky-lich-kham" />
-                        {/* <Route element={<UpdateDepartment />} path="update/:id" /> */}
-                        {/* <Route element={<Schedule />} path=":id/lich-kham" /> */}
+                        <Route element={<ReplyContact />} path="tra-loi-lien-he/:id" />
+                        <Route element={<ReplyContactBooking />} path="tra-loi-dang-ky-lich/:id" />
+              
                     </Route>
 
                     <Route path="chinh-sua-menu">
