@@ -44,6 +44,7 @@ import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
 import ChartCovid from "./pages/site/ChartCovid";
 import Vaccine from "./pages/site/Vaccine/Vaccine";
+import ListCateVaccine from "./pages/admin/Vaccine/ListCateVaccine/ListCateVaccine";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -110,6 +111,9 @@ function Web() {
                         <Route element={< ListNews />} path="list" />
                         <Route element={< AddNews />}  path="add" />
                         <Route element={< UpdateNews />} path="update/:id" />
+                    </Route>
+                    <Route path="vaccine">
+                        <Route element={< ListCateVaccine />} path="list-cate" />
                     </Route>
 
 
