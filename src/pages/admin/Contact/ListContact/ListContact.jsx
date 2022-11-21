@@ -56,7 +56,6 @@ function ListContact() {
                 <th>STT</th>
                 <th>Họ và tên</th>
                 <th>Email</th>
-                <th>Nội dung liên hệ</th>
                 <th>Trạng thái</th>
                 <th>Ngày liên hệ</th>
                 <th>Thao tác</th>
@@ -69,8 +68,11 @@ function ListContact() {
                     <td >{index+1}</td>
                     <td>{val.name}</td>
                     <td>{val.email} </td>
-                    <td>{val.content}</td>
-                    <td>{val.status}</td>
+                    {val.status_id == 9 ? 
+                      <td style={{color:"red"}}>{val.status}</td> 
+                      :  
+                      <td style={{color:"green"}}>{val.status}</td>
+                    }
                     <td>{val.created_at}</td>
                     <td className="button" >
 
