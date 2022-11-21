@@ -35,7 +35,10 @@
 } .image{
     width: 100%;
     cursor: pointer;
+    
     img{
+        max-height: 207px;
+        width: 100%;
         padding: 3% !important;
         transition: 0.3s;
         &:hover{
@@ -68,4 +71,9 @@
         text-overflow: ellipsis;
         word-break: break-word;
     }
+    .image{
+        width: 100%;
+        cursor: pointer;
+        
+}
 }

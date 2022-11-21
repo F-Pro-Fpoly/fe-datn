@@ -9,7 +9,7 @@ import "./listContac.scss";
 import { getContact } from "../../../../services/ContactService";
 import Paginate from "../../../../components/Paginate/Paginate";
 import Loading from "../../../../components/Loading/Loading";
-
+import { toast,ToastContainer } from 'react-toastify';
 
 function ListContact() {
 
@@ -50,7 +50,37 @@ function ListContact() {
                <button className="btn btn-primary">Thêm trang mới</button>
             </Link>
         </div> */}
+
+<ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                />
+
+
+
         <div className="adminItem">
+          <div className='row mt-3 mb-3' >
+            <div className="col-2 form-group">
+                <select name="" id="" className="form-control">
+                    <option value="">Chọn Trạng thái</option>
+                    <option value="">Đã phản hồi</option>
+                    <option value="">Chưa phản hồi</option>
+                </select>
+            </div>
+            <div className="col-2">
+              <button className='btn btn-primary' >Tìm kiếm</button>
+            </div>
+          </div>
+     
+  
+
           <Table striped bordered hover className='table-striped'>
             <thead>
               <tr>

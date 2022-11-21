@@ -16,7 +16,8 @@ function Info(infoUser) {
 
     const formRef = useRef();
     const formRefPass = useRef();
-    const [file, setFile] = useState(null);
+    const [gender, setGender] = useState(null);
+
     const onSubmit  = async (e) => {
         e.preventDefault();
         const formData = new FormData(formRef.current)
@@ -77,7 +78,7 @@ function Info(infoUser) {
        
     },[])
     
-
+    console.log(gender);
 
     return(
        <>
@@ -210,13 +211,13 @@ function Info(infoUser) {
                     
                     <div className="col-md-12">
                         <label className="form-label">Giới tính<span className="text-danger">*</span></label>
-                        <div className="d-flex gap-4">
+                        <div className="d-flex gap-4" onChange={(e) => setGender({...gender, gender: e.target.value})}>
 
                             <div className="form-check radio-bg-light">
                                 <input className="form-check-input" type="radio" name="gender" id="flexRadioDefault1"
                                    value="1"
                             
-                                defaultChecked={infoUser.infoUser.gender === 1 ? true : false} />
+                                checked={infoUser.infoUser.gender === 1 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault1">
                                    Nam
                                 </label>
@@ -226,7 +227,7 @@ function Info(infoUser) {
                                 value="2"
                                 id="flexRadioDefault2"
                              
-                                defaultChecked={infoUser.infoUser.gender === 2 ? true : false} />
+                                checked={infoUser.infoUser.gender === 2 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault2">
                                     Nữ
                                 </label>
@@ -236,7 +237,7 @@ function Info(infoUser) {
                                 value="3"
                                 id="flexRadioDefault3"
                                
-                                defaultChecked={infoUser.infoUser.gender === 3 ? true : false} />
+                                checked={infoUser.infoUser.gender === 3 ? true : false} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault3">
                                     Khác
                                 </label>
