@@ -10,7 +10,7 @@ import {createVaccineCategory, listVaccineCategory} from "../../../../services/V
 import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 
-function AddCateVaccine({handleHideModel, handleShowModel}) {
+function AddCateVaccine({handleHideModel, handleShowModel, startList}) {
     const token = useSelector(state => state.auth.token);
     const [dataVaccine, setDataVaccine] = useState({
         'code': '',
@@ -52,6 +52,7 @@ function AddCateVaccine({handleHideModel, handleShowModel}) {
                 'slug': ''
             })
             handleHideModel();
+            startList();
         } catch (error) {
             
         }
