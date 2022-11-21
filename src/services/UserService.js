@@ -34,6 +34,20 @@ function createUserApi({token, data}) {
         return [];
     }
 }
+function EditUserApi({token, data}) {
+    try {
+        let headers ={}; 
+        let url = `auth/user/edit`;
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        return API.put(url, data,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 
 function deleteUser({token, id}){
     try {

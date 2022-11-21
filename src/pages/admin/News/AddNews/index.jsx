@@ -4,58 +4,48 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-// import { getListServiceAPI,getListAllSpecialist, postListServiceAPI} from "../../../../services/SpecialistService";
+import { getListAllNewsCatgory} from "../../../../services/NewsCategory";
 import { ToastContainer, toast } from "react-toastify";
-// import {createNewsApi} from "../../../../services/NewsService"
+import {createListNewsAPI} from "../../../../services/NewsService";
+import { uploadFileService } from "../../../../services/normal/FileService";
 
 function News() {
-    // const token = useSelector(state => state.auth.token);
-    // let FormRef = useRef();
-
-    // const [textEditer, setTextEditer] = useState('');
-    // const [specailist, setSpecailist] = useState([]);
-
-    // useEffect(()=>{
-    //     const startApi = async () => {
-    //         // get all specailist
-    //         let res = await getListAllSpecialist({token});
-
-    //         let data = res.data;
-    //         setSpecailist(data.data);
-    //     }
-
-    //     startApi();
-    // }, []);
-
-    // const SubmitForm = async (event) => {
-    //     event.preventDefault();
-    //     try {
-    //         let formData = new FormData(FormRef.current);
-    //         formData.append("description", textEditer);
-    //         let res = await createNewsApi({token, data: formData});
-    //         let data = res.data;
-    //         toast.success(data.message);
-    //     } catch (error) {
-            
-    //     }
-
-    // }
+    const token = useSelector(state => state.auth.token);
+    let FormRef = useRef();
+    const [textEditer, setTextEditer] = useState('');
+    const [NewsCategory, setNewsCategory] = useState([]);
+    useEffect(()=>{
+        const startApi = async () => {
+            let res = await getListAllNewsCatgory({token});
+            let data = res.data;
+            setNewsCategory(data.data);
+        }
+        startApi();
+    }, []);
+    const SubmitForm = async (event) => {
+        event.preventDefault();
+        try {
+            let formData = new FormData(FormRef.current);
+            formData.append("content", textEditer);
+            let FileData = new FormData();
+            FileData.append('file', formData.get('file'));
+            let resFile = await uploadFileService({data: FileData});
+            let file_name = resFile.data.data.file_name;
+            formData.append('file_name', file_name);
+            // console.log(file_name);
+            // return;
+            let res = await createListNewsAPI({token, data: formData});
+            let data = res.data;
+            toast.success(data.message);
+        } catch (error) {
+        }
+    }
 
     return ( 
         <div className="addNews">
             <ToastContainer />
-            <Form method="post" >
+            <Form method="post" onSubmit={SubmitForm} ref={FormRef}>
                 <div className="row">
-                   
-
-                    <div className="col-4">
-                        <label htmlFor="" className="form-label">Tin nổi bật</label>
-                        <select name="active" id="" className="form-control">
-                            <option>--Chọn--</option>
-                            <option value="0">Không nổi bật</option>
-                            <option value="1">Nổi bật</option>
-                        </select>
-                    </div>
                     <div className="col-4">
                         <Form.Group>
                             <Form.Label>Code</Form.Label>
@@ -68,7 +58,14 @@ function News() {
                             <Form.Control type="text" placeholder="Tên tin tức" name="name" />
                         </Form.Group>
                     </div>
-                   
+                    <div className="col-4">
+                        <label htmlFor="" className="form-label">Tin nổi bật</label>
+                        <select name="featured" id="" className="form-control">
+                            <option>--Chọn--</option>
+                            <option value="0">Không nổi bật</option>
+                            <option value="1">Nổi bật</option>
+                        </select>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-4">
@@ -85,27 +82,35 @@ function News() {
                     </div>
                     <div className="col-4">
                             <label htmlFor="" className="form-label">Kích hoạt</label>
-                            <select name="active" id="" className="form-control">
+                            <select name="status" id="" className="form-control">
                                 <option>--Chọn--</option>
                                 <option value="0">Không kích hoạt</option>
                                 <option value="1">Kích hoạt</option>
                             </select>
-                        </div>
+                    </div>
+        
                 </div>
                 <div className="row">
                 <div className="col-12">
                         <Form.Group>
-                            <Form.Label>Danh mục tin</Form.Label>
-                            <Form.Select className="selectpicker" name="category_id" >
-                               
+                            <Form.Label>Loại tin</Form.Label>
+                            <Form.Select className="" name="category_id" >
+                                {NewsCategory.map((val,index) => (
+                                    <option value={val.id} key={val.id}>{val.name}</option>
+                                ))}
                             </Form.Select>
                         </Form.Group>
                     </div>
                     <div className="col-12">
-                        <Form.Group>
+                    <Form.Group>
                             <Form.Label>Nội dung</Form.Label>
-                            <CKEditor editor={ ClassicEditor }/>
-
+                            <CKEditor
+                                editor={ ClassicEditor }
+                                data={textEditer}
+                                onChange={(event, editor) => {
+                                    setTextEditer(editor.data.get())
+                                }}
+                            />
                         </Form.Group>
                     </div>
                 </div>

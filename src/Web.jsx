@@ -33,20 +33,29 @@ import ListConfig from "./pages/admin/Setttings/Config/ListConfig/ListConfig";
 import AddConfig from "./pages/admin/Setttings/Config/AddConfig";
 import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
 import Profile from "./pages/site/Profile";
-import Blog from "./pages/site/Blog";
-import DetailBlog from "./pages/site/DetailBlog";
+import News from "./pages/site/News";
+import DetailNews from "./pages/site/DetailBlog";
 import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateSpecialist";
-import AddNews from "./pages/admin/News";
+
+import AddNews from "./pages/admin/News/AddNews";
 import ListNews from "./pages/admin/News/ListNews";
 import UpdateNews from "./pages/admin/News/UpdateNews";
+
+import AddNewsCategory from "./pages/admin/NewsCategory/AddNewsCategory";
+import ListNewsCategory from "./pages/admin/NewsCategory/ListNewsCategory";
+import UpdateNewsCategory from "./pages/admin/NewsCategory/Update";
 
 import ProfileDoctor from "./pages/site/Profile/Doctor/ProfileDoctor";
 import UpdateMenu from "./pages/admin/Setttings/Menu/UpdateMenu";
 import ChartCovid from "./pages/site/ChartCovid";
 import Vaccine from "./pages/site/Vaccine/Vaccine";
+
 import ListCateVaccine from "./pages/admin/Vaccine/ListCateVaccine/ListCateVaccine";
-import ListContact from "./pages/admin/Contact/ListContact";
-import ListContactBooking from "./pages/admin/Contact/ListContactBooking";
+import ListContact from "./pages/admin/Contact/ListContact/ListContact";
+import ListContactBooking from "./pages/admin/Contact/ListContactBooking/ListContactBooking";
+
+import ReplyContactBooking from "./pages/admin/Contact/ListContactBooking/replyContactBooking";
+import ReplyContact from "./pages/admin/Contact/ListContact/replyContact";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -60,9 +69,9 @@ function Web() {
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ky-lich"  element={<Book />}/>             
                     <Route path="/ve-chung-toi"  element={<About />}/>
-                    <Route path="/tin-tuc"  element={<Blog />}/>
+                    <Route path="/tin-tuc"  element={<News />}/>
+                    <Route path="/tin-tuc/:slug"  element={ (<DetailNews />)}/>
                     <Route path="/bieu-do-covid"  element={<ChartCovid />}/>
-                    <Route path="/tin-chi-tiet"  element={ AuthMiddlware (<DetailBlog />)}/>
                     <Route path="/lien-he"  element={<Contact />}/>
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                     <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
@@ -101,8 +110,9 @@ function Web() {
                     <Route path="lien-he">
                         <Route element={<ListContact />} path="danh-sach-lien-he" />
                         <Route element={<ListContactBooking />} path="danh-sach-dang-ky-lich-kham" />
-                        {/* <Route element={<UpdateDepartment />} path="update/:id" /> */}
-                        {/* <Route element={<Schedule />} path=":id/lich-kham" /> */}
+                        <Route element={<ReplyContact />} path="tra-loi-lien-he/:id" />
+                        <Route element={<ReplyContactBooking />} path="tra-loi-dang-ky-lich/:id" />
+              
                     </Route>
 
                     <Route path="chinh-sua-menu">
@@ -119,7 +129,15 @@ function Web() {
                     <Route path="tin-tuc">
                         <Route element={< ListNews />} path="list" />
                         <Route element={< AddNews />}  path="add" />
-                        <Route element={< UpdateNews />} path="update/:id" />
+                        <Route element={< UpdateNews />} path="edit/:id" />
+                    </Route>
+                    <Route path="danh-muc">
+                        <Route element={< ListNewsCategory />} path="list" />
+                        <Route element={< AddNewsCategory />}  path="add" />
+                        <Route element={< UpdateNewsCategory />} path="update/:id" />
+                    </Route>
+                    <Route path="contact">
+                        <Route element={< ListContact />} path="list" />
                     </Route>
                     <Route path="vaccine">
                         <Route element={< ListCateVaccine />} path="list-cate" />

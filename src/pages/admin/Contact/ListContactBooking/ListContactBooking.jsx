@@ -73,7 +73,7 @@ function ListContactBooking() {
                     <td>{val.status}</td>
                     <td>{val.created_at}</td>
                     <td className="button">
-                    <Link to={`/admin/chinh-sua-menu/update/${val.id}`} className="btn">
+                    <Link to={`/admin/lien-he/tra-loi-dang-ky-lich/${val.id}`} className="btn">
                                                 <i className="fas fa-edit"></i>
                     </Link> |
                       <i className="fa fa-trash"></i>

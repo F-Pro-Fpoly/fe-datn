@@ -107,3 +107,10 @@ hr.invis3{border:0;margin:0}
 .widget-title{border-color:#3197d6}
 .page-title span.bg-yellow,.color-yellow a{background-color:#ffb900!important}
 .wb{color:rgba(255,255,255,1)!important}
+.an {
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  /* số dòng hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
