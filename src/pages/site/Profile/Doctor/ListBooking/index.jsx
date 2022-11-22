@@ -3,24 +3,25 @@ import { useState } from "react";
 import Table from 'react-bootstrap/Table';
 import { useSelector } from "react-redux";
 import Loading from "../../../../../components/Loading/Loading";
-import { getListServiceAPI } from "../../../../../services/BookingService";
+import { getListBookingDoctorServiceAPI } from "../../../../../services/BookingService";
 import Paginate from '../../../../../components/Paginate/Paginate';
 import { Link } from "react-router-dom";
+import moment from "moment";
 function ListBooking() {
 
     const token = useSelector(state => state.auth.token);
 
     const [listbooking, getListbooking] = useState([]);
     const [loading, getLoading] = useState(false);
-    const [paginate, setPaginate] = useState(null);
-    const [page, setPage] = useState(1);
 
+    const date = moment().format('YYYY-MM-DD');
+    
     useEffect(() => {
       
         const start = async () => {
             getLoading(true)
             getListbooking([])
-            let res = await getListServiceAPI(token,page) 
+            let res = await getListBookingDoctorServiceAPI(token,date) 
             let data = res.data 
             let dataArr = data.data
             getLoading(false)
@@ -28,13 +29,25 @@ function ListBooking() {
         }
       
         start();
-    }, [page])
-    const onChangePage = (number) =>{
-      setPage(number);
+    }, [])
+
+
+    const HandleTime = (e) => {
+      console.log(e.target.value);
     }
-    console.log(listbooking);
+
     return ( 
         <>
+         <div className="form-group mb-3">
+                <select name="timebooking" className="form-control" id=""
+                 defaultValue={'homnay'}
+                onChange={HandleTime}>
+                    <option value="homqua">Lịch khám hôm qua</option>
+                    <option value="homnay">Lịch khám hôm nay</option>
+                    <option value="ngaymai">Lịch khám ngày mai</option>                 
+                </select>
+            </div>
+
         <div className="table-responsive">
             <Table  bordered hover>
               <thead>
@@ -68,7 +81,7 @@ function ListBooking() {
         {
           loading && <Loading />
         }
-         {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
+     
         </>
      );
 }
