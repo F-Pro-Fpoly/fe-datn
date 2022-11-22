@@ -41,6 +41,9 @@ function ListCateVaccine() {
             
         }
     }
+    const updateCategory = async (id) => {
+
+    }
     useEffect(() => {start()}, [])
 
     return ( 
@@ -83,7 +86,7 @@ function ListCateVaccine() {
                                     <td>{item.slug}</td>
                                     <td>{item.parent_name ?? "Không"}</td>
                                     <td>
-                                        <button type="button" className="btn">
+                                        <button type="button" className="btn" onClick={()=>updateCategory(item.id)}>
                                             <i className="fa-solid fa-pen-to-square"></i>
                                         </button>
                                         <button type="button" className="btn">
