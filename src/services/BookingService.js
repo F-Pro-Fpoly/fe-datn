@@ -10,7 +10,24 @@ function getListServiceAPI(token = null,page = 1) {
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
+        
         return API.get(`auth/booking/list?page=${page}`,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+
+}
+function getListBookingDoctorServiceAPI(token = null,date = null) {
+    
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+        }
+        let url = `auth/booking/listDoctor`
+        url += `?date=${date}`
+        return API.get(url,{headers: headers});
     } catch (error) {
         console.error(error);
         return [];
@@ -66,4 +83,4 @@ function getDetailMyBookingServiceAPI(token = null, id = null) {
 //     }
 // }
 
-export { getListServiceAPI,getMyBookingServiceAPI,getDetailMyBookingServiceAPI}
+export { getListServiceAPI,getMyBookingServiceAPI,getDetailMyBookingServiceAPI,getListBookingDoctorServiceAPI}
