@@ -20,12 +20,9 @@ function Booking() {
         let res = await getMyBookingServiceAPI(token,user_id) 
         let data = res.data
         let dataArr = data.data
-        let count =  dataArr.length
         getLoading(false)
         setBooking(dataArr)
     }
-
-
 
     useEffect(() => {
         start()
