@@ -112,7 +112,6 @@ function Web() {
                         <Route element={<ListContactBooking />} path="danh-sach-dang-ky-lich-kham" />
                         <Route element={<ReplyContact />} path="tra-loi-lien-he/:id" />
                         <Route element={<ReplyContactBooking />} path="tra-loi-dang-ky-lich/:id" />
-              
                     </Route>
 
                     <Route path="chinh-sua-menu">

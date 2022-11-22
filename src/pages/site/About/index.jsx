@@ -20,7 +20,7 @@ function About(){
             <div className="container">
                 <div className="row">
                     <div className="col-lg-6">
-                        <div className="banner-frame"> <img className="img-fluid" src="img/lienhe_06.png" alt=""/>
+                        <div className="banner-frame"> <img className="img-fluid" src="../img/lienhe_06.png" alt=""/>
                         </div>
                     </div>
                     <div className="col-lg-6">

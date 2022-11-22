@@ -25,14 +25,11 @@ function Contact(){
   
     }
     return(
-            <div className="formBooking">
+            <div className="page-title">
                             <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} 
                               newestOnTop={false} closeOnClick rtl={false}  pauseOnFocusLoss draggable pauseOnHover />
-                          <div className="map-contact">
-                            <iframe className="iframe-contact" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15698.422472557833!2d105.69991259999999!3d10.37338475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1668744996140!5m2!1svi!2s" width="100%" height="100%"></iframe>
-                          </div>
                           <div className="content-contact">
-                            <div className="contact-contact">
+                            <div className="contact-contact ">
                               <div className="other-contact">
                                 <div className="info-contact">
                                   <h2>Phòng Khám </h2>

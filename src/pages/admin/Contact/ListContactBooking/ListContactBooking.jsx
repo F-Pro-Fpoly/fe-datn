@@ -44,11 +44,6 @@ function ListContactBooking() {
 
     return ( 
         <>
-        {/* <div className="a">   
-            <Link to='/admin/chinh-sua-menu/add'>
-               <button className="btn btn-primary">Thêm trang mới</button>
-            </Link>
-        </div> */}
         <div className="adminItem">
           <Table striped bordered hover className='table-striped'>
             <thead>
@@ -56,7 +51,7 @@ function ListContactBooking() {
                 <th>STT</th>
                 <th>Họ và tên</th>
                 <th>Email</th>
-                <th>Nội dung liên hệ</th>
+
                 <th>Trạng thái</th>
                 <th>Ngày liên hệ</th>
                 <th>Thao tác</th>
@@ -68,8 +63,7 @@ function ListContactBooking() {
                   <tr key={index}>
                     <td>{index+1}</td>
                     <td>{val.name}</td>
-                    <td >{val.email} </td>
-                    <td>{val.content}</td>                 
+                    <td >{val.email} </td>             
                     <td>{val.status}</td>
                     <td>{val.created_at}</td>
                     <td className="button">
