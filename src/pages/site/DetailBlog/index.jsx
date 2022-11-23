@@ -121,10 +121,6 @@ export default function DitailNews(){
                                 <div className="row">
                                     <div className=" col-lg-12">
                                         <div id="fb-root"></div>
-                                        <script async defer crossOrigin="anonymous"
-                                                src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0&appId=645629553905650&autoLogAppEvents=1"
-                                                nonce="6pEUqMYq">
-                                        </script>
                                     </div> 
                                 </div>
                             </div>
