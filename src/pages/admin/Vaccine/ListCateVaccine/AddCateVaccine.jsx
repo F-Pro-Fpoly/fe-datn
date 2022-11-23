@@ -10,19 +10,19 @@ import {createVaccineCategory, listVaccineCategory} from "../../../../services/V
 import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 
-function AddCateVaccine({handleHideModel, handleShowModel, startList}) {
+function AddCateVaccine({handleHideModel, handleShowModel, startList, data = null, update = false}) {
     const token = useSelector(state => state.auth.token);
     const [dataVaccine, setDataVaccine] = useState({
-        'code': '',
-        'name': '',
+        'code': data ? data.code : '',
+        'name': data ? data.name : '',
         'parent': {
-            'parent_id': '',
-            'parent_name': ''
+            'parent_id': data ? data.parent.parent_id : '',
+            'parent_name': data ? data.parent.parent_name : ''
         },
-        'short_description': '',
-        'description': '',
-        'active': true,
-        'slug': ''
+        'short_description': data ? data.short_description : '',
+        'description': data ? data.description : '',
+        'active': data != null ? data.active : true,
+        'slug': data != null ? data.slug : ''
     });
     const [optionParentCategory, setOptionParentCategory] = useState([]);
 
@@ -35,6 +35,26 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList}) {
         e.preventDefault();
 
         try {
+            if(update){
+                let res = await createVaccineCategory({token, data: dataVaccine});
+                let message = res.data.message;
+                toast.success(message);
+                setDataVaccine({
+                    ...dataVaccine,
+                    'code': '',
+                    'name': '',
+                    'parent': {
+                        'parent_id': '',
+                        'parent_name': ''
+                    },
+                    'short_description': '',
+                    'description': '',
+                    'active': true,
+                    'slug': ''
+                })
+                handleHideModel();
+                startList();
+            }
             let res = await createVaccineCategory({token, data: dataVaccine});
             let message = res.data.message;
             toast.success(message);

@@ -24,6 +24,7 @@ function Book () {
     const [optionWard, setOptionWard] = useState([]);
     const [optionWardSelect, setOptionWardSelect] = useState('');
     const [address, setAddress] = useState('');
+    const [bookingDescription, setBookingDescription] = useState('');
     const [doctor, setDoctor] = useState({
         'id': '',
         'name': '',
@@ -32,6 +33,8 @@ function Book () {
         'district_name': "",
         'ward_name': "",
         'avatar': "",
+        'specailist_id': '',
+        'specailist_name': ''
     });
     const [booking2, setBooking2] = useState({
         'date': '',
@@ -47,7 +50,7 @@ function Book () {
         'district_name': "",
         'ward_name': "",
         'avatar': "",
-        
+        'email': ''
     });
 
     const start = async () => {
@@ -64,6 +67,8 @@ function Book () {
                 'district_name': dataDoctor.district_name ?? null,
                 ward_name: dataDoctor.ward_name ?? null,
                 avatar: dataDoctor.avatar ?? '',
+                specailist_id: dataDoctor.specailist_id ?? null,
+                specailist_name: dataDoctor.specailist_name ?? null
             });
             setBooking2({...booking2, 
                 'date': dataBooking2.date,
@@ -108,6 +113,8 @@ function Book () {
                 return;
             }else{
                 sessionStorage['booking_info']= JSON.stringify(dataAddress);
+                let dataUser = getDataUserNoAuth();
+                handleDataUserForm(dataUser)
                 setShowModal(false);
                 return;
             }
@@ -242,6 +249,10 @@ function Book () {
     }
 
     useEffect(() => {
+        if(!sessionStorage['booking_info2']){
+            navigate('/');
+            return;
+        }
         start()
     },[]) ;
 
@@ -257,6 +268,7 @@ function Book () {
                         <div className="booking-header-right">
                             <h4 className='booking-header-text booking-header-text--resgiter'>Đăng ký khám</h4>
                             <h3 className='booking-header-text booking-header-text--title'>Giáo sư, Tiến sĩ, Bác sĩ {doctor.name}</h3>
+                            <h4 className='booking-header-text booking-header-text--date'>{doctor.specailist_name}</h4>
                             <h4 className='booking-header-text booking-header-text--date'>{booking2.date} - ({booking2.time_start} - {booking2.time_end})</h4>
                         </div>
                     </div>
@@ -293,7 +305,15 @@ function Book () {
                                 </div>
                             </div>
                         </div>
-                        <Payment />
+
+                        <div className="booking-main-address mt-3">
+                            <h5>Nhập thông tin khám </h5>
+                            <textarea
+                             value={bookingDescription}
+                             onChange={(e) => setBookingDescription(e.target.value)}
+                             className='form-control' name="" id="" cols="30" rows="10" placeholder='Nhập thông tin khám'></textarea>
+                        </div>
+                        <Payment bookingDescription={bookingDescription} />
                     </div>
                 </div>
             </div>
@@ -315,6 +335,14 @@ function Book () {
                                 <Form.Control type='text' value={paymentInfo.phone} onChange={(e) => setPaymentInfo({...paymentInfo, phone: e.target.value})} placeholder='Nhập số điện thoại'/>
                             </div>
                         </Form.Group>
+                        {!token && (
+                            <Form.Group className='row my-2'>
+                                <Form.Label className='col-sm-3 col-form-label col-form-label--required'>Email</Form.Label>
+                                <div className='col-sm-9'>
+                                    <Form.Control type='email' value={paymentInfo.email} onChange={(e) => setPaymentInfo({...paymentInfo, email: e.target.value})}  placeholder='Nhập địa chỉ email'/>
+                                </div>
+                            </Form.Group>
+                        )}
                         <Form.Group className='row my-2'>
                             <Form.Label className='col-sm-3 col-form-label col-form-label--required'>Họ và tên</Form.Label>
                             <div className='col-sm-9'>
