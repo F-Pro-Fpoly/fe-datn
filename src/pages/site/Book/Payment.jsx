@@ -1,11 +1,13 @@
 import {useEffect, useState} from 'react';
 import { Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import { createBookingService } from '../../../services/normal/BookingService';
 
 
-function Payment() {
+function Payment({bookingDescription}) {
+    const navigate = useNavigate();
     let dataPayment = [
         {
             'payment_method': "default",
@@ -52,10 +54,21 @@ function Payment() {
     }
     const handlePayment = async () => {
         try {
-            let booking_info = JSON.parse(sessionStorage['booking_info'] ?? "{}");
+            let booking_info = JSON.parse(sessionStorage['booking_info'] ?? null);
             let booking_info2 = JSON.parse(sessionStorage['booking_info2'] ?? "{}");
+            if(bookingDescription === ''){
+                toast.error("Vui lòng nhập thông tin khám bệnh");
+                return;
+            }
+            if(!token){
+                if(!booking_info){
+                    toast.error("Vui lòng nhập địa chỉ");
+                    return;
+                }
+            }
             let dataReq = {
                 ...booking_info2,
+                'description': bookingDescription,
                 'specialist_code': booking_info2.code,
             };
             if(!token){
@@ -65,11 +78,16 @@ function Payment() {
                     'customer_name': booking_info.name
                 }
             }
-
+            // console.log(dataReq);
+            // return;
             
             let res = await createBookingService({token, data: dataReq});
             let message = res.data.message;
             toast.success(message);
+
+            setTimeout(()=>{
+                navigate('/');
+            }, 2000);
         } catch (error) {
             let message = error.response.data.message;
             toast.error(message);
