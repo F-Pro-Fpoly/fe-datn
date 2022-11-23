@@ -19,7 +19,7 @@ function Payment({bookingDescription}) {
         }
     ];
     const token = useSelector(state => state.auth.token);
-    const [paymentMethod, setPaymentMethod] = useState('');
+    const [paymentMethod, setPaymentMethod] = useState('default');
     const [paymentData, setPaymentData] = useState({});
 
     const handleOnchangePaymentMethod = (e) => {
@@ -94,17 +94,21 @@ function Payment({bookingDescription}) {
         } 
     }
 
+    useEffect(() =>{
+        handleChangePaymentMethod(paymentMethod, dataPayment);
+        setPaymentData(getPaymentData())
+    }, [])
 
     return ( 
-        <div className='payment booking-main-address mt-3'>
+        <div className='payment booking-main-address mt-3 p-3'>
             {/* <ToastContainer /> */}
             <div className='payment-checks'>
                 {/*  */}
                 <div className="row" onChange={handleOnchangePaymentMethod}>
-                    <div className="col-6" >
-                        <Form.Check type='radio' value="default"  id='payment-method-default' label="Thanh toán tại cơ sở" name="payment-method" />
+                    <div className="col-12" >
+                        <Form.Check type='radio' value="default" defaultChecked  id='payment-method-default' label="Thanh toán tại cơ sở" name="payment-method" />
                     </div>
-                    <div className="col-6">
+                    <div className="col-12">
                         <Form.Check type='radio' value="momo"  id='payment-method-momo' label="Thanh toán qua momo" name="payment-method" />
                     </div>
                 </div>
@@ -113,10 +117,10 @@ function Payment({bookingDescription}) {
             </div>
             {
                 paymentMethod == "default" && (
-                    <div className='row mt-2'>
-                        <h4>Thanh toán tại cơ sở y tế</h4>
+                    <div className='row mt-2 ms-0 me-0'>
+                        <h4 className='booking-hr booking-hr--dashed py-2'>Thanh toán tại cơ sở y tế</h4>
                         {paymentData && (
-                            <p >Giá <span className='text-danger fw-bold'>{paymentData.price}</span> VND</p>
+                            <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>{paymentData.price} <span className='text-dark'>VND</span></span></p>
 
                         )}
                     </div>
@@ -124,10 +128,10 @@ function Payment({bookingDescription}) {
             }
             {
                 paymentMethod == 'momo' && (
-                    <div className="row mt-2">
-                        <h4>Thanh toán qua momo</h4>
+                    <div className="row mt-2 ms-0 me-0">
+                        <h4 className='booking-hr booking-hr--dashed py-2'>Thanh toán qua momo</h4>
                         {paymentData && (
-                            <p >Giá <span className='text-danger fw-bold'>{paymentData.price}</span> VND</p>
+                            <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>{paymentData.price} <span className='text-dark'>VND</span></span></p>
                         )}
                     </div>
                 )
@@ -135,7 +139,7 @@ function Payment({bookingDescription}) {
             {
                 paymentMethod && (
                     <div className='mt-3'>
-                        <button className='btn btn-primary' onClick={handlePayment}>Thanh Toán</button>
+                        <button className='btn btn-primary booking-button--full booking-button--payment' onClick={handlePayment}>Thanh Toán</button>
                     </div>
                 )
             }
