@@ -18,7 +18,7 @@ function getListServiceAPI(token = null,page = 1) {
     }
 
 }
-function getListBookingDoctorServiceAPI(token = null,date = null) {
+function getListBookingDoctorServiceAPI(token = null,search = {},user_id = null) {
     
     try {
         let headers ={}; 
@@ -26,7 +26,22 @@ function getListBookingDoctorServiceAPI(token = null,date = null) {
             headers = {...headers, "Authorization": `Bearer ${token}`};
         }
         let url = `auth/booking/listDoctor`
-        url += `?date=${date}`
+        url += `?date=${search.date}&status=${search.status}&user_id=${user_id}`
+        return API.get(url,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+function getListStatuServiceAPI(token = null) {
+    
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+        }
+        let url = `auth/booking/statusBooking`
         return API.get(url,{headers: headers});
     } catch (error) {
         console.error(error);
@@ -83,4 +98,4 @@ function getDetailMyBookingServiceAPI(token = null, id = null) {
 //     }
 // }
 
-export { getListServiceAPI,getMyBookingServiceAPI,getDetailMyBookingServiceAPI,getListBookingDoctorServiceAPI}
+export { getListServiceAPI,getMyBookingServiceAPI,getDetailMyBookingServiceAPI,getListBookingDoctorServiceAPI,getListStatuServiceAPI}
