@@ -116,7 +116,9 @@ function UpdateDepartment() {
                             <Form.Control type="text" 
                              value={department.code} 
                              onChange = {(e) => setDepartment({...department, code: e.target.value})}
-                             placeholder="Mã code" name="code" />
+                             placeholder="Mã code" name="code" 
+                             disabled
+                            />        
                         </Form.Group>
                     </div>
                     <div className="col-4">
