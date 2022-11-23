@@ -249,6 +249,7 @@ function Book () {
     }
 
     useEffect(() => {
+        document.title = 'Trang thanh toán';
         if(!sessionStorage['booking_info2']){
             navigate('/');
             return;
@@ -259,7 +260,7 @@ function Book () {
     return (
         <section className='booking'>
             <ToastContainer />
-            <div className="booking-header">
+            {/* <div className="booking-header">
                 <div className="booking-container">
                     <div className="booking-header-wrapper">
                         <div className="booking-header-avatar">
@@ -316,7 +317,83 @@ function Book () {
                         <Payment bookingDescription={bookingDescription} />
                     </div>
                 </div>
+            </div> */}
+            <div className="booking-header">
+                <div className="container">
+                    <h4>ĐĂNG KÝ LỊCH KHÁM</h4>
+                </div>
             </div>
+            <div className="booking-main">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-8">
+                            <div className="booking-main-left">
+                                <div className="booking-main-item">
+                                    <div className="booking-main-wrapper">
+                                        <div className="booking-main-address">
+                                            <h5 className='mb-3'>Thông tin bác sĩ</h5>
+                                            <div className="booking-header-wrapper">
+                                                <div className="booking-header-avatar">
+                                                    <img src={doctor.avatar} alt="" />
+                                                </div>
+                                                <div className="booking-header-right">
+                                                    <h3 className='booking-header-text booking-header-text--title'>Giáo sư, Tiến sĩ, Bác sĩ {doctor.name}</h3>
+                                                    <h4 className='booking-header-text booking-header-text--date'>{doctor.specailist_name}</h4>
+                                                    <h4 className='booking-header-text booking-header-text--date'>{booking2.date} - ({booking2.time_start} - {booking2.time_end})</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="booking-main-item">
+                                    <div className="booking-main-wrapper">
+                                        <div className="booking-main-address">
+                                            <div className="booking-main-address-top">
+                                                <div className='booking-main-address-l'>
+                                                    <h4>Địa chỉ</h4>
+                                                </div>
+                                                <div className="booking-main-address-r">
+                                                    <button type='button' className='btn booking-main-address-btn' onClick={()=>hanleShowModal(true)}>
+                                                        <i className="fa-regular fa-pen-to-square"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div className="booking-main-address-bottom fs-6">
+                                                <div className='' style={{whiteSpace: "nowrap", textAlign:"center"}}>
+                                                    <span className='fw-bold'>{paymentInfo.name ?? ""}</span>
+                                                    <br />
+                                                    <span>{paymentInfo.phone ?? ""}</span>
+                                                </div>
+                                                <div className="">
+                                                    {
+                                                        (address && paymentInfo.ward_name && paymentInfo.district_name && paymentInfo.city_name)
+                                                        ?(
+                                                            <span>{address??""}, {paymentInfo.ward_name??''}, {paymentInfo.district_name??''}, {paymentInfo.city_name??''}</span>
+                                                        ):""
+                                                    }
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="booking-main-address mt-3">
+                                            <h5>Nhập thông tin khám </h5>
+                                            <textarea
+                                            value={bookingDescription}
+                                            onChange={(e) => setBookingDescription(e.target.value)}
+                                            className='form-control' name="" id="" cols="30" rows="10" placeholder='Nhập thông tin khám'></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-4 position-relative">
+                            <Payment bookingDescription={bookingDescription} /> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <Modal show={showModal} onHide={()=>setShowModal(false)} size="lg">
                 <Modal.Header closeButton>
