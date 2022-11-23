@@ -10,41 +10,49 @@ import moment from "moment";
 function ListBooking() {
 
     const token = useSelector(state => state.auth.token);
-
     const [listbooking, getListbooking] = useState([]);
     const [loading, getLoading] = useState(false);
 
-    const date = moment().format('YYYY-MM-DD');
-    
+ 
+    const now = moment().format('YYYY-MM-DD');
+    const yesterday = moment().subtract(1,'days').format('YYYY-MM-DD');
+    const tomorrow = moment().add(1,'days').format('YYYY-MM-DD');
+
+    const start = async () => {
+      getLoading(true)
+      getListbooking([])
+      let res = await getListBookingDoctorServiceAPI(token,now) 
+      let data = res.data 
+      let dataArr = data.data
+      getLoading(false)
+      getListbooking(dataArr)
+  }
+
     useEffect(() => {
-      
-        const start = async () => {
-            getLoading(true)
-            getListbooking([])
-            let res = await getListBookingDoctorServiceAPI(token,date) 
-            let data = res.data 
-            let dataArr = data.data
-            getLoading(false)
-            getListbooking(dataArr)
-        }
-      
         start();
     }, [])
 
-
-    const HandleTime = (e) => {
-      console.log(e.target.value);
+    const HandleTime = async (e) => {
+        let timeset = e.target.value;
+        getLoading(true)
+        getListbooking([])
+        let res = await getListBookingDoctorServiceAPI(token,timeset) 
+        let data = res.data 
+        let dataArr = data.data
+        getLoading(false)
+        getListbooking(dataArr)
     }
+    
 
     return ( 
         <>
          <div className="form-group mb-3">
                 <select name="timebooking" className="form-control" id=""
-                 defaultValue={'homnay'}
+                 value={now}
                 onChange={HandleTime}>
-                    <option value="homqua">Lịch khám hôm qua</option>
-                    <option value="homnay">Lịch khám hôm nay</option>
-                    <option value="ngaymai">Lịch khám ngày mai</option>                 
+                    <option value={yesterday}>Lịch khám hôm qua</option>
+                    <option value={now}>Lịch khám hôm nay</option>
+                    <option value={tomorrow}>Lịch khám ngày mai</option>                 
                 </select>
             </div>
 
@@ -62,6 +70,12 @@ function ListBooking() {
               </thead>
               <tbody>
                 {
+                  listbooking.length == 0 ? 
+                  <tr >
+                     <td colSpan="6" style={{textAlign:"center"}}>Hiện chưa có người đặt lịch</td>
+                  </tr>
+                  :
+
                   listbooking.map((val, index)=>(
                     <tr key={index}>
                       <td>{index+1}</td>
