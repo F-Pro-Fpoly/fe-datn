@@ -329,15 +329,19 @@ function Book () {
                         <div className="col-8">
                             <div className="booking-main-left">
                                 <div className="booking-main-item">
-                                    <h5 className='mb-3 text-center'>Thông tin bác sĩ</h5>
-                                    <div className="booking-header-wrapper">
-                                        <div className="booking-header-avatar">
-                                            <img src={doctor.avatar} alt="" />
-                                        </div>
-                                        <div className="booking-header-right">
-                                            <h3 className='booking-header-text booking-header-text--title'>Giáo sư, Tiến sĩ, Bác sĩ {doctor.name}</h3>
-                                            <h4 className='booking-header-text booking-header-text--date'>{doctor.specailist_name}</h4>
-                                            <h4 className='booking-header-text booking-header-text--date'>{booking2.date} - ({booking2.time_start} - {booking2.time_end})</h4>
+                                    <div className="booking-main-wrapper">
+                                        <div className="booking-main-address">
+                                            <h5 className='mb-3'>Thông tin bác sĩ</h5>
+                                            <div className="booking-header-wrapper">
+                                                <div className="booking-header-avatar">
+                                                    <img src={doctor.avatar} alt="" />
+                                                </div>
+                                                <div className="booking-header-right">
+                                                    <h3 className='booking-header-text booking-header-text--title'>Giáo sư, Tiến sĩ, Bác sĩ {doctor.name}</h3>
+                                                    <h4 className='booking-header-text booking-header-text--date'>{doctor.specailist_name}</h4>
+                                                    <h4 className='booking-header-text booking-header-text--date'>{booking2.date} - ({booking2.time_start} - {booking2.time_end})</h4>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
