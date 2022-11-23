@@ -82,21 +82,23 @@ function DetailBooking() {
                     type="text" placeholder="Trạng thái thanh toán" />
                 </div>   
                 
-                <form action="">
-                    
+            
                     <div className="mb-3">
                         <label className="form-label">Thông tin khám</label>
-                        <textarea name="" className="form-control" style={{resize:"none"}} id="" cols="10" rows="5"></textarea>
+                        <textarea name="" className="form-control" style={{resize:"none"}} id="" cols="5" rows="2"
+                        defaultValue={value.description} disabled>
+                        </textarea>
                     </div>   
-    
-                    {/* <div className="mb-3">
-                        <label className="form-label">Trạng thái khám</label>
-                        <select name="" className="form-control" id="">
-                            <option value="">Chọn trạng thái</option>
-                            <option value=""></option>
-                            <option value=""></option>
+                    <form action="">        
+                    <div className="form-group mb-3">
+                        <select name="timebooking" className="form-control" id=""
+                        defaultValue="1" 
+                        >
+                            <option value="1">Chọn trạng thái</option>
+                            <option value='2'>Khách hàng không đến</option>
+                            <option value='3'>Hoàn tất</option>                 
                         </select>
-                    </div>   */}
+                    </div>
     
                     <div className="row g-3">
                     <div className="col-md-2">
