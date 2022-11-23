@@ -31,7 +31,7 @@ function About(){
                         <p>Với phương châm hoạt động <b> “Luôn đáp ứng nhu cầu khám chữa bệnh chất lượng cao và tiết kiệm thời gian, chi phí tối thiểu cho khách hàng”</b>, chúng tôi đã nhận được sự tin tưởng và những phản hồi rất tốt từ khách hàng. Đến nay, tổng số bệnh nhân đăng ký khám chữa bệnh ban đầu tại Phòng Khám Đa Khoa Sài Gòn đã lên đến hơn <b> 137.000 người</b>.</p>
                         <p> <b>Phòng Khám Đa Khoa </b>  vinh dự được đón tiếp Quý khách.</p>
                         <p><b>Trân trọng,</b></p>
-                        <a className="btn btn-info" href="#">Read More</a>
+                        {/* <a className="btn btn-info" href="#">Read More</a> */}
                     </div>
                 </div>
                 <div className="row my-5">
@@ -62,119 +62,7 @@ function About(){
                         </div>
                     </div>
                 </div>
-                <div className="row my-4">
-                    <div className="col-12">
-                        <h2 className="noo-sh-title">Các bác sĩ nổi bật</h2>
-                    </div>
-                    <div className="col-sm-6 col-lg-3">
-                        <div className="hover-team">
-                            <div className="our-team"> <img src="img/img-1.jpg" alt=""/>
-                                <div className="team-content">
-                                    <h3 className="title">Bs.CKI Nguyễn Thị Ngọc Oanh </h3> <span className="post">Nguyên phó khoa khám bệnh BV</span> </div>
-                                <ul className="social">
-                                    <li>
-                                        <a href="#" className="fab fa-facebook"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-twitter"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-google-plus"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-youtube"></a>
-                                    </li>
-                                </ul>
-                                <div className="icon"> <i className="fa fa-plus" aria-hidden="true"></i> </div>
-                            </div>
-                            <div className="team-description">
-                                <p>Giám Đốc Chuyên Môn </p>
-                                <p>BS.CKI Nội Tổng Quát </p>
-                            </div>
-                            <hr className="my-0"/> </div>
-                    </div>
-                    <div className="col-sm-6 col-lg-3">
-                        <div className="hover-team">
-                            <div className="our-team"> <img src="img/img-2.jpg" alt=""/>
-                                <div className="team-content">
-                                    <h3 className="title">BS:Phạm Thị Bảy </h3> <span className="post">BS. Chuyên Khoa Mắt</span> </div>
-                                <ul className="social">
-                                    <li>
-                                        <a href="#" className="fab fa-facebook"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-twitter"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-google-plus"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-youtube"></a>
-                                    </li>
-                                </ul>
-                                <div className="icon"> <i className="fa fa-plus" aria-hidden="true"></i> </div>
-                            </div>
-                            <div className="team-description">
-                                <p>Chuyên Khoa Mắt </p>
-                                <p>BS.CKI Mắt</p>
-                            </div>
-                            <hr className="my-0"/> </div>
-                    </div>
-                    <div className="col-sm-6 col-lg-3">
-                        <div className="hover-team">
-                            <div className="our-team"> <img src="img/img-3.jpg" alt=""/>
-                                <div className="team-content">
-                                    <h3 className="title">Ths-Bs:Lý Nguyên Thạch </h3> <span className="post">Ths.Bs Chuyên Khoa Xét Nghiệm</span> </div>
-                                <ul className="social">
-                                    <li>
-                                        <a href="#" className="fab fa-facebook"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-twitter"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-google-plus"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-youtube"></a>
-                                    </li>
-                                </ul>
-                                <div className="icon"> <i className="fa fa-plus" aria-hidden="true"></i> </div>
-                            </div>
-                            <div className="team-description">
-                                <p>Chuyên Khoa Xét Nghiệm</p>
-                                <p>Ths.Bs Chuyên Khoa Xét Nghiệm</p>
-                            </div>
-                            <hr className="my-0"/> </div>
-                    </div>
-                    <div className="col-sm-6 col-lg-3">
-                        <div className="hover-team">
-                            <div className="our-team"> <img src="./img/img-4.jpg" alt=""/>
-                                <div className="team-content">
-                                    <h3 className="title">BS.CKI Võ Thị Liễu</h3> <span className="post">Bác Sĩ Chuyên khoa Tim Mạch</span> </div>
-                                <ul className="social">
-                                    <li>
-                                        <a href="#" className="fab fa-facebook"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-twitter"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-google-plus"></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="fab fa-youtube"></a>
-                                    </li>
-                                </ul>
-                                <div className="icon"> <i className="fa fa-plus" aria-hidden="true"></i> </div>
-                            </div>
-                            <div className="team-description">
-                                <p>Chuyên khoa Tim Mạch </p>
-                                <p>BS.CKI Chuyên khoa Tim Mạch </p>
-                            </div>
-                            <hr className="my-0"/> </div>
-                    </div>
-                </div>
+
             </div>
            
 

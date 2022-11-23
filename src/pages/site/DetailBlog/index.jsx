@@ -184,7 +184,7 @@ export default function DitailNews(){
                     ListNewsCategory.map((item,index) => {
                     return(
                       <ul key={index}>
-                        <li><Link>{item.name} <span>(21)</span></Link> </li>
+                        <li><Link>{item.name} <span></span></Link> </li>
                       </ul>
                        )
                                           

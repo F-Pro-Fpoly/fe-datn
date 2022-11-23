@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { getInfo } from '../../../services/UserService';
 import CreateDalandar from './Doctor/AddBooking';
 import ListBooking from './Doctor/ListBooking';
+import DetailBooking from './Doctor/DetailBooking';
 
 
 function Profile () {
@@ -50,6 +51,7 @@ function Profile () {
                         <Route path="/lich-kham" element={<Booking  />} />
                         <Route path="/danh-sach-lich-kham" element={<ListBooking  />} />
                         <Route path="/them-lich-kham" element={<CreateDalandar  />} />
+                        <Route path="/chi-tiet-lich-kham/:id" element={<DetailBooking  />} />
                     </Routes>
                    
                 </div>

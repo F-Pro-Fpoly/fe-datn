@@ -1,75 +1,105 @@
 import "./Blog.scss";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { getListNewsAPI,getlistNews3NewsAPI,getlistNews9FeaturedAPI,getlistNewsCategoryAPI} from "../../../services/normal/NewsService";
 import Loading from "../../../components/Loading/Loading";
-import { setNavb } from "../../../redux/slices/InterfaceSile";
-import {useDispatch} from "react-redux"
+import {useDispatch,useSelector} from "react-redux";
 import { useEffect, useState } from "react";
 import Paginate from '../../../components/Paginate/Paginate';
+import Pagination from 'react-bootstrap/Pagination';
+import ReactPaginate from 'react-paginate';
 function News(){
+  const token = useSelector(state => state.auth.token);
 
-  const [ListNews, getNewsClient] = useState([]);
+  const [ListNews, getNews] = useState([]);
   const [ListNewsNew, getNewsNewClient] = useState([]);
   const [ListNewsFeatured, getNewsFeaturedClient] = useState([]);
   const [ListNewsCategory, getNewsCategoryClient] = useState([]);
+
   const [loading, getLoading] = useState(false);
-  // const [paginate, setPaginate] = useState(null);
+
+  const [paginate, setPaginate] = useState({
+    'total': '',
+    'count': '',
+    'per_page':'',
+    'current_page': '',
+    'total_pages': '',
+    'links': {}
+  });
+
   const [page, setPage] = useState(1);
-  const dispatch = useDispatch();
+    document.title = "Tin tức";
 
-  
-  useEffect(() => {
-    document.title = "Tin tức"
-    dispatch(setNavb(true))
     const start = async () => {
-        getLoading(true)
-        getNewsClient([])
-        let res = await getListNewsAPI({status: 1,page})
-        let data = res.data
-        let dataArr = data.data
-        // let pagination = data.meta.pagination ?? null;
-        // setPaginate(pagination); 
-
-        let resNew = await getlistNews3NewsAPI({status: 1})
-        let dataNew = resNew.data
-        let data3New = dataNew.data
-
-        let resFeatured = await getlistNews9FeaturedAPI({status: 1})
-        let dataFeatured = resFeatured.data
-        let data9Featured = dataFeatured.data
-
-        let resCategory = await getlistNewsCategoryAPI({status: 1})
-        let dataCategory = resCategory.data
-        let dataCy = dataCategory.data
-
-       
-        getLoading(false)
-        getNewsClient(dataArr)
-        getNewsNewClient(data3New)
-        getNewsFeaturedClient(data9Featured)
-        getNewsFeaturedClient(data9Featured)
-        getNewsCategoryClient(dataCy)
-      
-      
-    }
-
-      start()
+        getNews([]);
+        getLoading(true);
   
-  }, [page])
+        let res = await getListNewsAPI(token, {}, page);
+        let data = res.data;
+        let dataArr = data.data;
+        
 
+        let resNew = await getlistNews3NewsAPI({token});
+        let dataNew = resNew.data;
+        let data3New = dataNew.data;
+
+        let resFeatured = await getlistNews9FeaturedAPI({token});
+        let dataFeatured = resFeatured.data;
+        let data9Featured = dataFeatured.data;
+
+        let resCategory = await getlistNewsCategoryAPI({token});
+        let dataCategory = resCategory.data;
+        let dataCy = dataCategory.data;
+
+        getNewsNewClient(data3New);
+        getNewsFeaturedClient(data9Featured);
+        getNewsCategoryClient(dataCy);
+
+        getNews(dataArr);
+        let Pagination = data.meta.pagination ?? null;
+        setPaginate(Pagination);
+
+        getLoading(false);
+      
+    };
+  useEffect(() => {
+      start();
+  
+  }, []);
   const onChangePage = (number) =>{
     setPage(number);
-  }
+  };
+  const handlePageClick = async  (page) => {
+    try {
+      page = page + 1;
+      getNews([]);
+      getLoading(true);
+      let res = await getListNewsAPI( {}, page);
+      let data = res.data;
+      let dataArr = data.data;
 
+      getLoading(false);
+      getNews(dataArr);
+
+      // handle paginate
+      // let pagination = data.meta.pagination ?? null;
+      // setPaginate(pagination);
+    } catch (error) {
+      
+    }
+  };
     return(
-      <div className="formBooking">
-        <div className="page-title wb">
-          <h1 className="text-center top-20">Tin tức </h1>
+      <div className="formBooking ">
+        <div className="page-title wb ">
+            <div className="news">
+              <h1 className="text-center">Tin tức </h1>
+            </div>
         </div>
-        <section className="section wb">
+        <section className="section ">
           <div className="container">
             <div className="row">
-              <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+           
+              <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12">   
+              <>
                 <div className="page-wrapper">
                   <div className="row">
                     <div className="col-lg-10 offset-lg-1">
@@ -95,7 +125,7 @@ function News(){
                           <div className=" big-meta">
                             <h4><Link to={item.slug}>{item.name}</Link></h4>
                             <p className="an" dangerouslySetInnerHTML={{__html: item.content}}></p>
-                            <small>24 July, 2045</small>
+                            <small>{item.created_at}</small>
                           </div>
                         </div>
                       </div>
@@ -110,15 +140,27 @@ function News(){
                 <div className="row ">
                   <div className="col-md-12 ">
                     <nav aria-label="Page navigation">
-                      {/* <>
-                       {
-                        loading && <Loading />
-                      }
-                      {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
-                      </> */}
+                    {loading && <Loading />}
+                        <ReactPaginate
+                              breakLabel="..."
+                              nextLabel="next >"
+                              onPageChange={handlePageClick}
+                              pageRangeDisplayed={6}
+                              pageCount={paginate.total_pages ?? 0}
+                              previousLabel="< previous"
+                              className="pagination justify-content-start"
+                              pageClassName="page-item"
+                              pageLinkClassName="page-link"
+                              activeClassName="status"
+                              previousClassName="page-item"
+                              nextClassName="page-item"
+                              previousLinkClassName="page-link"
+                              nextLinkClassName="page-link"
+                          />
                     </nav>
                   </div>
-                </div>
+                </div> 
+                </>
               </div>
               <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <div className="sidebar">
@@ -138,7 +180,7 @@ function News(){
                               </div>
                               <div className="col-md-9">
                                 <h5 className="mb-1">{item.name}</h5>
-                                <small>12 Jan, 2045</small>
+                                <small>{item.created_at}</small>
                               </div>
                             </div>
                             </div>
@@ -176,7 +218,7 @@ function News(){
                     ListNewsCategory.map((item,index) => {
                     return(
                       <ul key={index}>
-                        <li><Link>{item.name} <span>(21)</span></Link> </li>
+                        <li><Link>{item.name} <span></span></Link> </li>
                       </ul>
                        )
                                           

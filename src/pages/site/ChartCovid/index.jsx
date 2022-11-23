@@ -66,14 +66,14 @@ function ChartCovid() {
           <div className="specialBlock_19">
             <div className="container containerFix">
               <div className="wrapBox">
-                <p className="text_1">Chuyên khoa</p>
+                <p className="text_1">BIỀU ĐỒ COVID</p>
                 <div className="">
                   <ol className="breadcrumb breadcrumbFix">
                     <li className="breadcrumb-item">
                       <Link to="/"><span style={{color: "white"}}>Trang chủ</span></Link>
                     </li>
                     <li className="breadcrumb-item">
-                      <Link to="chuyen-khoa" ><span style={{color: "white"}}>Chuyên khoa</span></Link>
+                      <Link to="chuyen-khoa" ><span style={{color: "white"}}>Biểu đồ covid</span></Link>
                     </li>
                   </ol>
                 </div>
@@ -125,14 +125,46 @@ function ChartCovid() {
             </div>
 
           <div className="col-md-12">
-          <div className="home__statistical-nav">
-            <ul>
-              <li>
-              <Link to="" id="tabvi" title="" className="active">Tình hình dịch cả nước</Link>
-              </li>
-            </ul>
-          </div>
-              <div className="box-content">
+            <div className="home__statistical-nav">
+              <ul>
+                <li>
+                <Link to="" id="tabvi" title="" className="active">Tình hình dịch cả nước</Link>
+                </li>
+              </ul>
+            </div>
+            <div className="home__juncture-flex">
+              <div className="box-juncture">
+                <div className="table-left">
+                  <div className="row head">
+                    <span className="city">Tỉnh/TP</span>
+                    <span className="total">Tổng số ca</span>
+                    <span className="daynow">24 giờ qua</span>
+                    <span className="die">Tử vong</span>
+                  </div> 
+                  <div className="tbody">
+                    {
+                         location.map((item,index) =>{
+                            return (
+                            <div className="row" key={index}>                    
+                              <span className="city">{item.name ?? ""}</span>
+                              <span className="total">{ new Intl.NumberFormat({ maximumSignificantDigits: 3}).format(item.cases)
+                                ?? ""}</span>
+                              <span className="daynow" style={{color:"red"}}>{item.casesToday  == 0 ? "-" : "+"+
+                                  new Intl.NumberFormat({ maximumSignificantDigits: 3}).format(item.casesToday)}</span>
+                              <span className="die">{new Intl.NumberFormat({ maximumSignificantDigits: 3}).format(item.death)
+                                ?? ""}</span>                                   
+                            </div>
+                       )
+                      })
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+                            
+
+
+              {/* <div className="box-content">
               <div className="col-md-6 border" >        
                 <table className="table custom" >
                   <thead className="table-dark">          
@@ -151,14 +183,11 @@ function ChartCovid() {
                               <tr key={index}>
                                 <th scope="row">{item.name ?? ""}</th>
                                 <td>{
-                                  new Intl.NumberFormat({ maximumSignificantDigits: 3}).format(item.cases)
-                                ?? ""}</td>
-                                <td style={{color:"red"}}>{ item.casesToday  == 0 ? "-" : "+"+
-                                  new Intl.NumberFormat({ maximumSignificantDigits: 3}).format(item.casesToday)
+                                 }</td>
+                                <td style={{color:"red"}}>{ 
                                  }</td>
                                 <td>{
-                                 new Intl.NumberFormat({ maximumSignificantDigits: 3}).format(item.death)
-                                ?? ""}</td>
+                                 }</td>
                               </tr>      
                             )
                         })
@@ -168,11 +197,8 @@ function ChartCovid() {
                  
                 </table>
               </div>
-{/*              
-              <div className="col-md-5.5 border" >
-                <canvas id="charta"></canvas>
+
               </div> */}
-              </div>
           </div>
         </div>
 
