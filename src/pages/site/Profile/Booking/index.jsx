@@ -12,16 +12,28 @@ function Booking() {
     const token = useSelector(state => state.auth.token )
     const user_id =useSelector(state => state.auth.user.id )
 
-    const [getBooking, setBooking ] = useState();
+    const [getNewBooking, setNewBooking ] = useState([]);
+    const [getCancelBooking, setCancelBooking ] = useState([]);
+    const [getComBooking, setComBooking ] = useState([]);
     const [loading, getLoading] = useState(false);
     const start  =  async () => {
         getLoading(true)
-        setBooking([])
-        let res = await getMyBookingServiceAPI(token,user_id) 
-        let data = res.data
-        let dataArr = data.data
+        setNewBooking([])
+        setCancelBooking([])
+        setComBooking([])
+        let res1 = await getMyBookingServiceAPI(token,user_id,1) 
+        let data1 = res1.data
+        let dataArr1 = data1.data
+        let res2 = await getMyBookingServiceAPI(token,user_id,4) 
+        let data2 = res2.data
+        let dataArr2 = data2.data
+        let res3 = await getMyBookingServiceAPI(token,user_id,5) 
+        let data3 = res3.data
+        let dataArr3 = data3.data
         getLoading(false)
-        setBooking(dataArr)
+        setNewBooking(dataArr1)
+        setComBooking(dataArr2)
+        setCancelBooking(dataArr3)
     }
 
     useEffect(() => {
@@ -60,23 +72,25 @@ function Booking() {
 
             <div className="tab-pane fade active show" id="tab-1" role="tabpanel">
                             <h6>Lịch khám đã đặt</h6>
-            
+
                 {
-                    getBooking &&   getBooking.map((item, index) => {
+                    getNewBooking.length > 0 ?
+
+                      getNewBooking.map((item, index) => {
                         return(
                           
-                               item.status_id == 1 &&  <div className="card border mb-4" key={index}>
+                            <div className="card border mb-4" key={index}>
                                 
                                <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
                                    
                                    <div className="d-flex align-items-center">
                                        <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
                                           
-                                       <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" /> 
+                                       <img src={`${process.env.REACT_APP_BE}${item.specialist_image}`} alt="" /> 
                                        </div>	
                                        
                                        <div className="ms-2">
-                                           <h6 className="card-title mb-0">Cơ xương khớp</h6>
+                                           <h6 className="card-title mb-0">{item.specialist_name}</h6>
                                            <ul className="nav nav-divider small">
                                                <li className="nav-item">Mã đặt lịch: {item.code && item.code }</li>
                                                <li className="nav-item">Phòng: {item.department_name && item.department_name}</li>
@@ -85,15 +99,24 @@ function Booking() {
                                    </div>
        
                                    
-                                   <div className="mt-2 mt-md-0">
-                                        {/* <p className="text-primary text-md-end mb-0">Thanh toán {item.payment_method && item.payment_method}</p> */}
+                                   <div className="mt-2 mt-md-0" style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        flexWrap: "wrap",
+                                        alignContent: "center",
+                                        justifyContent: "center",
+                                        alignItems: "flexEnd",
+                                        flexFlow: "column wrap",
+                                   }}>
+                                      
                                         <>
                                         {item.payment_method == "default" ? 
-                                            <p className="text-info text-md-end mb-0"> chưa đặt cọc</p>
+                                            <p className="text-info text-md-end mb-0"> Thanh toán tại cơ sở y tế</p>
                                             : 
-                                            <p className="text-success text-md-end mb-0">Đã đặt cọc</p>
+                                            <p className="text-success text-md-end mb-0">Thanh toán qua momo</p>
                                         }
                                         </>
+                                        <button className="btn btn-warning">Hủy lịch</button>
                                    </div>
                                </div>
        
@@ -102,17 +125,17 @@ function Booking() {
                                    <div className="row g-3" style={{textAlign: "center"}}>
                                        <div className="col-sm-6 col-md-4">
                                            <span>Giờ bắt đầu</span>
-                                           <h6 className="mb-0">07:00:00</h6>
+                                           <h6 className="mb-0">{item.time_start}</h6>
                                        </div>
        
                                        <div className="col-sm-6 col-md-4">
                                            <span>Giờ kết thúc</span>
-                                           <h6 className="mb-0">07:30:00</h6>
+                                           <h6 className="mb-0">{item.time_end}</h6>
                                        </div>
        
                                        <div className="col-md-4">
                                            <span>Ngày khám</span>
-                                           <h6 className="mb-0">02/11/2022</h6>
+                                           <h6 className="mb-0">{item.date}</h6>
                                        </div>
                                    </div>
                                </div>
@@ -121,75 +144,8 @@ function Booking() {
                     
                         )
                     })
-                }
-                {
-                loading && <Loading />
-                }
-                </div>
-                
-
-                
-                <div className="tab-pane fade" id="tab-2" role="tabpanel">
-                    <h6>Lịch khám đã hủy</h6>
-
-                    {
-                    getBooking &&   getBooking.map((item, index) => {
-                        return(
-                            item.status_id == 5 && 
-                            <div className="card border" key={index}>
-                            
-                            <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
-                                
-                                <div className="d-flex align-items-center">
-                                    <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
-                                        <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" /> 
-                                    </div>
-                                        
-                                    <div className="ms-2">
-                                        <h6 className="card-title mb-0">Cơ xương khớp</h6>
-                                        <ul className="nav nav-divider small">
-                                            <li className="nav-item">Mã đặt lịch: CGDSUAHA12548</li>
-                                            <li className="nav-item">Phòng: ABC</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                
-                                <div className="mt-2 mt-md-0">
-                                    <p className="text-danger text-md-end mb-0">Đã hủy</p>
-                                </div>
-                            </div>
-
-                            
-                            <div className="card-body">
-                                <div className="row g-3"  style={{textAlign: "center"}}>
-                                    <div className="col-sm-6 col-md-4">
-                                        <span>Giờ bắt đầu</span>
-                                        <h6 className="mb-0">07:00:00</h6>
-                                    </div>
-
-                                    <div className="col-sm-6 col-md-4">
-                                        <span>Giờ kết thúc</span>
-                                        <h6 className="mb-0">07:30:00</h6>
-                                    </div>
-
-                                    <div className="col-md-4">
-                                        <span>Ngày khám</span>
-                                        <h6 className="mb-0">02/11/2022</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                    
-                        )
-                        })
-                     }
-                </div>
-                
-
-                
-                <div className="tab-pane fade" id="tab-3" role="tabpanel">
-                <div className="bg-mode shadow p-4 rounded overflow-hidden">
+                    :
+                    <div className="bg-mode shadow p-4 rounded overflow-hidden">
                         <div className="row g-4 align-items-center">
                             
                             <div className="col-md-9">
@@ -203,6 +159,152 @@ function Booking() {
                             </div>
                         </div>
                     </div>
+                }
+                {
+                loading && <Loading />
+                }
+                </div>
+                
+
+                
+                <div className="tab-pane fade" id="tab-2" role="tabpanel">
+                    <h6>Lịch khám đã hủy</h6>
+
+                    {
+                    
+                    getCancelBooking.length > 0 ?
+
+                      getCancelBooking.map((item, index) => {
+                       return(
+                          
+                            <div className="card border mb-4" key={index}>
+                                
+                               <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
+                                   
+                                   <div className="d-flex align-items-center">
+                                       <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
+                                          
+                                       <img src={`${process.env.REACT_APP_BE}${item.specialist_image}`} alt="" /> 
+                                       </div>	
+                                       
+                                       <div className="ms-2">
+                                           <h6 className="card-title mb-0">{item.specialist_name}</h6>
+                                           <ul className="nav nav-divider small">
+                                               <li className="nav-item">Mã đặt lịch: {item.code && item.code }</li>
+                                               <li className="nav-item">Phòng: {item.department_name && item.department_name}</li>
+                                           </ul>
+                                       </div>
+                                   </div>
+       
+
+                               </div>
+       
+                               
+                               <div className="card-body">
+                                   <div className="row g-3" style={{textAlign: "center"}}>
+                                       <div className="col-sm-6 col-md-4">
+                                           <span>Giờ bắt đầu</span>
+                                           <h6 className="mb-0">{item.time_start}</h6>
+                                       </div>
+       
+                                       <div className="col-sm-6 col-md-4">
+                                           <span>Giờ kết thúc</span>
+                                           <h6 className="mb-0">{item.time_end}</h6>
+                                       </div>
+       
+                                       <div className="col-md-4">
+                                           <span>Ngày khám</span>
+                                           <h6 className="mb-0">{item.date}</h6>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                            
+                    
+                        )
+                        })
+                        :
+                        <div className="col-md-9">
+                            <h6>Hiện chưa có lịch khám hủy</h6>    
+                        </div>
+                       
+                     }
+                </div>
+                
+
+                
+                <div className="tab-pane fade" id="tab-3" role="tabpanel">
+                     
+                                       <h6>Lịch khám đã hoàn thành</h6>
+
+                {
+                    getComBooking.length > 0 ?
+
+                      getComBooking.map((item, index) => {
+                        return(
+                          
+                            <div className="card border mb-4" key={index}>
+                                
+                               <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
+                                   
+                                   <div className="d-flex align-items-center">
+                                       <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
+                                          
+                                       <img src={`${process.env.REACT_APP_BE}${item.specialist_image}`} alt="" /> 
+                                       </div>	
+                                       
+                                       <div className="ms-2">
+                                           <h6 className="card-title mb-0">{item.specialist_name}</h6>
+                                           <ul className="nav nav-divider small">
+                                               <li className="nav-item">Mã đặt lịch: {item.code && item.code }</li>
+                                               <li className="nav-item">Phòng: {item.department_name && item.department_name}</li>
+                                           </ul>
+                                       </div>
+                                   </div>
+
+                               </div>
+       
+                               
+                               <div className="card-body">
+                                   <div className="row g-3" style={{textAlign: "center"}}>
+                                       <div className="col-sm-6 col-md-4">
+                                           <span>Giờ bắt đầu</span>
+                                           <h6 className="mb-0">{item.time_start}</h6>
+                                       </div>
+       
+                                       <div className="col-sm-6 col-md-4">
+                                           <span>Giờ kết thúc</span>
+                                           <h6 className="mb-0">{item.time_end}</h6>
+                                       </div>
+       
+                                       <div className="col-md-4">
+                                           <span>Ngày khám</span>
+                                           <h6 className="mb-0">{item.date}</h6>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                            
+                    
+                        )
+                    })
+                    :
+                    <div className="bg-mode shadow p-4 rounded overflow-hidden">
+                    <div className="row g-4 align-items-center">
+                            <div className="col-md-9">
+                                <h6>Có vẻ như bạn chưa từng đặt lịch với FPRO</h6>
+                                <h4 className="mb-2">Hãy đặt lịch ngay để nhận được nhiều ưu đãi.</h4>
+                                <Link href="hotel-list.html" className="btn btn-primary-soft mb-0">Đặt lịch ngay</Link>
+                            </div>
+                            
+                            <div className="col-md-3 text-end">
+                                <img src="https://booking.webestica.com/assets/images/element/17.svg" className="mb-n5" alt="" />
+                            </div>
+                    </div>
+                    </div>
+                        }
+                        
+                  
                     
                 </div>
                 

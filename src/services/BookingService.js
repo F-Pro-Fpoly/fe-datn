@@ -68,7 +68,7 @@ function updateBookingDoctorServiceAPI({token, data, id}) {
 
 }
 
-function getMyBookingServiceAPI(token = null, user_id = null) {
+function getMyBookingServiceAPI(token = null, user_id = null, status_id = null) {
     
     try {
         let headers ={}; 
@@ -76,7 +76,7 @@ function getMyBookingServiceAPI(token = null, user_id = null) {
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
-        return API.get(`auth/booking/mylist/user_id=${user_id}`,{headers: headers});
+        return API.get(`auth/booking/mylist/user_id=${user_id}?status_id=${status_id}`,{headers: headers});
     } catch (error) {
         console.error(error);
         return [];
