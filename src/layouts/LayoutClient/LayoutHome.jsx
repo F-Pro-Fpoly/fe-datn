@@ -58,8 +58,8 @@ function LayoutHome() {
             <Nav getconfig = {getconfig} />
             <div className="main">                           
                 <Outlet />  
-                <ScrollToTop />      
-                <Footer getconfig = {getconfig}/>    
+                <ScrollToTop />
+                <Footer getconfig = {getconfig}/>      
             </div>
         </>
      );
