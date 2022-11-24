@@ -62,8 +62,21 @@ export default function DitailNews(){
   }, []);
     return(
       <div className="formBooking">
-      <div className="page-title wb">
-      </div>
+            <div className="page-title">
+            <div className="container news">
+                <div className="row">
+                    <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <h2>Tin Tuc</h2>
+                    </div>
+                    <div className="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item"><a href="#">Home</a></li>
+                            <li className="breadcrumb-item"><a href="#">News</a></li>
+                        </ol>
+                    </div>                   
+                </div>
+            </div>
+        </div>
         <section className="section wb formBooking">
             <div className="container ">
         
@@ -102,10 +115,9 @@ export default function DitailNews(){
                                     <div className="col-lg-12">
                                         <div className="comments-list">  
                                         <div id="fb-root"></div>
-                                            <div className="fb-comments " 
-                                                 data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
-                                                 data-width="" data-numposts="3">
-                                            </div>     
+                                                <div className="fb-comment-embed"
+                                                  data-href="https://www.facebook.com/zuck/posts/10102735452532991?comment_id=1070233703036185"
+                                                  data-width="500"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -113,69 +125,97 @@ export default function DitailNews(){
                 </div>
             </div>
             <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                <div className="sidebar">
-                <div className="widget">
-                    <h2 className="widget-title">Tin mới</h2>
-                    <div className="blog-list-widget">
-                    {loading && <Loading />}
-                        {
-                    ListNewsNew.map((item,index) => {
-                    return(
-                      <div className="list-group" key={index}>
-                          <Link to={item.slug}  className="list-group-item list-group-item-action flex-column align-items-start">
-                          <div className="w-100 justify-content-between">
-                            <div className="row">
-                              <div className="col-md-3">
-                                  <img src={ `${process.env.REACT_APP_BE}${item.file}` } alt="website template image" className="img-fluid float-left"/>
-                              </div>
-                              <div className="col-md-9">
-                                <h5 className="mb-1">{item.name}</h5>
-                                <small>{item.created_at}</small>
-                              </div>
-                            </div>
-                            </div>
-                          </Link>
+                  <div className="sidebar">
+                  <div className="widget">
+
+                                <div className="sf_right_featured--header"><h2>Xem nhiều tuần qua</h2></div>
+                                <div className="sf_right_featured--box sf_right_featured--first-box">
+                                    <div className="sf_right_featured--box-thumb"> 
+                                   <Link>
+                                        <div className="sf_right_featured--thumbnail-container"> 
+                                        <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2022/11/Apple-Watch-cuu-song-nguoi-5.jpg" alt="Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét" data-pin-no-hover="true"/>
+                                        <div className="sf_right_featured--thumb-overlay"></div>
+                                        </div>
+                                        </Link>
+                                    </div>
+                                    <div className="sf_right_featured--box-content">
+                                         <Link>
+                                            Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét
+                                        </Link>
+                                    </div>
+                                </div>
+                    </div>
+                    <div className="widget">
+                      <div className="blog-list-widget">
+                      {loading && <Loading />}
+                          {
+                      ListNewsNew.map((item,index) => {
+                      return(
+                        <div class="sf_right_featured--box sf_right_featured--small-box"key={index}>
+                        <div class="sf_right_featured--box-thumb"> 
+                                <Link to={item.slug}>
+                                <div class="sf_right_featured--thumbnail-container">
+                                    <img src={ `${process.env.REACT_APP_BE}${item.file}` } alt="website template image" className="img-fluid float-left"/>
+                                    <div class="sf_right_featured--thumb-overlay"></div>
+                                </div> 
+                                </Link>
+                        </div>
+                        <div class="sf_right_featured--box-content"> 
+                            <Link to={item.slug}>{item.name}</Link>
+                            <p>{item.created_at}</p>
+                        </div>
+                                    
+                        </div>
+                      )
+                                            
+                    })
+                    }
+                          
                       </div>
-                          )
-                                          
-                        })
-                        }
                     </div>
-                  </div>
-                  <div className="widget">
-                    <h2 className="widget-title">Tin nổi bật</h2>
-                    <div className="instagram-wrapper clearfix">
-                    {loading && <Loading />}
-                        {
-                    ListNewsFeatured.map((item,index) => {
-                    return(
-                      <Link to={item.slug}  key={index}>
-                        <img src={ `${process.env.REACT_APP_BE}${item.file}` } alt="website template image" className="img-fluid"/>
-                      </Link>
-                           )
-                                          
-                          })
-                          }
+                    <div class="widget">
+                    <div class="elementor-widget-container">
+                        <div class="sf-social">
+                            <div class="sf-social__wrapper">
+                                <div class="sf-social--header">
+                                    <h2>Kết nối với Sforum</h2>
+                                </div>
+                                <div class="sf-social-icons">
+                                    <div class="sf-social-icon--container"> 
+                                        <a href="https://www.facebook.com/SforumTech" target="_blank" rel="nofollow">
+                                            <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/facebook-icon.png"
+                                            alt="Facebook" data-pin-no-hover="true"/> 
+                                        </a>
+                                    </div>
+                                    <div class="sf-social-icon--container"> 
+                                        <a href="https://www.facebook.com/groups/sforum28" target="_blank"> 
+                                            <img src="https://cdn.cellphones.com.vn/media/wysiwyg/Group_Facebookrs.png" alt="Instagram" data-pin-no-hover="true"/>
+                                        </a>
+                                    </div>
+                                    <div class="sf-social-icon--container"> 
+                                        <a href="https://www.tiktok.com/@sforumvn" target="_blank" rel="nofollow">
+                                            <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/tiktok-1.png" alt="Tiktok" data-pin-no-hover="true"/>
+                                        </a>
+                                    </div>
+                                    <div class="sf-social-icon--container"> 
+                                        <a href="https://www.youtube.com/channel/UCjxjHD44GP4EZWgLyV-NnWg" target="_blank" rel="nofollow">
+                                            <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/youtube-1.png" alt="Youtube" data-pin-no-hover="true"/>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div className="widget">
-                    <h2 className="widget-title">Danh sách tin</h2>
-                    <div className="link-widget">
-                    {loading && <Loading />}
-                        {
-                    ListNewsCategory.map((item,index) => {
-                    return(
-                      <ul key={index}>
-                        <li><Link>{item.name} <span></span></Link> </li>
-                      </ul>
-                       )
-                                          
-                      })
-                      }
+                    </div>
+                    <div class="widget">
+                                <div class="banner-spot clearfix">
+                                    <div class="banner-img">
+                                       <Link><img src="../img/banner_03.jpg" alt="" class="img-fluid"/></Link> 
+                                    </div>
+                                </div>
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
         </div>
   </section>
