@@ -13,9 +13,12 @@ function DetailBooking() {
 
     const [value, setValue] = useState([]);
     const [status, setStatus] = useState([])
+    const [changeState, setchangeState] = useState("");
+
+
     const start = async () => {
         let res = await getDetailMyBookingServiceAPI(token,id);
-        let status = await getListStatuServiceAPI(token,2)
+        let status = await getListStatuServiceAPI(token,1)
         let dataStatus = status.data
         let dataArrStatus = dataStatus.data
         setStatus(dataArrStatus)
@@ -139,11 +142,12 @@ function DetailBooking() {
                     </div>   
                 <form onSubmit={HandleSubmit} ref = {formRef}>        
                     <div className="form-group mb-3">
-                 
+                      
                         <select name="statusBooking" className="form-control" id=""
-                        defaultValue={ value.status_id ? value.status_id : 1} 
+                        value={ value.status_id ? value.status_id : 0} 
+                        onChange ={(e) => setValue( {...value, status_id: e.target.value})}
                         >
-                            <option value="1">Chọn trạng thái</option>
+                            <option value="0" disabled>Chọn trạng thái</option>
                             {
                                 status.map((item,index) => {
                                     return (
@@ -153,11 +157,11 @@ function DetailBooking() {
                             }
                         </select>
                     </div>
-                            {console.log(value)}
+                         
                     <div className="mb-3">
                         <label className="form-label">Thông tin khám</label>
                         <textarea name="info" className="form-control" style={{resize:"none"}}
-                        value={value.infoAfterExamination ? value.infoAfterExamination : ""}
+                        defaultValue={value.infoAfterExamination ? value.infoAfterExamination : ""}
                         id="" cols="5" rows="2"
                         ></textarea>
                     </div>   
