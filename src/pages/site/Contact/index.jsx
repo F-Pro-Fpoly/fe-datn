@@ -66,13 +66,10 @@ function Contact(){
                                     <label>Số điện thoại</label>
                                   </div>
                                   <div className="flex-rev-contact">
-                                      
-                                      <select  name="type" id="" >
-                                          <option>--Chọn--</option>
-                                          <option value="0">Chưa đăng ký</option>
-                                          <option value="1">Đã đăng ký</option>
+                                      <select  name="type" id=""  disabled>
+                                          <option value="0">Liên hệ</option>
                                       </select>
-                                      <label>Đăng ký lịch khám </label>
+                                      <label></label>
                                     </div>
                                   <div className="flex-rev-contact">
                                     <textarea placeholder="Nhập nội dung vào ô này !...." name="contents" ></textarea>

@@ -69,7 +69,7 @@ function Web() {
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ky-lich"  element={<Book />}/>             
                     <Route path="/ve-chung-toi"  element={<About />}/>
-                    <Route path="/tin-tuc"  element={<News />}/>
+                    <Route path="/tin-tuc/*"  element={<News />}/>
                     <Route path="/tin-tuc/:slug"  element={ (<DetailNews />)}/>
                     <Route path="/bieu-do-covid"  element={<ChartCovid />}/>
                     <Route path="/lien-he"  element={<Contact />}/>

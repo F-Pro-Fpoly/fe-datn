@@ -1,30 +1,81 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { getDetailMyBookingServiceAPI } from "../../../../../services/BookingService";
-
+import { getDetailMyBookingServiceAPI, getListStatuServiceAPI, updateBookingDoctorServiceAPI } from "../../../../../services/BookingService";
+import { toast,ToastContainer } from 'react-toastify';
 function DetailBooking() {
 
     const token = useSelector(state => state.auth.token)
     const param  = useParams();
     const id = param.id;
+    const formRef = useRef();
+
     const [value, setValue] = useState([]);
+    const [status, setStatus] = useState([])
+    const [changeState, setchangeState] = useState("");
+
 
     const start = async () => {
         let res = await getDetailMyBookingServiceAPI(token,id);
+        let status = await getListStatuServiceAPI(token,1)
+        let dataStatus = status.data
+        let dataArrStatus = dataStatus.data
+        setStatus(dataArrStatus)
         let data = res.data;
         let dataArr = data.data;
         setValue(dataArr);
     }
 
-
     useEffect(() => { 
         document.title = "Trang chi tiết lịch khám"
         start()
     }, [])
+
+
+    const HandleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(formRef.current)
+
+        const req = {
+            "token" : token,
+            "data": formData,  
+            "id" : id,
+        }
+
+        try {
+            let res =  await updateBookingDoctorServiceAPI(req);
+            let message = res.data.message;
+            toast.success(message);
+        } catch (error) {
+            console.log(error);
+            let res = error.response;
+            let status = res.status;
+            console.log(status);
+          
+                let data = res.data;
+                let message = data.message;
+                toast.error(message);
+          
+        }
+
+    }
+
     return ( 
        
+      <>
+        <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        />
+
             <div className="card border">
         
             <div className="card-header border-bottom">
@@ -89,17 +140,53 @@ function DetailBooking() {
                         defaultValue={value.description} disabled>
                         </textarea>
                     </div>   
-                    <form action="">        
+                <form onSubmit={HandleSubmit} ref = {formRef}>        
                     <div className="form-group mb-3">
-                        <select name="timebooking" className="form-control" id=""
-                        defaultValue="1" 
+                      
+                        <select name="statusBooking" className="form-control" id=""
+                        value={ value.status_id ? value.status_id : 0} 
+                        onChange ={(e) => setValue( {...value, status_id: e.target.value})}
                         >
-                            <option value="1">Chọn trạng thái</option>
-                            <option value='2'>Khách hàng không đến</option>
-                            <option value='3'>Hoàn tất</option>                 
+                            <option value="0" disabled>Chọn trạng thái</option>
+                            {
+                                status.map((item,index) => {
+                                    return (
+                                        <option  key={index} value={item.id}>{item.name}</option>
+                                    )
+                                })
+                            }
                         </select>
                     </div>
-    
+                         
+                    <div className="mb-3">
+                        <label className="form-label">Thông tin khám</label>
+                        <textarea name="info" className="form-control" style={{resize:"none"}}
+                        defaultValue={value.infoAfterExamination ? value.infoAfterExamination : ""}
+                        id="" cols="5" rows="2"
+                        ></textarea>
+                    </div>   
+
+                    <div className="mb-3">
+                        <label className="form-label">File đính kèm</label>
+                        <input className="form-control" name = "file" 
+                        type="file" placeholder="Thông tin khám" />
+
+                        {
+                            value.file_name ? 
+                        
+                            <div className="mb-3">
+                            <p>Có 1 file đã upload</p>
+                            <a href={`${process.env.REACT_APP_BE}${ value.file_name}` }
+                            className="btn btn-primary">Tải file</a> 
+                            </div>
+                            : ""
+                        }
+
+                         
+                    </div>   
+
+                 
+                      
                     <div className="row g-3">
                     <div className="col-md-2">
                     <button className="btn btn-primary" style={{width:"100%"}} type="submit">Xác nhận</button>
@@ -151,6 +238,7 @@ function DetailBooking() {
         
             </div>
      
+      </>
 
      );
 }

@@ -24,7 +24,7 @@ function ListBooking() {
       getLoading(true)
       getListbooking([])
       let res = await getListBookingDoctorServiceAPI(token,search,id_doctor) 
-      let status = await getListStatuServiceAPI(token)
+      let status = await getListStatuServiceAPI(token,1)
       let dataStatus = status.data
       let dataArrStatus = dataStatus.data
       setStatus(dataArrStatus)
@@ -69,7 +69,7 @@ function ListBooking() {
                 <option value="0" disabled>Chọn Trạng thái</option>
                 {status.map((item,index) => {
                     return(
-                      <option value={item.id}>{item.name}</option>
+                      <option key={index} value={item.id}>{item.name}</option>
                     )
                 })}       
             </select>      
