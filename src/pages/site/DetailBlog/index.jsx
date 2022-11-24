@@ -74,12 +74,15 @@ export default function DitailNews(){
                             <h2>{NewsDetail.name}</h2>
                             <div className="blog-meta big-meta">
                                 <small>
-                                    <a href="">07/11/2022</a>
+                                    <a href="">{NewsDetail.created_at}</a>
                                 </small>
                                 <small>
                                     <a href="">
                                         <i className="fa fa-eye"></i> {NewsDetail.view}
                                     </a>
+                                </small>
+                                <small>
+                                    <a href="">{NewsDetail.category_id}</a>
                                 </small>
                             </div>
                         </div>
@@ -92,21 +95,13 @@ export default function DitailNews(){
                                 <p dangerouslySetInnerHTML={{__html: NewsDetail.content}}></p>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="banner-spot clearfix">
-                                <div className="banner-img">
-                                    <img src="../../img/banner_01.jpg" alt="website template image" className="img-fluid"/>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
                     <hr className="invis1"/>
                         <div className="custombox clearfix">
-                            <h4 className="small-title">3 Bình luận</h4>
+                            <h4 className="small-title">Bình luận</h4>
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <div className="comments-list">
+                                        <div className="comments-list">  
+                                        <div id="fb-root"></div>
                                             <div className="fb-comments " 
                                                  data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
                                                  data-width="" data-numposts="3">
@@ -115,15 +110,6 @@ export default function DitailNews(){
                                     </div>
                                 </div>
                         </div>
-                    <hr className="invis1"/>
-                            <div className="custombox clearfix">
-                                <h4 className="small-title">Bình luận</h4>
-                                <div className="row">
-                                    <div className=" col-lg-12">
-                                        <div id="fb-root"></div>
-                                    </div> 
-                                </div>
-                            </div>
                 </div>
             </div>
             <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12">
@@ -144,7 +130,7 @@ export default function DitailNews(){
                               </div>
                               <div className="col-md-9">
                                 <h5 className="mb-1">{item.name}</h5>
-                                <small>12 Jan, 2045</small>
+                                <small>{item.created_at}</small>
                               </div>
                             </div>
                             </div>
