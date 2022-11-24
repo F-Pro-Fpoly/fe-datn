@@ -152,7 +152,9 @@ function Info(infoUser) {
                             <input id="uploadfile-1"
                             name='avatar'
                              className="form-control d-none" 
-                             type="file" />
+                             type="file"
+                             accept="image/png, image/gif, image/jpeg" 
+                             />
                         </div>
                     </div>
 
