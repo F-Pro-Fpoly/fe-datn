@@ -8,15 +8,17 @@ import Moment from 'moment';
 import { useEffect } from 'react';
 
 
-function Info(infoUser) {
+function Info( props) {
 
-  
     const token = useSelector(state => state.auth.token )
-    const id = infoUser.infoUser.id
-
+    const id = props.infoUser.id
+   
     const formRef = useRef();
     const formRefPass = useRef();
-    const [gender, setGender] = useState(null);
+
+    const gt = (e) => {
+        props.changGender(e.target.value)
+    }
 
     const onSubmit  = async (e) => {
         e.preventDefault();
@@ -78,7 +80,6 @@ function Info(infoUser) {
        
     },[])
     
-    console.log(gender);
 
     return(
        <>
@@ -142,7 +143,7 @@ function Info(infoUser) {
                         <div className="d-flex align-items-center">
                             <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
                                 <span className="avatar avatar-xl">
-                                    <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={`${process.env.REACT_APP_BE}${infoUser.infoUser.thumbnail_name}`}                         
+                                    <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={`${process.env.REACT_APP_BE}${props.infoUser.thumbnail_name}`}                         
                                     alt="Avatar" />                      
                                 </span>
                                                     
@@ -161,7 +162,7 @@ function Info(infoUser) {
                     
                     <div className="col-md-6">
                         <label className="form-label">Họ và tên<span className="text-danger">*</span></label>
-                        <input type="text" className="form-control" defaultValue={infoUser.infoUser.name}
+                        <input type="text" className="form-control" defaultValue={props.infoUser.name}
                         name="name"
                         placeholder="Nhập họ và tên" />
                     </div>
@@ -169,7 +170,7 @@ function Info(infoUser) {
                     
                     <div className="col-md-6">
                         <label className="form-label">Email<span className="text-danger">*</span></label>
-                        <input type="email" disabled className="form-control" defaultValue={infoUser.infoUser.email} 
+                        <input type="email" disabled className="form-control" defaultValue={props.infoUser.email} 
                         name="email"
                         placeholder="Nhập địa chỉ email" />
                     </div>
@@ -177,7 +178,7 @@ function Info(infoUser) {
                     
                     <div className="col-md-6">
                         <label className="form-label">Số điện thoại<span className="text-danger">*</span></label>
-                        <input type="text" className="form-control" defaultValue={infoUser.infoUser.phone}
+                        <input type="text" className="form-control" defaultValue={props.infoUser.phone}
                         name ="phone"
                         placeholder="Nhập số điện thoại" />
                     </div>
@@ -185,24 +186,24 @@ function Info(infoUser) {
                      
                     <div className="col-md-6">
                         <label className="form-label">Ngày sinh<span className="text-danger">*</span></label>
-                        <input type="date"  defaultValue={infoUser.infoUser.date} className="form-control"
+                        <input type="date"  defaultValue={props.infoUser.date} className="form-control"
                         name = "date"
                         placeholder="Nhập ngày sinh"  />
                     </div>
 
 
                     {
-                        infoUser.infoUser.role_id == 2 ? 
+                        props.infoUser.role_id == 2 ? 
                         <>
                            <div className="col-md-6">
                         <label className="form-label">Chuyên khoa</label>
-                        <input type="text" className="form-control" value={infoUser.infoUser.specailist_name}
+                        <input type="text" className="form-control" value={props.infoUser.specailist_name}
                        
                         disabled  />
                         </div>  
                         <div className="col-md-6">
                             <label className="form-label">Phòng ban</label>
-                            <input type="text" className="form-control" value={infoUser.infoUser.department_name}
+                            <input type="text" className="form-control" value={props.infoUser.department_name}
                             disabled />
                         </div>
                         </>
@@ -213,33 +214,32 @@ function Info(infoUser) {
                     
                     <div className="col-md-12">
                         <label className="form-label">Giới tính<span className="text-danger">*</span></label>
-                        <div className="d-flex gap-4" onChange={(e) => setGender({...gender, gender: e.target.value})}>
+                        <div className="d-flex gap-4" onChange={(e) => gt(e)}>
 
                             <div className="form-check radio-bg-light">
                                 <input className="form-check-input" type="radio" name="gender" id="flexRadioDefault1"
-                                   value="1"
-                            
-                                checked={infoUser.infoUser.gender === 1 ? true : false} />
+                                   defaultValue="1"
+                                   defaultChecked={props.infoUser.gender === 1 ? true : false}
+                                   />
                                 <label className="form-check-label" htmlFor="flexRadioDefault1">
                                    Nam
                                 </label>
                             </div>
                             <div className="form-check radio-bg-light">
                                 <input className="form-check-input" type="radio" name="gender" 
-                                value="2"
+                                defaultValue="2"
                                 id="flexRadioDefault2"
-                             
-                                checked={infoUser.infoUser.gender === 2 ? true : false} />
+                                defaultChecked={props.infoUser.gender === 2 ? true : false}
+                                />
                                 <label className="form-check-label" htmlFor="flexRadioDefault2">
                                     Nữ
                                 </label>
                             </div>
                             <div className="form-check radio-bg-light">
                                 <input className="form-check-input" type="radio" name="gender" 
-                                value="3"
-                                id="flexRadioDefault3"
-                               
-                                checked={infoUser.infoUser.gender === 3 ? true : false} />
+                                defaultValue="3"
+                                defaultChecked={props.infoUser.gender === 3 ? true : false}
+                                id="flexRadioDefault3"/>
                                 <label className="form-check-label" htmlFor="flexRadioDefault3">
                                     Khác
                                 </label>
@@ -249,17 +249,17 @@ function Info(infoUser) {
                    
                     <div className="col-12">
                         <label className="form-label">Địa chỉ</label>
-                        <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.address}   
+                        <textarea className="form-control" rows="3" spellCheck="false" defaultValue={props.infoUser.address}   
                         name="address"
                         ></textarea>
                     </div>
               
                     {
-                         infoUser.infoUser.role_id === 2 ?
+                         props.infoUser.role_id === 2 ?
 
                           <div className="col-12">
                             <label className="form-label">Thông tin bác sĩ</label>
-                            <textarea className="form-control" rows="3" spellCheck="false" defaultValue={infoUser.infoUser.user_info} ></textarea>
+                            <textarea className="form-control" rows="3" spellCheck="false" defaultValue={props.infoUser.user_info} ></textarea>
                         </div>
                         :
                         ""

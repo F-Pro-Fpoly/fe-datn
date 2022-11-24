@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ClinicUiHeader({specialist = {}}) {
     const [showAll, setShowAll] = useState(false);
@@ -11,6 +11,10 @@ function ClinicUiHeader({specialist = {}}) {
         setShowAll(true)
         return
     }
+
+    useEffect(()=>{
+        document.title = specialist.name;
+    },[])
 
     return ( 
         <div className="infoClinic">

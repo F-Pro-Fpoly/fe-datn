@@ -1,7 +1,7 @@
 import API from './api';
 // import axios from 'axios';
 
-function createSchedule({token, data}) {
+function createSchedule({token, data, search={}}) {
     let headers = {}
     if(token){
         headers = {...headers, "Authorization": `Bearer ${token}`};

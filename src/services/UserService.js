@@ -20,6 +20,20 @@ function getListUsersAPI(token = null, search = {}, page = 1) {
 
 }
 
+function getListUsersV2_1({token, search = {}}) {
+    let headers ={}; 
+    let url = `auth/user/list-v2?`;
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    for(let se in search) {
+        url += `${se}=${search[se]}&`;
+    }
+
+    return API.get(url, {headers: headers});
+}
+
 function createUserApi({token, data}) {
     try {
         let headers ={}; 
@@ -165,4 +179,4 @@ function getUserClientService({token}) {
 
 
 
-export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor, updateUserClient, getUserClientService}
+export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor, updateUserClient, getUserClientService, getListUsersV2_1}
