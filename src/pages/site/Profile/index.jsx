@@ -16,7 +16,9 @@ function Profile () {
     const token = useSelector(state => state.auth.token )
 
     const [infoUser, setInfoUser] = useState([])
-
+    const changGender = (input) => {
+        setInfoUser({...infoUser, gender: input})
+    }
 
     const start  = async () =>{
         let res =  await  getInfo({token})
@@ -47,7 +49,7 @@ function Profile () {
                         </button>
                     </div>       
                     <Routes>
-                        <Route path="/" element={<Info infoUser={infoUser}  />} />
+                        <Route path="/" element={<Info changGender={changGender} infoUser={infoUser}  />} />
                         <Route path="/lich-kham" element={<Booking  />} />
                         <Route path="/danh-sach-lich-kham" element={<ListBooking  />} />
                         <Route path="/them-lich-kham" element={<CreateDalandar  />} />
