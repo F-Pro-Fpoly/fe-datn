@@ -8,6 +8,9 @@ import {setLoading} from "../../../../redux/slices/InterfaceSile"
 import moment from 'moment/moment.js';
 import "../Calendar.scss";
 import { useRef } from "react";
+import Select from 'react-select';
+import { getListUsersV2_1 } from "../../../../services/UserService";
+
 function CreateDalandar() {
     const token = useSelector(state=>state.auth.token);
     const user = useSelector(state => state.auth.user);
@@ -17,19 +20,44 @@ function CreateDalandar() {
     const [show, setShow] = useState(false);
     const [listSchedule, setListSchedule] = useState([]);
     const [listTsByDate, setListTsByDate] = useState([]);
+    const [listUserDoctor, setListUserDoctor] = useState([]);
+    const [userDoctorValue, setUserDoctorValue] = useState({
+        'label': '--Chọn--',
+        'value': 0
+    });
 
     // method
     const start = async () => {
-        if(date) {
+        // if(date) {
+        //     dispatch(setLoading(true));
+        //     let res = await listScheduleApi({token, search:{
+        //         "create_by": user.id,
+        //         "date": moment(new Date(date)).format('YYYY-MM-DD')
+        //     }});
+        //     let data = res.data.data;
+        //     setListSchedule(data);
+        //     dispatch(setLoading(false));
+        // }
+        try {
             dispatch(setLoading(true));
-            let res = await listScheduleApi({token, search:{
-                "create_by": user.id,
-                "date": moment(new Date(date)).format('YYYY-MM-DD')
+            let res = await getListUsersV2_1({token, search: {
+                'role_code': 'doctor'
             }});
             let data = res.data.data;
-            setListSchedule(data);
+            let dataHadle = data.map((item) => {
+                return {
+                    'label': item.name,
+                    'value': item.id
+                }
+            });
+            setListUserDoctor(dataHadle);
             dispatch(setLoading(false));
+        } catch (error) {
+            
         }
+    }
+    const handleSelect = (data) => {
+        setUserDoctorValue(data);
     }
     const handleShow = async () => {
         if(!date){
@@ -39,7 +67,8 @@ function CreateDalandar() {
         dispatch(setLoading(true))
         try {
             let res = await listTimeslot({token, search:{
-                "date" : date
+                "date" : date,
+                'doctor_id': userDoctorValue.value
             }})
             let data = res.data.data;
             setListTsByDate(data);
@@ -60,11 +89,13 @@ function CreateDalandar() {
         console.log(dateFormat);
         // return 
         formData.append("date", dateFormat);
+        formData.append('doctor_id', userDoctorValue.value);
         try {
             let res = await createSchedule({token, data:formData});
             let message = res.data.message;
             toast.success(message);
-            start()
+            // start()
+            handleSearchBtn();
             setShow(false)
         } catch (error) {
             let res = error.res;
@@ -72,27 +103,61 @@ function CreateDalandar() {
             toast.error(message);
         }
     }
+    const handleSearchBtn = async () => {
+        try {
+            setListSchedule([]);
+            if (userDoctorValue.value == 0) throw "Bạn chưa chọn tên bác sĩ";
+            if(date) {
+                dispatch(setLoading(true));
+                let res = await listScheduleApi({token, search:{
+                    "created_by": userDoctorValue.value,
+                    "date": moment(new Date(date)).format('YYYY-MM-DD')
+                }});
+                let data = res.data.data;
+                setListSchedule(data);
+                dispatch(setLoading(false));
+            }
+        } catch (error) {
+            if(error.response) {
+                toast.error(error.response.data.message);
+                return
+            }
+            toast.error(error);
+        }
+    }
 
     useEffect(() => {
         start()
-    },[date])
+    },[])
 
     return ( 
-
-        user.specailist_id ? (
         <div className="danlandar">
             <ToastContainer />
             <div className="adminItem">
-                <h5>Tạo lịch khám cho <span className="text-danger">{user.name}</span></h5>
-                <div className="danlandar-header">
-                    <div className="danlandar-header-date">
-                        <label htmlFor="" className="form-label">Chọn ngày:  </label>
-                        <input type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
+                <div className="row">
+                    <div className="col-4">
+                        <Select
+                            options={listUserDoctor}
+                            value={userDoctorValue}
+                            onChange={handleSelect}
+                        />
                     </div>
-                    <button className="btn btn-primary" onClick={handleShow}>Tạo</button>
+                    <div className="col-4">
+                        <div className="danlandar-header-date">
+                            <label htmlFor="" className="form-label">Chọn ngày:  </label>
+                            <input type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
+                        </div>
+                    </div>
+                    <div className="col-4">
+                        <button className="btn btn-secondary" onClick={handleSearchBtn}>Xác nhận</button>
+                    </div>
+                </div>
+                <div className="danlandar-header mt-3">
+                    
+                    <button className="btn btn-primary" type="button" onClick={handleShow}>Tạo</button>
                 </div>
                 <div className="danlandar-body">
-                    {(date && listSchedule.length > 0) ? listSchedule.map((item, index) => (
+                    {(date || listSchedule.length > 0) ? listSchedule.map((item, index) => (
                         <div className="danlandar-item"  key={index}>
                             <span>{item.time_start}</span>
                             <span>-</span>
@@ -136,11 +201,7 @@ function CreateDalandar() {
                 </Modal>
             </div>
         </div>
-        ):(
-            <h3>Vui lòng cập nhập profile đầy đủ</h3>
         )
-        
-     );
 }
 
 export default CreateDalandar;

@@ -15,17 +15,21 @@ function NavBarAdmin({className}) {
             name: "Danh sách lịch khám",
             to: "/admin/booking/list"
         },
+        {
+            "name": "Tạo lịch",
+            to: "/admin/booking/add"
+        }
     ]
 
-    if(user.role_id == 2) {
-        NavLich = [
-            ...NavLich,
-            {
-                "name": "Tạo lịch",
-                to: "/admin/booking/add"
-            }
-        ];
-    }
+    // if(user.role_id == 2) {
+    //     NavLich = [
+    //         ...NavLich,
+    //         {
+    //             "name": "Tạo lịch",
+    //             to: "/admin/booking/add"
+    //         }
+    //     ];
+    // }
 
     const start = async () =>{
         try {
