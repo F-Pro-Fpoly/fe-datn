@@ -34,7 +34,7 @@ function getListBookingDoctorServiceAPI(token = null,search = {},user_id = null)
     }
 }
 
-function getListStatuServiceAPI(token = null) {
+function getListStatuServiceAPI(token = null,status_group=null) {
     
     try {
         let headers ={}; 
@@ -42,7 +42,25 @@ function getListStatuServiceAPI(token = null) {
             headers = {...headers, "Authorization": `Bearer ${token}`};
         }
         let url = `auth/booking/statusBooking`
+        url+= `?status_group=${status_group}`
         return API.get(url,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+
+}
+
+function updateBookingDoctorServiceAPI({token, data, id}) {
+    
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+        }
+        let url = `auth/booking/updateBooking/${id}`
+        url+= `?_method=PUT`
+        return API.post(url,data,{headers: headers});
     } catch (error) {
         console.error(error);
         return [];
@@ -98,4 +116,4 @@ function getDetailMyBookingServiceAPI(token = null, id = null) {
 //     }
 // }
 
-export { getListServiceAPI,getMyBookingServiceAPI,getDetailMyBookingServiceAPI,getListBookingDoctorServiceAPI,getListStatuServiceAPI}
+export { getListServiceAPI,getMyBookingServiceAPI,getDetailMyBookingServiceAPI,getListBookingDoctorServiceAPI,getListStatuServiceAPI,updateBookingDoctorServiceAPI}
