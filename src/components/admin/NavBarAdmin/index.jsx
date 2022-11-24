@@ -151,6 +151,10 @@ function NavBarAdmin({className}) {
                     {
                         name: "Danh sách đăng ký lịch khám",
                         to: "/admin/lien-he/danh-sach-dang-ky-lich-kham"
+                    },
+                    {
+                        name: "Mail",
+                        to: "/admin/lien-he/mail"
                     }
                     ]} icon="bi bi-layout-text-sidebar" />
 

@@ -56,6 +56,8 @@ import ListContactBooking from "./pages/admin/Contact/ListContactBooking/ListCon
 
 import ReplyContactBooking from "./pages/admin/Contact/ListContactBooking/replyContactBooking";
 import ReplyContact from "./pages/admin/Contact/ListContact/replyContact";
+import Mail from "./pages/admin/Contact/Mail";
+
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -111,6 +113,7 @@ function Web() {
                         <Route element={<ListContact />} path="danh-sach-lien-he" />
                         <Route element={<ListContactBooking />} path="danh-sach-dang-ky-lich-kham" />
                         <Route element={<ReplyContact />} path="tra-loi-lien-he/:id" />
+                        <Route element={<Mail />} path="mail" />
                         <Route element={<ReplyContactBooking />} path="tra-loi-dang-ky-lich/:id" />
                     </Route>
 
