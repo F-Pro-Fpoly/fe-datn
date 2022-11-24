@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { Button, Form, Modal, Table } from "react-bootstrap";
+import { Button, Form, FormFloating, Modal, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { createSchedule, listScheduleApi, listTimeslot } from "../../../../services/ScheduleService";
@@ -10,6 +10,7 @@ import "../Calendar.scss";
 import { useRef } from "react";
 import Select from 'react-select';
 import { getListUsersV2_1 } from "../../../../services/UserService";
+import { Checkbox, FormControlLabel } from "@mui/material";
 
 function CreateDalandar() {
     const token = useSelector(state=>state.auth.token);
@@ -25,6 +26,8 @@ function CreateDalandar() {
         'label': '--Chọn--',
         'value': 0
     });
+    const [intervals, setIntervals] = useState('M');
+    const [checkBoxState, setCheckBoxState] = useState(false);
 
     // method
     const start = async () => {
@@ -68,11 +71,11 @@ function CreateDalandar() {
         try {
             let res = await listTimeslot({token, search:{
                 "date" : date,
-                'doctor_id': userDoctorValue.value
+                'doctor_id': userDoctorValue.value,
+                'interval': intervals
             }})
             let data = res.data.data;
             setListTsByDate(data);
-
             setShow(true)   
             dispatch(setLoading(false))
         } catch (error) {
@@ -80,7 +83,10 @@ function CreateDalandar() {
         }
 
     }
-    const handleClose = () => setShow(false)
+    const handleClose = () => {
+        setShow(false)
+        setCheckBoxState(false);
+    }
     const handleSubmitModal = async (e) => {
         e.preventDefault();
         let formData = new FormData(formRef.current);
@@ -123,6 +129,27 @@ function CreateDalandar() {
                 return
             }
             toast.error(error);
+        }
+    }
+
+    const handleOnChangeIntervalInput = async (e) => {
+        dispatch(setLoading(true))
+        let interval = e.target.value;
+        setIntervals(e.target.value);
+        try {
+            let res = await listTimeslot({token, search:{
+                "date" : date,
+                'doctor_id': userDoctorValue.value,
+                'interval': interval
+            }})
+            let data = res.data.data;
+            setListTsByDate(data);
+            dispatch(setLoading(false))
+        } catch (error) {
+            if(error.response){
+                let message = error.response.data.message;
+                toast.error(message)
+            }
         }
     }
 
@@ -173,6 +200,34 @@ function CreateDalandar() {
                     <Modal.Title>Chọn khoảng thời gian</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        <div className="row my-2">
+                            <div className="col-4">
+                                <Form.Select 
+                                    value={intervals}
+                                    onChange={handleOnChangeIntervalInput}
+                                >
+                                    <option value="M">Sáng</option>
+                                    <option value="A">Chiều</option>
+                                </Form.Select>
+                            </div>
+
+                            <div className="col-4">
+                                <FormControlLabel
+                                    control={<Checkbox
+                                        checked={checkBoxState}
+                                        onChange={(e)=>{
+                                            let checkbox = e.target.checked;
+                                            setCheckBoxState(e.target.checked)
+                                            let checkboxs = document.getElementsByName('timeslot_id[]');
+                                            checkboxs.forEach((item) => {
+                                                item.checked = checkbox
+                                            })
+                                        }}
+                                    />}
+                                    label="Chọn tất cả"
+                                />
+                            </div>
+                        </div>
                         <div className="danlandar-modal">
                             
                                 {
