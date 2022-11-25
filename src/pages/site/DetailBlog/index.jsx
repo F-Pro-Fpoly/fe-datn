@@ -76,8 +76,9 @@ export default function DitailNews(){
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a href="/">Home</a></li>
-                            <li className="breadcrumb-item"><a href="/tin-tuc">News</a></li>
+                        <li className="breadcrumb-item"><Link to={"/"}>Home</Link></li>
+                            <li className="breadcrumb-item"><Link to={"/tin-tuc"}>News</Link></li>
+                            <li className="breadcrumb-item">Ditail News</li>
                         </ol>
                     </div>                   
                 </div>

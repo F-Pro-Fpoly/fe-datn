@@ -69,8 +69,9 @@ function News(){
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a href="#">Home</a></li>
-                            <li className="breadcrumb-item"><a href="#">News</a></li>
+                            <li className="breadcrumb-item"><Link to={"/"}>Home</Link></li>
+                            <li className="breadcrumb-item">News</li>
+                          
                         </ol>
                     </div>                   
                 </div>
@@ -88,8 +89,8 @@ function News(){
                           {
                       ListNews.map((item,index) => {
                       return(
-                      <div>
-                        <div className="blog-box row" key={index}>
+                      <div  key={index}>
+                        <div className="blog-box row">
                             <div className="col-md-4">
                                 <div className="post-media">
                                     <Link to={item.slug}>
@@ -105,7 +106,7 @@ function News(){
                                 <p className="an " dangerouslySetInnerHTML={{__html: item.content}}></p>
                               
                                  </Link>  
-                                <small><Link>{item.created_at}</Link></small>
+                                <samp><p><i className="far fa-clock"></i> {item.created_at}</p></samp>
                             </div> 
                         </div>
                         <hr className="invis"/>
@@ -156,16 +157,16 @@ function News(){
                           {
                       ListNewsNew.map((item,index) => {
                       return(
-                        <div class="sf_right_featured--box sf_right_featured--small-box"key={index}>
-                        <div class="sf_right_featured--box-thumb"> 
+                        <div className="sf_right_featured--box sf_right_featured--small-box" key={index}>
+                        <div className="sf_right_featured--box-thumb"> 
                                 <Link to={item.slug}>
-                                <div class="sf_right_featured--thumbnail-container">
+                                <div className="sf_right_featured--thumbnail-container">
                                     <img src={ `${process.env.REACT_APP_BE}${item.file}` } alt="website template image" className="img-fluid float-left"/>
-                                    <div class="sf_right_featured--thumb-overlay"></div>
+                                    <div className="sf_right_featured--thumb-overlay"></div>
                                 </div> 
                                 </Link>
                         </div>
-                        <div class="sf_right_featured--box-content"> 
+                        <div className="sf_right_featured--box-content"> 
                             <Link to={item.slug}>{item.name}</Link>
                         </div>
                                     
@@ -177,31 +178,31 @@ function News(){
                           
                       </div>
                     </div>
-                    <div class="widget">
-                    <div class="elementor-widget-container">
-                        <div class="sf-social">
-                            <div class="sf-social__wrapper">
-                                <div class="sf-social--header">
+                    <div className="widget">
+                    <div className="elementor-widget-container">
+                        <div className="sf-social">
+                            <div className="sf-social__wrapper">
+                                <div className="sf-social--header">
                                     <h2>Kết nối với Sforum</h2>
                                 </div>
-                                <div class="sf-social-icons">
-                                    <div class="sf-social-icon--container"> 
+                                <div className="sf-social-icons">
+                                    <div className="sf-social-icon--container"> 
                                         <a href="https://www.facebook.com/SforumTech" target="_blank" rel="nofollow">
                                             <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/facebook-icon.png"
                                             alt="Facebook" data-pin-no-hover="true"/> 
                                         </a>
                                     </div>
-                                    <div class="sf-social-icon--container"> 
+                                    <div className="sf-social-icon--container"> 
                                         <a href="https://www.facebook.com/groups/sforum28" target="_blank"> 
                                             <img src="https://cdn.cellphones.com.vn/media/wysiwyg/Group_Facebookrs.png" alt="Instagram" data-pin-no-hover="true"/>
                                         </a>
                                     </div>
-                                    <div class="sf-social-icon--container"> 
+                                    <div className="sf-social-icon--container"> 
                                         <a href="https://www.tiktok.com/@sforumvn" target="_blank" rel="nofollow">
                                             <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/tiktok-1.png" alt="Tiktok" data-pin-no-hover="true"/>
                                         </a>
                                     </div>
-                                    <div class="sf-social-icon--container"> 
+                                    <div className="sf-social-icon--container"> 
                                         <a href="https://www.youtube.com/channel/UCjxjHD44GP4EZWgLyV-NnWg" target="_blank" rel="nofollow">
                                             <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/youtube-1.png" alt="Youtube" data-pin-no-hover="true"/>
                                         </a>
@@ -211,10 +212,10 @@ function News(){
                         </div>
                     </div>
                     </div>
-                    <div class="widget">
-                                <div class="banner-spot clearfix">
-                                    <div class="banner-img">
-                                       <Link><img src="../img/banner_03.jpg" alt="" class="img-fluid"/></Link> 
+                    <div className="widget">
+                                <div className="banner-spot clearfix">
+                                    <div className="banner-img">
+                                       <Link><img src="../img/banner_03.jpg" alt="" className="img-fluid"/></Link> 
                                     </div>
                                 </div>
                     </div>
