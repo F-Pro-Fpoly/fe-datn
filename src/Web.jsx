@@ -56,6 +56,8 @@ import ListContactBooking from "./pages/admin/Contact/ListContactBooking/ListCon
 
 import ReplyContactBooking from "./pages/admin/Contact/ListContactBooking/replyContactBooking";
 import ReplyContact from "./pages/admin/Contact/ListContact/replyContact";
+import ListNewsletter from "./pages/admin/Newsletter/ListNewsletter";
+import ListBanner from "./pages/admin/Setttings/Banner/ListBanner";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -118,10 +120,20 @@ function Web() {
                         <Route element={<ReplyContactBooking />} path="tra-loi-dang-ky-lich/:id" />
                     </Route>
 
+                    <Route path="tin-som">
+                        <Route element={<ListNewsletter />} path="danh-sach-nhan-tin-som" />                 
+                    </Route>
+
                     <Route path="chinh-sua-menu">
                         <Route element={< ListMenu />} path="list" />
                         <Route element={< AddMenu />}  path="add" />
                         <Route element={< UpdateMenu />}  path="update/:id" />
+                    </Route>
+
+                    <Route path="quan-ly-banner">
+                        <Route element={< ListBanner />} path="list" />
+                        {/* <Route element={< AddMenu />}  path="add" />
+                        <Route element={< UpdateMenu />}  path="update/:id" /> */}
                     </Route>
 
                     <Route path="cau-hinh-chung">
