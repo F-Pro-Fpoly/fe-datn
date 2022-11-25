@@ -1,7 +1,7 @@
 import "./Contact.scss";
 import { useSelector} from "react-redux";
 import { toast,ToastContainer } from 'react-toastify';
-import {  useRef,useState} from 'react';
+import {  useEffect, useRef,useState} from 'react';
 import {creatContactApi} from "../../../services/ContactService";
 import { ListConfigService } from '../../../services/normal/ConfigService';
 function Contact(){
