@@ -1,17 +1,52 @@
 import "./Footer.scss"
 import { Link } from "react-router-dom";
+import { PostNewsletter } from "../../../services/NewsletterService";
+import { useSelector} from "react-redux";
+import { toast,ToastContainer } from 'react-toastify';
+import {  useRef } from 'react';
 function Footer (getconfig) {
+
+    const token = useSelector((state)=>state.auth.token);
+    const formRef = useRef();
+
+    const submitNewsletter = async (event) =>{
+      event.preventDefault();
+      const formData = new FormData(formRef.current);
+      const req = {
+        "data": formData,
+      };
+      try {
+        let res = await PostNewsletter(req,token);
+        formRef.current.reset();
+        toast.success(res.data.message) ;     
+      } catch (error) {
+        let res = error.response;
+        let data = res.data;
+        let messages = data.message;
+        console.log(data);
+        toast.error(messages);
+      }
+  
+    }
+    
+
+
+
 
     return (
         <>
+          <form action="" onSubmit={submitNewsletter} ref={formRef}>
             <div className="newsletter">        
+          
                 <h3>ĐĂNG KÝ NHẬN TIN MỚI NHẤT TỪ FPRO</h3>
-                <div className="send">
-                    <input type="text" placeholder="Nhập email để nhận thông báo từ Fro"  className="form-control"/>
-                    <button className="btn btn-primary"><i className="fa-solid fa-envelope"></i></button>           
+              
+                <div className="send">           
+                        <input type="text" name="email" placeholder="Nhập email để nhận thông báo từ Fro"  className="form-control"/>
+                        <button type="submit"  className="btn btn-primary"><i className="fa-solid fa-envelope"></i></button>                      
                 </div>
+               
             </div>
-
+            </form>
             
             <div className="footer1">
                 <div className="container">
