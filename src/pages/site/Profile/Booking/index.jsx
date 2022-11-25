@@ -39,7 +39,6 @@ function Booking() {
     useEffect(() => {
         start()
     
-
     }, [])
     
     return(

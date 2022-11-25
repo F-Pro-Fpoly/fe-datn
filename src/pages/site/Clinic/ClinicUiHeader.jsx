@@ -14,7 +14,7 @@ function ClinicUiHeader({specialist = {}}) {
 
     useEffect(()=>{
         document.title = specialist.name;
-    },[])
+    },[specialist])
 
     return ( 
         <div className="infoClinic">
