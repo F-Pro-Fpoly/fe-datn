@@ -19,13 +19,15 @@ function ListContact() {
     const [loading, getLoading] = useState(false);
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
-    
+    const [search, setSearch] = useState({
+      "status" : ""
+    });
+
     useEffect(() => {
-      
         const start = async () => {
             getLoading(true)
             setListContact([])
-            let res = await getContact({token,page}) 
+            let res = await getContact({token,page,search}) 
             let data = res.data 
             let dataArr = data.data
             getLoading(false)
@@ -38,11 +40,25 @@ function ListContact() {
         start();
     }, [page])
 
-
     const onChangePage = (number) =>{
       setPage(number);
     }
-
+  
+    const HandleSearch = async (value) => {
+      value.preventDefault();
+      getLoading(true)
+      setListContact([])
+      let res = await getContact({token,page,search}) 
+      let data = res.data 
+      let dataArr = data.data
+      getLoading(false)
+      setListContact(dataArr)
+      // handle paginate
+      let pagination = data.meta.pagination ?? null;
+      setPaginate(pagination);
+    }
+ 
+    
     return ( 
         <>
         {/* <div className="a">   
@@ -68,14 +84,16 @@ function ListContact() {
         <div className="adminItem">
           <div className='row mt-3 mb-3' >
             <div className="col-2 form-group">
-                <select name="" id="" className="form-control">
-                    <option value="">Chọn Trạng thái</option>
-                    <option value="">Đã phản hồi</option>
-                    <option value="">Chưa phản hồi</option>
+                <select name="status" id="" defaultValue={0}
+                  onChange={(e)=>setSearch({...search, "status": e.target.value})}
+                className="form-control">
+                    <option value="0" disabled>Chọn Trạng thái</option>
+                    <option value="8">Đã phản hồi</option>
+                    <option value="9">Chưa phản hồi</option>
                 </select>
             </div>
             <div className="col-2">
-              <button className='btn btn-primary' >Tìm kiếm</button>
+              <button className='btn btn-primary' onClick={HandleSearch} >Tìm kiếm</button>
             </div>
           </div>
      

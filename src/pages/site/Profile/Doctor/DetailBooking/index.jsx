@@ -157,33 +157,47 @@ function DetailBooking() {
                             }
                         </select>
                     </div>
-                         
-                    <div className="mb-3">
-                        <label className="form-label">Thông tin khám</label>
-                        <textarea name="info" className="form-control" style={{resize:"none"}}
-                        defaultValue={value.infoAfterExamination ? value.infoAfterExamination : ""}
-                        id="" cols="5" rows="2"
-                        ></textarea>
-                    </div>   
-
-                    <div className="mb-3">
-                        <label className="form-label">File đính kèm</label>
-                        <input className="form-control" name = "file" 
-                        type="file" placeholder="Thông tin khám" />
-
-                        {
-                            value.file_name ? 
-                        
+                            
+                    {
+                         value.status_id == 5 ? 
                             <div className="mb-3">
-                            <p>Có 1 file đã upload</p>
-                            <a href={`${process.env.REACT_APP_BE}${ value.file_name}` }
-                            className="btn btn-primary">Tải file</a> 
-                            </div>
-                            : ""
-                        }
+                                <label className="form-label">Lý do hủy</label>
+                                <textarea name="reasonCancel" className="form-control" style={{resize:"none"}}
+                                defaultValue={value.reasonCancel ? value.reasonCancel : ""}
+                                id="" cols="5" rows="2"
+                                ></textarea>
+                            </div>   
+                         :
+                        <>
+                            <div className="mb-3">
+                                <label className="form-label">Thông tin khám</label>
+                                <textarea name="info" className="form-control" style={{resize:"none"}}
+                                defaultValue={value.infoAfterExamination ? value.infoAfterExamination : ""}
+                                id="" cols="5" rows="2"
+                                ></textarea>
+                            </div>   
 
-                         
-                    </div>   
+                            <div className="mb-3">
+                                <label className="form-label">File đính kèm</label>
+                                <input className="form-control" name = "file" 
+                                type="file" placeholder="Thông tin khám" />
+
+                                {
+                                    value.file_name ? 
+                                
+                                    <div className="mb-3">
+                                    <p>Có 1 file đã upload</p>
+                                    <a href={`${process.env.REACT_APP_BE}${ value.file_name}` }
+                                    className="btn btn-primary">Tải file</a> 
+                                    </div>
+                                    : ""
+                                }                 
+                            </div>  
+                        </>
+                        
+                    }
+
+                 
 
                  
                       
