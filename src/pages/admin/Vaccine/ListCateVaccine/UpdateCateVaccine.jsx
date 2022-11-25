@@ -6,23 +6,23 @@ import SearchInput from "../../../../components/admin/SearchInput/SearchInput";
 import useDebounce from "../../../../hooks/useDebounce";
 import { useEffect } from "react";
 import Select from "react-select";
-import {createVaccineCategory, listVaccineCategory, getCategoryApi, updateCategory} from "../../../../services/VaccineCategory"
+import {createVaccineCategory, listVaccineCategory} from "../../../../services/VaccineCategory"
 import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 
-function AddCateVaccine({handleHideModel, handleShowModel, startList, data = null, update = {isUpdate: false, id: null}}) {
+function UpdateCateVaccine() {
     const token = useSelector(state => state.auth.token);
     const [dataVaccine, setDataVaccine] = useState({
-        'code': data ? data.code : '',
-        'name': data ? data.name : '',
+        'code': '',
+        'name': '',
         'parent': {
-            'parent_id': data ? data.parent.parent_id : '',
-            'parent_name': data ? data.parent.parent_name : ''
+            'parent_id':  '',
+            'parent_name': ''
         },
-        'short_description': data ? data.short_description : '',
-        'description': data ? data.description : '',
-        'active': data != null ? data.active : true,
-        'slug': data != null ? data.slug : ''
+        'short_description': '',
+        'description':  '',
+        'active': true,
+        'slug': ''
     });
     const [optionParentCategory, setOptionParentCategory] = useState([]);
 
@@ -33,50 +33,6 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList, data = nul
 
     const onSubmitForm = async (e) =>{
         e.preventDefault();
-
-        try {
-            if(update.isUpdate){
-                let res = await updateCategory({token, data: dataVaccine, id: update.id});
-                let message = res.data.message;
-                toast.success(message);
-                setDataVaccine({
-                    ...dataVaccine,
-                    'code': '',
-                    'name': '',
-                    'parent': {
-                        'parent_id': '',
-                        'parent_name': ''
-                    },
-                    'short_description': '',
-                    'description': '',
-                    'active': true,
-                    'slug': ''
-                })
-                handleHideModel();
-                startList();
-                return;
-            }
-            let res = await createVaccineCategory({token, data: dataVaccine});
-            let message = res.data.message;
-            toast.success(message);
-            setDataVaccine({
-                ...dataVaccine,
-                'code': '',
-                'name': '',
-                'parent': {
-                    'parent_id': '',
-                    'parent_name': ''
-                },
-                'short_description': '',
-                'description': '',
-                'active': true,
-                'slug': ''
-            })
-            handleHideModel();
-            startList();
-        } catch (error) {
-            
-        }
     }
     // const handleOnChangeParentInput = (e) =>{
     //     setDataVaccine(
@@ -100,14 +56,6 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList, data = nul
     //     })
     // }
     const handleOnChangeParentCate = async (data) => {
-        setDataVaccine({
-            ...dataVaccine, 
-            parent:{
-                ...dataVaccine.parent,
-                parent_id: data.value,
-                parent_name: data.label
-            }
-        })
     }
     const getAPIParent = async () =>{
         try {
@@ -128,33 +76,9 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList, data = nul
             
         }
     }
-    const start = async () => {
-        if(update.isUpdate){
-            try {
-                let res = await getCategoryApi({token, id: update.id});
-                let dataRes = res.data.data
-                setDataVaccine({
-                    ...dataVaccine,
-                    code: dataRes.code ?? '',
-                    name: dataRes.name ?? '',
-                    parent: {
-                        'parent_id': dataRes.parent_id ?? 0,
-                        'parent_name': dataRes.parent_name ?? ''
-                    },
-                    short_description: dataRes.short_description ?? '',
-                    description: dataRes.description ?? '',
-                    slug: dataRes.slug ?? '',
-                    'active': dataRes.active == 1 ? true : false
-                })
-            } catch (error) {
-                
-            }
-        }
-    }
 
     useEffect(()=>{
         getAPIParent()
-        start();
     }, [])
 
 
@@ -215,9 +139,9 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList, data = nul
                         <Form.Label className="form-lable-fro">Mô tả</Form.Label>
                         <Editor
                             apiKey='v7uxagccs26096o8eu0kae4sbg90s9bicobdondox6ybfxen'
-                            // onInit={(evt, editor) => editorRef.current = editor}
+                            onInit={(evt, editor) => editorRef.current = editor}
                             value={dataVaccine.description}
-                            onEditorChange={(event, editor) => {
+                            onChange={(event, editor) => {
                                 setDataVaccine({...dataVaccine, description: editor.getContent()})
                             }}
                             init={{
@@ -257,9 +181,7 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList, data = nul
                 </div>
                 <div className="row my-3">
                     <Form.Group className="col-12">
-                        <Button type="submit">
-                            {update.isUpdate ? 'Cập nhập': 'Thêm'}
-                        </Button>
+                        <Button type="submit">Cập nhập</Button>
                     </Form.Group>
                 </div>
             </Form>
@@ -267,4 +189,4 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList, data = nul
      );
 }
 
-export default AddCateVaccine;
+export default UpdateCateVaccine;

@@ -58,6 +58,7 @@ import ReplyContactBooking from "./pages/admin/Contact/ListContactBooking/replyC
 import ReplyContact from "./pages/admin/Contact/ListContact/replyContact";
 import ListNewsletter from "./pages/admin/Newsletter/ListNewsletter";
 import ListBanner from "./pages/admin/Setttings/Banner/ListBanner";
+import UpdateCateVaccine from "./pages/admin/Vaccine/ListCateVaccine/UpdateCateVaccine";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -156,6 +157,7 @@ function Web() {
                     </Route>
                     <Route path="vaccine">
                         <Route element={< ListCateVaccine />} path="list-cate" />
+                        <Route element={<UpdateCateVaccine />} path="update-cate/:id" />
                     </Route>
 
 
