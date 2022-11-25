@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { getChartCovidService } from "../../../services/normal/ChartService";
 import "./ChartCovid.scss"
 import { Link } from "react-router-dom"
+import BarChart from "./chart";
 
-
-import { Bar } from 'react-chartjs-2';
 
 
 function ChartCovid() {
 
-    const [topInfo, getTopinfo] = useState();
+    const [topInfo, getTopinfo] = useState([]);
     const [location, setLocation] = useState([]);
+    const [overview, setOverview] = useState([]);
 
 
     const start = async () =>{
@@ -19,8 +19,11 @@ function ChartCovid() {
             let data = res.data;
             let location = data.total.internal
             let locations = data.locations
+            let overview = data.overview
+          
             getTopinfo(location)
             setLocation(locations);
+            setOverview(overview);
         } catch (error) {
             
         }
@@ -32,10 +35,6 @@ function ChartCovid() {
 
     }, [])
     
-
-
-
-
     return (  
 
         <div className="container-fluid pd" id="tb" >
@@ -142,12 +141,8 @@ function ChartCovid() {
 
               </div>
               <div className="box-juncture">
-                <div className="chart-right">
-                  <Bar  data={{
+                    <BarChart overview={overview}/>
                   
-                    labels: ['red', 'blue', 'green'],
-                  
-                  }}  />
                 </div>
               </div>
             </div>
@@ -159,8 +154,6 @@ function ChartCovid() {
         </div>
 
 
-
-        </div>
 
 
     )

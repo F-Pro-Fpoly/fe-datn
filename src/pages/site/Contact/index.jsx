@@ -1,7 +1,7 @@
 import "./Contact.scss";
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 import { toast,ToastContainer } from 'react-toastify';
-import { useEffect, useMemo, useRef } from 'react';
+import {  useRef } from 'react';
 import {creatContactApi} from "../../../services/ContactService";
 function Contact(){
     const token = useSelector((state)=>state.auth.token);

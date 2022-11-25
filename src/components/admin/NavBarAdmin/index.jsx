@@ -154,6 +154,15 @@ function NavBarAdmin({className}) {
                     }
                     ]} icon="bi bi-layout-text-sidebar" />
 
+                    <NavBarItem id="newsletter" name="Quản lý nhận tin sớm"  dropdownArr={[
+
+                    {
+                        name: "Danh sách nhận tin sớm",
+                        to: "/admin/tin-som/danh-sach-nhan-tin-som"
+                    }
+                    
+                    ]} icon="bi bi-layout-text-sidebar" />
+
                     <NavBarItem id="setting" name="Tiện ích mở rộng" dropdownArr={[
                         {
                             name: "Thiết lập Menu",
