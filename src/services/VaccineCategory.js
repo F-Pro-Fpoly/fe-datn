@@ -42,4 +42,15 @@ function updateCategory({token, data, id}) {
     return API.put(url,  data,{headers: headers});
 }
 
-export { listVaccineCategory,createVaccineCategory, updateCategory }
+function getCategoryApi({token, id}) {
+    let headers ={}; 
+    let url = `auth/vaccine-category/${id}`;
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+
+    return API.get(url, {headers: headers});
+}
+
+export { listVaccineCategory,createVaccineCategory, updateCategory, getCategoryApi }
