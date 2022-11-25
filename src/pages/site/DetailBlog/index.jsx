@@ -72,12 +72,12 @@ export default function DitailNews(){
             <div className="container news">
                 <div className="row">
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <h2>Tin Tuc</h2>
+                        <h2>Chi tiết tin</h2>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a href="#">Home</a></li>
-                            <li className="breadcrumb-item"><a href="#">News</a></li>
+                            <li className="breadcrumb-item"><a href="/">Home</a></li>
+                            <li className="breadcrumb-item"><a href="/tin-tuc">News</a></li>
                         </ol>
                     </div>                   
                 </div>
@@ -114,16 +114,24 @@ export default function DitailNews(){
                                 <p dangerouslySetInnerHTML={{__html: NewsDetail.content}}></p>
                             </div>
                         </div>
-                    <hr className="invis1"/>
+                    <hr className="invis2"/>
                         <div className="custombox clearfix">
                             <h4 className="small-title">Bình luận</h4>
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <div className="comments-list">  
                                         <div id="fb-root"></div>
-                                                <div className="fb-comment-embed"
-                                                  data-href="https://www.facebook.com/zuck/posts/10102735452532991?comment_id=1070233703036185"
-                                                  data-width="500"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    <hr className="invis2"/>
+                        <div className="custombox clearfix">
+                            <h4 className="small-title">Bình luận</h4>
+                                <div className="row">
+                                    <div className="col-lg-12">
+                                        <div className="comments-list">  
+                                       <div className="fb-comments" data-href="http://fpro.newweb.vn" data-width="500" data-numposts="3"></div>
                                         </div>
                                     </div>
                                 </div>
