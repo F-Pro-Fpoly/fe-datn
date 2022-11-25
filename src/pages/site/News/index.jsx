@@ -19,7 +19,6 @@ function News(){
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
       document.title = "Tin tức";
-  
       const start = async () => {
           getNews([]);
           getLoading(true);
@@ -106,7 +105,7 @@ function News(){
                                 <p className="an " dangerouslySetInnerHTML={{__html: item.content}}></p>
                               
                                  </Link>  
-                        <small><Link format="DD/MM/YYY">{item.created_at}24/11/2022</Link></small>
+                                <small><Link>{item.created_at}</Link></small>
                             </div> 
                         </div>
                         <hr className="invis"/>
@@ -168,7 +167,6 @@ function News(){
                         </div>
                         <div class="sf_right_featured--box-content"> 
                             <Link to={item.slug}>{item.name}</Link>
-                            <p>{item.created_at}</p>
                         </div>
                                     
                         </div>

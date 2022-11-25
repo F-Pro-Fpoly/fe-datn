@@ -71,7 +71,7 @@ function News() {
                     <div className="col-4">
                         <Form.Group>
                             <Form.Label>Đường dẫn</Form.Label>
-                            <Form.Control type="text" placeholder="Mã code" name="slug" />
+                            <Form.Control type="text" placeholder="Slug" name="slug" />
                         </Form.Group>
                     </div>
                     <div className="col-4">

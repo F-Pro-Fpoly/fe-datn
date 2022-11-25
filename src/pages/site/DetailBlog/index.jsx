@@ -6,23 +6,28 @@ import {  getNewsDetailClient,getlistNews3NewsAPI,getlistNews9FeaturedAPI,getlis
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../components/Loading/Loading";
 import { setLoading } from "../../../redux/slices/InterfaceSile";
+import moment from "moment";
 export default function DitailNews(){
   const param = useParams();
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.token);
+  const mom = moment().format('d/m/Y');
   const [NewsDetail, setDetail] = useState({
     "code": "",
     "name":"",
     "file":"",
+    "created_at": mom,
     "view": null,
     "content": "", 
 }); 
+
+
   const [ListNewsNew, getNewsNewClient] = useState([]);
   const [ListNewsFeatured, getNewsFeaturedClient] = useState([]);
   const [ListNewsCategory, getNewsCategoryClient] = useState([]);
   const [loading, getLoading] = useState(false);
   const slug = param.slug;
-
+  document.title = "Chi tiết tin";
   const start = async () =>{
           dispatch(setLoading(true))
           let res = await getNewsDetailClient({token, slug});
@@ -46,6 +51,7 @@ export default function DitailNews(){
               file: data.file ?? null,
               content: data.content ?? null,
               view: data.view ?? 0,
+              created_at:data.created_at ?? mom,
           });
           dispatch(setLoading(false))
           setDetail(data);
@@ -87,16 +93,16 @@ export default function DitailNews(){
                             <h2>{NewsDetail.name}</h2>
                             <div className="blog-meta big-meta">
                                 <small>
-                                    <a href="">{NewsDetail.created_at}</a>
+                                    <a href="" >{NewsDetail.created_at}</a>
                                 </small>
                                 <small>
                                     <a href="">
                                         <i className="fa fa-eye"></i> {NewsDetail.view}
                                     </a>
                                 </small>
-                                <small>
-                                    <a href="">{NewsDetail.category_id}</a>
-                                </small>
+                                {/* <small>
+                                    <a href="">{NewsDetail.category_name}</a>
+                                </small> */}
                             </div>
                         </div>
                         <br/>
@@ -151,18 +157,17 @@ export default function DitailNews(){
                           {
                       ListNewsNew.map((item,index) => {
                       return(
-                        <div class="sf_right_featured--box sf_right_featured--small-box"key={index}>
-                        <div class="sf_right_featured--box-thumb"> 
+                        <div className="sf_right_featured--box sf_right_featured--small-box"key={index}>
+                        <div className="sf_right_featured--box-thumb"> 
                                 <Link to={item.slug}>
-                                <div class="sf_right_featured--thumbnail-container">
+                                <div className="sf_right_featured--thumbnail-container">
                                     <img src={ `${process.env.REACT_APP_BE}${item.file}` } alt="website template image" className="img-fluid float-left"/>
-                                    <div class="sf_right_featured--thumb-overlay"></div>
+                                    <div className="sf_right_featured--thumb-overlay"></div>
                                 </div> 
                                 </Link>
                         </div>
-                        <div class="sf_right_featured--box-content"> 
+                        <div className="sf_right_featured--box-content"> 
                             <Link to={item.slug}>{item.name}</Link>
-                            <p>{item.created_at}</p>
                         </div>
                                     
                         </div>
@@ -173,31 +178,31 @@ export default function DitailNews(){
                           
                       </div>
                     </div>
-                    <div class="widget">
-                    <div class="elementor-widget-container">
-                        <div class="sf-social">
-                            <div class="sf-social__wrapper">
-                                <div class="sf-social--header">
+                    <div className="widget">
+                    <div className="elementor-widget-container">
+                        <div className="sf-social">
+                            <div className="sf-social__wrapper">
+                                <div className="sf-social--header">
                                     <h2>Kết nối với Sforum</h2>
                                 </div>
-                                <div class="sf-social-icons">
-                                    <div class="sf-social-icon--container"> 
+                                <div className="sf-social-icons">
+                                    <div className="sf-social-icon--container"> 
                                         <a href="https://www.facebook.com/SforumTech" target="_blank" rel="nofollow">
                                             <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/facebook-icon.png"
                                             alt="Facebook" data-pin-no-hover="true"/> 
                                         </a>
                                     </div>
-                                    <div class="sf-social-icon--container"> 
+                                    <div className="sf-social-icon--container"> 
                                         <a href="https://www.facebook.com/groups/sforum28" target="_blank"> 
                                             <img src="https://cdn.cellphones.com.vn/media/wysiwyg/Group_Facebookrs.png" alt="Instagram" data-pin-no-hover="true"/>
                                         </a>
                                     </div>
-                                    <div class="sf-social-icon--container"> 
+                                    <div className="sf-social-icon--container"> 
                                         <a href="https://www.tiktok.com/@sforumvn" target="_blank" rel="nofollow">
                                             <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/tiktok-1.png" alt="Tiktok" data-pin-no-hover="true"/>
                                         </a>
                                     </div>
-                                    <div class="sf-social-icon--container"> 
+                                    <div className="sf-social-icon--container"> 
                                         <a href="https://www.youtube.com/channel/UCjxjHD44GP4EZWgLyV-NnWg" target="_blank" rel="nofollow">
                                             <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/youtube-1.png" alt="Youtube" data-pin-no-hover="true"/>
                                         </a>
@@ -207,10 +212,10 @@ export default function DitailNews(){
                         </div>
                     </div>
                     </div>
-                    <div class="widget">
-                                <div class="banner-spot clearfix">
-                                    <div class="banner-img">
-                                       <Link><img src="../img/banner_03.jpg" alt="" class="img-fluid"/></Link> 
+                    <div className="widget">
+                                <div className="banner-spot clearfix">
+                                    <div className="banner-img">
+                                       <Link><img src="../img/banner_03.jpg" alt="" className="img-fluid"/></Link> 
                                     </div>
                                 </div>
                     </div>

@@ -61,7 +61,7 @@ function NewsCategory() {
                     <div className="col-6">
                         <Form.Group>
                             <Form.Label>Đường dẫn</Form.Label>
-                            <Form.Control type="text" placeholder="Mã code" name="slug" />
+                            <Form.Control type="text" placeholder="Slug" name="slug" />
                         </Form.Group>
                     </div>
                     <div className="col-6">
@@ -75,7 +75,7 @@ function NewsCategory() {
         
                 </div>
                 <Form.Group className="mt-2">
-                    <Button variant="primary" type="submit">Thêm tin tức</Button>
+                    <Button variant="primary" type="submit">Thêm loại tin</Button>
                 </Form.Group>
             </Form>
         </div>
