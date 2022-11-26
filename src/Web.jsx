@@ -60,6 +60,8 @@ import ListNewsletter from "./pages/admin/Newsletter/ListNewsletter";
 import ListBanner from "./pages/admin/Setttings/Banner/ListBanner";
 import UpdateCateVaccine from "./pages/admin/Vaccine/ListCateVaccine/UpdateCateVaccine";
 import AddVaccine from "./pages/admin/Vaccine/AddVaccine";
+import AddBanner from "./pages/admin/Setttings/Banner/AddBanner";
+import UpdateBanner from "./pages/admin/Setttings/Banner/UpdateBanner";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -134,8 +136,8 @@ function Web() {
 
                     <Route path="quan-ly-banner">
                         <Route element={< ListBanner />} path="list" />
-                        {/* <Route element={< AddMenu />}  path="add" />
-                        <Route element={< UpdateMenu />}  path="update/:id" /> */}
+                        <Route element={< AddBanner />}  path="add" />
+                        <Route element={< UpdateBanner />}  path="update/:id" />
                     </Route>
 
                     <Route path="cau-hinh-chung">

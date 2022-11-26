@@ -8,7 +8,7 @@ function Certificate () {
             <div className="background">
                 <div className="infoIntroduce">
                     <span className="Introduce">CHỨNG CHỈ </span><br />
-                    <span>TẠI PHÒNG KHÁM ĐA KHOA FPRO</span><br />
+                    <span>TẠI TRUNG TÂM Y TẾ FPRO</span><br />
                     <div className="line"></div>
                 </div>
                 <div className="container">
