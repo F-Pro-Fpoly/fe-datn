@@ -18,6 +18,19 @@ function getListServiceAPI(token = null,page=1) {
 
 }
 
+function getListServiceV2({token, search= {}}) {
+    let headers ={}; 
+    let url = `auth/sick/list?`;
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    for(let se in search) {
+        url += `${se}=${search[se]}`;
+    }
+    return API.get(url,{headers: headers});
+}
+
 function postListServiceAPI(token = null, data={}) {
     
     try {
@@ -33,4 +46,4 @@ function postListServiceAPI(token = null, data={}) {
     }
 }
 
-export { getListServiceAPI, postListServiceAPI}
+export { getListServiceAPI, postListServiceAPI, getListServiceV2}
