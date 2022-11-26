@@ -187,23 +187,23 @@ function News(){
                                 </div>
                                 <div className="sf-social-icons">
                                     <div className="sf-social-icon--container"> 
-                                        <a href="https://www.facebook.com/SforumTech" target="_blank" rel="nofollow">
+                                        <a href="https://www.facebook.com/" target="_blank" rel="nofollow">
                                             <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/facebook-icon.png"
                                             alt="Facebook" data-pin-no-hover="true"/> 
                                         </a>
                                     </div>
                                     <div className="sf-social-icon--container"> 
-                                        <a href="https://www.facebook.com/groups/sforum28" target="_blank"> 
+                                        <a href="https://www.facebook.com/groups/" target="_blank"> 
                                             <img src="https://cdn.cellphones.com.vn/media/wysiwyg/Group_Facebookrs.png" alt="Instagram" data-pin-no-hover="true"/>
                                         </a>
                                     </div>
                                     <div className="sf-social-icon--container"> 
-                                        <a href="https://www.tiktok.com/@sforumvn" target="_blank" rel="nofollow">
+                                        <a href="https://www.tiktok.com/" target="_blank" rel="nofollow">
                                             <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/tiktok-1.png" alt="Tiktok" data-pin-no-hover="true"/>
                                         </a>
                                     </div>
                                     <div className="sf-social-icon--container"> 
-                                        <a href="https://www.youtube.com/channel/UCjxjHD44GP4EZWgLyV-NnWg" target="_blank" rel="nofollow">
+                                        <a href="https://www.youtube.com/" target="_blank" rel="nofollow">
                                             <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/youtube-1.png" alt="Youtube" data-pin-no-hover="true"/>
                                         </a>
                                     </div>
