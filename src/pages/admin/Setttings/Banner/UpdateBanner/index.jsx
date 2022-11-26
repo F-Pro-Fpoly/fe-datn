@@ -6,6 +6,8 @@ import { toast,ToastContainer } from 'react-toastify';
 import Loading from "../../../../../components/Loading/Loading";
 import LoadingBtn from "../../../../../components/LoadingBtn/LoadingBtn";
 import { getDetailBanner,  Putslider } from "../../../../../services/BannerService";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function UpdateBanner() {
 
@@ -16,11 +18,13 @@ function UpdateBanner() {
     const formRef = useRef();
     const [loading, getLoading] = useState(false);
     const [silde,setSilde] = useState([])
+    const [textEditer, setTextEditer] = useState('');
     const start = async () => {
         let res = await getDetailBanner({token,id})
         let data = res.data
         let dataArr = data.data
         setSilde(dataArr)
+        setTextEditer(dataArr.description)
     }
 
     useEffect(() => {
@@ -33,7 +37,7 @@ function UpdateBanner() {
     const hanndleSubmit = async (data) => {
         data.preventDefault();
         const formData = new FormData(formRef.current)
-
+        formData.append('description', textEditer);
         const req = {
             "token" : token,
             "data": formData,  
@@ -76,9 +80,18 @@ function UpdateBanner() {
                 </div>
                 <div className="form-group mb-2">
                     <label htmlFor="" className="form-label">Mô tả</label>
-                    <input type="text" name="description" 
+                    <CKEditor
+                            editor={ ClassicEditor }
+                            data={textEditer}
+                      
+                            onChange={(event, editor) => {
+                                setTextEditer(editor.data.get())
+                            }}
+                        />
+
+                    {/* <input type="text" name="description" 
                     defaultValue={silde.description}
-                    className="form-control" placeholder="Nhập mô tả" />
+                    className="form-control" placeholder="Nhập mô tả" /> */}
                 </div>
                 <div className="form-group mb-2">
                     <label htmlFor="" className="form-label">Tên button</label>
