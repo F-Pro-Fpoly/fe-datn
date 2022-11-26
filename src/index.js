@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
-
+import "@ckbox/components/dist/styles/ckbox.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
