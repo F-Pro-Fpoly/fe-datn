@@ -60,8 +60,8 @@ function News(){
       }
 
       return(
-        <div className="formBooking ">
-        <div className="page-title">
+        <div className="News formBooking ">
+        <div className="page-title wb">
             <div className="container news">
                 <div className="row">
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -89,8 +89,8 @@ function News(){
                           {
                       ListNews.map((item,index) => {
                       return(
-                      <div  key={index}>
-                        <div className="blog-box row">
+                      <div className="blog-box"  key={index}>
+                        <div className="row">
                             <div className="col-md-4">
                                 <div className="post-media">
                                     <Link to={item.slug}>
