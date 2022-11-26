@@ -110,7 +110,7 @@ function NavBarAdmin({className}) {
                 <NavBarItem id="vaccine" name="Vaccine"  dropdownArr={[
                     {
                         name: "Thêm vaccine",
-                        to: "/admin/sick/add"
+                        to: "/admin/vaccine/add"
                     },
                     {
                         name: "Danh sách vaccine",
