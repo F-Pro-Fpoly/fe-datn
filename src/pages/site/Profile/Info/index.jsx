@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 
 function Info( props) {
-
+   
     const token = useSelector(state => state.auth.token )
     const id = props.infoUser.id
    
@@ -35,7 +35,6 @@ function Info( props) {
             let res = await updateUser(req)
             let message = res.data.message;
             toast.success(message);
-            
         } catch (error) {
             console.log(error);
             let res = error.response;
