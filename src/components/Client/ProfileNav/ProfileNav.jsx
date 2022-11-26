@@ -12,12 +12,12 @@ function ProfileNav() {
             <li className="profile" id="profile-nav">           
                 <div className="profile-avatars">
                     {/* <span>{user.name}</span>       */}
-                    <img src={`${process.env.REACT_APP_BE}${user.avatar}`}           alt="" />
+                    <img src={`${user.avatar}`} alt="" />
                 </div>   
                 <div className="profile-dropdown" >
                     <div className="profile-dropdown-item profile-dropdown-item-flex">
                         <div className="profile-dropdown-avatars">
-                            <img src={`${process.env.REACT_APP_BE}${user.avatar}`} alt="" />
+                            <img src={`${user.avatar}`} alt="" />
                         </div>
                         <div className="profile-dropdown-content">
                             <p><span className="profile-dropdown-name">{user.name}</span></p>
