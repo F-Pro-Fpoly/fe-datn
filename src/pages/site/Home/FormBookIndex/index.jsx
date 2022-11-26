@@ -58,6 +58,7 @@ function FormBookIndex () {
                             <div className="area_2">
                             <div className="imgPart">
                                 <img src={img} alt=""  />
+                                {/* <img src={img} alt=""  /> */}
                             </div>
                             <div className="rightArea">
                                 <div className="formRegisterBlock_3">
