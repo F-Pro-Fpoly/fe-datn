@@ -20,11 +20,16 @@ function Introduce () {
         </div>
         <div className="flex-Introduce col-12">
             <div className={`pleft col-xl-6 col-md-6 col-12 ${more?"more":''}`} onClick={()=>setMore(false)}>
-                <h3>NHA KHOA THÀNH AN - THỰC TÂM VÌ VẺ ĐẸP BỀN VỮNG</h3>
-                <p>Thành công của một nha khoa được đo bằng nụ cười của mỗi khách hàng, để giúp một hàm răng có diện mạo đẹp không khó, cái khó là làm sao để người sở hữu hàm răng đó khi bước ra khỏi phòng khám sẽ mang một nụ cười rạng rỡ xuất phát từ bên trong.</p>
-                <p>Để làm được điều đó, ở Nha khoa Thành An luôn đặt tiêu chí chất lượng dịch vụ lên hàng đầu, tập trung đầu tư vào công nghệ, đội ngũ bác sĩ không ngừng nâng cao tay nghề, phải tâm niệm mỗi bệnh nhân đều là một đối tượng “ưu tiên đặc biệt” để chăm sóc và đãi ngộ.</p>
-                <p>Với bất kỳ ai sử dụng dịch vụ chỉnh nha mục tiêu là nụ cười đẹp thôi chưa đủ, còn phải an toàn và khỏe mạnh bền lâu mới là nguyện vọng của tất cả mọi người. Thành An tin rằng, chỉ có đáp ứng đúng-đủ-đồng điệu với nhu cầu của khách hàng bằng chất lượng dịch vụ tốt nhất, mới đảm bảo có được sự hài lòng tuyệt đối và lòng tin bền vững theo thời gian.</p>
-
+                <h3>TRUNG TÂM Y TẾ FPRO - SỨC KHỎE CỦA BẠN LÀ XỨ MỆNH CUẨ CHÚNG TÔI</h3>
+                <p>Vắc xin là một thành tựu y học vĩ đại của nhân loại. Mỗi năm, vắc xin cứu sống gần 3 triệu người trước những dịch bệnh nguy hiểm,
+                 gần một nửa trẻ em trên toàn thế giới được bảo vệ bởi vắc xin khỏi bệnh tật, khuyết tật và tử vong. Tại Việt Nam, trong 25 năm qua, 
+                 vắc xin đã bảo vệ hơn 6,7 triệu trẻ em và ngăn chặn hàng trăm ngàn ca tử vong do các bệnh truyền nhiễm chết người.</p>
+                 <p>Trong bối cảnh dịch bệnh có nhiều biến đổi phức tạp, vấn đề tiêm chủng vắc xin còn gặp nhiều khó khăn về điều kiện
+                 cơ sở vật chất, với mong muốn ngày càng nhiều trẻ em và người lớn được tiêm vắc xin phòng bệnh, giảm tối đa những tổn thất
+                 về con người, tiền bạc và sức khỏe, tháng 10/2021, Trung Tâm Y Tế FPro được thành lập, trở thành hệ thống trung
+                 tâm tiêm chủng tại Việt Nam, góp thêm sức mạnh cùng ngành y tế dự phòng trong việc cung cấp đầy đủ vắc xin 
+                 phòng bệnh với chất lượng cao cấp và giá thành bình ổn.</p>
+                
                 <Link to="/ve-chung-toi" className="btn_type2">XEM THÊM</Link>
             </div>
             <div className="pright col-xl-5 col-md-5 col-12">
