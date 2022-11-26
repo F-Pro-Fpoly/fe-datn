@@ -58,6 +58,8 @@ import ReplyContactBooking from "./pages/admin/Contact/ListContactBooking/replyC
 import ReplyContact from "./pages/admin/Contact/ListContact/replyContact";
 import ListNewsletter from "./pages/admin/Newsletter/ListNewsletter";
 import ListBanner from "./pages/admin/Setttings/Banner/ListBanner";
+import AddBanner from "./pages/admin/Setttings/Banner/AddBanner";
+import UpdateBanner from "./pages/admin/Setttings/Banner/UpdateBanner";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -132,8 +134,8 @@ function Web() {
 
                     <Route path="quan-ly-banner">
                         <Route element={< ListBanner />} path="list" />
-                        {/* <Route element={< AddMenu />}  path="add" />
-                        <Route element={< UpdateMenu />}  path="update/:id" /> */}
+                        <Route element={< AddBanner />}  path="add" />
+                        <Route element={< UpdateBanner />}  path="update/:id" />
                     </Route>
 
                     <Route path="cau-hinh-chung">
