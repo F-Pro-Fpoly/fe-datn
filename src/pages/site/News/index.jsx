@@ -101,7 +101,7 @@ function News(){
                             </div>
                                                          
                             <div className="blog-meta big-meta col-md-8">
-                                <Link to={item.slug}>    
+                                <Link to={'chitiet'/item.slug}>    
                                 <h4 >{item.name}</h4>
                                 <p className="an " dangerouslySetInnerHTML={{__html: item.content}}></p>
                               

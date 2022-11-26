@@ -3,7 +3,7 @@
     display: block;
 }
 .news{
-    margin-top: 120px;
+    margin-top: 6.3%;
 }
 .w-100 {
     width: 100%!important;
@@ -19,11 +19,10 @@
 .wb{background-color:#fff;}
 .wb .hovereffect{opacity:0.1;background-color:rgba(0,0,0)}
 .section{background-color:#fff}
-.col-lg-10 .row{padding:2.5rem 1.5rem!important;background-color:#fff;border:1px dashed #e2e2e2}
 .blog-list-widget small{color:rgba(0,0,0,0.6)!important}
 .fa{font-size:21px;margin:0 0.3rem}
 .breadcrumb{background-color:transparent;border-radius:0;list-style:outside none none;margin-bottom:0;text-align:right;padding:0}
-.breadcrumb-item{float:none;font-size:20px;display:inline-block}
+.breadcrumb-item{float:none;font-size:16px;display:inline-block}
 .page-link{background-color:#edeff2!important;border:0 dashed #e2e2e2;border-radius:x0;color:#a3a5a8!important;display:block;font-size:14px;line-height:1;margin-left:6px;padding:0.8rem 0.8rem;position:relative;text-transform:capitalize}
 .page-link:hover,.page-link:focus{color:#111!important}
 .page-item:first-child .page-link{margin-left:0;border-radius:0}g-title-area
@@ -33,7 +32,7 @@
 .page-title i{border-radius:40px;display:inline-block;font-size:14px;height:40px;line-height:40px;margin-right:0.3rem;margin-top:-0.4rem;text-align:center;vertical-align:middle;width:40px}
  .breadcrumb{float:none;text-align:left;padding:0;color:#a3a5a8;margin:0}
 .text-center .breadcrumb{text-align:center}
- .breadcrumb-item.active, .breadcrumb-item + .breadcrumb-item::before, blog-meta small, a{color:#a3a5a8}
+ .breadcrumb-item.active, .breadcrumb-item + .breadcrumb-item::before, blog-meta small, a{color:#000000}
 .last-child{margin-bottom:0!important}
  .w-100{margin-bottom:0!important;padding-bottom:0}
 .pp{padding-left:5%;padding-right:5%; margin-top:4%;}
@@ -61,7 +60,6 @@ hr.invis3{border:0;margin:0}
 // // kiểm tra rồi
 .post-media{position:relative;overflow:hidden}
 .post-media:hover span::before,.post-media:hover {visibility:visible;zoom:1;filter:alpha(opacity=100);opacity:1}
- .col-md-12, .col-md-6{margin-bottom:3rem}
 .sidebar .widget{position:relative;display:block;margin-bottom:3rem}
 .sidebar .banner-spot{background-image:none;padding:5px}
 .sidebar .instagram-wrapper a{width:33.3333%;margin:0;float:left;border-right:5px solid #fff;border-bottom:5px solid #fff}
@@ -164,7 +162,7 @@ p h4{
     font-weight: bold;
     text-transform: uppercase;
     margin-right: 0.5rem;
-    margin-top: 8%;
+    margin-top: 2.5%;
 }
  .blog-meta a{
     color: #111111;

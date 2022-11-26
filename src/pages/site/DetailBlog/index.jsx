@@ -84,7 +84,7 @@ export default function DitailNews(){
                 </div>
             </div>
         </div>
-        <section className="section wb formBooking">
+        <section className="section">
             <div className="container ">
         
                 <div className="row">
@@ -111,8 +111,7 @@ export default function DitailNews(){
                             <img src={ `${process.env.REACT_APP_BE}${NewsDetail.file}` } alt="website template image" className="img-fluid"/>
                         </div>
                         <div className="blog-content">
-                            <div className="pp"> 
-                                <p dangerouslySetInnerHTML={{__html: NewsDetail.content}}></p>
+                            <div className="pp"  dangerouslySetInnerHTML={{__html: NewsDetail.content}}> 
                             </div>
                         </div>
                     <hr className="invis2"/>
@@ -120,9 +119,9 @@ export default function DitailNews(){
                             <h4 className="small-title">Bình luận</h4>
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <div className="comments-list">  
+                                        <div className="comments-list">
                                         <div id="fb-root"></div>
-                                       <div className="fb-comments" data-href="http://fpro.newweb.vn" data-width="500" data-numposts="3"></div>
+                                            <div class="fb-comments" data-href="http://fpro.newweb.vn/" data-width="" data-numposts="5"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -223,6 +222,8 @@ export default function DitailNews(){
             </div>
         </div>
   </section>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0&appId=645629553905650&autoLogAppEvents=1" nonce="p2hSxtI7"></script>
   </div>
+  
 );
 }
