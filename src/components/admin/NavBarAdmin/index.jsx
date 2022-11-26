@@ -114,7 +114,7 @@ function NavBarAdmin({className}) {
                     },
                     {
                         name: "Danh sách vaccine",
-                        to: "/admin/sick/list"
+                        to: "/admin/vaccine/list"
                     },
                     {
                         name: "Danh mục vaccine",

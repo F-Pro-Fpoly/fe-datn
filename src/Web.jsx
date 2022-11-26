@@ -62,6 +62,7 @@ import UpdateCateVaccine from "./pages/admin/Vaccine/ListCateVaccine/UpdateCateV
 import AddVaccine from "./pages/admin/Vaccine/AddVaccine";
 import AddBanner from "./pages/admin/Setttings/Banner/AddBanner";
 import UpdateBanner from "./pages/admin/Setttings/Banner/UpdateBanner";
+import ListVaccine from "./pages/admin/Vaccine/ListVaccine";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -162,6 +163,7 @@ function Web() {
                         <Route element={< ListCateVaccine />} path="list-cate" />
                         <Route element={<UpdateCateVaccine />} path="update-cate/:id" />
                         <Route element={<AddVaccine />} path="add" />
+                        <Route element={<ListVaccine />} path="list" />
                     </Route>
 
 
