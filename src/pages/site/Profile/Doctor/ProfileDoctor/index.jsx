@@ -9,7 +9,7 @@ import "./ProfileDoctor.scss";
 function ProfileDoctor() {
 
     const token = useSelector(state => state.auth.token);
-    const [infoDoctor, setInfoDoctor] = useState();
+    const [infoDoctor, setInfoDoctor] = useState([]);
     const pram = useParams();
     const id = pram.id
 
@@ -25,17 +25,18 @@ function ProfileDoctor() {
         document.title = "Thông tin bác sĩ"
     }, [])
 
+    console.log(infoDoctor);
 
     return ( 
         <div className="container-fluid" id="spec">  
               <div className="specialBlock_19">
                 <div className="container containerFix">
                   <div className="wrapBox">
-                    <p className="text_1" style={{textTransform:"uppercase"}}>Bác sĩ { infoDoctor ? infoDoctor.name : ""}</p>
+                    <p className="text_1" style={{textTransform:"uppercase"}}>Bác sĩ { infoDoctor.doctor_name }</p>
                     <div className="">
                       <ol className="breadcrumb breadcrumbFix">
                         <li className="breadcrumb-item">
-                          <Link to="/"><span>Trang chủ</span></Link>
+                          <Link to="/"><span style={{fontWeight: "700"}}>Trang chủ</span></Link>
                         </li>
                         <li className="breadcrumb-item">
                           <span style={{fontWeight: "700"}}>Đội ngũ bác sĩ</span>
@@ -51,51 +52,50 @@ function ProfileDoctor() {
                         <div className="peopleBlock">
                             <Link className="wrapImg">
                                 <div className="imgPart figure1">
-                                    <img alt="BÁC SĨ PHAN TRUNG TIỆP" src="https://nhakhoathanhan.vn/uploads/img/background_10.jpg" />
+                                    <img alt="BÁC SĨ PHAN TRUNG TIỆP" src={`${process.env.REACT_APP_BE}${infoDoctor.doctor_avatar}`}           />
                                 </div>
                             </Link>
                             <div className="rightBlock">
                                 <div className="basicInfo">
                                     <Link className="namePeople" style={{textTransform:"uppercase", fontWeight: "700"}}>
-                                        BÁC SĨ {infoDoctor ? infoDoctor.name : ""}
+                                        BÁC SĨ { infoDoctor.doctor_name }
                                     </Link>
-                                    <p className="career">{infoDoctor ? infoDoctor.specailist_name : ""}</p>
+                                    <p className="career">{infoDoctor.specialists_name }</p>
                                     <div className="wrapSocialBlock">
                                         <div className="socialBlock_1">
-                                            <Link className="wrapSocialPart">
+                                            <Link to={infoDoctor.link} className="wrapSocialPart">
                                                 <div className="imgSocialPart">
                                                     <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/faceItem_2.svg" />
                                                 </div>
                                             </Link>
                                             <Link className="wrapSocialPart">
                                                 <div className="imgSocialPart">
-                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/faceItem_2.svg" />
+                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/icons8-linkedin-2.svg" />
                                                 </div>
                                             </Link>
                                             <Link className="wrapSocialPart">
                                                 <div className="imgSocialPart">
-                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/faceItem_2.svg" />
+                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/twitter_2.svg" />
                                                 </div>
                                             </Link>
                                             <Link className="wrapSocialPart">
                                                 <div className="imgSocialPart">
-                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/faceItem_2.svg" />
+                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/GPlusItem_2.svg" />
                                                 </div>
                                             </Link>
                                         </div>
                                     </div>
                                     <p className="textInfo"></p>
-                                    <p>- Kinh nghiệm: 10 năm </p>
-                                    <p>- Kinh nghiệm: 10 năm </p>
-                                    <p>- Tu nghiệp tại National University of Russia (Nga) về thiết kế nụ cười, nắn chỉnh răng và mặt dán sứ </p>
+                                    <p>{infoDoctor.context } </p>
+                                  
                                 </div>
                                 <div className="wrapOwlSlideTab">
-      
+        
                                     
-                                    <Link to="#td" className="btn btn-primary" style={{marginRight: "2%"}}>Trình độ</Link>
-                                    <Link className="btn btn-primary" style={{marginRight: "2%"}}>Giới thiệu</Link>
-                                    <Link className="btn btn-primary" style={{marginRight: "2%"}}>Kinh nghiệm</Link>
-                                    <Link className="btn btn-primary" style={{marginRight: "2%"}}>Bài viết</Link>
+                                    <a href="#td" className="btn btn-primary" style={{marginRight: "2%"}}>Trình độ</a>
+                                    <a href="#gt" className="btn btn-primary" style={{marginRight: "2%"}}>Giới thiệu</a>
+                                    <a href="#kn" className="btn btn-primary" style={{marginRight: "2%"}}>Kinh nghiệm</a>
+           
                         
                       
                                 </div>
@@ -104,17 +104,43 @@ function ProfileDoctor() {
                     </div>
                 </div>
             </div>
-            <div className="section_introduce" id="td">
+            <div className="section_introduce" >
                 <div className="container">
-                    <div className="containerFix">
+               
+                    <div className="containerFix" id="td">
                         <div className="titleBlock_2">
                             <div className="text_1">TRÌNH ĐỘ CHUYÊN MÔN</div>
                         </div>
                         <div className="data_contents">
                         <p></p>
-                        <p  dir="ltr" role="presentation">- Tốt nghiệp bác sĩ chuyên ngành nha khoa tại đại học Y khoa Moscow (Moscow State University of Medicine and Dentistry) của Nga.</p>
-                        <p  dir="ltr" role="presentation">- Tốt nghiệp bác sĩ chuyên ngành nha khoa tại đại học Y khoa Moscow (Moscow State University of Medicine and Dentistry) của Nga.</p>
-                        <p  dir="ltr" role="presentation">- Tốt nghiệp bác sĩ chuyên ngành nha khoa tại đại học Y khoa Moscow (Moscow State University of Medicine and Dentistry) của Nga.</p>
+                        <p  dir="ltr" role="presentation"> {infoDoctor.level}</p>           
+                        </div>
+                    </div>
+                    <div className="containerFix" id="gt">
+                        <div className="titleBlock_2">
+                            <div className="text_1">Giới thiệu</div>
+                        </div>
+                        <div className="data_contents">
+                        <p></p>
+                        <p  dir="ltr" role="presentation"> {infoDoctor.introduce}</p>           
+                        </div>
+                    </div>
+                    <div className="containerFix" id="kn">
+                        <div className="titleBlock_2">
+                            <div className="text_1">Kinh nghiệm</div>
+                        </div>
+                        <div className="data_contents">
+                        <p></p>
+                        <p  dir="ltr" role="presentation"> {infoDoctor.experience}</p>           
+                        </div>
+                    </div>
+                    <div className="containerFix" id="lc">
+                        <div className="titleBlock_2">
+                            <div className="text_1">LÝ DO KHÁCH HÀNG TIN TƯỞNG VÀ LỰA CHỌN BÁC SỸ {infoDoctor.doctor_name}</div>
+                        </div>
+                        <div className="data_contents">
+                        <p></p>
+                        <p  dir="ltr" role="presentation"> {infoDoctor.level}</p>           
                         </div>
                     </div>
                 </div>

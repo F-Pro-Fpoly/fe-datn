@@ -127,7 +127,7 @@ function getInfo({token}) {
 
 function getInfoDoctor({token,id}) {
     let headers = {};
-    let url = `normal/user/infoDoctor/${id}`;
+    let url = `normal/doctor-profile/detail/${id}`;
     if(token) {
         headers = {...headers, "Authorization": `Bearer ${token}`};
     }
