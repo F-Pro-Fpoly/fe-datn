@@ -35,6 +35,7 @@ function ClinicUiTime({dataItem}) {
 
         }
     }
+
     const saveBookingInfo2 = async (val) => {
         // e.preventDefault();
         
@@ -69,20 +70,18 @@ function ClinicUiTime({dataItem}) {
             </div>
             <div className="infocontent"> 
                 <h3>{item.name}</h3>
-                <span>Nguyên Trưởng khoa Cơ xương khớp, Bệnh viện Bạch Mai
-                    Chủ tịch Hội Thấp khớp học Việt Nam
-                    Giáo sư đầu ngành với gần 50 năm kinh nghiệm điều trị các bệnh lý liên quan đến Cơ xương khớp
-                    Bác sĩ khám cho người bệnh từ 14 tuổi trở lên
-                </span>          
+                <span>{item.user_info}</span>          
             </div>
 
             <div className="schedule">
-                <select name="" id="" onChange={(e)=>handleDateInput(e)}>
+
+                <select name="" className="form-control"  id="" onChange={(e)=>handleDateInput(e)}>
                     {item.schedule_dates.map((val, index) => (
                         <option value={val.date} key={index}>{val.date_format}</option>
                     ))}                     
                 </select>
-                
+
+
                 <div className="title">
                     <i className="fa-solid fa-calendar-days"></i>&nbsp;
                     <span>LỊCH KHÁM</span>

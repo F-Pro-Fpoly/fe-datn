@@ -82,7 +82,7 @@ function Policy () {
                                 </div>
                             </div>
                             <div className="textPart">
-                                <p className="spText_1">Miễn phí 01 Vorcher cho người thâ<noscript></noscript></p>
+                                <p className="spText_1">Miễn phí 01 Vorcher cho người thân<noscript></noscript></p>
                                 <p className="spText_2">Bạn sẽ được nhận ngay 01 Vorcher khám tổng quát cho người thân khi đã thanh toán thành công 1 loại Vaccine bên FPro.</p>
                             </div>
                         </div>
@@ -112,7 +112,7 @@ function Policy () {
                                 </div>
                             </div>
                             <div className="textPart">
-                                <p className="spText_1">Bảo hành mắc cài trong suốt quá trình niềng</p>
+                                <p className="spText_1">Phát đồ điều trị một cách khoa học.</p>
                                 <p className="spText_2">Đội ngũ Y Bác Sĩ của FPro với trên 10 năm kinh nghiệm trong chuyên môn giúp chuẩn đoán và lên phát đồ điều trị một cách khoa học.</p>
                             </div>
                         </div>
