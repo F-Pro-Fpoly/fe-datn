@@ -1,7 +1,21 @@
 import "./About.scss";
 // import useWindowSize  from "../../../services/ResponsiveAbout"
+import {  useEffect, useRef,useState} from 'react';
+import { ListConfigService } from '../../../services/normal/ConfigService';
 function About(){
     document.title = "Về chúng tôi";
+    const [getconfig, setConfig] = useState([])
+    const start = async () => {
+  
+        let respon = await ListConfigService()
+        let dataa = respon.data;
+        let dataArrr = dataa.data;
+        setConfig(dataArrr)
+   }
+   useEffect(() => {
+    start()
+  
+  }, []);
     return(
         <div>
    
@@ -25,13 +39,13 @@ function About(){
                         </div>
                     </div>
                     <div className="col-lg-6">
-                        <h2 className="noo-sh-title-top">Giới thiệu <span>Phòng khám đa khoa</span></h2>
+                        <h2 className="noo-sh-title-top">Giới thiệu <span>{getconfig.NameCompany ? getconfig.NameCompany.description : ""}</span></h2>
                         <br />
-                        <p className="tp"><b>Phòng Khám Đa Khoa </b> xin gửi đến Quý khách lời chúc sức khỏe, an lành và hạnh phúc.</p>
+                        <p className="tp"><b>{getconfig.NameCompany ? getconfig.NameCompany.description : ""} </b> xin gửi đến Quý khách lời chúc sức khỏe, an lành và hạnh phúc.</p>
                         <p>Chúng tôi hiểu rằng, sức khỏe là vốn quý nhất của con người. Nhưng hiện nay, khi chất lượng cuộc sống ngày một nâng cao, thì bệnh tật lại ngày càng trẻ hóa và trở nên rất đa dạng, vì vậy nhu cầu khám, chữa bệnh đang gia tăng rất nhanh.</p>
-                        <p>Nhằm đáp ứng nhu cầu khám chữa bệnh cho người dân thành phố,<b>Công Ty TNHH Phòng Khám Đa Khoa </b> đã tạo ra trang web này để mang lại những dịch vụ chăm sóc sức khỏe tốt nhất và nhanh chóng nhất đến với Quý khách hàng.</p>
+                        <p>Nhằm đáp ứng nhu cầu khám chữa bệnh cho người dân thành phố,<b>{getconfig.NameCompany ? getconfig.NameCompany.description : ""} </b> đã tạo ra trang web này để mang lại những dịch vụ chăm sóc sức khỏe tốt nhất và nhanh chóng nhất đến với Quý khách hàng.</p>
                         <p>Với phương châm hoạt động <b> “Luôn đáp ứng nhu cầu khám chữa bệnh chất lượng cao và tiết kiệm thời gian, chi phí tối thiểu cho khách hàng”</b>, chúng tôi đã nhận được sự tin tưởng và những phản hồi rất tốt từ khách hàng. Đến nay, tổng số bệnh nhân đăng ký khám chữa bệnh ban đầu tại Phòng Khám Đa Khoa Sài Gòn đã lên đến hơn <b> 137.000 người</b>.</p>
-                        <p> <b>Phòng Khám Đa Khoa </b>  vinh dự được đón tiếp Quý khách.</p>
+                        <p> <b>{getconfig.NameCompany ? getconfig.NameCompany.description : ""} </b>  vinh dự được đón tiếp Quý khách.</p>
                         <p><b>Trân trọng,</b></p>
                         {/* <a className="btn btn-info" href="#">Read More</a> */}
                     </div>
