@@ -43,10 +43,10 @@ function FormBookIndexx () {
                         <div className="formRegisterBlock_2">
                             <div className="titleBlock_1">
                                 <p className="spTitle_2">ĐĂNG KÝ</p>
-                                <p className="spTitle_1"><i className="spFix">ĐẶT LỊCH HẸN</i></p>
+                                <p className="spTitle_1"><i className="spFix">ĐẶT LỊCH HẸN NGAY</i></p>
                                 <div className="spUnderline"></div>
                             </div>
-                            <p className="formText_2">Khám cùng Dr. Phan Tiệp để nhận tư vấn cụ thể tình trạng của bạn!</p>
+                            <p className="formText_2">Khám cùng FPro để nhận tư vấn cụ thể tình trạng của bạn!</p>
                             <form ref={formRef2} onSubmit={handleSubmit2} method="Post">
 
                                 <div className="form-group">
@@ -64,7 +64,7 @@ function FormBookIndexx () {
                                 </div>
                                
                                 <div className="btnRegister">
-                                <button type="submit" className="btnType_1 btnSubmit2">ĐĂNG KÝ</button>
+                                <button type="submit" className="btnType_1 btnSubmit2">ĐẶT LỊCH</button>
                                 </div>
                             </form>
                         </div>
