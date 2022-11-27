@@ -17,10 +17,9 @@ function ChartCovid() {
         try {
             let res =  await getChartCovidService();
             let data = res.data;
-            let location = data.total.internal
+            let location = data.total.world
             let locations = data.locations
-            let overview = data.overview
-          
+            let overview = data.overview     
             getTopinfo(location)
             setLocation(locations);
             setOverview(overview);
@@ -34,7 +33,7 @@ function ChartCovid() {
         document.title = "Biểu đồ covid"
 
     }, [])
-    
+  
     return (  
 
         <div className="container-fluid pd" id="tb" >
@@ -65,10 +64,7 @@ function ChartCovid() {
                 <div className="home__statistical-nav">
                     <ul>
                       <li>
-                      <Link to="" id="tabvi" title="" className="active">Việt Nam</Link>
-                      </li>
-                      <li>
-                      <Link to="" id="tabvi" title="">Thế giới</Link>
+                      <Link to="" id="tabvi" title="" className="active">Tình hình dịch thế giới</Link>
                       </li>
                     </ul>
                 </div>

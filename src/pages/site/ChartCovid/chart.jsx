@@ -4,35 +4,58 @@ import { Bar } from "react-chartjs-2";
 
 const BarChart = (props) => {
     const solieu = props.overview;
-    // console.log(solieu);
-
 
    let datee =  solieu.map((item,index) => {
       
-      return {
-        date: item.date,
-        death: item.death
-      }
-       
+      return  item.date
+   
+    })
+   let death =  solieu.map((item,index) => {
+      
+      return  item.death
+   
+    })
+   let recovered =  solieu.map((item,index) => {
+      
+      return  item.recovered
+   
+    })
+   let cases =  solieu.map((item,index) => {
+      
+      return  item.cases
+   
     })
 
-  const labels = datee;
 
+  const labels = datee;
+  
   const data = {
     labels: labels,
-    datasets: [
+    datasets: [   
       {
-        label: "My First dataset",
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgb(255, 99, 132)",
-        data: [0, 10, 5, 2, 20, 30, 45],
+        label: "Khỏi bệnh",
+        backgroundColor: "rgb(40,167,69)",
+        borderColor: "rgb(40,167,69)",
+        data: recovered,
       },
+      {
+        label: "Ca mắc mới",
+        backgroundColor: "rgb(237,28,36)",
+        borderColor: "rgb(237,28,36)",
+        data: cases,
+      },
+      {
+        label: "Tử vong",
+        backgroundColor: "rgb(51,51,51)",
+        borderColor: "rgb(51,51,51)",
+        data:death,
+      }
 
     ],
   };
   return (
     <div>
-      <Bar data={data} />
+      <Bar data={data} width={700}  height={550} />
     </div>
   );
 };
