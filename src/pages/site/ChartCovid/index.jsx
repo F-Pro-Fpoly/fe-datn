@@ -65,10 +65,7 @@ function ChartCovid() {
                 <div className="home__statistical-nav">
                     <ul>
                       <li>
-                      <Link to="" id="tabvi" title="" className="active">Việt Nam</Link>
-                      </li>
-                      <li>
-                      <Link to="" id="tabvi" title="">Thế giới</Link>
+                      <Link to="" id="tabvi" title="" className="active">Tình hình dịch thế giới</Link>
                       </li>
                     </ul>
                 </div>
