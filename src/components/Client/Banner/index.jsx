@@ -30,7 +30,7 @@ function Banner () {
                         <Carousel.Item key={index}>
                             <div className="banner">    
                                 <div className="bongmo"></div>
-                                <img src={`${process.env.REACT_APP_BE}${item.image}`}           alt="banner" />
+                                <img src={`${process.env.REACT_APP_BE}${item.image}`}   alt={item.name} />
                                 <div className="text">                       
                                     <h2 className='text1' dangerouslySetInnerHTML={{__html: item.description}}></h2>           
                                     {item.button ?

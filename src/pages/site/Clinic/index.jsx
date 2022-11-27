@@ -23,6 +23,7 @@ function Clinic () {
                 'role_code' : 'doctor',
                 'specailist_slug': slug,
                 'add_time_slot': 1,
+                'interval': "M"
             }});
             let dataDoctor = resDoctor.data.data;
             setListDoctor(dataDoctor);
