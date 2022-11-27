@@ -144,7 +144,9 @@ function Booking() {
                         )
                     })
                     :
-                    <div className="bg-mode shadow p-4 rounded overflow-hidden">
+                   
+                        loading ? <Loading /> :
+                        <div className="bg-mode shadow p-4 rounded overflow-hidden">
                         <div className="row g-4 align-items-center">
                             
                             <div className="col-md-9">
@@ -159,9 +161,7 @@ function Booking() {
                         </div>
                     </div>
                 }
-                {
-                loading && <Loading />
-                }
+              
                 </div>
                 
 
@@ -288,6 +288,7 @@ function Booking() {
                         )
                     })
                     :
+                    loading ? <Loading /> :
                     <div className="bg-mode shadow p-4 rounded overflow-hidden">
                     <div className="row g-4 align-items-center">
                             <div className="col-md-9">

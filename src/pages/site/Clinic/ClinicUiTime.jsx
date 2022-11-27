@@ -97,19 +97,27 @@ function ClinicUiTime({dataItem}) {
             </div>
 
             <div className="schedule">
-
-                <select name="" className="form-control"  id="" onChange={(e)=>handleDateInput(e)}>
+            <div className="row g-3 mb-3 form-group" style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "nowrap",
+                marginRight : "10px"
+            }}>
+         
+                <select name="" className="form-control"  id="" onChange={(e)=>handleDateInput(e)} style={{
+                    marginRight:"5%"
+                }}>
                     {item.schedule_dates.map((val, index) => (
                         <option value={val.date} key={index}>{val.date_format}</option>
                     ))}                     
                 </select>
-
+       
                 <select name="" className="form-control"  id="" onChange={(e)=>handleIntervalInput(e)}>
                   <option value="M">Buổi sáng</option>  
-                  <option value="A">Buổi tối</option>  
+                  <option value="A">Buổi chiều</option>  
                 </select>
 
-
+                    </div>
                 <div className="title">
                     <i className="fa-solid fa-calendar-days"></i>&nbsp;
                     <span>LỊCH KHÁM</span>
