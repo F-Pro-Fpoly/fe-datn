@@ -1,4 +1,5 @@
 import "./DetailBlog.scss";
+import "../News/Blog.scss";
 import { Link } from "react-router-dom"
 import {useEffect, useState} from 'react';
 import { useParams } from "react-router";
@@ -6,18 +7,15 @@ import {  getNewsDetailClient,getlistNews3NewsAPI,getlistNews9FeaturedAPI,getlis
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../components/Loading/Loading";
 import { setLoading } from "../../../redux/slices/InterfaceSile";
-import moment from "moment";
 export default function DitailNews(){
   const param = useParams();
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.token);
-  const mom = moment().format('d/m/Y');
   const [NewsDetail, setDetail] = useState({
     "code": "",
     "name":"",
     "file":"",
-    "created_at": mom,
-    "view": null,
+    "views": null,
     "content": "", 
 }); 
 
@@ -50,13 +48,11 @@ export default function DitailNews(){
               name: data.name ?? null,
               file: data.file ?? null,
               content: data.content ?? null,
-              view: data.view ?? 0,
-              created_at:data.created_at ?? mom,
+              views: data.views ?? 0,
           });
           dispatch(setLoading(false))
           setDetail(data);
           getNewsNewClient(data3New)
-          getNewsFeaturedClient(data9Featured)
           getNewsFeaturedClient(data9Featured)
           getNewsCategoryClient(dataCy)
           getLoading(false)
@@ -67,7 +63,7 @@ export default function DitailNews(){
       start();
   }, []);
     return(
-      <div className="formBooking">
+      <div className="Newsdetail">
             <div className="page-title">
             <div className="container news">
                 <div className="row">
@@ -84,8 +80,8 @@ export default function DitailNews(){
                 </div>
             </div>
         </div>
-        <section className="section wb formBooking">
-            <div className="container ">
+        <section className="section">
+            <div className="container wb">
         
                 <div className="row">
                     <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12">
@@ -94,16 +90,22 @@ export default function DitailNews(){
                             <h2>{NewsDetail.name}</h2>
                             <div className="blog-meta big-meta">
                                 <small>
-                                    <a href="" >{NewsDetail.created_at}</a>
+                                    <Link>
+                                        <i className="far fa-clock"></i>
+                                        {NewsDetail.created_at}
+                                    </Link>
+                                   
                                 </small>
                                 <small>
-                                    <a href="">
-                                        <i className="fa fa-eye"></i> {NewsDetail.view}
-                                    </a>
+                                    <Link>
+                                        <i className="fa fa-eye"></i> {NewsDetail.views}
+                                    </Link> 
                                 </small>
-                                {/* <small>
-                                    <a href="">{NewsDetail.category_name}</a>
-                                </small> */}
+                                <small>
+                                    <Link>
+                                     Danh Mục: {NewsDetail.category_name}
+                                     </Link>
+                                </small>
                             </div>
                         </div>
                         <br/>
@@ -111,8 +113,7 @@ export default function DitailNews(){
                             <img src={ `${process.env.REACT_APP_BE}${NewsDetail.file}` } alt="website template image" className="img-fluid"/>
                         </div>
                         <div className="blog-content">
-                            <div className="pp"> 
-                                <p dangerouslySetInnerHTML={{__html: NewsDetail.content}}></p>
+                            <div className="pp"  dangerouslySetInnerHTML={{__html: NewsDetail.content}}> 
                             </div>
                         </div>
                     <hr className="invis2"/>
@@ -120,9 +121,9 @@ export default function DitailNews(){
                             <h4 className="small-title">Bình luận</h4>
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <div className="comments-list">  
+                                        <div className="comments-list">
                                         <div id="fb-root"></div>
-                                       <div className="fb-comments" data-href="http://fpro.newweb.vn" data-width="500" data-numposts="3"></div>
+                                            <div className="fb-comments" data-href="http://fpro.newweb.vn/" data-width="" data-numposts="5"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -224,5 +225,6 @@ export default function DitailNews(){
         </div>
   </section>
   </div>
+  
 );
 }

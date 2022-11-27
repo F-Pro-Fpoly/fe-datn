@@ -60,7 +60,7 @@ function News(){
       }
 
       return(
-        <div className="formBooking ">
+        <div className="News">
         <div className="page-title">
             <div className="container news">
                 <div className="row">
@@ -78,7 +78,7 @@ function News(){
             </div>
         </div>
           <section className="section">
-            <div className="container">
+            <div className="container wb">
               <div className="row">
              
                 <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12">   
@@ -89,8 +89,8 @@ function News(){
                           {
                       ListNews.map((item,index) => {
                       return(
-                      <div  key={index}>
-                        <div className="blog-box row">
+                      <div className="blog-box"  key={index}>
+                        <div className="row">
                             <div className="col-md-4">
                                 <div className="post-media">
                                     <Link to={item.slug}>
@@ -101,11 +101,10 @@ function News(){
                             </div>
                                                          
                             <div className="blog-meta big-meta col-md-8">
-                                <Link to={item.slug}>    
-                                <h4 >{item.name}</h4>
-                                <p className="an " dangerouslySetInnerHTML={{__html: item.content}}></p>
-                              
-                                 </Link>  
+                                <Link to={item.slug}>
+                                    <h4>{item.name}</h4>
+                                    <p className="an " dangerouslySetInnerHTML={{__html: item.content}}></p>
+                                </Link>
                                 <samp><p><i className="far fa-clock"></i> {item.created_at}</p></samp>
                             </div> 
                         </div>
