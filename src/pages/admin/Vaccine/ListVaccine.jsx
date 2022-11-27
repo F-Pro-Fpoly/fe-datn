@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../../../components/Loading/Loading";
 import { listVaccine,deleteVaccine } from "../../../services/VaccineService";
-import { Form, Modal, Table } from "react-bootstrap";  
+import { Form, Modal, Table } from "react-bootstrap";
+import AddVaccine from "./AddVaccine";  
 import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate';
 function ListVaccine() {
@@ -127,6 +128,19 @@ function ListVaccine() {
                         nextLinkClassName="page-link"
                     />
                 </div>
+                <Modal size="lg" show={modal} onHide={handleHideModel}>
+                <Modal.Header closeButton>
+                    <h4>CẬP NHẬT VACCINE</h4>
+                </Modal.Header>
+                <Modal.Body style={{maxHeight: "600px"}} className="overflow-auto">
+                    <AddVaccine 
+                        handleHideModel={handleHideModel} 
+                        handleShowModel={handleShowModel} 
+                        startList={start}
+                        update={update} 
+                    />
+                </Modal.Body>
+            </Modal>
             </div>
      );
 }

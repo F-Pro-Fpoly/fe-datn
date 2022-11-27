@@ -59,6 +59,7 @@ import ReplyContact from "./pages/admin/Contact/ListContact/replyContact";
 import ListNewsletter from "./pages/admin/Newsletter/ListNewsletter";
 import ListBanner from "./pages/admin/Setttings/Banner/ListBanner";
 import UpdateCateVaccine from "./pages/admin/Vaccine/ListCateVaccine/UpdateCateVaccine";
+import UpdateVaccine from "./pages/admin/Vaccine/UpdateVaccine";
 import AddVaccine from "./pages/admin/Vaccine/AddVaccine";
 import AddBanner from "./pages/admin/Setttings/Banner/AddBanner";
 import UpdateBanner from "./pages/admin/Setttings/Banner/UpdateBanner";
@@ -162,6 +163,7 @@ function Web() {
                     <Route path="vaccine">
                         <Route element={< ListCateVaccine />} path="list-cate" />
                         <Route element={<UpdateCateVaccine />} path="update-cate/:id" />
+                        <Route element={<UpdateVaccine />} path="update/:id" />
                         <Route element={<AddVaccine />} path="add" />
                         <Route element={<ListVaccine />} path="list" />
                     </Route>

@@ -128,7 +128,7 @@ function ListCateVaccine() {
             </div>
             <Modal size="lg" show={modal} onHide={handleHideModel}>
                 <Modal.Header closeButton>
-                    <h4>THÊM DANH MỤC VACCINE</h4>
+                    <h4>CÂP NHẬT DANH MỤC VACCINE</h4>
                 </Modal.Header>
                 <Modal.Body style={{maxHeight: "600px"}} className="overflow-auto">
                     <AddCateVaccine 

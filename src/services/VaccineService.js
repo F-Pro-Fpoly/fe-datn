@@ -52,4 +52,14 @@ function updateVaccine({token, id, data}){
     }
     return API.post(url, data,{headers: headers});
 }
-export {createVaccineService,listVaccine,deleteVaccine,updateVaccine}
+function getVaccineApi({token, id}) {
+    let headers ={}; 
+    let url = `auth/vaccine/${id}`;
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+
+    return API.get(url, {headers: headers});
+}
+export {createVaccineService,listVaccine,deleteVaccine,updateVaccine,getVaccineApi}
