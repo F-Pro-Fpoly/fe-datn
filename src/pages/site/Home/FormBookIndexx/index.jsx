@@ -4,6 +4,7 @@ import { useRef } from "react";
 import "./FormBookIndex2.scss";
 import { creatContactApi } from "../../../../services/ContactService";
 import { toast,ToastContainer } from 'react-toastify';
+import img from "../../../../image/form.png"
 function FormBookIndexx () {
 
  const formRef2 = useRef();
@@ -36,7 +37,7 @@ function FormBookIndexx () {
                 <div className="row">
                     <div className="leftBox">
                         <div className="imgPart">
-                            <img src="https://nhakhoathanhan.vn/uploads/img/Bs.png" alt="" />
+                            <img src={img} alt="" />
                         </div>
                     </div>
                     <div className="rightBox">
