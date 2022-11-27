@@ -6,19 +6,18 @@ import { toast,ToastContainer } from 'react-toastify';
 import Loading from "../../../../../components/Loading/Loading";
 import LoadingBtn from "../../../../../components/LoadingBtn/LoadingBtn";
 import { Postslider } from "../../../../../services/BannerService";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import { Editor } from '@tinymce/tinymce-react';
 function AddBanner() {
 
     const token = useSelector(state => state.auth.token);
     const formRef = useRef();
     const [loading, getLoading] = useState(false);
     const [textEditer, setTextEditer] = useState('');
+
     const hanndleSubmit = async (data) => {
         data.preventDefault();
         const formData = new FormData(formRef.current)
-        formData.append('description', textEditer);
+        formData.append('description', textEditer.description);
         const req = {
             "token" : token,
             "data": formData,  
@@ -58,13 +57,38 @@ function AddBanner() {
                 </div>
                 <div className="form-group mb-2">
                     <label htmlFor="" className="form-label">Mô tả</label>
-                    <CKEditor
+
+                    <Editor
+                            apiKey='v7uxagccs26096o8eu0kae4sbg90s9bicobdondox6ybfxen'
+                            // onInit={(evt, editor) => editorRef.current = editor}
+                            value={textEditer.description}
+                            onEditorChange={(event, editor) => {
+                                setTextEditer({...textEditer, description: editor.getContent()})
+                            }}
+                            init={{
+                                height: 500,
+                                menubar: true,
+                                plugins: [
+                                    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                                    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                                    'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                                ],
+                                toolbar: 'undo redo | blocks | ' +
+                                    'bold italic forecolor | alignleft aligncenter ' +
+                                    'alignright alignjustify | bullist numlist outdent indent | ' +
+                                    'removeformat | help',
+                                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                            }}
+                        />
+
+
+                    {/* <CKEditor
                             editor={ ClassicEditor }
                             data={textEditer}
                             onChange={(event, editor) => {
                                 setTextEditer(editor.data.get())
                             }}
-                        />
+                        /> */}
 
                     {/* <input type="text" name="description" className="form-control" placeholder="Nhập mô tả" /> */}
                 </div>

@@ -4,9 +4,19 @@ import { Bar } from "react-chartjs-2";
 
 const BarChart = (props) => {
     const solieu = props.overview;
-    console.log(solieu);
-  
-  const labels = ["January", "February", "March", "April", "May", "June"];
+    // console.log(solieu);
+
+
+   let datee =  solieu.map((item,index) => {
+      
+      return {
+        date: item.date,
+        death: item.death
+      }
+       
+    })
+
+  const labels = datee;
 
   const data = {
     labels: labels,
@@ -17,6 +27,7 @@ const BarChart = (props) => {
         borderColor: "rgb(255, 99, 132)",
         data: [0, 10, 5, 2, 20, 30, 45],
       },
+
     ],
   };
   return (

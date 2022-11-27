@@ -9,6 +9,7 @@ function ClinicUiTime({dataItem}) {
     const [item, setItem] = useState(dataItem);
     const [timeSlots, setTimeSlot] = useState(dataItem.schedule_data ?? []);
     const [date, setDate] = useState(dataItem.schedule_date);
+    const [interval, setinterval] = useState("M");
     const token = useSelector(state => state.auth.token);
     const dispatch = useDispatch();
     const param = useParams();
@@ -20,10 +21,32 @@ function ClinicUiTime({dataItem}) {
         let dateInputValue = e.target.value;
         // console.log(dateInputValue);
         setDate(dateInputValue);
+        setinterval("M")
         dispatch(setLoading(true));
         try {
             let res = await getScheduleByDate({token, search:{
-                date: dateInputValue
+               date : dateInputValue,
+               interval : interval
+            }, id: item.id})
+            let data = res.data.data;
+            // console.log(data);
+            setTimeSlot(data.schedule_data);
+            dispatch(setLoading(false));
+
+        } catch (error) {
+            dispatch(setLoading(false));
+
+        }
+    }
+    const handleIntervalInput = async (e) => {
+     
+        let intervalInputValue = e.target.value;
+        setinterval(intervalInputValue);
+        dispatch(setLoading(true));
+        try {
+            let res = await getScheduleByDate({token, search:{
+               date : date,
+               interval : intervalInputValue
             }, id: item.id})
             let data = res.data.data;
             // console.log(data);
@@ -79,6 +102,11 @@ function ClinicUiTime({dataItem}) {
                     {item.schedule_dates.map((val, index) => (
                         <option value={val.date} key={index}>{val.date_format}</option>
                     ))}                     
+                </select>
+
+                <select name="" className="form-control"  id="" onChange={(e)=>handleIntervalInput(e)}>
+                  <option value="M">Buổi sáng</option>  
+                  <option value="A">Buổi tối</option>  
                 </select>
 
 
