@@ -44,7 +44,10 @@ function WhyChoose () {
         </div>
         </div>
         <div className="Overview">
-            <div className="container-fluid">
+            <div className="container-fluid" style={{
+                paddingLeft: 0,
+                paddingRight: 0
+            }}>
                 <div className="col-12">
                     <div className="imageOverview">
                         <img src="https://ivfdongdo.com/wp-content/uploads/2019/06/R_VA0651-1536x1024.jpg" alt="" />

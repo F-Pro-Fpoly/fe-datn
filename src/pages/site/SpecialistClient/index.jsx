@@ -6,11 +6,16 @@ import { getListServiceAPI } from "../../../services/normal/SpecialistService";
 import Loading from "../../../components/Loading/Loading";
 import { setNavb } from "../../../redux/slices/InterfaceSile";
 import {useDispatch} from "react-redux"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+import { toast,ToastContainer } from 'react-toastify';
+import { creatContactApi } from "../../../services/ContactService";
 function SpecialistClient () {
 
+  const formRef = useRef();
   const [ListSpecialist, getSpecialistClient] = useState([]);
   const [loading, getLoading] = useState(false);
+  
   const dispatch = useDispatch();
 
   
@@ -32,8 +37,31 @@ function SpecialistClient () {
   
   }, [])
 
+  const handleSubmit = async (e) => {
+     
+    e.preventDefault();
+    const formData = new FormData(formRef.current)
+    const req  = {
+        "data" : formData
+    }
+    try {
+        const res =  await creatContactApi(req) 
+        formRef.current.reset();
+        toast.success(res.data.message) ; 
+    } catch (error) {
+        let res = error.response;
+        let data = res.data;
+        let messages = data.message;
+        toast.error(messages);
+    }
+}
+
+
+  
     return (
-      
+     <>
+      <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} 
+      newestOnTop={false} closeOnClick rtl={false}  pauseOnFocusLoss draggable pauseOnHover />
           <div className="container-fluid" id="spec">
            
               <div className="specialBlock_19">
@@ -98,15 +126,13 @@ function SpecialistClient () {
                                   </p>
                                 </div>
                                 <div className="wrapBox">
-                                  <Link className="linkSer">
+                                  <Link className="linkSer" to={"/chuyen-khoa"}>
                                   Đặt lịch khám
                                   </Link>
-                                  <Link className="linkSer">
+                                  <Link className="linkSer" to={"/vaccine"}>
                                   Đặt lịch tiêm vaccine
                                   </Link>
-                                  <Link className="linkSer">
-                                  Mua dụng cụ y tế
-                                  </Link>
+                                
                                 </div>
                               </div>
                             </div>
@@ -117,18 +143,22 @@ function SpecialistClient () {
                                   ĐĂNG KÝ NGAY
                                   </p>
                                 </div>
-                                <form action="">
+                                <form  ref = {formRef} method = "Post" onSubmit={handleSubmit}>
                                   <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Họ tên *" />
+                                    <input type="text" name="name" className="form-control" placeholder="Họ tên *" />
                                   </div>
                                   <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="điện thoại *" />
+                                    <input type="hidden" name="type" value="1" />
+                                    <input type="email" name="email" className="form-control" placeholder="Địa chỉ email *" />
                                   </div>
                                   <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Dịch vụ tư vấn *" />
+                                    <input type="text" name="phone" className="form-control" placeholder="Nhập số điện thoại *" />
+                                  </div>
+                                  <div className="form-group">
+                                    <input type="text" name="contents" className="form-control" placeholder="Dịch vụ tư vấn *" />
                                   </div>
                                   <div className="btnRegister">
-                                    <Link className="btn-type1 btnSubmit15">ĐĂNG KÝ</Link> 
+                                    <button type="submit" className="btn-type1 btnSubmit15">ĐĂNG KÝ</button> 
                                   </div>
                                 </form>
                               </div>
@@ -139,6 +169,7 @@ function SpecialistClient () {
                   </div>
               </div>
           </div>
+     </>
     )
 
 }
