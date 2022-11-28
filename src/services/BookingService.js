@@ -76,7 +76,7 @@ function getMyBookingServiceAPI(token = null, user_id = null, status_id = null) 
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
-        return API.get(`auth/booking/mylist/user_id=${user_id}?status_id=${status_id}`,{headers: headers});
+        return API.get(`auth/booking/mylist/user_id=${user_id}?status=${status_id}`,{headers: headers});
     } catch (error) {
         console.error(error);
         return [];
@@ -101,19 +101,19 @@ function getDetailMyBookingServiceAPI(token = null, id = null) {
 
 }
 
-// function postListServiceAPI(token = null, data={}) {
+function cancelBookingServiceAPI(token = null, data={} , id = null) {
     
-//     try {
-//         let headers ={}; 
-//         if(token){
-//             headers = {...headers, "Authorization": `Bearer ${token}`};
-//             // console.log(configs);
-//         }
-//         return API.post(`auth/sick/add`,data,{headers: headers});
-//     } catch (error) {
-//         console.error(error);
-//         return [];
-//     }
-// }
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        return API.put(`auth/booking/updateCancel/${id}`,data,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 
-export { getListServiceAPI,getMyBookingServiceAPI,getDetailMyBookingServiceAPI,getListBookingDoctorServiceAPI,getListStatuServiceAPI,updateBookingDoctorServiceAPI}
+export { getListServiceAPI,getMyBookingServiceAPI,getDetailMyBookingServiceAPI,getListBookingDoctorServiceAPI,getListStatuServiceAPI,updateBookingDoctorServiceAPI, cancelBookingServiceAPI}
