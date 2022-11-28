@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import "./Profile.scss"
 import {  Route, Routes  } from "react-router-dom";
 import Info from './Info';
-import Booking from './Booking';
+import Booking from './Booking/ListBookingUser';
+import Details from './Booking/DetailBookingUser';
 import Menu from './Menu';
 import { useSelector } from 'react-redux';
 import { getInfo } from '../../../services/UserService';
 import CreateDalandar from './Doctor/AddBooking';
 import ListBooking from './Doctor/ListBooking';
 import DetailBooking from './Doctor/DetailBooking';
-
+import { RoleMiddleware } from '../../../Middleware';
 
 function Profile () {
 
@@ -19,7 +20,10 @@ function Profile () {
     const changGender = (input) => {
         setInfoUser({...infoUser, gender: input})
     }
-
+    const changAvt = (input) => {
+        console.log(input);
+        setInfoUser({...infoUser, avatar: input})
+    }
     const start  = async () =>{
         let res =  await  getInfo({token})
         let data =  res.data.data
@@ -49,11 +53,12 @@ function Profile () {
                         </button>
                     </div>       
                     <Routes>
-                        <Route path="/" element={<Info changGender={changGender} infoUser={infoUser}  />} />
+                        <Route path="/" element={<Info changGender={changGender} changAvt = {changAvt} infoUser={infoUser}  />} />
                         <Route path="/lich-kham" element={<Booking  />} />
                         <Route path="/danh-sach-lich-kham" element={<ListBooking  />} />
-                        <Route path="/them-lich-kham" element={<CreateDalandar  />} />
-                        <Route path="/chi-tiet-lich-kham/:id" element={<DetailBooking  />} />
+                        <Route path="/chi-tiet-lich-dat/:id" element={<Details  />} />
+                        <Route path="/them-lich-kham"  element={RoleMiddleware([2] ,   <CreateDalandar/> )} />
+                        <Route path="/chi-tiet-lich-kham/:id" element={RoleMiddleware([2],  <DetailBooking/>)} />
                     </Routes>
                    
                 </div>
