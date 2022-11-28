@@ -171,7 +171,7 @@ export default function CustomizedHook({label, options, values = [], onChangeInp
     setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
-    defaultValue: values,
+    value: values,
     multiple: true,
     options: options,
     getOptionLabel: (option) => option.title,
