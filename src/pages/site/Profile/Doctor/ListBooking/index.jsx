@@ -18,6 +18,7 @@ function ListBooking() {
     const [search,setSearch] = useState({
       "date" : now,
       "status" : "",
+      "code" : ""
     });
  
     const start = async () => {
@@ -55,13 +56,20 @@ function ListBooking() {
         <>
       <div className="row g-3 mb-3 form-group">
         
-          <div className="col-md-4">
+          <div className="col-md-3">
+              <input type="text" name="code" 
+              placeholder="Nhập mã lịch khám"
+              className="form-control" 
+              onChange={(e)=>setSearch({...search, "code": e.target.value})}
+              />
+          </div>
+          <div className="col-md-3">
               <input type="date" name="date" 
-              defaultValue={now}  className="form-control" 
+              className="form-control" 
               onChange={(e)=>setSearch({...search, "date": e.target.value})}
               />
           </div>
-          <div className="col-md-4">
+          <div className="col-md-3">
           <select name="status" className="form-control" id=""
             defaultValue="0" 
             onChange={(e)=>setSearch({...search, "status": e.target.value})}
