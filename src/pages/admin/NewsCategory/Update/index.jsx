@@ -45,10 +45,8 @@ function UpdateNewsCategory() {
         } catch (error) {
                 getLoading(false);
                 let data = error.response.data;
-                // console.log(data);
                 setError('code', { type: 'custom', message: data.code[0] });
                 setError('name', { type: 'custom', message: data.name[0] });
-                // errors.email.message = ;
                 errors.name.message = data.name[0];
         }
     }
@@ -60,7 +58,6 @@ function UpdateNewsCategory() {
             setValue('name', data.name);
             setValue('status', (data.status == 1) ? true : false);
             setValue('slug', data.slug);
-            console.log(getValues('status'));
         } catch (error) {
             
         }

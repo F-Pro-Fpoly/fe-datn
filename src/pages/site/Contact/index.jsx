@@ -38,6 +38,7 @@ function Contact(){
 
 }, []);
     return(
+      <div className="contact">
             <div className="page-title">
                             <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} 
                               newestOnTop={false} closeOnClick rtl={false}  pauseOnFocusLoss draggable pauseOnHover />
@@ -99,6 +100,7 @@ function Contact(){
                             </div>
                           </div>
             </div>
+          </div>
     );
 };
 export default Contact;
