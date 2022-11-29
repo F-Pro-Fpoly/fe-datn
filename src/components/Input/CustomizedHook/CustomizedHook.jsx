@@ -158,6 +158,8 @@ const Listbox = styled('ul')(
 );
 
 export default function CustomizedHook({label, options, values = [], onChangeInput}) {
+  const [valueState, setValueState] = React.useState(value);
+
   const {
     getRootProps,
     getInputLabelProps,
@@ -171,7 +173,7 @@ export default function CustomizedHook({label, options, values = [], onChangeInp
     setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
-    value: values,
+    value: valueState,
     multiple: true,
     options: options,
     getOptionLabel: (option) => option.title,

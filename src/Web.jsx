@@ -64,6 +64,7 @@ import AddVaccine from "./pages/admin/Vaccine/AddVaccine";
 import AddBanner from "./pages/admin/Setttings/Banner/AddBanner";
 import UpdateBanner from "./pages/admin/Setttings/Banner/UpdateBanner";
 import ListVaccine from "./pages/admin/Vaccine/ListVaccine";
+import Test1 from "./pages/Test/Test1";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -97,6 +98,7 @@ function Web() {
                 <Route element={ RoleMiddleware([1, 2] ,<LayoutAdmin/>) } path="admin">
                     <Route index  element={<div><Dashboard/></div>}/>
                     <Route  element={<Dashboard/> } path ='admin'/>
+                    <Route element={<Test1 />} path='test-1' />
 
                     <Route path="sick">
                         <Route  element={<AddSick/> } path ='add'/>

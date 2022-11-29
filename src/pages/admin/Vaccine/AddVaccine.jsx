@@ -13,6 +13,7 @@ import { createVaccineService } from "../../../services/VaccineService";
 import Select from 'react-select';
 import { getNationalService } from "../../../services/NationalService";
 import { useNavigate } from "react-router";
+import { SearchCheckBox } from "../../../components/Input";
 
 
 function AddVaccine() {
@@ -30,6 +31,8 @@ function AddVaccine() {
         description: '',
         'national_id': ''
     });
+    const [sick, setSick] = useState([]);
+    const [category, setCategory] = useState([]);
     const [imgAvatar, setImgAvatar] = useState();
     const [selectedImg, setSelectedImg] = useState();
     const [arrayNational, setArrayNational] = useState([]);
@@ -183,30 +186,34 @@ function AddVaccine() {
                     </div>
                     <div className="col-4">
                         <Form.Group>
-                            <CustomizedHook 
+                            <SearchCheckBox 
                                 label="Danh mục bệnh"
                                 options={arraySick}
-                                onChangeInput={(value) => {
+                                onChange={(value) => {
                                     let arrHandle = value.map(item=>{
                                         return item.id
                                     });
                                     setDataVaccine({...dataVaccine, 'sick_ids': arrHandle});
+                                    setSick(value)
                                 }}
+                                value={sick}
                             />
                         </Form.Group>
                         
                     </div>
                     <div className="col-4">
                         <Form.Group>
-                            <CustomizedHook 
+                            <SearchCheckBox 
                                 label="Danh mục vaccine"
                                 options={arrayCate}
-                                onChangeInput={(value) => {
+                                onChange={(value) => {
                                     let arrHandle = value.map(item=>{
                                         return item.id
                                     });
                                     setDataVaccine({...dataVaccine, 'category_ids': arrHandle});
+                                    setCategory(category)
                                 }}
+                                value={category}
                             />
                         </Form.Group>
                     </div>

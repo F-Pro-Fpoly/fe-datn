@@ -13,6 +13,7 @@ import { createVaccineService, getVaccineApi, updateVaccine } from "../../../ser
 import AsyncSelect from 'react-select/async';
 import { getNationalService } from "../../../services/NationalService";
 import { useNavigate, useParams } from "react-router";
+import { SearchCheckBox } from "../../../components/Input";
 
 function UpdateVaccine() {
     const token = useSelector(state => state.auth.token);
@@ -234,34 +235,34 @@ function UpdateVaccine() {
                     </div>
                     <div className="col-4">
                         <Form.Group>
-                            <CustomizedHook 
+                            <SearchCheckBox 
                                 label="Danh mục bệnh"
                                 options={arraySick}
-                                onChangeInput={(value) => {
+                                onChange={(value) => {
                                     let arrHandle = value.map(item=>{
                                         return item.id
                                     });
                                     setDataVaccine({...dataVaccine, 'sick_ids': arrHandle});
                                     setSick(value)
                                 }}
-                                values={sick}
+                                value={sick}
                             />
                         </Form.Group>
                         
                     </div>
                     <div className="col-4">
                         <Form.Group>
-                            <CustomizedHook 
+                            <SearchCheckBox 
                                 label="Danh mục vaccine"
                                 options={arrayCate}
-                                onChangeInput={(value) => {
+                                onChange={(value) => {
                                     let arrHandle = value.map(item=>{
                                         return item.id
                                     });
                                     setDataVaccine({...dataVaccine, 'category_ids': arrHandle});
-                                    // setCategory([...category, value])
+                                    setCategory(value)
                                 }}
-                                values={category}
+                                value={category}
                             />
                         </Form.Group>
                     </div>
