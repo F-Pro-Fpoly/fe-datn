@@ -110,11 +110,11 @@ function NavBarAdmin({className}) {
                 <NavBarItem id="vaccine" name="Vaccine"  dropdownArr={[
                     {
                         name: "Thêm vaccine",
-                        to: "/admin/sick/add"
+                        to: "/admin/vaccine/add"
                     },
                     {
                         name: "Danh sách vaccine",
-                        to: "/admin/sick/list"
+                        to: "/admin/vaccine/list"
                     },
                     {
                         name: "Danh mục vaccine",
@@ -151,11 +151,16 @@ function NavBarAdmin({className}) {
                     {
                         name: "Danh sách đăng ký lịch khám",
                         to: "/admin/lien-he/danh-sach-dang-ky-lich-kham"
-                    },
-                    {
-                        name: "Mail",
-                        to: "/admin/lien-he/mail"
                     }
+                    ]} icon="bi bi-layout-text-sidebar" />
+
+                    <NavBarItem id="newsletter" name="Quản lý nhận tin sớm"  dropdownArr={[
+
+                    {
+                        name: "Danh sách nhận tin sớm",
+                        to: "/admin/tin-som/danh-sach-nhan-tin-som"
+                    }
+                    
                     ]} icon="bi bi-layout-text-sidebar" />
 
                     <NavBarItem id="setting" name="Tiện ích mở rộng" dropdownArr={[

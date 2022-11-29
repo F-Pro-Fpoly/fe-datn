@@ -15,7 +15,7 @@ function RoleMiddleware(role = [], Element) {
         if(next) {
             return Element;
         }else{
-            return (<Navigate to="/notfound" />)
+            return (<Navigate to="/NotFound" />)
         }
         
         
@@ -30,6 +30,7 @@ function AuthMiddlware(Element) {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
     let navigate = useNavigate();
+    console.log('oke');
     return (
         user ? Element : <Navigate to="/login" />
     );

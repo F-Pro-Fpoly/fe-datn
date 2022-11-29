@@ -5,19 +5,24 @@ import { useSelector } from "react-redux";
 import { listVaccineCategory } from "../../../../services/VaccineCategory";
 import AddCateVaccine from "./AddCateVaccine";
 import ReactPaginate from 'react-paginate';
+import { Link } from "react-router-dom";
 
 function ListCateVaccine() {
     const [modal, setModal] = useState(false);
     const token = useSelector(state => state.auth.token);
     const [listCate, setListCate] = useState([]);
     const [pagination, setPagination] = useState({});
+    const [update, setUpdate] = useState({
+        'isUpdate': false,
+        'id': null,
+    });
 
     const handleShowModel = () => {
 
         setModal(true);
     }
     const handleHideModel = () => {
-
+        setUpdate({...update, isUpdate: false, id: null});
         setModal(false);
     }
     const start = async () => {
@@ -42,7 +47,8 @@ function ListCateVaccine() {
         }
     }
     const updateCategory = async (id) => {
-
+        setUpdate({...update, isUpdate: true, id: id});
+        setModal(true)
     }
     useEffect(() => {start()}, [])
 
@@ -86,7 +92,11 @@ function ListCateVaccine() {
                                     <td>{item.slug}</td>
                                     <td>{item.parent_name ?? "Không"}</td>
                                     <td>
-                                        <button type="button" className="btn" onClick={()=>updateCategory(item.id)}>
+                                        <button 
+                                            type="button" 
+                                            className="btn"
+                                            onClick={()=>updateCategory(item.id)}
+                                        >
                                             <i className="fa-solid fa-pen-to-square"></i>
                                         </button>
                                         <button type="button" className="btn">
@@ -118,10 +128,15 @@ function ListCateVaccine() {
             </div>
             <Modal size="lg" show={modal} onHide={handleHideModel}>
                 <Modal.Header closeButton>
-                    <h4>THÊM DANH MỤC VACCINE</h4>
+                    <h4>CÂP NHẬT DANH MỤC VACCINE</h4>
                 </Modal.Header>
                 <Modal.Body style={{maxHeight: "600px"}} className="overflow-auto">
-                    <AddCateVaccine handleHideModel={handleHideModel} handleShowModel={handleShowModel} startList={start} />
+                    <AddCateVaccine 
+                        handleHideModel={handleHideModel} 
+                        handleShowModel={handleShowModel} 
+                        startList={start}
+                        update={update} 
+                    />
                 </Modal.Body>
             </Modal>
         </div>

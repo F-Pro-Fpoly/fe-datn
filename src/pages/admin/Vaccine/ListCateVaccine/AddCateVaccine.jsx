@@ -6,11 +6,11 @@ import SearchInput from "../../../../components/admin/SearchInput/SearchInput";
 import useDebounce from "../../../../hooks/useDebounce";
 import { useEffect } from "react";
 import Select from "react-select";
-import {createVaccineCategory, listVaccineCategory} from "../../../../services/VaccineCategory"
+import {createVaccineCategory, listVaccineCategory, getCategoryApi, updateCategory} from "../../../../services/VaccineCategory"
 import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 
-function AddCateVaccine({handleHideModel, handleShowModel, startList, data = null, update = false}) {
+function AddCateVaccine({handleHideModel, handleShowModel, startList, data = null, update = {isUpdate: false, id: null}}) {
     const token = useSelector(state => state.auth.token);
     const [dataVaccine, setDataVaccine] = useState({
         'code': data ? data.code : '',
@@ -35,8 +35,8 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList, data = nul
         e.preventDefault();
 
         try {
-            if(update){
-                let res = await createVaccineCategory({token, data: dataVaccine});
+            if(update.isUpdate){
+                let res = await updateCategory({token, data: dataVaccine, id: update.id});
                 let message = res.data.message;
                 toast.success(message);
                 setDataVaccine({
@@ -54,6 +54,7 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList, data = nul
                 })
                 handleHideModel();
                 startList();
+                return;
             }
             let res = await createVaccineCategory({token, data: dataVaccine});
             let message = res.data.message;
@@ -127,9 +128,33 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList, data = nul
             
         }
     }
+    const start = async () => {
+        if(update.isUpdate){
+            try {
+                let res = await getCategoryApi({token, id: update.id});
+                let dataRes = res.data.data
+                setDataVaccine({
+                    ...dataVaccine,
+                    code: dataRes.code ?? '',
+                    name: dataRes.name ?? '',
+                    parent: {
+                        'parent_id': dataRes.parent_id ?? 0,
+                        'parent_name': dataRes.parent_name ?? ''
+                    },
+                    short_description: dataRes.short_description ?? '',
+                    description: dataRes.description ?? '',
+                    slug: dataRes.slug ?? '',
+                    'active': dataRes.active == 1 ? true : false
+                })
+            } catch (error) {
+                
+            }
+        }
+    }
 
     useEffect(()=>{
         getAPIParent()
+        start();
     }, [])
 
 
@@ -190,9 +215,9 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList, data = nul
                         <Form.Label className="form-lable-fro">Mô tả</Form.Label>
                         <Editor
                             apiKey='v7uxagccs26096o8eu0kae4sbg90s9bicobdondox6ybfxen'
-                            onInit={(evt, editor) => editorRef.current = editor}
+                            // onInit={(evt, editor) => editorRef.current = editor}
                             value={dataVaccine.description}
-                            onChange={(event, editor) => {
+                            onEditorChange={(event, editor) => {
                                 setDataVaccine({...dataVaccine, description: editor.getContent()})
                             }}
                             init={{
@@ -232,7 +257,9 @@ function AddCateVaccine({handleHideModel, handleShowModel, startList, data = nul
                 </div>
                 <div className="row my-3">
                     <Form.Group className="col-12">
-                        <Button type="submit">Thêm</Button>
+                        <Button type="submit">
+                            {update.isUpdate ? 'Cập nhập': 'Thêm'}
+                        </Button>
                     </Form.Group>
                 </div>
             </Form>

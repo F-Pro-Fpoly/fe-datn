@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 
 function Info( props) {
-
+   
     const token = useSelector(state => state.auth.token )
     const id = props.infoUser.id
    
@@ -18,6 +18,10 @@ function Info( props) {
 
     const gt = (e) => {
         props.changGender(e.target.value)
+    }
+    const avt = (e) => {
+        console.log(e.target.files[0]);
+        props.changAvt(e.target.files[0])
     }
 
     const onSubmit  = async (e) => {
@@ -35,7 +39,6 @@ function Info( props) {
             let res = await updateUser(req)
             let message = res.data.message;
             toast.success(message);
-            
         } catch (error) {
             console.log(error);
             let res = error.response;
@@ -151,6 +154,7 @@ function Info( props) {
                             
                             <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
                             <input id="uploadfile-1"
+                            onChange={(e) => avt(e)}
                             name='avatar'
                              className="form-control d-none" 
                              type="file"
@@ -219,7 +223,7 @@ function Info( props) {
                             <div className="form-check radio-bg-light">
                                 <input className="form-check-input" type="radio" name="gender" id="flexRadioDefault1"
                                    defaultValue="1"
-                                   defaultChecked={props.infoUser.gender === 1 ? true : false}
+                                   checked={props.infoUser.gender == 1 ? true : false}
                                    />
                                 <label className="form-check-label" htmlFor="flexRadioDefault1">
                                    Nam
@@ -229,7 +233,7 @@ function Info( props) {
                                 <input className="form-check-input" type="radio" name="gender" 
                                 defaultValue="2"
                                 id="flexRadioDefault2"
-                                defaultChecked={props.infoUser.gender === 2 ? true : false}
+                                checked={props.infoUser.gender == 2 ? true : false}
                                 />
                                 <label className="form-check-label" htmlFor="flexRadioDefault2">
                                     Nữ
@@ -238,7 +242,7 @@ function Info( props) {
                             <div className="form-check radio-bg-light">
                                 <input className="form-check-input" type="radio" name="gender" 
                                 defaultValue="3"
-                                defaultChecked={props.infoUser.gender === 3 ? true : false}
+                                checked={props.infoUser.gender == 3 ? true : false}
                                 id="flexRadioDefault3"/>
                                 <label className="form-check-label" htmlFor="flexRadioDefault3">
                                     Khác

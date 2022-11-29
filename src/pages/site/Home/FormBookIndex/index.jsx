@@ -39,25 +39,26 @@ function FormBookIndex () {
                 <div className="itemLeft">
                     <div className="i">
                     <div className="titleleft">
-                        <p>Bệnh viện đa khoa Fpro</p>
-                        <span>"THỰC TÂM VÌ VẺ ĐẸP BỀN VỮNG"</span>
+                        <p>Trung Tâm Y Tế FPro</p>
+                        <span>"SỨC KHỎE CỦA BẠN LÀ XỨ MỆNH CỦA CHÚNG TÔI"</span>
                     </div>
                     <div className="message">
-                        <p><i>Tất cả các khách hàng đến bệnh viện đều được chính tay Bác sĩ Phan Tiệp thăm khám, lên phác đồ cụ thể, “cá nhân hóa” từng ca điều trị để đạt hiệu quả tốt nhất.</i></p>
+                        <p><i>Tất cả các khách hàng đến FPro đều được chính tay Bác sĩ nhiều năm kinh nghiệm thăm khám, lên phác đồ cụ thể, “cá nhân hóa” từng ca điều trị để đạt hiệu quả tốt nhất.</i></p>
                     </div>
                     </div>
                 </div>
                 <div className="itemright">
                     <div className="form">
                         <div className="titleright">
-                            <p>ĐĂNG KÝ ĐẶT LỊCH HẸN</p>
-                            <span>Bạn cần tư vấn thêm về các dịch vụ nha khoa vui lòng để lại thông tin để Phòng khám hỗ trợ Bạn nhé!</span>
+                            <p>ĐĂNG KÝ ĐẶT LỊCH NGAY</p>
+                            <span>Bạn cần tư vấn thêm về các dịch vụ Vaccine vui lòng để lại thông tin để Trung Tâm FPro hỗ trợ Bạn nhé!</span>
                             <hr />
                         </div>
                         <div className="forminput">
                             <div className="area_2">
                             <div className="imgPart">
                                 <img src={img} alt=""  />
+                                {/* <img src={img} alt=""  /> */}
                             </div>
                             <div className="rightArea">
                                 <div className="formRegisterBlock_3">

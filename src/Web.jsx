@@ -56,8 +56,15 @@ import ListContactBooking from "./pages/admin/Contact/ListContactBooking/ListCon
 
 import ReplyContactBooking from "./pages/admin/Contact/ListContactBooking/replyContactBooking";
 import ReplyContact from "./pages/admin/Contact/ListContact/replyContact";
-import Mail from "./pages/admin/Contact/Mail";
 
+import ListNewsletter from "./pages/admin/Newsletter/ListNewsletter";
+import ListBanner from "./pages/admin/Setttings/Banner/ListBanner";
+import UpdateCateVaccine from "./pages/admin/Vaccine/ListCateVaccine/UpdateCateVaccine";
+import UpdateVaccine from "./pages/admin/Vaccine/UpdateVaccine";
+import AddVaccine from "./pages/admin/Vaccine/AddVaccine";
+import AddBanner from "./pages/admin/Setttings/Banner/AddBanner";
+import UpdateBanner from "./pages/admin/Setttings/Banner/UpdateBanner";
+import ListVaccine from "./pages/admin/Vaccine/ListVaccine";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -71,14 +78,18 @@ function Web() {
                     <Route path="/chuyen-khoa/:slug"  element={<Clinic />}/>             
                     <Route path="/dang-ky-lich"  element={<Book />}/>             
                     <Route path="/ve-chung-toi"  element={<About />}/>
-                    <Route path="/tin-tuc/*"  element={<News />}/>
-                    <Route path="/tin-tuc/:slug"  element={ (<DetailNews />)}/>
+                   
                     <Route path="/bieu-do-covid"  element={<ChartCovid />}/>
                     <Route path="/lien-he"  element={<Contact />}/>
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                     <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
                     <Route path="/vaccine" element={ <Vaccine /> } />
+                   
+                    <Route path="/tin-tuc/*"  element={<News />}/>
+                    <Route path="/tin-tuc/:slug"  element={ (<DetailNews />)}/>
+           
                 </Route>
+               
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
                     <Route path="/login"  element={<Login />}/>
@@ -113,14 +124,23 @@ function Web() {
                         <Route element={<ListContact />} path="danh-sach-lien-he" />
                         <Route element={<ListContactBooking />} path="danh-sach-dang-ky-lich-kham" />
                         <Route element={<ReplyContact />} path="tra-loi-lien-he/:id" />
-                        <Route element={<Mail />} path="mail" />
                         <Route element={<ReplyContactBooking />} path="tra-loi-dang-ky-lich/:id" />
+                    </Route>
+
+                    <Route path="tin-som">
+                        <Route element={<ListNewsletter />} path="danh-sach-nhan-tin-som" />                 
                     </Route>
 
                     <Route path="chinh-sua-menu">
                         <Route element={< ListMenu />} path="list" />
                         <Route element={< AddMenu />}  path="add" />
                         <Route element={< UpdateMenu />}  path="update/:id" />
+                    </Route>
+
+                    <Route path="quan-ly-banner">
+                        <Route element={< ListBanner />} path="list" />
+                        <Route element={< AddBanner />}  path="add" />
+                        <Route element={< UpdateBanner />}  path="update/:id" />
                     </Route>
 
                     <Route path="cau-hinh-chung">
@@ -143,6 +163,10 @@ function Web() {
                     </Route>
                     <Route path="vaccine">
                         <Route element={< ListCateVaccine />} path="list-cate" />
+                        <Route element={<UpdateCateVaccine />} path="update-cate/:id" />
+                        <Route element={<UpdateVaccine />} path="update/:id" />
+                        <Route element={<AddVaccine />} path="add" />
+                        <Route element={<ListVaccine />} path="list" />
                     </Route>
 
 

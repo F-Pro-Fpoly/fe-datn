@@ -9,6 +9,7 @@ function ClinicUiTime({dataItem}) {
     const [item, setItem] = useState(dataItem);
     const [timeSlots, setTimeSlot] = useState(dataItem.schedule_data ?? []);
     const [date, setDate] = useState(dataItem.schedule_date);
+    const [interval, setinterval] = useState("M");
     const token = useSelector(state => state.auth.token);
     const dispatch = useDispatch();
     const param = useParams();
@@ -20,10 +21,12 @@ function ClinicUiTime({dataItem}) {
         let dateInputValue = e.target.value;
         // console.log(dateInputValue);
         setDate(dateInputValue);
+        setinterval("M")
         dispatch(setLoading(true));
         try {
             let res = await getScheduleByDate({token, search:{
-                date: dateInputValue
+               date : dateInputValue,
+               interval : interval
             }, id: item.id})
             let data = res.data.data;
             // console.log(data);
@@ -35,6 +38,27 @@ function ClinicUiTime({dataItem}) {
 
         }
     }
+    const handleIntervalInput = async (e) => {
+     
+        let intervalInputValue = e.target.value;
+        setinterval(intervalInputValue);
+        dispatch(setLoading(true));
+        try {
+            let res = await getScheduleByDate({token, search:{
+               date : date,
+               interval : intervalInputValue
+            }, id: item.id})
+            let data = res.data.data;
+            // console.log(data);
+            setTimeSlot(data.schedule_data);
+            dispatch(setLoading(false));
+
+        } catch (error) {
+            dispatch(setLoading(false));
+
+        }
+    }
+
     const saveBookingInfo2 = async (val) => {
         // e.preventDefault();
         
@@ -69,20 +93,31 @@ function ClinicUiTime({dataItem}) {
             </div>
             <div className="infocontent"> 
                 <h3>{item.name}</h3>
-                <span>Nguyên Trưởng khoa Cơ xương khớp, Bệnh viện Bạch Mai
-                    Chủ tịch Hội Thấp khớp học Việt Nam
-                    Giáo sư đầu ngành với gần 50 năm kinh nghiệm điều trị các bệnh lý liên quan đến Cơ xương khớp
-                    Bác sĩ khám cho người bệnh từ 14 tuổi trở lên
-                </span>          
+                <span>{item.user_info}</span>          
             </div>
 
             <div className="schedule">
-                <select name="" id="" onChange={(e)=>handleDateInput(e)}>
+            <div className="row g-3 mb-3 form-group" style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "nowrap",
+                marginRight : "10px"
+            }}>
+         
+                <select name="" className="form-control"  id="" onChange={(e)=>handleDateInput(e)} style={{
+                    marginRight:"5%"
+                }}>
                     {item.schedule_dates.map((val, index) => (
                         <option value={val.date} key={index}>{val.date_format}</option>
                     ))}                     
                 </select>
-                
+       
+                <select name="" className="form-control"  id="" onChange={(e)=>handleIntervalInput(e)}>
+                  <option value="M">Buổi sáng</option>  
+                  <option value="A">Buổi chiều</option>  
+                </select>
+
+                    </div>
                 <div className="title">
                     <i className="fa-solid fa-calendar-days"></i>&nbsp;
                     <span>LỊCH KHÁM</span>

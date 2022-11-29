@@ -5,13 +5,13 @@ import Table from "react-bootstrap/esm/Table";
 import { useSelector } from "react-redux";
 import Loading from "../../../../components/Loading/Loading";
 import { getListNewsAPI,deleteNewsAPI } from "../../../../services/NewsService";
+
 import Paginate from '../../../../components/Paginate/Paginate';
 import "./ListNews.scss"
 import { Link } from "react-router-dom";
 
 function ListNews(){
   const token = useSelector(state => state.auth.token);
-
   const [ListNews, getNews] = useState([]);
   const [loading, getLoading] = useState(false);
   const [paginate, setPaginate] = useState(null);
@@ -65,12 +65,12 @@ const hanleSearch = async () =>{
     <div className="col-2">
       <input type="text" className='form-control' value={search.name} 
         onChange={(e)=>setSearch({...search, "name": e.target.value})}
-        placeholder="Name" />
+        placeholder="Tên tin" />
     </div>
     <div className="col-2">
       <input type="text" className='form-control'
-        onChange={(e)=>setSearch({...search, "status": e.target.value})}
-       value={search.status} placeholder="status" />
+        onChange={(e)=>setSearch({...search, "code": e.target.value})}
+       value={search.code} placeholder="Mã tin " />
     </div>
   </div>
   <div className='mt-3 mb-3'>
@@ -88,8 +88,8 @@ const hanleSearch = async () =>{
               <th>Tên tin</th>
               <th>Đường dẫn</th>
               <th>Kích hoạt</th>
-              <th>Loại tin</th>
               <th>Nổi bật</th>
+              <th>Danh mục tin</th>
               <th>File</th>
             </tr>
           </thead>
@@ -102,8 +102,8 @@ const hanleSearch = async () =>{
                   <td>{val.name}</td>
                   <td>{val.slug}</td>                
                   <td>{val.status === 1 ? <span className="text-success">Đang kích hoạt</span>:<span className="text-danger">Ngừng kích hoạt</span>}</td>
-                  <td>{val.category_id}</td>
                   <td>{val.featured === 1 ? <span className="text-success">Nổi bật</span>:<span className="text-danger">Không nỗi bật</span>}</td>
+                  <td>{val.category_name}</td>
                   <td><img className='hinh'src={ `${process.env.REACT_APP_BE}${val.file}` } alt="hinh" /></td>
                   <td>
                   <Link to={`/admin/tin-tuc/edit/${val.id}`}><i style={{cursor: "pointer"}} className="fas fa-edit"></i></Link>

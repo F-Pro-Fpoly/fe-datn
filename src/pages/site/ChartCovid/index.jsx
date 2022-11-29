@@ -1,53 +1,28 @@
 import { useEffect, useState } from "react";
 import { getChartCovidService } from "../../../services/normal/ChartService";
 import "./ChartCovid.scss"
-import { Chart } from 'chart.js/auto'
 import { Link } from "react-router-dom"
+import BarChart from "./chart";
+
+
 
 function ChartCovid() {
 
-    const [topInfo, getTopinfo] = useState();
+    const [topInfo, getTopinfo] = useState([]);
     const [location, setLocation] = useState([]);
-
-
-    // (async function() {
-    //   const data = [
-    //     { year: 2010, count: 10 },
-    //     { year: 2011, count: 20 },
-    //     { year: 2012, count: 15 },
-    //     { year: 2013, count: 25 },
-    //     { year: 2014, count: 22 },
-    //     { year: 2015, count: 30 },
-    //     { year: 2016, count: 28 },
-    //   ];
-    
-    //   new Chart(
-    //     document.getElementById('charta'),
-    //     {
-    //       type: 'bar',
-    //       data: {
-    //         labels: data.map(row => row.year),
-    //         datasets: [
-    //           {
-    //             label: 'Acquisitions by year',
-    //             data: data.map(row => row.count)
-    //           }
-    //         ]
-    //       }
-    //     }
-    //   );
-    // })();
-
+    const [overview, setOverview] = useState([]);
 
 
     const start = async () =>{
         try {
             let res =  await getChartCovidService();
             let data = res.data;
-            let location = data.total.internal
+            let location = data.total.world
             let locations = data.locations
+            let overview = data.overview     
             getTopinfo(location)
             setLocation(locations);
+            setOverview(overview);
         } catch (error) {
             
         }
@@ -58,7 +33,7 @@ function ChartCovid() {
         document.title = "Biểu đồ covid"
 
     }, [])
-    
+  
     return (  
 
         <div className="container-fluid pd" id="tb" >
@@ -89,10 +64,7 @@ function ChartCovid() {
                 <div className="home__statistical-nav">
                     <ul>
                       <li>
-                      <Link to="" id="tabvi" title="" className="active">Việt Nam</Link>
-                      </li>
-                      <li>
-                      <Link to="" id="tabvi" title="">Thế giới</Link>
+                      <Link to="" id="tabvi" title="" className="active">Tình hình dịch thế giới</Link>
                       </li>
                     </ul>
                 </div>
@@ -159,52 +131,25 @@ function ChartCovid() {
                     }
                   </div>
                 </div>
+                
+
+
+
+              </div>
+              <div className="box-juncture">
+                    <BarChart overview={overview}/>
+                  
+                </div>
               </div>
             </div>
                             
 
 
-              {/* <div className="box-content">
-              <div className="col-md-6 border" >        
-                <table className="table custom" >
-                  <thead className="table-dark">          
-                    <tr>                   
-                      <th scope="col">Tỉnh/TP</th>
-                      <th scope="col">Tổng số ca</th>
-                      <th scope="col">24 giờ qua</th>
-                      <th scope="col">Tử vong</th>
-                    </tr>
-                  </thead>
-                  
-                  <tbody >
-                    {
-                         location.map((item,index) =>{
-                            return (
-                              <tr key={index}>
-                                <th scope="row">{item.name ?? ""}</th>
-                                <td>{
-                                 }</td>
-                                <td style={{color:"red"}}>{ 
-                                 }</td>
-                                <td>{
-                                 }</td>
-                              </tr>      
-                            )
-                        })
-                      }
-                      
-                  </tbody>
-                 
-                </table>
-              </div>
 
-              </div> */}
           </div>
         </div>
 
 
-
-        </div>
 
 
     )

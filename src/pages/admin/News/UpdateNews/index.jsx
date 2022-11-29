@@ -150,7 +150,7 @@ function UpdateSpecialist() {
                     </FormGroup>
                     <FormGroup className="col-4">
                             <FormLabel>Loại tin</FormLabel>
-                            <Form.Select className="" name="category_id" >
+                            <Form.Select className="" name="category_id" {...register("category_id")}>
                                 {NewsCategory.map((val,index) => (
                                     <option value={val.id} key={val.id}>{val.name}</option>
                                 ))}

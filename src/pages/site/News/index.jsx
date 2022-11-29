@@ -15,17 +15,10 @@ function News(){
     const [ListNewsNew, getNewsNewClient] = useState([]);
     const [ListNewsFeatured, getNewsFeaturedClient] = useState([]);
     const [ListNewsCategory, getNewsCategoryClient] = useState([]);
-  
     const [loading, getLoading] = useState(false);
     const [paginate, setPaginate] = useState(null);
-    const [search, setSearch] = useState({
-      "name": "",
-      "status": "",
-      "slug": "",
-    });
     const [page, setPage] = useState(1);
       document.title = "Tin tức";
-  
       const start = async () => {
           getNews([]);
           getLoading(true);
@@ -62,45 +55,30 @@ function News(){
 
         start();
       },[page]);
-    const hanleSearch = async () =>{
-        getNews([]);
-        getLoading(true); 
-        let res = await getListNewsAPI(token, search, page);
-        let data = res.data;
-        let dataArr = data.data;
-    
-        getLoading(false);
-        getNews(dataArr);
-    
-        // handle paginate
-        let pagination = data.meta.pagination ?? null;
-        setPaginate(pagination);
-      }
-    
-    
       const onChangePage = (number) =>{
         setPage(number);
       }
+
       return(
-        <div className="formBooking ">
-        <div className="page-title wb">
+        <div className="News">
+        <div className="page-title">
             <div className="container news">
                 <div className="row">
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <h2>Tin Tuc</h2>
+                        <h2>Tin Tức</h2>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><a href="#">Home</a></li>
-                            <li className="breadcrumb-item"><a href="#">Blog</a></li>
-                            <li className="breadcrumb-item active">Food</li>
+                            <li className="breadcrumb-item"><Link to={"/"}>Home</Link></li>
+                            <li className="breadcrumb-item">News</li>
+                          
                         </ol>
                     </div>                   
                 </div>
             </div>
         </div>
-          <section className="section ">
-            <div className="container">
+          <section className="section">
+            <div className="container wb">
               <div className="row">
              
                 <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12">   
@@ -111,7 +89,8 @@ function News(){
                           {
                       ListNews.map((item,index) => {
                       return(
-                        <div className="blog-box row" key={index}>
+                      <div className="blog-box"  key={index}>
+                        <div className="row">
                             <div className="col-md-4">
                                 <div className="post-media">
                                     <Link to={item.slug}>
@@ -120,18 +99,21 @@ function News(){
                                     </Link>
                                 </div>
                             </div>
-
+                                                         
                             <div className="blog-meta big-meta col-md-8">
-                                <h4><Link to={item.slug}>{item.name}</Link></h4>
-                                <p className="an" dangerouslySetInnerHTML={{__html: item.content}}></p>
-                                 <small><Link ></Link></small>
-                            </div>  
-                            <hr className="invis"/>
+                                <Link to={item.slug}>
+                                    <h4>{item.name}</h4>
+                                    <p className="an " dangerouslySetInnerHTML={{__html: item.content}}></p>
+                                </Link>
+                                <samp><p><i className="far fa-clock"></i> {item.created_at}</p></samp>
+                            </div> 
                         </div>
-                      
+                        <hr className="invis"/>
+                        </div>
                            )                  
                           })
                           } 
+                           
                     </div> 
                    
                        
@@ -149,67 +131,92 @@ function News(){
                 </div>
                 <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                   <div className="sidebar">
+                  <div className="widget">
+
+                                <div className="sf_right_featured--header"><h2>Xem nhiều tuần qua</h2></div>
+                                <div className="sf_right_featured--box sf_right_featured--first-box">
+                                    <div className="sf_right_featured--box-thumb"> 
+                                   <Link>
+                                        <div className="sf_right_featured--thumbnail-container"> 
+                                        <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2022/11/Apple-Watch-cuu-song-nguoi-5.jpg" alt="Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét" data-pin-no-hover="true"/>
+                                        <div className="sf_right_featured--thumb-overlay"></div>
+                                        </div>
+                                        </Link>
+                                    </div>
+                                    <div className="sf_right_featured--box-content">
+                                         <Link>
+                                            Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét
+                                        </Link>
+                                    </div>
+                                </div>
+                    </div>
                     <div className="widget">
-                      <h2 className="widget-title">Tin mới</h2>
                       <div className="blog-list-widget">
                       {loading && <Loading />}
                           {
                       ListNewsNew.map((item,index) => {
                       return(
-                        <div className="list-group" key={index}>
-                            <Link to={item.slug}  className="list-group-item list-group-item-action flex-column align-items-start">
-                            <div className="w-100 justify-content-between">
-                              <div className="row">
-                                <div className="col-md-3">
+                        <div className="sf_right_featured--box sf_right_featured--small-box" key={index}>
+                        <div className="sf_right_featured--box-thumb"> 
+                                <Link to={item.slug}>
+                                <div className="sf_right_featured--thumbnail-container">
                                     <img src={ `${process.env.REACT_APP_BE}${item.file}` } alt="website template image" className="img-fluid float-left"/>
-                                </div>
-                                <div className="col-md-9">
-                                  <h5 className="mb-1">{item.name}</h5>
-                                  <small>{item.created_at}</small>
-                                </div>
-                              </div>
-                              </div>
-                            </Link>
+                                    <div className="sf_right_featured--thumb-overlay"></div>
+                                </div> 
+                                </Link>
                         </div>
-                            )
+                        <div className="sf_right_featured--box-content"> 
+                            <Link to={item.slug}>{item.name}</Link>
+                        </div>
+                                    
+                        </div>
+                      )
                                             
-                          })
-                          }
+                    })
+                    }
+                          
                       </div>
                     </div>
                     <div className="widget">
-                      <h2 className="widget-title">Tin Hot</h2>
-                     
-                      <div className="instagram-wrapper clearfix">
-                      {loading && <Loading />}
-                          {
-                      ListNewsFeatured.map((item,index) => {
-                      return(
-                        <Link to={item.slug}  key={index}>
-                          <img src={ `${process.env.REACT_APP_BE}${item.file}` } alt="website template image" className="img-fluid"/>
-                        </Link>
-                             )
-                                            
-                            })
-                            }
-                      </div>
-                    
+                    <div className="elementor-widget-container">
+                        <div className="sf-social">
+                            <div className="sf-social__wrapper">
+                                <div className="sf-social--header">
+                                    <h2>Kết nối với Sforum</h2>
+                                </div>
+                                <div className="sf-social-icons">
+                                    <div className="sf-social-icon--container"> 
+                                        <a href="https://www.facebook.com/" target="_blank" rel="nofollow">
+                                            <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/facebook-icon.png"
+                                            alt="Facebook" data-pin-no-hover="true"/> 
+                                        </a>
+                                    </div>
+                                    <div className="sf-social-icon--container"> 
+                                        <a href="https://www.facebook.com/groups/" target="_blank"> 
+                                            <img src="https://cdn.cellphones.com.vn/media/wysiwyg/Group_Facebookrs.png" alt="Instagram" data-pin-no-hover="true"/>
+                                        </a>
+                                    </div>
+                                    <div className="sf-social-icon--container"> 
+                                        <a href="https://www.tiktok.com/" target="_blank" rel="nofollow">
+                                            <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/tiktok-1.png" alt="Tiktok" data-pin-no-hover="true"/>
+                                        </a>
+                                    </div>
+                                    <div className="sf-social-icon--container"> 
+                                        <a href="https://www.youtube.com/" target="_blank" rel="nofollow">
+                                            <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/youtube-1.png" alt="Youtube" data-pin-no-hover="true"/>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                     <div className="widget">
-                      <h2 className="widget-title">Danh sách tin</h2>
-                      <div className="link-widget">
-                      {loading && <Loading />}
-                          {
-                      ListNewsCategory.map((item,index) => {
-                      return(
-                        <ul key={index}>
-                          <li><Link>{item.name} <span></span></Link> </li>
-                        </ul>
-                         )
-                                            
-                        })
-                        }
-                      </div>
+                                <div className="banner-spot clearfix">
+                                    <div className="banner-img">
+                                       <Link><img src="../img/banner_03.jpg" alt="" className="img-fluid"/></Link> 
+                                    </div>
+                                </div>
                     </div>
                   </div>
                 </div>

@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { getMyBookingServiceAPI } from '../../../../services/BookingService';
+import { cancelBookingServiceAPI, getMyBookingServiceAPI } from '../../../../services/BookingService';
 import { useEffect } from 'react';
 import Loading from '../../../../components/Loading/Loading';
+import { ToastContainer, toast } from "react-toastify";
 
-
-function Booking() {
+function ListBookingUser() {
 
     const token = useSelector(state => state.auth.token )
     const user_id =useSelector(state => state.auth.user.id )
@@ -21,7 +21,7 @@ function Booking() {
         setNewBooking([])
         setCancelBooking([])
         setComBooking([])
-        let res1 = await getMyBookingServiceAPI(token,user_id,1) 
+        let res1 = await getMyBookingServiceAPI(token,user_id,  [1,2,3]) 
         let data1 = res1.data
         let dataArr1 = data1.data
         let res2 = await getMyBookingServiceAPI(token,user_id,4) 
@@ -39,12 +39,13 @@ function Booking() {
     useEffect(() => {
         start()
     
-
     }, [])
     
+
     return(
 
-
+      <>
+        <ToastContainer />
     <div className="card border bg-transparent">
         
         <div className="card-header bg-transparent border-bottom">
@@ -71,7 +72,7 @@ function Booking() {
             <div className="tab-content p-2 p-sm-4" id="nav-tabContent">
 
             <div className="tab-pane fade active show" id="tab-1" role="tabpanel">
-                            <h6>Lịch khám đã đặt</h6>
+                            <h6>Lịch khám đã đặt ({getNewBooking.length})</h6>
 
                 {
                     getNewBooking.length > 0 ?
@@ -92,31 +93,52 @@ function Booking() {
                                        <div className="ms-2">
                                            <h6 className="card-title mb-0">{item.specialist_name}</h6>
                                            <ul className="nav nav-divider small">
-                                               <li className="nav-item">Mã đặt lịch: {item.code && item.code }</li>
-                                               <li className="nav-item">Phòng: {item.department_name && item.department_name}</li>
+                                               <li className="nav-item"><b>Mã đặt lịch</b>: {item.code }</li>
+                                               <li className="nav-item"><b>Phòng</b>: {item.department_name}</li>
+                                           </ul>
+                                           <ul className="nav nav-divider small">
+                                                <li className="nav-item"><b>Trạng thái</b>:                                    
+                                                    {
+                                                        item.status_id == 1 ? 
+                                                        <span className="text-warning"> {item.status_name}</span>  
+                                                        :
+                                                        <span className="text-primary"> {item.status_name}</span> 
+                                                    }
+                                                </li>
                                            </ul>
                                        </div>
                                    </div>
        
                                    
                                    <div className="mt-2 mt-md-0" style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        flexWrap: "wrap",
-                                        alignContent: "center",
-                                        justifyContent: "center",
-                                        alignItems: "flexEnd",
-                                        flexFlow: "column wrap",
+                                       display: "flex",
+                                       flexFlow:" column wrap",
+                                       placeContent: "center",
+                                       flexDirection: "row",
+                                       flexWrap: "nowrap",
+                                       alignContent: "center",
+                                       justifyContent: "center",
+                                       alignItems: "center"
                                    }}>
                                       
-                                        <>
+                                        {/* <>
                                         {item.payment_method == "default" ? 
                                             <p className="text-info text-md-end mb-0"> Thanh toán tại cơ sở y tế</p>
                                             : 
                                             <p className="text-success text-md-end mb-0">Thanh toán qua momo</p>
                                         }
-                                        </>
-                                        <button className="btn btn-warning">Hủy lịch</button>
+                                        </> */}
+                                        <Link className='btn btn-primary' to={`/ho-so-ca-nhan/chi-tiet-lich-dat/${item.id}`}>Xem chi tiết</Link>
+                                        <button className="btn btn-warning" 
+                                        onClick={async () => {
+                                            if(window.confirm(`Bạn có muốn hủy lịch ${item.code}`)){
+                                             const cancel =  await cancelBookingServiceAPI( token , {status_id: 5} , item.id )
+                                               const mess =  cancel.data.message
+                                               toast.success(mess);
+                                                start()
+                                            }
+                                        }}
+                                        >Hủy lịch</button>
                                    </div>
                                </div>
        
@@ -145,7 +167,9 @@ function Booking() {
                         )
                     })
                     :
-                    <div className="bg-mode shadow p-4 rounded overflow-hidden">
+                   
+                        loading ? <Loading /> :
+                        <div className="bg-mode shadow p-4 rounded overflow-hidden">
                         <div className="row g-4 align-items-center">
                             
                             <div className="col-md-9">
@@ -160,15 +184,13 @@ function Booking() {
                         </div>
                     </div>
                 }
-                {
-                loading && <Loading />
-                }
+              
                 </div>
                 
 
                 
                 <div className="tab-pane fade" id="tab-2" role="tabpanel">
-                    <h6>Lịch khám đã hủy</h6>
+                    <h6>Lịch khám đã hủy ({getCancelBooking.length})</h6>
 
                     {
                     
@@ -190,12 +212,37 @@ function Booking() {
                                        <div className="ms-2">
                                            <h6 className="card-title mb-0">{item.specialist_name}</h6>
                                            <ul className="nav nav-divider small">
-                                               <li className="nav-item">Mã đặt lịch: {item.code && item.code }</li>
-                                               <li className="nav-item">Phòng: {item.department_name && item.department_name}</li>
+                                               <li className="nav-item"><b>Mã đặt lịch</b>: {item.code }</li>
+                                               <li className="nav-item"><b>Phòng</b>: {item.department_name}</li>
+                                           </ul>
+                                           <ul className="nav nav-divider small">
+                                                <li className="nav-item"><b>Trạng thái</b>:                                    
+                                                    <span className="text-danger"> {item.status_name}</span> 
+                                                </li>
                                            </ul>
                                        </div>
                                    </div>
-       
+                                   <div className="mt-2 mt-md-0" style={{
+                                       display: "flex",
+                                       flexFlow:" column wrap",
+                                       placeContent: "center",
+                                       flexDirection: "row",
+                                       flexWrap: "nowrap",
+                                       alignContent: "center",
+                                       justifyContent: "center",
+                                       alignItems: "center"
+                                   }}>
+                                      
+                                        {/* <>
+                                        {item.payment_method == "default" ? 
+                                            <p className="text-info text-md-end mb-0"> Thanh toán tại cơ sở y tế</p>
+                                            : 
+                                            <p className="text-success text-md-end mb-0">Thanh toán qua momo</p>
+                                        }
+                                        </> */}
+                                        <Link className='btn btn-primary' to={`/ho-so-ca-nhan/chi-tiet-lich-dat/${item.id}`}>Xem chi tiết</Link>
+                         
+                                   </div>
 
                                </div>
        
@@ -235,7 +282,7 @@ function Booking() {
                 
                 <div className="tab-pane fade" id="tab-3" role="tabpanel">
                      
-                                       <h6>Lịch khám đã hoàn thành</h6>
+                <h6>Lịch khám đã hoàn thành  ({getComBooking.length})</h6>
 
                 {
                     getComBooking.length > 0 ?
@@ -256,12 +303,36 @@ function Booking() {
                                        <div className="ms-2">
                                            <h6 className="card-title mb-0">{item.specialist_name}</h6>
                                            <ul className="nav nav-divider small">
-                                               <li className="nav-item">Mã đặt lịch: {item.code && item.code }</li>
-                                               <li className="nav-item">Phòng: {item.department_name && item.department_name}</li>
+                                               <li className="nav-item"><b>Mã đặt lịch</b>: {item.code }</li>
+                                               <li className="nav-item"><b>Phòng</b>: {item.department_name}</li>
+                                           </ul>
+                                           <ul className="nav nav-divider small">
+                                                <li className="nav-item"><b>Trạng thái</b>:                                    
+                                                    <span className="text-green"> {item.status_name}</span> 
+                                                </li>
                                            </ul>
                                        </div>
                                    </div>
-
+                                   <div className="mt-2 mt-md-0" style={{
+                                       display: "flex",
+                                       flexFlow:" column wrap",
+                                       placeContent: "center",
+                                       flexDirection: "row",
+                                       flexWrap: "nowrap",
+                                       alignContent: "center",
+                                       justifyContent: "center",
+                                       alignItems: "center"
+                                   }}>
+                                      
+                                        {/* <>
+                                        {item.payment_method == "default" ? 
+                                            <p className="text-info text-md-end mb-0"> Thanh toán tại cơ sở y tế</p>
+                                            : 
+                                            <p className="text-success text-md-end mb-0">Thanh toán qua momo</p>
+                                        }
+                                        </> */}
+                                        <Link className='btn btn-primary' to={`/ho-so-ca-nhan/chi-tiet-lich-dat/${item.id}`}>Xem chi tiết</Link>
+                                   </div>
                                </div>
        
                                
@@ -289,6 +360,7 @@ function Booking() {
                         )
                     })
                     :
+                    loading ? <Loading /> :
                     <div className="bg-mode shadow p-4 rounded overflow-hidden">
                     <div className="row g-4 align-items-center">
                             <div className="col-md-9">
@@ -313,7 +385,8 @@ function Booking() {
         </div>
         
     </div>
+      </>
     
     )
 }
-export default Booking
+export default ListBookingUser
