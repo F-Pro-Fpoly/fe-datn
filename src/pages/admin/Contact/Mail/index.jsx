@@ -29,7 +29,7 @@ function Mail() {
                     <Form.Group>
                             <Form.Label>Nội dung</Form.Label>
                             <CKEditor
-                               editor={ ClassicEditor }
+                                editor={ ClassicEditor }
                                
                             />
                     </Form.Group>
