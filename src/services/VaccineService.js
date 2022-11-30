@@ -10,6 +10,7 @@ function createVaccineService({token, data}) {
 
     return API.post(url,  data,{headers: headers});
 }
+
 function listVaccine ({token, search = {}, limit = null, page = null}) {
     let headers ={}; 
     let url = `auth/vaccine/list?`;
@@ -29,6 +30,7 @@ function listVaccine ({token, search = {}, limit = null, page = null}) {
 
     return API.get(url, {headers: headers});
 }
+
 function deleteVaccine({token, id}){
     try {
         let headers = {};
@@ -45,13 +47,13 @@ function deleteVaccine({token, id}){
 
 function updateVaccine({token, id, data}){
     let headers = {};
-    let url = `auth/vaccine/update/${id}`;
-    url += `?_method=PUT`
+    let url = `auth/vaccine/edit/${id}`;
     if(token) {
         headers = {...headers, "Authorization": `Bearer ${token}`};
     }
-    return API.post(url, data,{headers: headers});
+    return API.put(url, data,{headers: headers});
 }
+
 function getVaccineApi({token, id}) {
     let headers ={}; 
     let url = `auth/vaccine/${id}`;

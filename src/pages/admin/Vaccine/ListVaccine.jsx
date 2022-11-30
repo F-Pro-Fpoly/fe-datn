@@ -53,95 +53,82 @@ function ListVaccine() {
     useEffect(() => {start()}, [])
     
     return ( 
-                <div className="adminWrapper">
-                <h3>Danh Sách VACCINE</h3>
-                <div className="adminItem">
-                    <div className="row">
-                        <Form.Group className="col-3">
-                            <Form.Label htmlFor="" className="form-lable-fro">Mã Vaccine</Form.Label>
-                            <Form.Control type="text" />
-                        </Form.Group>
-                        <Form.Group className="col-3">
-                            <Form.Label htmlFor="" className="form-lable-fro">Tên Vaccine</Form.Label>
-                            <Form.Control type="text" />
-                        </Form.Group>
-                    </div>
+        <div className="adminWrapper">
+            <h3>Danh Sách VACCINE</h3>
+            <div className="adminItem">
+                <div className="row">
+                    <Form.Group className="col-3">
+                        <Form.Label htmlFor="" className="form-lable-fro">Mã Vaccine</Form.Label>
+                        <Form.Control type="text" />
+                    </Form.Group>
+                    <Form.Group className="col-3">
+                        <Form.Label htmlFor="" className="form-lable-fro">Tên Vaccine</Form.Label>
+                        <Form.Control type="text" />
+                    </Form.Group>
                 </div>
-                <div className="adminItem">
-                    <Table responsive striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Mã Vaccine</th>
-                                <th>Tên Vaccine</th>
-                                <th>Slug</th>
-                                <th>Giá</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                listCate.map((item, index) => (
-                                    <tr key={index}>
-                                        <td>{index+1}</td>
-                                        <td>{item.code}</td>
-                                        <td>{item.name}</td>
-                                        <td>{item.slug}</td>
-                                        <td>{item.price}</td>
-                                        <td>
-                                            <button 
-                                                type="button" 
-                                                className="btn"
-                                                onClick={()=>updateVaccine(item.id)}
-                                            >
-                                                <i className="fa-solid fa-pen-to-square"></i>
-                                            </button>
-                                            <button type="button" className="btn">
-                                            <i 
-                                                        onClick={async()=>{if(window.confirm("Bạn có thật sự muốn xóa")){
-                                                            await deleteVaccine({token: token, id: item.id});
-                                                            start();
-                                                        }}}
-                                                        style={{cursor: "pointer"}} className="fa fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))
-                            }
-                            
-                        </tbody>
-                    </Table>
-                    <ReactPaginate
-                        breakLabel="..."
-                        nextLabel="next >"
-                        onPageChange={handlePageClick}
-                        pageRangeDisplayed={5}
-                        pageCount={pagination.total_pages ?? null}
-                        previousLabel="< previous"
-                        className="pagination"
-                        pageClassName="page-item"
-                        pageLinkClassName="page-link"
-                        activeClassName="active"
-                        previousClassName="page-item"
-                        nextClassName="page-item"
-                        previousLinkClassName="page-link"
-                        nextLinkClassName="page-link"
-                    />
-                </div>
-                <Modal size="lg" show={modal} onHide={handleHideModel}>
-                <Modal.Header closeButton>
-                    <h4>CẬP NHẬT VACCINE</h4>
-                </Modal.Header>
-                <Modal.Body style={{maxHeight: "600px"}} className="overflow-auto">
-                    <AddVaccine 
-                        handleHideModel={handleHideModel} 
-                        handleShowModel={handleShowModel} 
-                        startList={start}
-                        update={update} 
-                    />
-                </Modal.Body>
-            </Modal>
             </div>
+            <div className="adminItem">
+                <Table responsive striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã Vaccine</th>
+                            <th>Tên Vaccine</th>
+                            <th>Slug</th>
+                            <th>Giá</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            listCate.map((item, index) => (
+                                <tr key={index}>
+                                    <td>{index+1}</td>
+                                    <td>{item.code}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.slug}</td>
+                                    <td>{item.price}</td>
+                                    <td>
+                                        <Link 
+                                            type="button" 
+                                            className="btn"
+                                            to={`/admin/vaccine/update/${item.id}`}
+                                        >
+                                            <i className="fa-solid fa-pen-to-square"></i>
+                                        </Link>
+                                        <button type="button" className="btn">
+                                        <i 
+                                            onClick={async()=>{if(window.confirm("Bạn có thật sự muốn xóa")){
+                                                await deleteVaccine({token: token, id: item.id});
+                                                start();
+                                            }}}
+                                            style={{cursor: "pointer"}} className="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                        
+                    </tbody>
+                </Table>
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="next >"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pagination.total_pages ?? null}
+                    previousLabel="< previous"
+                    className="pagination"
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    activeClassName="active"
+                    previousClassName="page-item"
+                    nextClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextLinkClassName="page-link"
+                />
+            </div>
+        </div>
      );
 }
 
