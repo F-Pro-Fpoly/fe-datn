@@ -65,6 +65,7 @@ import AddBanner from "./pages/admin/Setttings/Banner/AddBanner";
 import UpdateBanner from "./pages/admin/Setttings/Banner/UpdateBanner";
 import ListVaccine from "./pages/admin/Vaccine/ListVaccine";
 import Test1 from "./pages/Test/Test1";
+import Detail from "./pages/site/Vaccine/Detail";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -84,6 +85,7 @@ function Web() {
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                     <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
                     <Route path="/vaccine" element={ <Vaccine /> } />
+                    <Route path="/vaccine/:slug/:id" element={ <Detail /> } />
                    
                     <Route path="/tin-tuc/*"  element={<News />}/>
                     <Route path="/tin-tuc/:slug"  element={ (<DetailNews />)}/>

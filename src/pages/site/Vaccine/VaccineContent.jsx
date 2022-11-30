@@ -5,8 +5,7 @@ import Loading from "../../../components/Loading/Loading";
 function VaccineContent () {
 
     const [list, setList] = useState([]);
-    const [loading, getLoading] = useState(false);
-    
+    const [loading, getLoading] = useState(false); 
     const start = async () => {
         getLoading(true)
         setList([])
@@ -35,24 +34,37 @@ function VaccineContent () {
                                     <div className="vaccine-content-header">
                                         <div>
                                             <h4>{item.name}</h4>
-                                            <p>
-                                            Nguồn gốc: Sanofi Pasteur (Pháp)
-                                            Ho gà, bạch hầu, uốn ván, viêm gan B, bại liệt và các bệnh do Hib
+                                            <p>Nguồn gốc: {item.national_name}.</p>
+                                            <p>                                           
+                                            {      
+                                               item.sick.map((i,v) => {
+                                                    return (
+                                                        <span key={v}>{i.name} &nbsp;</span> 
+                                                    )                                               
+                                                })
+                                            }
+                                          
                                             </p>
     
                                             <div className="vaccine-content-price">
-                                                <span>996,000VND</span>
+                                                <span>{item.price_formated}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="vaccine-content-body">
-                                        <span>Phòng bệnh: </span><br /><br />
+                                        <span>Phòng bệnh:
                                         <p className="mb-2">
-                                        Ho gà, Uốn ván, Bại liệt, Viêm phổi, Viêm gan B, Viêm màng não do vi khuẩn Haemophilus influenza týp B (Hib), Bạch hầu
+                                        {      
+                                            item.sick.map((i,v) => {
+                                                return (
+                                                    <span key={v}>{i.name} &nbsp;</span> 
+                                                )                                               
+                                            })
+                                        }
                                         </p>
-    
-                                        <Link to={`/`} className="vaccine-btn">
-                                            Chọn
+                                        </span>
+                                        <Link to={`/vaccine/${item.slug}/${item.id}`} className="vaccine-btn">
+                                            Xem chi tiết
                                         </Link>
                                     </div>
                                 </div>
