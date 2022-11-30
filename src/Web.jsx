@@ -68,6 +68,7 @@ import AddBanner from "./pages/admin/Setttings/Banner/AddBanner";
 import UpdateBanner from "./pages/admin/Setttings/Banner/UpdateBanner";
 import ListVaccine from "./pages/admin/Vaccine/ListVaccine";
 import Test1 from "./pages/Test/Test1";
+import InjectionRegistration from "./pages/site/Vaccine/InjectionRegistration";
 import Detail from "./pages/site/Vaccine/Detail";
 function Web() {
     const user = useSelector((state) => state.auth.user);
@@ -92,7 +93,7 @@ function Web() {
                    
                     <Route path="/tin-tuc/*"  element={<News />}/>
                     <Route path="/tin-tuc/:slug"  element={ (<DetailNews />)}/>
-           
+                    <Route path="/dang-ky-tiem" element={ <InjectionRegistration /> } />
                 </Route>
                
                 <Route element={<LayoutAuth />}>

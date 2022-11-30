@@ -1,3 +1,4 @@
+import { Button, Link as LinkMui } from "@mui/material";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Vaccine.scss"
@@ -54,6 +55,12 @@ function Vaccine() {
                                 </form>
                             </div>
                         </div>
+                    </div>
+                    <div className="mt-3">
+                        <Link 
+                            to={`/dang-ky-tiem`}
+                            className="btn btn-primary"
+                        >Đăng ký tiêm</Link>
                     </div>
                 </div>
             </section>
