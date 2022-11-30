@@ -13,6 +13,7 @@ function Contact(){
       const formData = new FormData(FormRep.current);
       const req = {
         "data": formData,
+        "type":0
       };
       try {
         let res = await creatContactApi(req,token);
@@ -85,8 +86,8 @@ function Contact(){
                                     <label>Số điện thoại</label>
                                   </div>
                                   <div className="flex-rev-contact">
-                                      <select  name="type" id=""  disabled>
-                                          <option value="0">Liên hệ</option>
+                                      <select  name="type" id="">
+                                          <option value="0" >Liên hệ</option>
                                       </select>
                                       <label>Đăng ký lịch khám </label>
                                     </div>

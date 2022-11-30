@@ -71,7 +71,7 @@ export default function UpdateSick(){
                         <Form.Group>
                             <Form.Label>Mã danh mục bệnh</Form.Label>
                             <input type="text" value={sick.code} 
-                             onChange = {(e) => setSick({...sick, code: e.target.value})}  className="form-control" placeholder="Mã danh mục" />
+                             onChange = {(e) => setSick({...sick, code: e.target.value})}  className="form-control" disabled placeholder="Mã danh mục" />
                          
                         </Form.Group>
                     </div>
