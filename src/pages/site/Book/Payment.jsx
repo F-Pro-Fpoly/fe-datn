@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react';
 import { Form } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
+import { setLoading } from '../../../redux/slices/InterfaceSile';
 import { createBookingService } from '../../../services/normal/BookingService';
-
 
 function Payment({bookingDescription}) {
     const navigate = useNavigate();
@@ -21,12 +21,15 @@ function Payment({bookingDescription}) {
     const token = useSelector(state => state.auth.token);
     const [paymentMethod, setPaymentMethod] = useState('default');
     const [paymentData, setPaymentData] = useState({});
+    const dispatch = useDispatch();
 
     const handleOnchangePaymentMethod = (e) => {
+        dispatch(setLoading(true));
         let payment_method = e.target.value;
         setPaymentMethod(payment_method);
         handleChangePaymentMethod(payment_method, dataPayment);
         setPaymentData(getPaymentData())
+        dispatch(setLoading(false));
     }
     const handleChangePaymentMethod = (payment_method, data = []) => {
         if(sessionStorage['booking_info2']) {
@@ -53,15 +56,18 @@ function Payment({bookingDescription}) {
         return null;
     }
     const handlePayment = async () => {
+        dispatch(setLoading(true));
         try {
             let booking_info = JSON.parse(sessionStorage['booking_info'] ?? null);
             let booking_info2 = JSON.parse(sessionStorage['booking_info2'] ?? "{}");
             if(bookingDescription === ''){
+                dispatch(setLoading(false));
                 toast.error("Vui lòng nhập thông tin khám bệnh");
                 return;
             }
             if(!token){
                 if(!booking_info){
+                    dispatch(setLoading(false));
                     toast.error("Vui lòng nhập địa chỉ");
                     return;
                 }
@@ -83,12 +89,16 @@ function Payment({bookingDescription}) {
             
             let res = await createBookingService({token, data: dataReq});
             let message = res.data.message;
+            dispatch(setLoading(true));
             toast.success(message);
 
             setTimeout(()=>{
+                dispatch(setLoading(true));
                 navigate('/');
+                dispatch(setLoading(false));
             }, 2000);
         } catch (error) {
+            dispatch(setLoading(false));
             let message = error.response.data.message;
             toast.error(message);
         } 
@@ -100,6 +110,8 @@ function Payment({bookingDescription}) {
     }, [])
 
     return ( 
+       <>
+       
         <div className='payment booking-main-address mt-3 p-3'>
             {/* <ToastContainer /> */}
             <div className='payment-checks'>
@@ -144,6 +156,7 @@ function Payment({bookingDescription}) {
                 )
             }
         </div>
+       </>
     );
 }
 
