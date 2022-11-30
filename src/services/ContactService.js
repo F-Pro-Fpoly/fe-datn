@@ -4,7 +4,7 @@ import API from './api';
 function creatContactApi({data,token}) {
     try {
         let headers ={}; 
-        let url = `normal/contact/add`;
+        let url = `normal/contact/add?`;
         if(token) {
             headers = {...headers, "Authorization": `Bearer ${token}`};
         }

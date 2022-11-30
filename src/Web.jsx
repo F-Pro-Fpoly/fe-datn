@@ -13,8 +13,11 @@ import Clinic from "./pages/site/Clinic";
 import AddUser from "./pages/admin/User/AddUser/AddUser";
 import ListUser from "./pages/admin/User/ListUser/ListUser";
 import Logout from "./pages/auth/Logout/Logout";
+
 import AddSick from "./pages/admin/Sicks/AddSick/AddSick";
 import ListSick from "./pages/admin/Sicks/ListSick/ListSick";
+import UpdateSick from "./pages/admin/Sicks/UpdateSick/UpdateSick";
+
 import ListBooking from "./pages/admin/Booking/ListBooking/ListBooking";
 import AddSpecialist from "./pages/admin/Specialists/AddSpecialist/AddSpecialist";
 import ListSpecialist from "./pages/admin/Specialists/ListSpecialist/ListSpecialist";
@@ -66,6 +69,7 @@ import UpdateBanner from "./pages/admin/Setttings/Banner/UpdateBanner";
 import ListVaccine from "./pages/admin/Vaccine/ListVaccine";
 import Test1 from "./pages/Test/Test1";
 import InjectionRegistration from "./pages/site/Vaccine/InjectionRegistration";
+import Detail from "./pages/site/Vaccine/Detail";
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -85,6 +89,7 @@ function Web() {
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                     <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
                     <Route path="/vaccine" element={ <Vaccine /> } />
+                    <Route path="/vaccine/:slug/:id" element={ <Detail /> } />
                    
                     <Route path="/tin-tuc/*"  element={<News />}/>
                     <Route path="/tin-tuc/:slug"  element={ (<DetailNews />)}/>
@@ -104,6 +109,7 @@ function Web() {
                     <Route path="sick">
                         <Route  element={<AddSick/> } path ='add'/>
                         <Route  element={<ListSick/> } path ='list'/>
+                        <Route  element={<UpdateSick/> } path ='update/:id'/>
                     </Route>
                     <Route path="specialist">
                         <Route  element={<AddSpecialist/> } path ='add'/>
