@@ -8,9 +8,10 @@ import Paginate from '../../../components/Paginate/Paginate';
 import Pagination from 'react-bootstrap/Pagination';
 import ReactPaginate from 'react-paginate';
 import ListUser from "../../admin/User/ListUser/ListUser";
+import { ListConfigService } from '../../../services/normal/ConfigService';
 function News(){
     const token = useSelector(state => state.auth.token);
-
+    const [getconfig, setConfig] = useState([])
     const [ListNews, getNews] = useState([]);
     const [ListNewsNew, getNewsNewClient] = useState([]);
     const [ListNewsFeatured, getNewsFeaturedClient] = useState([]);
@@ -39,7 +40,12 @@ function News(){
           let resCategory = await getlistNewsCategoryAPI(token);
           let dataCategory = resCategory.data;
           let dataCy = dataCategory.data;
-  
+        
+          let respon = await ListConfigService()
+          let dataa = respon.data;
+          let dataArrr = dataa.data;
+          setConfig(dataArrr)
+
           getNewsNewClient(data3New);
           getNewsFeaturedClient(data9Featured);
           getNewsCategoryClient(dataCy);
@@ -61,11 +67,11 @@ function News(){
 
       return(
         <div className="News">
-        <div className="page-title">
+        <div className="page-title wb">
             <div className="container news">
                 <div className="row">
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <h2>Tin Tức</h2>
+                        <h1>Tin Tức</h1>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
                         <ol className="breadcrumb">
@@ -78,7 +84,7 @@ function News(){
             </div>
         </div>
           <section className="section">
-            <div className="container wb">
+            <div className="container">
               <div className="row">
              
                 <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12">   
@@ -186,25 +192,32 @@ function News(){
                                 </div>
                                 <div className="sf-social-icons">
                                     <div className="sf-social-icon--container"> 
-                                        <a href="https://www.facebook.com/" target="_blank" rel="nofollow">
-                                            <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/facebook-icon.png"
-                                            alt="Facebook" data-pin-no-hover="true"/> 
-                                        </a>
+                                    <Link   
+                                    onClick={()=> window.open(
+                                        getconfig.SocialFaceBook ? getconfig.SocialFaceBook.link : ""
+                                        , "_blank")}
+                                        target="_blank" rel="nofollow">
+                                        <img src={`${process.env.REACT_APP_BE}${ getconfig.SocialFaceBook ? getconfig.SocialFaceBook.description : ""}`} alt="Facebook" data-pin-no-hover="true" className="img-icon" />
+                                    </Link>       
                                     </div>
                                     <div className="sf-social-icon--container"> 
                                         <a href="https://www.facebook.com/groups/" target="_blank"> 
-                                            <img src="https://cdn.cellphones.com.vn/media/wysiwyg/Group_Facebookrs.png" alt="Instagram" data-pin-no-hover="true"/>
+                                            <img src="https://cdn.cellphones.com.vn/media/wysiwyg/Group_Facebookrs.png" alt="Instagram" data-pin-no-hover="true" className="img-icon"/>
                                         </a>
                                     </div>
                                     <div className="sf-social-icon--container"> 
                                         <a href="https://www.tiktok.com/" target="_blank" rel="nofollow">
-                                            <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/tiktok-1.png" alt="Tiktok" data-pin-no-hover="true"/>
+                                            <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/tiktok-1.png" alt="Tiktok" data-pin-no-hover="true" className="img-icon"/>
                                         </a>
                                     </div>
                                     <div className="sf-social-icon--container"> 
-                                        <a href="https://www.youtube.com/" target="_blank" rel="nofollow">
-                                            <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/youtube-1.png" alt="Youtube" data-pin-no-hover="true"/>
-                                        </a>
+                                    <Link   
+                                        onClick={()=> window.open(
+                                            getconfig.SocialYoutube ? getconfig.SocialYoutube.link : ""
+                                            , "_blank")}
+                                            target="_blank" rel="nofollow">
+                                        <img src={`${process.env.REACT_APP_BE}${ getconfig.SocialYoutube ? getconfig.SocialYoutube.description : ""}`}alt="Youtube" data-pin-no-hover="true" className="img-icon" />
+                                    </Link>   
                                     </div>
                                 </div>
                             </div>

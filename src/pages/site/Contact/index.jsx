@@ -13,6 +13,7 @@ function Contact(){
       const formData = new FormData(FormRep.current);
       const req = {
         "data": formData,
+        "type":0
       };
       try {
         let res = await creatContactApi(req,token);
@@ -38,6 +39,7 @@ function Contact(){
 
 }, []);
     return(
+      <div className="contact">
             <div className="page-title">
                             <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} 
                               newestOnTop={false} closeOnClick rtl={false}  pauseOnFocusLoss draggable pauseOnHover />
@@ -84,8 +86,8 @@ function Contact(){
                                     <label>Số điện thoại</label>
                                   </div>
                                   <div className="flex-rev-contact">
-                                      <select  name="type" id=""  disabled>
-                                          <option value="0">Liên hệ</option>
+                                      <select  name="type" id="">
+                                          <option value="0" >Liên hệ</option>
                                       </select>
                                       <label>Đăng ký lịch khám </label>
                                     </div>
@@ -99,6 +101,7 @@ function Contact(){
                             </div>
                           </div>
             </div>
+          </div>
     );
 };
 export default Contact;
