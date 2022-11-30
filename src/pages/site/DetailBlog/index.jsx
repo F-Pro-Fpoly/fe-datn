@@ -154,8 +154,6 @@ export default function DitailNews(){
                                                     </Link>
                                                 </div>
                                             </div>
-                                </div>
-                                <div className="widget">
                                 <div className="blog-list-widget">
                                 {loading && <Loading />}
                                     {
