@@ -61,31 +61,17 @@ function ProfileDoctor() {
                                     <p className="career">{infoDoctor.specialists_name }</p>
                                     <div className="wrapSocialBlock">
                                         <div className="socialBlock_1">
-                                            <Link to={infoDoctor.link} className="wrapSocialPart">
                                                 <div className="imgSocialPart">
+                                            <Link to={infoDoctor.link} >
                                                     <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/faceItem_2.svg" />
-                                                </div>
                                             </Link>
-                                            <Link className="wrapSocialPart">
-                                                <div className="imgSocialPart">
-                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/icons8-linkedin-2.svg" />
                                                 </div>
-                                            </Link>
-                                            <Link className="wrapSocialPart">
-                                                <div className="imgSocialPart">
-                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/twitter_2.svg" />
-                                                </div>
-                                            </Link>
-                                            <Link className="wrapSocialPart">
-                                                <div className="imgSocialPart">
-                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/GPlusItem_2.svg" />
-                                                </div>
-                                            </Link>
+                                         
                                         </div>
                                     </div>
                                     <p className="textInfo"></p>
-                                    <p>{infoDoctor.context } </p>
-                                  
+                                    
+                                    <p  dangerouslySetInnerHTML={{__html: infoDoctor.context}} /> 
                                 </div>
                                 <div className="wrapOwlSlideTab">
         
@@ -110,7 +96,8 @@ function ProfileDoctor() {
                         </div>
                         <div className="data_contents">
                         <p></p>
-                        <p  dir="ltr" role="presentation"> {infoDoctor.introduce}</p>           
+                        <p dir="ltr" role="presentation" dangerouslySetInnerHTML={{__html: infoDoctor.introduce}} /> 
+                         
                     </div>
                     </div>
                     <div className="containerFix" id="td">
@@ -119,7 +106,8 @@ function ProfileDoctor() {
                         </div>
                         <div className="data_contents">
                         <p></p>
-                        <p  dir="ltr" role="presentation"> {infoDoctor.level}</p>           
+                        <p dir="ltr" role="presentation" dangerouslySetInnerHTML={{__html: infoDoctor.level}} /> 
+         
                         </div>
                     </div>
                 
@@ -129,18 +117,11 @@ function ProfileDoctor() {
                         </div>
                         <div className="data_contents">
                         <p></p>
-                        <p  dir="ltr" role="presentation"> {infoDoctor.experience}</p>           
+                        <p dir="ltr" role="presentation" dangerouslySetInnerHTML={{__html: infoDoctor.experience}} /> 
+                       
                         </div>
                     </div>
-                    <div className="containerFix" id="lc">
-                        <div className="titleBlock_2">
-                            <div className="text_1">LÝ DO KHÁCH HÀNG TIN TƯỞNG VÀ LỰA CHỌN BÁC SỸ {infoDoctor.doctor_name}</div>
-                        </div>
-                        <div className="data_contents">
-                        <p></p>
-                        <p  dir="ltr" role="presentation"> {infoDoctor.level}</p>           
-                        </div>
-                    </div>
+
                 </div>
             </div>
               

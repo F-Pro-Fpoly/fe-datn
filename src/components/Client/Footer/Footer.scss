@@ -79,8 +79,24 @@
         .social {
          
               &>.row{
+                &>h3{
+                    text-align: center;
+                }
+                .ab{
+                    text-align: left;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    align-content: stretch;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    .a{
+
+                    }
+                }
                 &>a{
-                  
+                    
+
                     &>img{
                         width: 67%;
                     }
@@ -118,6 +134,21 @@
     }
 }
 
+@media screen and (max-width: 991px) {
+    .footer1{
+        .social {
+            .a{
+                padding-right: 7%;
+            }
+        
+      }
+        
+    }
+
+}
+
+
+
 
 
 
@@ -137,6 +168,23 @@
         .headquarters{
             display: none;
         }
+        .social {
+            .ab{
+                text-align: left;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-content: stretch;
+                justify-content: center;
+                align-items: center;
+                .a{
+                    width: 100%;
+                    text-align: center;
+                    padding: 1.5% 0 1.5% 0;
+                }
+            }
+        
+      }
         
     }
     .newsletter{
