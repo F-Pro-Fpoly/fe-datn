@@ -2,12 +2,12 @@ import API from '../api';
 // import axios from 'axios';
 
 
-function getListServiceAPI(active = null) {
+function getListServiceAPI(active = null, search = '') {
     
     try {
         let headers ={}; 
         let url = `normal/vaccine/list`;
-        url += `?is_active=${active}`;
+        url += `?is_active=${active}&name=${search}`;
         return API.get(url, {headers: headers});
     } catch (error) {
         console.error(error);

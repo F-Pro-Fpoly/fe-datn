@@ -3,13 +3,36 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Vaccine.scss"
 import VaccineContent from "./VaccineContent";
-
+import { getListServiceAPI } from "../../../services/normal/VaccineService";
+import Loading from "../../../components/Loading/Loading";
+import  {  useState } from "react";
 function Vaccine() {
 
-    useEffect(() => {
-        document.title = "Trang vaccine";
-    }, [])
+    const [list, setList] = useState([]);
+    const [loading, getLoading] = useState(false); 
+    const [search,setSearch]  = useState('');
+    const start = async () => {
+        getLoading(true)
+        setList([])
+        let res = await getListServiceAPI( 1,search)
+        let data = res.data
+        let dataArr = data.data
+        getLoading(false)
+        setList(dataArr)
+      
+    }
 
+  useEffect(() => {
+   
+        document.title = "Đặt lịch tiêm vaccine"
+      start()
+  
+  }, [search])
+
+
+  const searchVaccine  = (e) => {
+    setSearch(e.target.value)
+  } 
 
     return ( 
         <div className="vaccine">
@@ -48,7 +71,9 @@ function Vaccine() {
                         <div className="d-flex vaccine-title-right">
                             <div className="vaccine-title-item" >
                                 <form className="vaccine-title-search">
-                                    <input type="text" className="" placeholder="Tìm kiếm tên vaccine" />
+                                    <input type="text" className="" 
+                                    onChange={(e) => searchVaccine(e)}
+                                    placeholder="Tìm kiếm tên vaccine" />
                                     <button type="button">
                                         <i className="fa-solid fa-magnifying-glass"></i>
                                     </button>
@@ -65,7 +90,7 @@ function Vaccine() {
                 </div>
             </section>
 
-            <VaccineContent />
+            <VaccineContent  list={list}/>
         </div>
      );
 }

@@ -315,27 +315,42 @@
                 }
             }
         }
-        // .box-conent{
-        //     display: flex;
-        //     flex-direction: row;
-        //     flex-wrap: nowrap;
-        //     align-content: center;
-        //     justify-content: space-between;
-        //     align-items: flex-start;
-        //     padding-bottom: 5%;
-          
-        // }
-        // .border{
-        //     border: 1px dashed #cccccc;
-        //     max-height: 500px !important;
-        //     overflow-y: auto !important;
-        //     thead{
-        //         position: sticky;
-        //         top: 0;
-        //     }
-        // }
+       
     }
    
 
 
+}
+
+@media screen and (max-width: 1199px) {
+    .home__juncture-flex{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3%;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: center;
+       
+    }
+    .box-juncture{
+        width: 100% !important;
+    }
+}
+
+
+@media screen and (max-width: 750px) {
+    .home__juncture-flex{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3%;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: center;
+       
+    }
+    .box-juncture{
+        width: 100% !important;
+    }
 }
