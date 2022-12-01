@@ -15,6 +15,17 @@ function getListServiceAPI(active = null, search = '') {
     }
 }
 
+function getListVaccineNormalApi({token, params}) {
+    let headers ={}; 
+    let url = `normal/vaccine/list`;
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+
+    return API.get(url, {headers: headers, params: params});
+}
+
 function getDetailSereiceAPI(id = null) {
     
     try {
@@ -29,4 +40,4 @@ function getDetailSereiceAPI(id = null) {
 
 
 
-export { getListServiceAPI, getDetailSereiceAPI}
+export { getListServiceAPI, getDetailSereiceAPI, getListVaccineNormalApi}

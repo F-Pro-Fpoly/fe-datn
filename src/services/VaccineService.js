@@ -31,6 +31,7 @@ function listVaccine ({token, search = {}, limit = null, page = null}) {
     return API.get(url, {headers: headers});
 }
 
+
 function deleteVaccine({token, id}){
     try {
         let headers = {};
@@ -64,4 +65,16 @@ function getVaccineApi({token, id}) {
 
     return API.get(url, {headers: headers});
 }
-export {createVaccineService,listVaccine,deleteVaccine,updateVaccine,getVaccineApi}
+
+function getVaccineApiByCode ({token, code}) {
+    let headers ={}; 
+    let url = `normal/vaccine/detail-by-code/${code}`;
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+
+    return API.get(url, {headers: headers});
+}
+
+export {createVaccineService,listVaccine,deleteVaccine,updateVaccine,getVaccineApi,getVaccineApiByCode}

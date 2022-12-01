@@ -9,7 +9,7 @@ import { getCityService, getDistrictService, getWardService } from '../../../ser
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import { toast, ToastContainer } from 'react-toastify';
-import { getInfoDoctor, getUserClientService, updateUserClient } from '../../../services/UserService';
+import { getInfoDoctor, getInfoDoctorV2, getUserClientService, updateUserClient } from '../../../services/UserService';
 import { useEffect } from 'react';
 import moment from 'moment/moment';
 import { useNavigate } from 'react-router-dom';
@@ -225,10 +225,10 @@ function Book () {
     }
     const handleDataDoctor = async () =>{
         try {
-            console.log("handle doctor");
+            // console.log("handle doctor");
             if(sessionStorage['booking_info2']) {
                 let booking_info2 = JSON.parse(sessionStorage['booking_info2']);
-                let res = await getInfoDoctor({token, id: booking_info2.doctor_id});
+                let res = await getInfoDoctorV2({token, id: booking_info2.doctor_id});
                 return res.data.data;
             }
         } catch (error) {
