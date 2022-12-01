@@ -23,11 +23,13 @@ function ListContact() {
       "status" : ""
     });
 
+    const type = 0;
+    
     useEffect(() => {
         const start = async () => {
             getLoading(true)
             setListContact([])
-            let res = await getContact({token,page,search}) 
+            let res = await getContact({token,page,search, type}) 
             let data = res.data 
             let dataArr = data.data
             getLoading(false)
@@ -48,7 +50,7 @@ function ListContact() {
       value.preventDefault();
       getLoading(true)
       setListContact([])
-      let res = await getContact({token,page,search}) 
+      let res = await getContact({token,page,search,type}) 
       let data = res.data 
       let dataArr = data.data
       getLoading(false)

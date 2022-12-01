@@ -31,34 +31,20 @@ function deleteContact({token, id}){
 
 
 
-function getContact({token,page=1,search ={}}) {
+function getContact({token,page=1,search ={}, type= null}) {
     try {
         let headers ={}; 
         if(token){
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
-        return API.get(`auth/contact/list?type=0&page=${page}&limit=5&status_id=${search.status}`,{headers: headers});
+        return API.get(`auth/contact/list?type=${type}&page=${page}&limit=5&status_id=${search.status}`,{headers: headers});
     } catch (error) {
         console.error(error);
         return [];
     }
 }
 
-
-function getContactBooking({token, page=1}) {
-    try {
-        let headers ={}; 
-        if(token){
-            headers = {...headers, "Authorization": `Bearer ${token}`};
-            // console.log(configs);
-        }
-        return API.get(`auth/contact/list?type=1&page=${page}&limit=5`,{headers: headers});
-    } catch (error) {
-        console.error(error);
-        return [];
-    }
-}
 
 function getDetailContact({token,id}) {
     try {
@@ -111,4 +97,4 @@ function getListContactAPI(token = null, search = {}, page = 1) {
 
 
 
-export { creatContactApi, deleteContact,getContact,getListContactAPI,getContactBooking, getDetailContact,putReplyContact}
+export { creatContactApi, deleteContact,getContact,getListContactAPI, getDetailContact,putReplyContact}
