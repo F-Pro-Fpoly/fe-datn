@@ -1,6 +1,6 @@
 import "./Blog.scss";
 import { Link } from "react-router-dom";
-import { getListNewsAPI,getlistNews3NewsAPI} from "../../../services/normal/NewsService";
+import { getListNewsAPI,getlistTopWeek3API,getlistTopWeek1API} from "../../../services/normal/NewsService";
 import Loading from "../../../components/Loading/Loading";
 import {useDispatch,useSelector} from "react-redux";
 import { useEffect, useState } from "react";
@@ -13,9 +13,8 @@ function News(){
     const token = useSelector(state => state.auth.token);
     const [getconfig, setConfig] = useState([])
     const [ListNews, getNews] = useState([]);
-    const [ListNewsNew, getNewsNewClient] = useState([]);
-    const [ListNewsFeatured, getNewsFeaturedClient] = useState([]);
-    const [ListNewsCategory, getNewsCategoryClient] = useState([]);
+    const [ListTopWeek3, getListTopWeek3] = useState([]);
+    const [ListTopWeek1, getListTopWeek1] = useState([]);
     const [loading, getLoading] = useState(false);
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
@@ -29,16 +28,21 @@ function News(){
           let dataArr = data.data;
           
   
-          let resNew = await getlistNews3NewsAPI(token);
-          let dataNew = resNew.data;
-          let data3New = dataNew.data;
+          let resTW3 = await getlistTopWeek3API(token);
+          let dataNew = resTW3.data;
+          let dataTW3 = dataNew.data;
+
+          let resTW1 = await getlistTopWeek1API(token);
+          let dataNew1 = resTW1.data;
+          let dataTW1 = dataNew1.data;
   
           let respon = await ListConfigService()
           let dataa = respon.data;
           let dataArrr = dataa.data;
           setConfig(dataArrr)
 
-          getNewsNewClient(data3New);
+          getListTopWeek1(dataTW3);
+          getListTopWeek3(dataTW1);
 
   
           getNews(dataArr);
@@ -66,8 +70,8 @@ function News(){
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><Link to={"/"}>Home</Link></li>
-                            <li className="breadcrumb-item">News</li>
+                            <li className="breadcrumb-item"><Link to={"/"}>Trang chủ </Link></li>
+                            <li className="breadcrumb-item">Tin tức</li>
                           
                         </ol>
                     </div>                   
@@ -126,26 +130,30 @@ function News(){
                   <div className="sidebar">
                         <div className="widget">
                             <div className="sf_right_featured--header"><h2>Xem nhiều tuần qua</h2></div>
+                            {
+                                ListTopWeek1.map((item,index) => {
+                                    return(
                                 <div className="sf_right_featured--box sf_right_featured--first-box">
                                     <div className="sf_right_featured--box-thumb"> 
                                         <Link>
                                             <div className="sf_right_featured--thumbnail-container"> 
-                                                <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2022/11/Apple-Watch-cuu-song-nguoi-5.jpg" alt="Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét" data-pin-no-hover="true"/>
+                                                <img src={ `${process.env.REACT_APP_BE}${item.file}` } data-pin-no-hover="true"/>
                                                 <div className="sf_right_featured--thumb-overlay"></div>
                                             </div>
                                         </Link>
                                     </div>
                                     <div className="sf_right_featured--box-content">
-                                        <Link>
-                                            Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét
-                                        </Link>
+                                    <Link to={item.slug}>{item.name}</Link>
                                     </div>
                                 </div>
+                                          )                                                 
+                                        })
+                                    }  
                             </div>
                         <div className="widget">
                             <div className="blog-list-widget">
                          {
-                                ListNewsNew.map((item,index) => {
+                                ListTopWeek3.map((item,index) => {
                                     return(
                                         <div className="sf_right_featured--box sf_right_featured--small-box" key={index}>
                                             <div className="sf_right_featured--box-thumb"> 

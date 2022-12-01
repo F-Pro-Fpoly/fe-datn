@@ -40,10 +40,10 @@ function getListNewsAPI(token, search = {}, page = 1, limit = 6) {
 
 }
 
-function getlistNews3NewsAPI(token) {
+function getlistTopWeek1API(token) {
     try {
         let headers ={}; 
-        let url = `normal/news/topWeek`;
+        let url = `normal/news/topWeek1`;
         if(token){
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
@@ -54,10 +54,10 @@ function getlistNews3NewsAPI(token) {
         return [];
     }
 }
-function getlistNews9FeaturedAPI(token) {
+function getlistTopWeek3API(token) {
     try {
         let headers ={}; 
-        let url = `normal/news/featured`;
+        let url = `normal/news/topWeek3`;
         if(token){
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
@@ -88,6 +88,6 @@ function getlistNewsCategoryAPI() {
     }
 }
 
-export { getListNewsAPI, getlistNewsFeatureAPI,getlistNews9FeaturedAPI
-        ,getlistNews3NewsAPI,getNewsDetailClient,getlistNewsCategoryAPI
+export { getListNewsAPI, getlistNewsFeatureAPI,getlistTopWeek3API
+        ,getlistTopWeek1API,getNewsDetailClient,getlistNewsCategoryAPI
 }
