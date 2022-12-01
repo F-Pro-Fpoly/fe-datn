@@ -142,6 +142,14 @@ function DoctorProfile({token,id}) {
     }
     return API.get(url,{headers: headers});
 }
+function DoctorAddProfile({token,data= {}}) {
+    let headers = {};
+    let url = `auth/doctor-profile/add`;
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.post(url,data,{headers: headers});
+}
 function UpdateDoctorProfile({token,id,data={}}) {
     let headers = {};
     let url = `auth/doctor-profile/edit/${id}`;
@@ -199,4 +207,4 @@ function getUserClientService({token}) {
 
 
 
-export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor, updateUserClient, getUserClientService, getListUsersV2_1,DoctorProfile,UpdateDoctorProfile}
+export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor, updateUserClient, getUserClientService, getListUsersV2_1,DoctorProfile,UpdateDoctorProfile,DoctorAddProfile}

@@ -34,18 +34,18 @@ function ListConfig() {
         setPage(number)
     }
 
-    const click = (event) => {
-        console.log(event.target.checked);
-    } 
+    // const click = (event) => {
+    //     console.log(event.target.checked);
+    // } 
      useEffect(() => {
         start();
     }, [page])
     
     return ( 
         <div className="adminItem">
-               <div className="addConfig">                  
+               {/* <div className="addConfig">                  
                     <Link  to="/admin/cau-hinh-chung/add" className="btn btn-primary"> Thêm config</Link>                          
-                </div>
+                </div> */}
             <Table striped bordered hover className='table-striped'>            
                 <thead>
                     <tr>
