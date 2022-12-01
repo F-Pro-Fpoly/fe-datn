@@ -14,7 +14,14 @@ function getListServiceAPI(search = {}) {
         return [];
     }
 }
-
+function getListServiceV2({search={}}) {
+    let headers ={}; 
+    let url = `normal/specialist/listSpecialist?`;
+    for(let specialist in search) {
+        url += `${specialist}=${search[specialist]}&`;
+    }
+    return API.get(url,{headers: headers});
+}
 function getlistSpecialistFeatureAPI() {
     
     try {
@@ -29,4 +36,4 @@ function getlistSpecialistFeatureAPI() {
 
 
 
-export { getListServiceAPI, getlistSpecialistFeatureAPI}
+export { getListServiceAPI, getlistSpecialistFeatureAPI,getListServiceV2}

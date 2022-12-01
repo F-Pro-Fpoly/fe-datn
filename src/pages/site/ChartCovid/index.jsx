@@ -131,21 +131,12 @@ function ChartCovid() {
                     }
                   </div>
                 </div>
-                
-
-
-
               </div>
               <div className="box-juncture">
-                    <BarChart overview={overview}/>
-                  
+                    <BarChart overview={overview}/>    
                 </div>
               </div>
             </div>
-                            
-
-
-
           </div>
         </div>
 

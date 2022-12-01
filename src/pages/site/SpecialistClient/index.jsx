@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom"
 import "./SpecialistClient.scss"
 
-import { getListServiceAPI } from "../../../services/normal/SpecialistService";
+import { getListServiceV2 } from "../../../services/normal/SpecialistService";
 import Loading from "../../../components/Loading/Loading";
 import { setNavb } from "../../../redux/slices/InterfaceSile";
 import {useDispatch} from "react-redux"
@@ -25,17 +25,17 @@ function SpecialistClient () {
     const start = async () => {
         getLoading(true)
         getSpecialistClient([])
-        let res = await getListServiceAPI({status: 1})
+        let res = await getListServiceV2({search:{
+          is_vaccine:1,
+          status: 1
+        }})
         let data = res.data
         let dataArr = data.data
         getLoading(false)
-        getSpecialistClient(dataArr)
-      
+        getSpecialistClient(dataArr)     
     }
-
       start()
-  
-  }, [])
+  }, []);
 
   const handleSubmit = async (e) => {
      
@@ -86,7 +86,7 @@ function SpecialistClient () {
                     
                     <div className="row">
                
-                        <div className="leftBlock">
+                        <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12 leftBlock">
                              
                         {loading && <Loading />}
                         {
@@ -116,7 +116,7 @@ function SpecialistClient () {
                           })
                           }
                         </div>
-                        <div className="rightBlock" id="sidebarBlock">
+                        <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 rightBlock" id="sidebarBlock">
                           <div className="wrapSticky sidebar__inner">
                             <div className="smallBlock">
                               <div className="specialBlock_23">

@@ -3,7 +3,7 @@ import "../News/Blog.scss";
 import { Link } from "react-router-dom"
 import {useEffect, useState} from 'react';
 import { useParams } from "react-router";
-import {  getNewsDetailClient,getlistNews3NewsAPI,getlistNews9FeaturedAPI,getlistNewsCategoryAPI } from "../../../services/normal/NewsService";
+import {  getNewsDetailClient,getlistTopWeek1API,getlistTopWeek3API,getlistNewsCategoryAPI } from "../../../services/normal/NewsService";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../components/Loading/Loading";
 import { setLoading } from "../../../redux/slices/InterfaceSile";
@@ -22,9 +22,8 @@ export default function DitailNews(){
 }); 
 
 
-  const [ListNewsNew, getNewsNewClient] = useState([]);
-  const [ListNewsFeatured, getNewsFeaturedClient] = useState([]);
-  const [ListNewsCategory, getNewsCategoryClient] = useState([]);
+const [ListTopWeek3, getListTopWeek3] = useState([]);
+const [ListTopWeek1, getListTopWeek1] = useState([]);
   const [loading, getLoading] = useState(false);
   const slug = param.slug;
   document.title = "Chi tiết tin";
@@ -33,23 +32,19 @@ export default function DitailNews(){
           let res = await getNewsDetailClient({token, slug});
           let data = res.data.data;
 
-          let resNew = await getlistNews3NewsAPI({status: 1})
-          let dataNew = resNew.data
-          let data3New = dataNew.data
-  
-          let resFeatured = await getlistNews9FeaturedAPI({status: 1})
-          let dataFeatured = resFeatured.data
-          let data9Featured = dataFeatured.data
+          let resTW3 = await getlistTopWeek3API(token);
+          let dataNew = resTW3.data;
+          let dataTW3 = dataNew.data;
+
+          let resTW1 = await getlistTopWeek1API(token);
+          let dataNew1 = resTW1.data;
+          let dataTW1 = dataNew1.data;
 
           let respon = await ListConfigService()
           let dataa = respon.data;
           let dataArrr = dataa.data;
           setConfig(dataArrr)
 
-
-          let resCategory = await getlistNewsCategoryAPI({status: 1})
-          let dataCategory = resCategory.data
-          let dataCy = dataCategory.data
           setDetail({
               ...NewsDetail,
               code: data.code ?? null,
@@ -60,9 +55,8 @@ export default function DitailNews(){
           });
           dispatch(setLoading(false))
           setDetail(data);
-          getNewsNewClient(data3New)
-          getNewsFeaturedClient(data9Featured)
-          getNewsCategoryClient(dataCy)
+          getListTopWeek1(dataTW3);
+          getListTopWeek3(dataTW1);
           getLoading(false)
 
   }
@@ -139,27 +133,30 @@ export default function DitailNews(){
                                 <div className="widget">
 
                                             <div className="sf_right_featured--header"><h2>Xem nhiều tuần qua</h2></div>
-                                            <div className="sf_right_featured--box sf_right_featured--first-box">
-                                                <div className="sf_right_featured--box-thumb"> 
-                                            <Link>
-                                                    <div className="sf_right_featured--thumbnail-container"> 
-                                                    <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2022/11/Apple-Watch-cuu-song-nguoi-5.jpg" alt="Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét" data-pin-no-hover="true"/>
-                                                    <div className="sf_right_featured--thumb-overlay"></div>
-                                                    </div>
-                                                    </Link>
-                                                </div>
-                                                <div className="sf_right_featured--box-content">
-                                                    <Link>
-                                                        Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét
-                                                    </Link>
-                                                </div>
+                                            {
+                                ListTopWeek1.map((item,index) => {
+                                    return(
+                                <div className="sf_right_featured--box sf_right_featured--first-box">
+                                    <div className="sf_right_featured--box-thumb"> 
+                                        <Link>
+                                            <div className="sf_right_featured--thumbnail-container"> 
+                                                <img src={ `${process.env.REACT_APP_BE}${item.file}` } data-pin-no-hover="true"/>
+                                                <div className="sf_right_featured--thumb-overlay"></div>
                                             </div>
+                                        </Link>
+                                    </div>
+                                    <div className="sf_right_featured--box-content">
+                                    <Link to={item.slug}>{item.name}</Link>
+                                    </div>
+                                </div>
+                                          )                                                 
+                                        })
+                                    }  
                                 </div>
                                 <div className="widget">
                                 <div className="blog-list-widget">
-                                {loading && <Loading />}
                                     {
-                                ListNewsNew.map((item,index) => {
+                                ListTopWeek3.map((item,index) => {
                                 return(
                                     <div className="sf_right_featured--box sf_right_featured--small-box"key={index}>
                                     <div className="sf_right_featured--box-thumb"> 

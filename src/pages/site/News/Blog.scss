@@ -23,7 +23,7 @@
                 .blog-list-widget small{color:rgba(0,0,0,0.6)!important}
                 .fa{font-size:21px;margin:0 0.3rem}
                 .breadcrumb{background-color:transparent;border-radius:0;list-style:outside none none;margin-bottom:0;text-align:right;padding:0}
-                .breadcrumb-item{float:none;font-size:16px;display:inline-block}
+                .breadcrumb-item{float:none;font-size:18px;display:inline-block}
                 .page-link{background-color:#edeff2!important;border:0 dashed #e2e2e2;border-radius:x0;color:#a3a5a8!important;display:block;font-size:14px;line-height:1;margin-left:6px;padding:0.8rem 0.8rem;position:relative;text-transform:capitalize}
                 .page-link:hover,.page-link:focus{color:#111!important}
                 .page-item:first-child .page-link{margin-left:0;border-radius:0}g-title-area
@@ -37,7 +37,7 @@
                 }
                 .page-title small{color:#a3a5a8;display:inline-block;font-size:13px;font-style:italic;letter-spacing:1px;line-height:1;margin-bottom:0;margin-top:-1px;padding-bottom:0;padding-left:0.5rem;vertical-align:middle}
                 .page-title i{border-radius:40px;display:inline-block;font-size:14px;height:40px;line-height:40px;margin-right:0.3rem;margin-top:-0.4rem;text-align:center;vertical-align:middle;width:40px}
-                .breadcrumb{float:none;text-align:left;padding:0;color:#003bfd;margin:0; font-size: 15px;}
+                .breadcrumb{float:none;text-align:left;padding:0;color:#ffffff;margin:0}
                 .text-center .breadcrumb{text-align:center}
                 .breadcrumb-item.active, .breadcrumb-item + .breadcrumb-item::before, blog-meta small, a{color:#ffffff}
                 .last-child{margin-bottom:0!important}
@@ -149,6 +149,15 @@
                 zoom: 1;
                 filter: alpha(opacity=0);
                 opacity: 0;
+            }
+            .leftBlock{
+                width: 73%;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            .rightBlock{
+                width: 27%;
+                position: relative;
             }
             .blog-meta samp {
                 font-size: 15px;

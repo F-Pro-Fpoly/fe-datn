@@ -54,8 +54,11 @@ function Detail() {
       <div className="section_1">
           <div className="container">
               <div className="row pt-md-5 pt-3 px-0">
-              <div className="pb-4 pt-0 d-flex flex-column px-0 pr-4 col-md-12 col-lg-5 col-xl-4 col-12">
-                        <div className="bg-primary-1 vaccine-info-detail">
+              <div className="pb-4 pt-0 d-flex flex-column px-0 pr-4 col-md-12 col-lg-5 col-xl-4 col-12 ">
+                        <div className="bg-primary-1 vaccine-info-detail" style={{
+                            position: "sticky",
+                            top: "150px"
+                        }}>
                             <h3>{detail.name}</h3>
                             <h5>Nguồn gốc: {detail.national_name}</h5>
                             <h5>Phòng bệnh</h5>

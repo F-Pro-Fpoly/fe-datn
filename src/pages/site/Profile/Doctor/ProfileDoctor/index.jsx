@@ -25,8 +25,6 @@ function ProfileDoctor() {
         document.title = "Thông tin bác sĩ"
     }, [])
 
-    console.log(infoDoctor);
-
     return ( 
         <div className="container-fluid" id="spec">  
               <div className="specialBlock_19">
@@ -63,31 +61,17 @@ function ProfileDoctor() {
                                     <p className="career">{infoDoctor.specialists_name }</p>
                                     <div className="wrapSocialBlock">
                                         <div className="socialBlock_1">
-                                            <Link to={infoDoctor.link} className="wrapSocialPart">
                                                 <div className="imgSocialPart">
+                                            <Link to={infoDoctor.link} >
                                                     <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/faceItem_2.svg" />
-                                                </div>
                                             </Link>
-                                            <Link className="wrapSocialPart">
-                                                <div className="imgSocialPart">
-                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/icons8-linkedin-2.svg" />
                                                 </div>
-                                            </Link>
-                                            <Link className="wrapSocialPart">
-                                                <div className="imgSocialPart">
-                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/twitter_2.svg" />
-                                                </div>
-                                            </Link>
-                                            <Link className="wrapSocialPart">
-                                                <div className="imgSocialPart">
-                                                    <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/GPlusItem_2.svg" />
-                                                </div>
-                                            </Link>
+                                         
                                         </div>
                                     </div>
                                     <p className="textInfo"></p>
-                                    <p>{infoDoctor.context } </p>
-                                  
+                                    
+                                    <p  dangerouslySetInnerHTML={{__html: infoDoctor.context}} /> 
                                 </div>
                                 <div className="wrapOwlSlideTab">
         
@@ -106,43 +90,38 @@ function ProfileDoctor() {
             </div>
             <div className="section_introduce" >
                 <div className="container">
-               
-                    <div className="containerFix" id="td">
-                        <div className="titleBlock_2">
-                            <div className="text_1">TRÌNH ĐỘ CHUYÊN MÔN</div>
-                        </div>
-                        <div className="data_contents">
-                        <p></p>
-                        <p  dir="ltr" role="presentation"> {infoDoctor.level}</p>           
-                        </div>
-                    </div>
                     <div className="containerFix" id="gt">
                         <div className="titleBlock_2">
                             <div className="text_1">Giới thiệu</div>
                         </div>
                         <div className="data_contents">
                         <p></p>
-                        <p  dir="ltr" role="presentation"> {infoDoctor.introduce}</p>           
+                        <p dir="ltr" role="presentation" dangerouslySetInnerHTML={{__html: infoDoctor.introduce}} /> 
+                         
+                    </div>
+                    </div>
+                    <div className="containerFix" id="td">
+                        <div className="titleBlock_2">
+                            <div className="text_1">TRÌNH ĐỘ CHUYÊN MÔN</div>
+                        </div>
+                        <div className="data_contents">
+                        <p></p>
+                        <p dir="ltr" role="presentation" dangerouslySetInnerHTML={{__html: infoDoctor.level}} /> 
+         
                         </div>
                     </div>
+                
                     <div className="containerFix" id="kn">
                         <div className="titleBlock_2">
                             <div className="text_1">Kinh nghiệm</div>
                         </div>
                         <div className="data_contents">
                         <p></p>
-                        <p  dir="ltr" role="presentation"> {infoDoctor.experience}</p>           
+                        <p dir="ltr" role="presentation" dangerouslySetInnerHTML={{__html: infoDoctor.experience}} /> 
+                       
                         </div>
                     </div>
-                    <div className="containerFix" id="lc">
-                        <div className="titleBlock_2">
-                            <div className="text_1">LÝ DO KHÁCH HÀNG TIN TƯỞNG VÀ LỰA CHỌN BÁC SỸ {infoDoctor.doctor_name}</div>
-                        </div>
-                        <div className="data_contents">
-                        <p></p>
-                        <p  dir="ltr" role="presentation"> {infoDoctor.level}</p>           
-                        </div>
-                    </div>
+
                 </div>
             </div>
               
