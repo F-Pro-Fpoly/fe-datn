@@ -43,7 +43,7 @@ function getListNewsAPI(token, search = {}, page = 1, limit = 6) {
 function getlistNews3NewsAPI(token) {
     try {
         let headers ={}; 
-        let url = `normal/news/news-new`;
+        let url = `normal/news/topWeek`;
         if(token){
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
