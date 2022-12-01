@@ -150,6 +150,15 @@
                 filter: alpha(opacity=0);
                 opacity: 0;
             }
+            .leftBlock{
+                width: 73%;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            .rightBlock{
+                width: 27%;
+                position: relative;
+            }
             .blog-meta samp {
                 font-size: 15px;
                 display: inline-block;

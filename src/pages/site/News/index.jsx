@@ -77,7 +77,7 @@ function News(){
           <section className="section">
             <div className="container">
               <div className="row">
-                <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12">   
+                <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12 leftBlock">   
                 <>
                     <div className="page-wrapper">  
                         <div className="blog-list clearfix">
@@ -123,7 +123,7 @@ function News(){
                     </div> 
                   </>
                 </div>
-                <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 rightBlock">
                   <div className="sidebar">
                     <div className="widget">
                         <div className="sf_right_featured--header"><h2>Xem nhiều tuần qua</h2></div>

@@ -296,3 +296,10 @@
         }
     }
 }
+@media (max-width: 989px) {
+    .leftBlock,
+    .rightBlock {
+        float: left;
+        width: 50%;
+    }
+}
