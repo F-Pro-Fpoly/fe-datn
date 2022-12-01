@@ -5,7 +5,7 @@ import "./NavBarAdmin.scss";
 import {getCountAdmin} from "../../../services/global/Count"
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import logo from "../../../image/logo.png"
 function NavBarAdmin({className}) {
     const token = useSelector((state) => state.auth.token);
     const user = useSelector(state => state.auth.user);
@@ -50,7 +50,7 @@ function NavBarAdmin({className}) {
     return ( 
         <aside className={`navBarAdmin ${className}`}>
             <Link className="navBarAdmin-logo" to="/admin">
-                <span className="navBarAdmin-logo-text">AppLogo</span>
+                <span className="navBarAdmin-logo-text">TRUNG TÂM Y TẾ FPRO</span>         
             </Link>
 
             <div className="navBarAdmin-main accordion" id="accordionExample">
