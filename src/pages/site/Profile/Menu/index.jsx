@@ -38,6 +38,11 @@ function Menu(infoUser) {
                                 infoUser.infoUser.role_id === 2 ?
                                <>
                                 <li className="nav-item">
+                                    <NavLink className="nav-link" to={`/ho-so-ca-nhan/chi-tiet/${infoUser.infoUser.id}`}>
+                                        <i className="bi bi-people fa-fw me-2"></i>Hồ sơ chi tiết
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
                                     <NavLink className="nav-link" to="/ho-so-ca-nhan/danh-sach-lich-kham">
                                         <i className="bi bi-people fa-fw me-2"></i>Danh sách lịch khám
                                     </NavLink>

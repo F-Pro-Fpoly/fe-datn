@@ -25,8 +25,6 @@ function ProfileDoctor() {
         document.title = "Thông tin bác sĩ"
     }, [])
 
-    console.log(infoDoctor);
-
     return ( 
         <div className="container-fluid" id="spec">  
               <div className="specialBlock_19">
@@ -106,7 +104,15 @@ function ProfileDoctor() {
             </div>
             <div className="section_introduce" >
                 <div className="container">
-               
+                    <div className="containerFix" id="gt">
+                        <div className="titleBlock_2">
+                            <div className="text_1">Giới thiệu</div>
+                        </div>
+                        <div className="data_contents">
+                        <p></p>
+                        <p  dir="ltr" role="presentation"> {infoDoctor.introduce}</p>           
+                    </div>
+                    </div>
                     <div className="containerFix" id="td">
                         <div className="titleBlock_2">
                             <div className="text_1">TRÌNH ĐỘ CHUYÊN MÔN</div>
@@ -116,15 +122,7 @@ function ProfileDoctor() {
                         <p  dir="ltr" role="presentation"> {infoDoctor.level}</p>           
                         </div>
                     </div>
-                    <div className="containerFix" id="gt">
-                        <div className="titleBlock_2">
-                            <div className="text_1">Giới thiệu</div>
-                        </div>
-                        <div className="data_contents">
-                        <p></p>
-                        <p  dir="ltr" role="presentation"> {infoDoctor.introduce}</p>           
-                        </div>
-                    </div>
+                
                     <div className="containerFix" id="kn">
                         <div className="titleBlock_2">
                             <div className="text_1">Kinh nghiệm</div>
