@@ -93,14 +93,26 @@ function Footer (getconfig) {
                             <div className="social">
                             <div className="row">
                                 <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
-                                <Link   
-                                    onClick={()=> window.open(
-                                        getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.link : ""
-                                        , "_blank")}
-                                    >
-                                    <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.description : ""}`} alt="fb" />
-                                    </Link>                  
-                                  
+                                    <div className="col-lg-3">
+                                        <Link   
+                                            onClick={()=> window.open(
+                                                getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.link : ""
+                                                , "_blank")}
+                                            >
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.description : ""}`} alt="fb" />
+                                        </Link>    
+                                    </div>   
+                                    <div className="col-lg-3">        
+                                        <Link   
+                                            onClick={()=> window.open(
+                                                getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.link : ""
+                                                , "_blank")}
+                                            >
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.description : ""}`} alt="fb" />
+                                        </Link>                  
+                                    </div>   
+                                    
+                                
                                 </div>
 
                             {/* <div className="row">
