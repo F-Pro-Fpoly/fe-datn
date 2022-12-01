@@ -56,12 +56,6 @@ function Vaccine() {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-3">
-                        <Link 
-                            to={`/dang-ky-tiem`}
-                            className="btn btn-primary"
-                        >Đăng ký tiêm</Link>
-                    </div>
                 </div>
             </section>
 

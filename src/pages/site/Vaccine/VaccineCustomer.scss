@@ -1,7 +1,21 @@
 .dang-ky-tiem{
     padding-top: 150px;
     padding-bottom: 20px;
+    background-color: #eee;
     & .form-label{
         color: #333;
+    }
+    &-wrapper{
+        border-radius: 8px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        padding: 20px;
+        background-color: #fff;
+    }
+    &-vaccine{
+        display: flex;
+        &-img{
+            max-width: 20%;
+            flex: 0 0 20%;
+        }
     }
 }

@@ -29,7 +29,7 @@ function VaccineContent () {
                     <div className="row vaccine-row">
                         {list.map((item,index) => {
                             return(
-                                <div className="col-xl-3 col-md-6 col-12">
+                                <div className="col-xl-3 col-md-6 col-12" key={index}>
                                 <div className="vaccine-content-item">
                                     <div className="vaccine-content-header">
                                         <div>
