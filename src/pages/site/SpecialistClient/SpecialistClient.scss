@@ -60,9 +60,9 @@
             margin-right: -15px;
             margin-left: -15px;
             .leftBlock{
-                width: 73%;
-            padding-left: 15px;
-            padding-right: 15px;
+                // width: 73%;
+                // padding-left: 15px;
+                // padding-right: 15px;
                 .wrapManyNews{
                     transition: 0.3s;
                     .specialBlock_20{
@@ -170,8 +170,8 @@
                 }
             }
             .rightBlock{
-                width: 27%;
-                position: relative;
+                // width: 27%;
+                // position: relative;
                 .sidebar__inner{
                         position: sticky;
                         top: 20%;
@@ -301,5 +301,12 @@
     .rightBlock {
         float: left;
         width: 50%;
+    }
+}
+@media (max-width: 728px) {
+    .leftBlock,
+    .rightBlock {
+        float: left;
+        width: 100%;
     }
 }

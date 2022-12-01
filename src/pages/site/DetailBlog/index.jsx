@@ -154,8 +154,9 @@ export default function DitailNews(){
                                                     </Link>
                                                 </div>
                                             </div>
+                                </div>
+                                <div className="widget">
                                 <div className="blog-list-widget">
-                                {loading && <Loading />}
                                     {
                                 ListNewsNew.map((item,index) => {
                                 return(

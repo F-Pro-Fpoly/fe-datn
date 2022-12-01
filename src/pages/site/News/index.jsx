@@ -77,7 +77,7 @@ function News(){
           <section className="section">
             <div className="container">
               <div className="row">
-                <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12 leftBlock">   
+                <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12 left-side">   
                 <>
                     <div className="page-wrapper">  
                         <div className="blog-list clearfix">
@@ -116,34 +116,35 @@ function News(){
                     <div className="row ">
                         <div className="col-md-12 ">
                         <nav aria-label="Page navigation">
-                        {loading && <Loading />}
                         {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
                         </nav>
                         </div>
                     </div> 
                   </>
                 </div>
-                <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 rightBlock">
+                <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 right-side">
                   <div className="sidebar">
-                    <div className="widget">
-                        <div className="sf_right_featured--header"><h2>Xem nhiều tuần qua</h2></div>
-                            <div className="sf_right_featured--box sf_right_featured--first-box">
-                                <div className="sf_right_featured--box-thumb"> 
-                                    <Link>
-                                        <div className="sf_right_featured--thumbnail-container"> 
-                                            <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2022/11/Apple-Watch-cuu-song-nguoi-5.jpg" alt="Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét" data-pin-no-hover="true"/>
-                                            <div className="sf_right_featured--thumb-overlay"></div>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="sf_right_featured--box-content">
-                                    <Link>
-                                        Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét
-                                    </Link>
+                        <div className="widget">
+                            <div className="sf_right_featured--header"><h2>Xem nhiều tuần qua</h2></div>
+                                <div className="sf_right_featured--box sf_right_featured--first-box">
+                                    <div className="sf_right_featured--box-thumb"> 
+                                        <Link>
+                                            <div className="sf_right_featured--thumbnail-container"> 
+                                                <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2022/11/Apple-Watch-cuu-song-nguoi-5.jpg" alt="Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét" data-pin-no-hover="true"/>
+                                                <div className="sf_right_featured--thumb-overlay"></div>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                    <div className="sf_right_featured--box-content">
+                                        <Link>
+                                            Apple Watch cứu sống một cậu bé ở Ấn Độ khi rơi ở thung lũng cao gần 50 mét
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
+                        <div className="widget">
                             <div className="blog-list-widget">
-                            {loading && <Loading />}{
+                         {
                                 ListNewsNew.map((item,index) => {
                                     return(
                                         <div className="sf_right_featured--box sf_right_featured--small-box" key={index}>
