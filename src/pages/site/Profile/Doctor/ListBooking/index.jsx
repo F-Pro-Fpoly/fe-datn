@@ -18,7 +18,8 @@ function ListBooking() {
     const [search,setSearch] = useState({
       "date" : now,
       "status" : "",
-      "code" : ""
+      "code" : "",
+      'is_vaccine': ''
     });
  
     const start = async () => {
@@ -54,7 +55,7 @@ function ListBooking() {
     
     return ( 
         <>
-      <div className="row g-3 mb-3 form-group">
+        <div className="row g-3 mb-3 form-group">
         
           <div className="col-md-3">
               <input type="text" name="code" 
@@ -70,19 +71,29 @@ function ListBooking() {
               />
           </div>
           <div className="col-md-3">
-          <select name="status" className="form-control" id=""
-            defaultValue="0" 
-            onChange={(e)=>setSearch({...search, "status": e.target.value})}
-            >
-                <option value="0" disabled>Chọn Trạng thái</option>
-                {status.map((item,index) => {
-                    return(
-                      <option key={index} value={item.id}>{item.name}</option>
-                    )
-                })}       
+            <select name="status" className="form-control" id=""
+              defaultValue="0" 
+              onChange={(e)=>setSearch({...search, "status": e.target.value})}
+              >
+                  <option value="0" disabled>Chọn Trạng thái</option>
+                  {status.map((item,index) => {
+                      return(
+                        <option key={index} value={item.id}>{item.name}</option>
+                      )
+                  })}       
             </select>      
           </div>
-          <div className="col-md-2" style={{textAlign:"right"}}>
+          <div className="col-md-3">
+            <select name="is_vaccine" className="form-control" id=""
+              defaultValue="0" 
+              onChange={(e)=>setSearch({...search, "is_vaccine": e.target.value})}
+              >
+                  <option disabled>Chọn kiểu booking</option>
+                  <option value="vaccine">Vaccine</option>   
+                  <option value="booking">Booking</option>  
+            </select>      
+          </div>
+          <div className="col-md-2" >
             <button type="submit" onClick={HandleSearch} className="btn btn-primary">Tìm kiếm</button> 
           </div>
         </div>

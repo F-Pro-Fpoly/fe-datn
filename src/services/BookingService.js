@@ -26,7 +26,7 @@ function getListBookingDoctorServiceAPI(token = null,search = {},user_id = null)
             headers = {...headers, "Authorization": `Bearer ${token}`};
         }
         let url = `auth/booking/listDoctor`
-        url += `?date=${search.date}&status=${search.status}&user_id=${user_id}&code=${search.code}`
+        url += `?date=${search.date}&status=${search.status}&user_id=${user_id}&code=${search.code}&is_vaccine=${search.is_vaccine}`
         return API.get(url,{headers: headers});
     } catch (error) {
         console.error(error);
