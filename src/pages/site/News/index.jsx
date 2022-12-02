@@ -191,14 +191,21 @@ function News(){
                                         </Link>       
                                         </div>
                                         <div className="sf-social-icon--container"> 
-                                            <a href="https://www.facebook.com/groups/" target="_blank"> 
-                                                <img src="https://cdn.cellphones.com.vn/media/wysiwyg/Group_Facebookrs.png" alt="Instagram" data-pin-no-hover="true" className="img-icon"/>
-                                            </a>
+                                            <Link   
+                                            onClick={()=> window.open(
+                                                getconfig.SocialGroup ? getconfig.SocialGroup.link : "", "_blank")}
+                                                target="_blank" rel="nofollow">
+                                                    <img src={`${process.env.REACT_APP_BE}${ getconfig.SocialGroup ? getconfig.SocialGroup.description : ""}`} alt="Group" data-pin-no-hover="true" className="img-icon" />
+                                            </Link> 
                                         </div>
                                         <div className="sf-social-icon--container"> 
-                                            <a href="https://www.tiktok.com/" target="_blank" rel="nofollow">
-                                                <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/12/tiktok-1.png" alt="Tiktok" data-pin-no-hover="true" className="img-icon"/>
-                                            </a>
+                                        <Link   
+                                                onClick={()=> window.open(
+                                                    getconfig.SocialTiktok ? getconfig.SocialTiktok.link : ""
+                                                    , "_blank")}
+                                                    target="_blank" rel="nofollow">
+                                                    <img src={`${process.env.REACT_APP_BE}${ getconfig.SocialTiktok ? getconfig.SocialTiktok.description : ""}`} alt="TikTok" data-pin-no-hover="true" className="img-icon" />
+                                                </Link>  
                                         </div>
                                         <div className="sf-social-icon--container"> 
                                         <Link   

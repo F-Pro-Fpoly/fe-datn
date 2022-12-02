@@ -130,7 +130,6 @@ function ListSick() {
       {
         loading && <Loading />
       }
-
       {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
 
     </>
