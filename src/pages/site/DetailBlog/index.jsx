@@ -138,7 +138,7 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                     return(
                                 <div className="sf_right_featured--box sf_right_featured--first-box">
                                     <div className="sf_right_featured--box-thumb"> 
-                                        <Link>
+                                        <Link to={item.slug}>
                                             <div className="sf_right_featured--thumbnail-container"> 
                                                 <img src={ `${process.env.REACT_APP_BE}${item.file}` } data-pin-no-hover="true"/>
                                                 <div className="sf_right_featured--thumb-overlay"></div>
