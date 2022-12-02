@@ -47,11 +47,11 @@ function Menu(infoUser) {
                                         <i className="bi bi-people fa-fw me-2"></i>Danh sách lịch khám
                                     </NavLink>
                                 </li>
-                                 <li className="nav-item">
+                                 {/* <li className="nav-item">
                                  <NavLink className="nav-link" to="/ho-so-ca-nhan/them-lich-kham">
                                      <i className="bi bi-people fa-fw me-2"></i>Thêm lịch khám
                                  </NavLink>
-                                </li>
+                                </li> */}
                                </>
                                 :
                                 <li className="nav-item">

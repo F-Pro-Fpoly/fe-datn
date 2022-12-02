@@ -162,6 +162,7 @@ function NavBarAdmin({className}) {
                     }
                     
                     ]} icon="bi bi-layout-text-sidebar" />
+                    <NavBarItem id="report" name="Báo cáo"  to={'/admin/bao-cao'}  icon="bi bi-layout-text-sidebar" />
 
                     <NavBarItem id="setting" name="Tiện ích mở rộng" dropdownArr={[
                         {

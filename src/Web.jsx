@@ -70,6 +70,8 @@ import ListVaccine from "./pages/admin/Vaccine/ListVaccine";
 import Test1 from "./pages/Test/Test1";
 import InjectionRegistration from "./pages/site/Vaccine/InjectionRegistration";
 import Detail from "./pages/site/Vaccine/Detail";
+import Report from "./pages/admin/Report";
+
 function Web() {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -150,6 +152,8 @@ function Web() {
                         <Route element={< AddBanner />}  path="add" />
                         <Route element={< UpdateBanner />}  path="update/:id" />
                     </Route>
+
+                    <Route element={<Report />} path="bao-cao" />
 
                     <Route path="cau-hinh-chung">
                         <Route element={< ListConfig />} path="list" />
