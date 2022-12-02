@@ -89,7 +89,7 @@ function ListBooking() {
               defaultValue="1" 
               onChange={(e)=>setSearch({...search, "is_vaccine": e.target.value})}
               >
-                  <option disabled value="1">Chọn kiểu lịch khám</option>
+                  <option disabled value="0">Chọn kiểu lịch khám</option>
                   <option value="vaccine">Vaccine</option>   
                   <option value="booking">Booking</option>  
             </select>      
