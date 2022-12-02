@@ -95,6 +95,7 @@
         &-header{
             padding: 10px 20px;
             background-position: 50%;
+            height: 50%;
             background-size: cover;
             background-color: #E3F0FE;
             border-radius: 10px;
@@ -111,10 +112,11 @@
             }
         }
         &-body{
-            padding: 10px 20px;
+            padding: 20px 10px;
             font-size: 14px;
             &>span{
                 font-size: 16px;
+               
             }
         }
         &-price{

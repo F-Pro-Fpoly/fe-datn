@@ -30,6 +30,7 @@ function ListUser() {
     "name": "",
     "email": "",
     "active": "",
+    "role_code":""
   });
   const [page, setPage] = useState(1);
   // paginate
@@ -107,6 +108,15 @@ function ListUser() {
             onChange={(e)=>setSearch({...search, "email": e.target.value})}
            value={search.email} placeholder="Email" />
         </div>
+        <div className="col-2">
+          <select  className='form-control'  onChange={(e)=>setSearch({...search, "role_code": e.target.value})}
+           value={search.role_code}>
+          <option>--Chọn--</option>
+          <option value="admin">Admin</option>
+          <option value="doctor">Bác sĩ</option>
+          <option value="customer">Người dùng</option>
+          </select>
+        </div>
       </div>
       <div className='mt-3 mb-3'>
         <button className='btn btn-primary' onClick={hanleSearch}>Tìm kiếm</button>
@@ -122,6 +132,7 @@ function ListUser() {
               <th>Địa chỉ</th>
               <th>Số điện thoại</th>
               <th>Kích hoạt</th>
+              <th>Role</th>
               <th>Ảnh đại diện</th>
             </tr>
           </thead>
@@ -135,6 +146,7 @@ function ListUser() {
                   <td>{val.address ?? null}</td>
                   <td>{val.phone}</td>
                   <td>{val.active === 1 ?"Đang kích hoạt":"Ngừng kích hoạt"}</td>
+                  <td>{val.role_name}</td>
                   <td >
                     <img className='listUser-img' src={val.avatar} alt="Ảnh user" />
                   </td>

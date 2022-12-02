@@ -117,6 +117,15 @@ function UpdateUser() {
           <option value="3">Người dùng</option>
         </Form.Select>
       </Form.Group> 
+      <Form.Group className="mb-3" controlId="formRole">
+        <Form.Label>Chuyên Khoa</Form.Label>
+        <Form.Select aria-label="Default select example" name="role_id"value={val.role_id}>
+          <option>--Chọn--</option>
+          <option value="1">Admin</option>
+          <option value="2">Bác sĩ</option>
+          <option value="3">Người dùng</option>
+        </Form.Select>
+      </Form.Group> 
       <Button variant="primary" type="submit">
         Submit
       </Button>

@@ -217,7 +217,7 @@ function ListBookingUser() {
                                      <p className="text-success text-md-end mb-0">Thanh toán qua momo</p>
                                  }
                                  </> */}
-                                 <Link className='btn btn-primary' to={`/ho-so-ca-nhan/chi-tiet-lich-dat/${item.id}`}>Xem chi tiết</Link>
+                                 <Link className='btn btn-primary' to={`/ho-so-ca-nhan/chi-tiet-lich-tiem/${item.id}`}>Xem chi tiết</Link>
                                  <button className="btn btn-warning" 
                                  onClick={async () => {
                                      if(window.confirm(`Bạn có muốn hủy lịch ${item.code}`)){
@@ -412,7 +412,7 @@ function ListBookingUser() {
                                      <p className="text-success text-md-end mb-0">Thanh toán qua momo</p>
                                  }
                                  </> */}
-                                 <Link className='btn btn-primary' to={`/ho-so-ca-nhan/chi-tiet-lich-dat/${item.id}`}>Xem chi tiết</Link>
+                                 <Link className='btn btn-primary' to={`/ho-so-ca-nhan/chi-tiet-lich-tiem/${item.id}`}>Xem chi tiết</Link>
                             
                             </div>
                         </div>
@@ -586,7 +586,7 @@ function ListBookingUser() {
                                          <p className="text-success text-md-end mb-0">Thanh toán qua momo</p>
                                      }
                                      </> */}
-                                     <Link className='btn btn-primary' to={`/ho-so-ca-nhan/chi-tiet-lich-dat/${item.id}`}>Xem chi tiết</Link>
+                                     <Link className='btn btn-primary' to={`/ho-so-ca-nhan/chi-tiet-lich-tiem/${item.id}`}>Xem chi tiết</Link>
                                     
                                 </div>
                             </div>

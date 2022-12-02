@@ -89,9 +89,9 @@ function Footer (getconfig) {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xl-3 col-md-4 col-12">
+                        <div className="col-xl-3 col-md-4 col-12" style={{ alignSelf: "start"}}>
                       
-                            <div className="social">
+                            <div className="social" >
                             <div className="row">
                                 <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
                                     <div className="col-lg-3">
@@ -112,8 +112,24 @@ function Footer (getconfig) {
                                             <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.description : ""}`} alt="fb" />
                                         </Link>                  
                                     </div>   
-                                    
-                                
+                                    <div className="col-lg-3">        
+                                        <Link   
+                                            onClick={()=> window.open(
+                                                getconfig.getconfig.SocialGroup ? getconfig.getconfig.SocialGroup.link : ""
+                                                , "_blank")}
+                                            >
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialGroup ? getconfig.getconfig.SocialGroup.description : ""}`} alt="Group" />
+                                        </Link>                  
+                                    </div> 
+                                    <div className="col-lg-3">        
+                                        <Link   
+                                            onClick={()=> window.open(
+                                                getconfig.getconfig.SocialTiktok ? getconfig.getconfig.SocialTiktok.link : ""
+                                                , "_blank")}
+                                            >
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialTiktok ? getconfig.getconfig.SocialTiktok.description : ""}`} alt="tt" />
+                                        </Link>                  
+                                    </div> 
                                 </div>
                                 
                

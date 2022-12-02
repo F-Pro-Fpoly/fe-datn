@@ -82,6 +82,14 @@ function ListConfig() {
                                             ? 
                                                 <img src={`${process.env.REACT_APP_BE}${item.description}`} alt="SocialYoutube" width={80} />
                                             :
+                                            item.code == "SocialTiktok"
+                                            ? 
+                                                <img src={`${process.env.REACT_APP_BE}${item.description}`} alt="SocialTiktok" width={80} />
+                                            :
+                                            item.code == "SocialGroup"
+                                            ? 
+                                                <img src={`${process.env.REACT_APP_BE}${item.description}`} alt="SocialGroup" width={80} />
+                                            :
                                             item.description
                                          }       
                                         </td>

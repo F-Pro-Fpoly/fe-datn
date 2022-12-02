@@ -7,6 +7,7 @@ import {useParams, useNavigate} from "react-router-dom";
 
 import {getUser, updateUser} from "../../../../services/UserService";
 import {getAllRole} from "../../../../services/RoleService";
+import {getListAllSpecialist} from "../../../../services/SpecialistService";
 import {setLoading} from "../../../../redux/slices/InterfaceSile";
 
 
@@ -23,6 +24,7 @@ function UpdateUser() {
     "role_id": ""
   });
   const [roles, setRoles] = useState([]);
+  const [Specia, setSpecia] = useState([]);
   const formRef = useRef();
 
   const start = async () => {
@@ -31,9 +33,12 @@ function UpdateUser() {
       let id = param.id;
       let res = await getUser({token, id});
       let resRole = await getAllRole({token});
+      let resSpecia = await getListAllSpecialist({token});
       let dataRole = resRole.data;
+      let dataSpecia  = resSpecia.data;
       let data = res.data.data;
       setRoles(dataRole.data);
+      setSpecia(dataSpecia.data);
       setUser({
         ...user, 
         "username": data.username,
@@ -41,19 +46,21 @@ function UpdateUser() {
         "password": "",
         "email": data.email,
         "active": data.active,
-        "role_id": data.role_id
+        "role_id": data.role_id,
+        "specailist_code": data.specailist_code
       });
       dispatch(setLoading(false));
     } catch (error) {
       // console.log(error);
       
     }
+
   }
 
-  useEffect(()=>{
+    useEffect(()=>{
     start();
   }, [])
-
+    
   const onSubmit = async (e) =>{
     e.preventDefault();
     let id = param.id;
@@ -61,7 +68,8 @@ function UpdateUser() {
       'name': user.name,
       'password': user.password,
       'active': user.active,
-      'role_id': user.role_id
+      'role_id': user.role_id,
+      'specailist_code': user.specailist_code
     };
     try {
       let res = await updateUser({token, id, data});
@@ -130,19 +138,29 @@ function UpdateUser() {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formRole">
         <Form.Label>Chức vụ</Form.Label>
-        <Form.Select  name="role_id" value={user.role_id} onChange={(e) => setUser({...user, "role_id": e.target.value})}>
-          {/* {console.log(user.role_id)} */}
+        <Form.Select  name="role_id" value={user.role_id ? user.role_id:0} onChange={(e) => setUser({...user, "role_id": e.target.value})}>
+          <option value="0" disabled>Chọn chức vụ</option>
           {roles.map((val, index) => {
             return (
              <option value={val.id} key={index} >{val.name}</option>
+             
             )
-          })}
-          {/* <option value="1">Admin</option>
-          <option value="2">Bác sĩ</option>
-          <option value="3">Người dùng</option> */}
+          })}          
         </Form.Select>
       </Form.Group>
-      
+        {
+          user.role_id==2 ?
+            <Form.Group className="mb-3" controlId="formRole">
+            <Form.Label>Chuyên khoa</Form.Label>
+            <Form.Select  name="specailist_id" value={user.specailist_id} onChange={(e) => setUser({...user, "specailist_id": e.target.value})}>
+              {Specia.map((val, index) => {
+                return (
+                <option value={val.id} key={index} >{val.name}</option>
+                )
+              })}
+            </Form.Select>
+          </Form.Group> : <></>
+        }
       <Button variant="primary" type="submit">
         Submit
       </Button>
@@ -151,4 +169,4 @@ function UpdateUser() {
   );
 }
 
-export default UpdateUser;
+export default UpdateUser
