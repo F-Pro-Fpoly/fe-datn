@@ -21,9 +21,9 @@ function Info({item, index, dataStatus = [], onChange}) {
 
     const updateInjection = async () => {
         try {
-            if(!dataItem.description){
-                throw 'Vui lòng nhập mô tả';
-            }
+            // if(!dataItem.description){
+            //     throw 'Vui lòng nhập mô tả';
+            // }
 
             let dataReq = {
                 'booking_id': dataItem.booking_id,
