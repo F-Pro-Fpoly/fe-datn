@@ -43,7 +43,7 @@ function VaccineContent (props) {
                                         }
                                         </p>
                                         </span>
-                                        <Link to={`/vaccine/${item.slug}/${item.id}`} className="vaccine-btn">
+                                        <Link to={`/vaccine/${item.slug}/${item.id}`} className="vaccine-btn" style={{marginTop:"25%"}}>
                                             Xem chi tiết
                                         </Link>
                                     </div>
