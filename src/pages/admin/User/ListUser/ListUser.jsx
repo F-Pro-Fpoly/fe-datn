@@ -53,7 +53,7 @@ function ListUser() {
   useEffect(()=>{
 
     start();
-  },[]);
+  },[page]);
 
   const hanleSearch = async () =>{
     getListUser([]);
@@ -74,12 +74,14 @@ function ListUser() {
   const onChangePage = (number) =>{
     setPage(number);
   }
-  const handlePageClick = async  (page) => {
+  const handlePageClick = async  (page1) => {
     try {
-      page = page + 1;
+    
+      page1 = page1.selected
+      page1 = page1 + 1;
       getListUser([]);
       getLoading(true);
-      let res = await getListUsersAPI(token, {}, page);
+      let res = await getListUsersAPI(token,search, page1);
       let data = res.data;
       let dataArr = data.data;
 
@@ -87,8 +89,8 @@ function ListUser() {
       getListUser(dataArr);
 
       // handle paginate
-      // let pagination = data.meta.pagination ?? null;
-      // setPaginate(pagination);
+      let pagination = data.meta.pagination ?? null;
+      setPaginate(pagination);
     } catch (error) {
       
     }

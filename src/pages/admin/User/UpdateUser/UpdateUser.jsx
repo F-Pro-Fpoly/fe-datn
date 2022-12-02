@@ -21,7 +21,8 @@ function UpdateUser() {
     "email": "",
     "name": "",
     "active": "",
-    "role_id": ""
+    "role_id": "",
+    "specailist_id":""
   });
   const [roles, setRoles] = useState([]);
   const [Specia, setSpecia] = useState([]);
@@ -47,7 +48,7 @@ function UpdateUser() {
         "email": data.email,
         "active": data.active,
         "role_id": data.role_id,
-        "specailist_code": data.specailist_code
+        "specailist_id": data.specailist_id
       });
       dispatch(setLoading(false));
     } catch (error) {
@@ -69,7 +70,7 @@ function UpdateUser() {
       'password': user.password,
       'active': user.active,
       'role_id': user.role_id,
-      'specailist_code': user.specailist_code
+      'specailist_id': user.specailist_id
     };
     try {
       let res = await updateUser({token, id, data});
