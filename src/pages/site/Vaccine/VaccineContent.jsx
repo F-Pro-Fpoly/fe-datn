@@ -32,18 +32,18 @@ function VaccineContent (props) {
                                         </div>
                                     </div>
                                     <div className="vaccine-content-body">
-                                        <span>Phòng bệnh:
-                                        <p className="mb-2">
-                                        {      
-                                            item.sick.map((i,v) => {
-                                                return (
-                                                    <span key={v}>{i.name} &nbsp;</span> 
-                                                )                                               
-                                            })
-                                        }
-                                        </p>
+                                        <span >Phòng bệnh:
+                                            <p className="mb-2">
+                                            {      
+                                                item.sick.map((i,v) => {
+                                                    return (
+                                                        <span key={v}>{i.name} &nbsp;</span> 
+                                                    )                                               
+                                                })
+                                            }
+                                            </p>
                                         </span>
-                                        <Link to={`/vaccine/${item.slug}/${item.id}`} className="vaccine-btn" style={{marginTop:"25%"}}>
+                                        <Link to={`/vaccine/${item.slug}/${item.id}`} className="vaccine-btn" style={{marginTop:"15%"}}>
                                             Xem chi tiết
                                         </Link>
                                     </div>
