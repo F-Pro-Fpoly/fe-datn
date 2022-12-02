@@ -145,23 +145,22 @@ function UpdateUser() {
              <option value={val.id} key={index} >{val.name}</option>
              
             )
-          })}
-          
+          })}          
         </Form.Select>
       </Form.Group>
-      {
-     user.role_id==2 ?
-      <Form.Group className="mb-3" controlId="formRole">
-      <Form.Label>Chuyên khoa</Form.Label>
-      <Form.Select  name="specailist_id" value={user.specailist_id} onChange={(e) => setUser({...user, "specailist_id": e.target.value})}>
-        {Specia.map((val, index) => {
-          return (
-          <option value={val.id} key={index} >{val.name}</option>
-          )
-        })}
-      </Form.Select>
-    </Form.Group>  :<></>
-    }
+        {
+          user.role_id==2 ?
+            <Form.Group className="mb-3" controlId="formRole">
+            <Form.Label>Chuyên khoa</Form.Label>
+            <Form.Select  name="specailist_id" value={user.specailist_id} onChange={(e) => setUser({...user, "specailist_id": e.target.value})}>
+              {Specia.map((val, index) => {
+                return (
+                <option value={val.id} key={index} >{val.name}</option>
+                )
+              })}
+            </Form.Select>
+          </Form.Group> : <></>
+        }
       <Button variant="primary" type="submit">
         Submit
       </Button>
