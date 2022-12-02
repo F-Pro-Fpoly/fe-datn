@@ -158,6 +158,40 @@ function UpdateConfig() {
                         type="file" />
                         </div>
                     :
+                    getDetailConfig.code == "SocialTiktok"
+                    ?
+                        <div className="d-flex align-items-center">
+                        <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
+                            <span className="avatar avatar-xl">
+                                <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={`${process.env.REACT_APP_BE}${getDetailConfig.description}`}                            
+                                alt="SocialTiktok" />                      
+                            </span>                       
+                        </label>
+                        
+                        <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
+                        <input id="uploadfile-1"
+                        name='SocialTiktok'
+                        className="form-control d-none" 
+                        type="file" />
+                        </div>
+                    :
+                    getDetailConfig.code == "SocialGroup"
+                    ?
+                        <div className="d-flex align-items-center">
+                        <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
+                            <span className="avatar avatar-xl">
+                                <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={`${process.env.REACT_APP_BE}${getDetailConfig.description}`}                            
+                                alt="SocialGroup" />                      
+                            </span>                       
+                        </label>
+                        
+                        <label className="btn btn-sm btn-primary-soft mb-0" htmlFor="uploadfile-1">Thay đổi</label>
+                        <input id="uploadfile-1"
+                        name='SocialGroup'
+                        className="form-control d-none" 
+                        type="file" />
+                        </div>
+                    :
                     <div className="form-group mb-2">
                     <label htmlFor="" className="form-label">Mô tả</label>
                     <input type="text" id="description" name ="description" defaultValue={getDetailConfig.description}          

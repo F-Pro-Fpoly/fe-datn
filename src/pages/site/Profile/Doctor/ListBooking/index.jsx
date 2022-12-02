@@ -67,6 +67,7 @@ function ListBooking() {
           <div className="col-md-3">
               <input type="date" name="date" 
               className="form-control" 
+              defaultValue={now}
               onChange={(e)=>setSearch({...search, "date": e.target.value})}
               />
           </div>
@@ -85,10 +86,10 @@ function ListBooking() {
           </div>
           <div className="col-md-3">
             <select name="is_vaccine" className="form-control" id=""
-              defaultValue="0" 
+              defaultValue="1" 
               onChange={(e)=>setSearch({...search, "is_vaccine": e.target.value})}
               >
-                  <option disabled>Chọn kiểu booking</option>
+                  <option disabled value="1">Chọn kiểu lịch khám</option>
                   <option value="vaccine">Vaccine</option>   
                   <option value="booking">Booking</option>  
             </select>      
