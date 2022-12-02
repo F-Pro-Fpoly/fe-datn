@@ -87,7 +87,7 @@ function ListBooking() {
             <select name="is_vaccine" className="form-control" 
               onChange={(e)=>setSearch({...search, "is_vaccine": e.target.value})}
               >
-                  <option value="0">Chọn kiểu booking</option>
+                  <option value="0">Chọn type</option>
                   <option value="vaccine">Vaccine</option>   
                   <option value="booking">Booking</option>  
             </select>      

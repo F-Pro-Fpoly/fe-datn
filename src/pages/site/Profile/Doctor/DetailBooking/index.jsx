@@ -4,8 +4,10 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { getDetailMyBookingServiceAPI, getListStatuServiceAPI, updateBookingDoctorServiceAPI } from "../../../../../services/BookingService";
 import { toast,ToastContainer } from 'react-toastify';
+import {Button} from '@mui/material';
+import DetailInfo from "./DetailInfo";
 function DetailBooking() {
-
+    const [isVaccine, setIsVaccine] = useState(false);
     const token = useSelector(state => state.auth.token)
     const param  = useParams();
     const id = param.id;
@@ -25,6 +27,10 @@ function DetailBooking() {
         let data = res.data;
         let dataArr = data.data;
         setValue(dataArr);
+
+        if(dataArr.injection_info) {
+            setIsVaccine(true);
+        }
     }
 
     useEffect(() => { 
@@ -126,20 +132,24 @@ function DetailBooking() {
                     </div>
                 </div>
             
-                <div className="mb-3">
-                    <label className="form-label">Trạng thái thanh toán</label>
-                    <input className="form-control"name = "code" disabled
-                      defaultValue={value.payment_method == "default" ? "Thanh toán tại cơ sở y tế" : "Thanh toán qua momo"}
-                    type="text" placeholder="Trạng thái thanh toán" />
-                </div>   
+                {
+                    !isVaccine && (
+                        <div className="mb-3">
+                            <label className="form-label">Trạng thái thanh toán</label>
+                            <input className="form-control"name = "code" disabled
+                            defaultValue={value.payment_method == "default" ? "Thanh toán tại cơ sở y tế" : "Thanh toán qua momo"}
+                            type="text" placeholder="Trạng thái thanh toán" />
+                        </div>  
+                    )
+                } 
                 
             
-                    <div className="mb-3">
-                        <label className="form-label">Thông tin khám</label>
-                        <textarea name="" className="form-control" style={{resize:"none"}} id="" cols="5" rows="2"
-                        defaultValue={value.description} disabled>
-                        </textarea>
-                    </div>   
+                <div className="mb-3">
+                    <label className="form-label">Thông tin khám</label>
+                    <textarea name="" className="form-control" style={{resize:"none"}} id="" cols="5" rows="2"
+                    defaultValue={value.description} disabled>
+                    </textarea>
+                </div>   
                 <form onSubmit={HandleSubmit} ref = {formRef}>        
                     <div className="form-group mb-3">
                       
@@ -196,6 +206,17 @@ function DetailBooking() {
                         </>
                         
                     }
+
+
+                    {isVaccine &&
+                    <DetailInfo 
+                        data={value.injection_info}
+                        onChange={(is_update) => {
+                            if(is_update){
+                                start();
+                            }
+                        }}
+                    />}
 
                  
 
