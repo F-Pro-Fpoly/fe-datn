@@ -42,7 +42,7 @@ function Report() {
             <tr>
                 <td >Báo cáo doanh thu theo chuyên khoa</td>      
                 <td>
-                <a href={`${process.env.REACT_APP_BE}`+'/normal/report/turnover'}  rel="noopener noreferrer" className="btn btn-primary" >Xuất báo cáo</a>
+                <a href={`${process.env.REACT_APP_BE}`+'normal/report/turnover'}  rel="noopener noreferrer" className="btn btn-primary" >Xuất báo cáo</a>
                 </td>
          
             </tr>
@@ -88,7 +88,7 @@ function Report() {
                                 Đóng
                             </Button>
                       
-                            <a onClick={handleClose} href={`${process.env.REACT_APP_BE}`+`/normal/report/bookingDay?from=${date.from}&to=${date.to}`}  rel="noopener noreferrer" className="btn btn-primary" >Xuất báo cáo</a>
+                            <a onClick={handleClose} href={`${process.env.REACT_APP_BE}`+`normal/report/bookingDay?from=${date.from}&to=${date.to}`}  rel="noopener noreferrer" className="btn btn-primary" >Xuất báo cáo</a>
                  
                             </Modal.Footer>
                             </Form>
@@ -134,7 +134,7 @@ function Report() {
                       
                             <a  
                            
-                            onClick={handleCloseDetail} href={`${process.env.REACT_APP_BE}`+`/normal/report/bookingCode?code=${code.code}`}  rel="noopener noreferrer" className="btn btn-primary" >Xuất báo cáo</a>
+                            onClick={handleCloseDetail} href={`${process.env.REACT_APP_BE}`+`normal/report/bookingCode?code=${code.code}`}  rel="noopener noreferrer" className="btn btn-primary" >Xuất báo cáo</a>
                  
                             </Modal.Footer>
                             </Form>
