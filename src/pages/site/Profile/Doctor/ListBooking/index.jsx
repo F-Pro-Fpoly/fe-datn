@@ -84,11 +84,10 @@ function ListBooking() {
             </select>      
           </div>
           <div className="col-md-3">
-            <select name="is_vaccine" className="form-control" id=""
-              defaultValue="0" 
+            <select name="is_vaccine" className="form-control" 
               onChange={(e)=>setSearch({...search, "is_vaccine": e.target.value})}
               >
-                  <option disabled>Chọn kiểu booking</option>
+                  <option value="0">Chọn kiểu booking</option>
                   <option value="vaccine">Vaccine</option>   
                   <option value="booking">Booking</option>  
             </select>      

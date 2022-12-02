@@ -202,12 +202,12 @@ function DetailBooking() {
                  
                       
                     <div className="row g-3">
-                    <div className="col-md-2">
-                    <button className="btn btn-primary" style={{width:"100%"}} type="submit">Xác nhận</button>
-                    </div>
-                    <div className="col-md-2">
-                    <Link className="btn btn-primary" style={{width:"100%"}} to="/ho-so-ca-nhan/danh-sach-lich-kham">Danh sách</Link>
-                    </div>
+                        <div className="col-md-2">
+                            <button className="btn btn-primary" style={{width:"100%"}} type="submit">Xác nhận</button>
+                        </div>
+                        <div className="col-md-2">
+                            <Link className="btn btn-primary" style={{width:"100%"}} to="/ho-so-ca-nhan/danh-sach-lich-kham">Danh sách</Link>
+                        </div>
                     </div>
                 </form> 
     
