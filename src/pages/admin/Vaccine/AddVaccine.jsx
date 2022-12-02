@@ -210,8 +210,9 @@ function AddVaccine() {
                                     let arrHandle = value.map(item=>{
                                         return item.id
                                     });
+                                    console.log();
                                     setDataVaccine({...dataVaccine, 'category_ids': arrHandle});
-                                    setCategory(category)
+                                    setCategory(value)
                                 }}
                                 value={category}
                             />

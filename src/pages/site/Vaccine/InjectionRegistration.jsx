@@ -21,6 +21,7 @@ function InjectionRegistration() {
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
     const [user, setUser] = useState({});
+    const today = new Date().toISOString().split('T')[0];
     const [bookingVaccine, setBookingVaccine] = useState({
         'date': '',
         'description': ''
@@ -166,6 +167,7 @@ function InjectionRegistration() {
                                             type='date'
                                             value={bookingVaccine.date}
                                             onChange={(e) => setBookingVaccine({...bookingVaccine, date: e.target.value})}
+                                            min={today}
                                         />
                                     </div>
                                 </div>
