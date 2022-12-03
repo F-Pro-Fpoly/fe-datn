@@ -54,6 +54,18 @@ function updateDepartment({token, id, data}) {
 
     return API.put(url, data,{headers: headers});
 }
+function deleteDepartment({token, id}){
+    try {
+        let headers = {};
+        let url = `auth/department/delete/${id}`;
+        if(token) {
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+        }
+        return API.delete(url,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 
-
-export  {createDepartmentApi, getDepartment, getDepartmentOne, updateDepartment};
+export  {createDepartmentApi, getDepartment, getDepartmentOne, updateDepartment,deleteDepartment};
