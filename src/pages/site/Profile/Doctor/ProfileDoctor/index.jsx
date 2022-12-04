@@ -76,8 +76,8 @@ function ProfileDoctor() {
                                 <div className="wrapOwlSlideTab">
         
                                     
-                                    <a href="#td" className="btn btn-primary" style={{marginRight: "2%"}}>Trình độ</a>
                                     <a href="#gt" className="btn btn-primary" style={{marginRight: "2%"}}>Giới thiệu</a>
+                                    <a href="#td" className="btn btn-primary" style={{marginRight: "2%"}}>Trình độ</a>
                                     <a href="#kn" className="btn btn-primary" style={{marginRight: "2%"}}>Kinh nghiệm</a>
            
                         

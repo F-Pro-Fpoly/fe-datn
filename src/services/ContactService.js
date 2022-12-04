@@ -18,7 +18,7 @@ function creatContactApi({data,token}) {
 function deleteContact({token, id}){
     try {
         let headers = {};
-        let url = `normal/contact/delete/${id}`;
+        let url = `auth/contact/delete/${id}`;
         if(token) {
             headers = {...headers, "Authorization": `Bearer ${token}`};
         }

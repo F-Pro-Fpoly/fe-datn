@@ -88,7 +88,7 @@ function ClinicUiTime({dataItem}) {
     return ( 
         <>           
             <div className="image">
-                <img src={item.avatar} alt="" />
+                <img src={`${process.env.REACT_APP_BE}${item.avatar}`} alt="" />
                 <Link to={"/doi-ngu-bac-si/"+item.slug_name+"/"+item.id}>Xem thêm</Link>
             </div>
             <div className="infocontent"> 

@@ -6,7 +6,7 @@ import Table from "react-bootstrap/esm/Table";
 import { useSelector } from "react-redux";
 
 import "./listContac.scss";
-import { getContact,deleteContact } from "../../../../services/ContactService";
+import { deleteContact, getContact } from "../../../../services/ContactService";
 import Paginate from "../../../../components/Paginate/Paginate";
 import Loading from "../../../../components/Loading/Loading";
 import { toast,ToastContainer } from 'react-toastify';
@@ -24,8 +24,6 @@ function ListContact() {
     });
 
     const type = 0;
-    
-   
         const start = async () => {
             getLoading(true)
             setListContact([])
@@ -38,7 +36,9 @@ function ListContact() {
             let pagination = data.meta.pagination ?? null;
             setPaginate(pagination);
         }
-   useEffect(() => {    
+
+    useEffect(() => { 
+
         start();
     }, [page])
 
@@ -130,14 +130,15 @@ function ListContact() {
                     <Link to={`/admin/lien-he/tra-loi-lien-he/${val.id}`  } className="btn">
                                                 <i className="fas fa-edit"></i>
                     </Link> |
-                    <button type="button" className="btn">
-                                        <i 
-                                            onClick={async()=>{if(window.confirm("Bạn có thật sự muốn xóa")){
-                                                await deleteContact({token: token, id: val.id});
-                                                start();
-                                            }}}
-                         style={{cursor: "pointer"}} className="fa fa-trash"></i>
-                      </button>
+                    <button className="btn" onClick={async () => {
+                        if(window.confirm(`Bạn có muốn xóa ${val.name}`)){
+                            const id = val.id
+                            await deleteContact({ token, id} )
+                            start()
+                        }
+                    }}>
+                        <i className="fas fa-trash"></i>
+                    </button>
                     </td>
                   </tr>
                 ))

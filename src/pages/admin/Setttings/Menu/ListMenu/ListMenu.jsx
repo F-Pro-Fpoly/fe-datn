@@ -74,9 +74,9 @@ function ListMenu() {
                     <td>{val.created_at}</td>
                     <td className="button">
                     <Link to={`/admin/chinh-sua-menu/update/${val.id}`} className="btn">
-                                                <i className="fas fa-edit"></i>
-                    </Link> |
-                      <i className="fa fa-trash"></i>
+                        <i className="fas fa-edit"></i>
+                    </Link> 
+                   
                     </td>
                   </tr>
                 ))

@@ -87,7 +87,7 @@ function ListVaccine() {
                                     <td>{item.code}</td>
                                     <td>{item.name}</td>
                                     <td>{item.slug}</td>
-                                    <td>{item.price}</td>
+                                    <td>{item.price_formated}</td>
                                     <td>
                                         <Link 
                                             type="button" 

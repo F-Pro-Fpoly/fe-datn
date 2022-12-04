@@ -5,7 +5,8 @@ import Table from "react-bootstrap/esm/Table";
 import { useSelector } from "react-redux";
 
 // import "./listContac.scss";
-import { getContact,deleteContactBookings } from "../../../../services/ContactService";
+
+import { deleteContact, getContact } from "../../../../services/ContactService";
 import Paginate from "../../../../components/Paginate/Paginate";
 import Loading from "../../../../components/Loading/Loading";
 
@@ -23,21 +24,22 @@ function ListContactBooking() {
     });
 
     const type = 1;
-    
-      
-        const start = async () => {
-            getLoading(true)
-            setListContact([])
-            let res = await getContact({token,page,search, type}) 
-            let data = res.data 
-            let dataArr = data.data
-            getLoading(false)
-            setListContact(dataArr)
-            // handle paginate
-            let pagination = data.meta.pagination ?? null;
-            setPaginate(pagination);
-        }
-    useEffect(() => {  
+
+   
+
+    const start = async () => {
+      getLoading(true)
+      setListContact([])
+      let res = await getContact({token,page,search, type}) 
+      let data = res.data 
+      let dataArr = data.data
+      getLoading(false)
+      setListContact(dataArr)
+      // handle paginate
+      let pagination = data.meta.pagination ?? null;
+      setPaginate(pagination);
+  }
+   useEffect(() => {  
         start();
     }, [page])
 
@@ -106,14 +108,15 @@ function ListContactBooking() {
                     <Link to={`/admin/lien-he/tra-loi-dang-ky-lich/${val.id}`} className="btn">
                                                 <i className="fas fa-edit"></i>
                     </Link> |
-                    <button type="button" className="btn">
-                                        <i 
-                                            onClick={async()=>{if(window.confirm("Bạn có thật sự muốn xóa")){
-                                                await deleteContactBookings({token: token, id: val.id});
-                                                start();
-                                            }}}
-                                            style={{cursor: "pointer"}} className="fa fa-trash"></i>
-                      </button>
+                    <button className="btn" onClick={async () => {
+                        if(window.confirm(`Bạn có muốn xóa ${val.name}`)){
+                            const id = val.id
+                            await deleteContact({ token, id} )
+                            start()
+                        }
+                    }}>
+                        <i className="fas fa-trash"></i>
+                    </button>
                     </td>
                   </tr>
                 ))
