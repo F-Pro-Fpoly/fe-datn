@@ -14,7 +14,7 @@ function Info({item, index, dataStatus = [], onChange}) {
     const [dataItem, setDataItem] = useState(item);
     const [file, setFile] = useState();
     const token = useSelector(state => state.auth.token);
-
+    const check = useSelector(state => state.auth.user.role_id);
     const handleIsUpdate = (is_update) => {
         setIsUpdate(is_update)
     }
@@ -64,9 +64,13 @@ function Info({item, index, dataStatus = [], onChange}) {
         }
     }, [item]);
 
+
+
+
     return ( 
         isUpdate ? 
         <div className="card shadow p-2 my-2" key={index}>
+
             <div className="row">
                 <div className="col-4">
                     <span className="me-2 fs-5 fw-semibol">
@@ -86,6 +90,8 @@ function Info({item, index, dataStatus = [], onChange}) {
                            ( item.status_code == 'CANCELEDVACCINE') && <span className="text-danger">{item.status_name}</span>
                         }
                         {/* <span className="text-danger">{item.status_name}</span> */}
+
+                        
                         <Button variant="text" onClick={()=>handleIsUpdate(false)}>Xem chi tiết</Button>
                     </p>
                 </div>
@@ -103,7 +109,9 @@ function Info({item, index, dataStatus = [], onChange}) {
                     <div className="row align-items-end">
                         <div className="col-4">
                             <span className="me-2">Ngày: {dataItem.time_apointment}</span>
-                            <Form.Select value={dataItem.status_id} onChange={(e) => setDataItem({...dataItem, status_id: e.target.value})}>
+                            <Form.Select value={dataItem.status_id} onChange={(e) => setDataItem({...dataItem, status_id: e.target.value})}
+                            disabled = {check != 2 ? true : false}
+                            >
                                 <option value="">--Chọn--</option>
                                 {
                                     dataStatus.map((item, index) =>(
@@ -112,15 +120,24 @@ function Info({item, index, dataStatus = [], onChange}) {
                                 }
                             </Form.Select>
                         </div>
-                        <div className="col-4">
-                            <Form.Control
-                                type="file"
-                                onChange={(e) => {
-                                    setFile(e.target.files[0])
-                                }}
-                            />
-                        </div>
-                        {/* <Button variant="text">Xem chi tiết</Button> */}
+                                
+
+                                {check != 2 ? 
+                                
+                                <div className="col-4">
+                                <Button className="btn btn-primary">Tải file</Button> 
+                                </div>
+                                :
+                                <div className="col-4">
+                                <Form.Control
+                                    type="file"
+                                    onChange={(e) => {
+                                        setFile(e.target.files[0])
+                                    }}
+                                />
+                            </div>
+                            }
+
                     </div>
                 </div>
             </div>
@@ -131,6 +148,7 @@ function Info({item, index, dataStatus = [], onChange}) {
                         className="form-control" id="" cols="30" rows="10"
                         value={dataItem.description}
                         placeholder="Chú thích"
+                        disabled={check != 2 ? true : false}
                         onChange={(e) => {
                             setDataItem({...dataItem, description: e.target.value})
                         }}
@@ -140,10 +158,13 @@ function Info({item, index, dataStatus = [], onChange}) {
 
             <div className="row mt-3">
                 <div className="col-12">
+                        {check != 2 ? 
+                           <Button variant="text" onClick={()=>handleIsUpdate(true)}>Thu gọn</Button> :
                     <Button 
-                        variant="contained" color="success" size="small"
-                        onClick={updateInjection}
-                    >Xác nhận</Button>
+                    variant="contained" color="success" size="small"
+                    onClick={updateInjection}
+                >Xác nhận</Button>    
+                    }
                 </div>
             </div>
         </div>
