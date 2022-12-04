@@ -83,7 +83,7 @@ function UpdateBanner() {
                     <Editor
                             apiKey='v7uxagccs26096o8eu0kae4sbg90s9bicobdondox6ybfxen'
                             // onInit={(evt, editor) => editorRef.current = editor}
-                            value={silde.description}
+                            defaultValue={silde.description}
                             onEditorChange={(event, editor) => {
                                 setTextEditer({...textEditer, description: editor.getContent()})
                             }}

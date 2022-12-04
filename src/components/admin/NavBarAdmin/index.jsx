@@ -5,7 +5,7 @@ import "./NavBarAdmin.scss";
 import {getCountAdmin} from "../../../services/global/Count"
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import logo from "../../../image/logo.png"
 function NavBarAdmin({className}) {
     const token = useSelector((state) => state.auth.token);
     const user = useSelector(state => state.auth.user);
@@ -50,7 +50,7 @@ function NavBarAdmin({className}) {
     return ( 
         <aside className={`navBarAdmin ${className}`}>
             <Link className="navBarAdmin-logo" to="/admin">
-                <span className="navBarAdmin-logo-text">AppLogo</span>
+                <span className="navBarAdmin-logo-text">TRUNG TÂM Y TẾ FPRO</span>         
             </Link>
 
             <div className="navBarAdmin-main accordion" id="accordionExample">
@@ -76,7 +76,7 @@ function NavBarAdmin({className}) {
                         name: "Danh sách chuyên khoa",
                         to: "/admin/specialist/list"
                     },
-                ]} icon="bi bi-people-fill" />
+                ]} icon="	fas fa-flask" />
                 <NavBarItem id="News" name="Quản lý tin tức" countTitle={counts['News-count']} dropdownArr={[
                     {
                         name: "Thêm tin tức ",
@@ -86,7 +86,7 @@ function NavBarAdmin({className}) {
                         name: "Danh sách tin tức",
                         to: "/admin/tin-tuc/list"
                     },
-                ]} icon="bi bi-people-fill" />
+                ]} icon="fas fa-clipboard-list" />
                 <NavBarItem id="NewsCategory" name="Quản lý danh mục tin" countTitle={counts['NewsCategory-count']} dropdownArr={[
                     {
                         name: "Thêm danh mục tin",
@@ -96,7 +96,7 @@ function NavBarAdmin({className}) {
                         name: "Danh sách danh mục tin",
                         to: "/admin/danh-muc/list"
                     },
-                ]} icon="bi bi-people-fill" />
+                ]} icon="	fas fa-book" />
                 <NavBarItem id="sick" name="Danh mục bệnh" countTitle={counts['sick-count']} dropdownArr={[
                     {
                         name: "Thêm bệnh",
@@ -152,7 +152,7 @@ function NavBarAdmin({className}) {
                         name: "Danh sách đăng ký lịch khám",
                         to: "/admin/lien-he/danh-sach-dang-ky-lich-kham"
                     }
-                    ]} icon="bi bi-layout-text-sidebar" />
+                    ]} icon="far fa-address-card" />
 
                     <NavBarItem id="newsletter" name="Quản lý nhận tin sớm"  dropdownArr={[
 
@@ -161,7 +161,8 @@ function NavBarAdmin({className}) {
                         to: "/admin/tin-som/danh-sach-nhan-tin-som"
                     }
                     
-                    ]} icon="bi bi-layout-text-sidebar" />
+                    ]} icon="fas fa-bullhorn" />
+                    <NavBarItem id="report" name="Báo cáo"  to={'/admin/bao-cao'}  icon="far fa-clipboard" />
 
                     <NavBarItem id="setting" name="Tiện ích mở rộng" dropdownArr={[
                         {

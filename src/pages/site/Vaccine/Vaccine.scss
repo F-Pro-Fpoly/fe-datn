@@ -42,7 +42,7 @@
             &>button{
                 outline: none;
                 border: none;
-                padding: 10px 20px;
+                padding: 10px 20px ;
                 border-radius: 8px;
                 background-color: #f39021;
                 color: white;
@@ -88,12 +88,14 @@
         &-item{
             border-radius: 8px;
             padding: 20px;
+            height: 100%;
             background-color: #fff;
             box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         }
         &-header{
             padding: 10px 20px;
             background-position: 50%;
+            height: 50%;
             background-size: cover;
             background-color: #E3F0FE;
             border-radius: 10px;
@@ -110,10 +112,11 @@
             }
         }
         &-body{
-            padding: 10px 20px;
+            padding: 20px 10px;
             font-size: 14px;
             &>span{
                 font-size: 16px;
+               
             }
         }
         &-price{
@@ -130,10 +133,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 10px 0;
+        padding: 10px 20px;
         background-color: #2A388F;
         color: #fff;
         font-weight: 700;
+        
         font-size: 18px;
         text-transform: uppercase;
         border-radius: 15px;
@@ -169,7 +173,7 @@
                 width: 100%;
                 margin-top: 15px;
                 &>input{
-                    width: 90%;
+                    width: 88%;
                 }
                 &>button{
                     width: 10%;

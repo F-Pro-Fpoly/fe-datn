@@ -69,11 +69,12 @@ function Footer (getconfig) {
                             <div className="flashlink">
                                 <div className="row">
                                     <h3>GIỚI THIỆU</h3>
-                                    <Link to=""> Liên hệ đối tác</Link>                            
-                                    <Link to="">Gói chuyển đổi số doanh nghiệp</Link>                        
-                                    <Link to="">Tuyển dụng</Link>                             
-                                    <Link to="">Câu hỏi thường gặp</Link>                             
-                                    <Link to="">Điều khoản sử dụng</Link>
+                                    <Link to="/ve-chung-toi">Về chúng tôi</Link>                            
+                                    <Link to="/tin-tuc">Tin tức</Link>                        
+                                    <Link to="#">Liên hệ hợp tác</Link>                        
+                                    <Link to="#">Câu hỏi thường gặp</Link>                        
+                                    <Link to="#">Tuyển dụng</Link>                        
+                                 
                                 </div>
                             </div>
                         </div>
@@ -81,39 +82,64 @@ function Footer (getconfig) {
                             <div className="headquarters">
                                 <div className="row">
                                     <h3>DỊCH VỤ</h3>
-                                    <Link to=""> Liên hệ đối tác</Link>                            
-                                    <Link to="">Gói chuyển đổi số doanh nghiệp</Link>                        
-                                    <Link to="">Tuyển dụng</Link>                             
-                                    <Link to="">Câu hỏi thường gặp</Link>                             
-                                    <Link to="">Điều khoản sử dụng</Link>
+                                    <Link to="/chuyen-khoa">Đăng ký lịch khám</Link>                            
+                                    <Link to="/vaccine">Đăng ký tiêm vaccsine</Link>                        
+                                    <Link to="/bieu-do-covid">Biểu đồ Covid</Link>                             
+                                    <Link to="#">Điều khoản sử dụng</Link>                             
+                                    <Link to="#">Chính sách Bảo mật</Link>                             
+                               
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xl-3 col-md-4 col-12">
-                            <div className="social">
+                        <div className="col-xl-3 col-md-4 col-12" style={{ alignSelf: "start"}}>
+                      
+                            <div className="social" style={{paddingTop: "15%"}}>
                             <div className="row">
                                 <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
-                                <Link   
-                                    onClick={()=> window.open(
-                                        getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.link : ""
-                                        , "_blank")}
-                                    >
-                                    <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.description : ""}`} alt="fb" />
-                                    </Link>                  
-                                  
+                                    <div className="col-lg-3">
+                                        <Link   
+                                            onClick={()=> window.open(
+                                                getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.link : ""
+                                                , "_blank")}
+                                            >
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.description : ""}`} alt="fb" />
+                                        </Link>    
+                                    </div>   
+                                    <div className="col-lg-3">        
+                                        <Link   
+                                            onClick={()=> window.open(
+                                                getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.link : ""
+                                                , "_blank")}
+                                            >
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.description : ""}`} alt="fb" />
+                                        </Link>                  
+                                    </div>   
+                                    <div className="col-lg-3">        
+                                        <Link   
+                                            onClick={()=> window.open(
+                                                getconfig.getconfig.SocialGroup ? getconfig.getconfig.SocialGroup.link : ""
+                                                , "_blank")}
+                                            >
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialGroup ? getconfig.getconfig.SocialGroup.description : ""}`} alt="Group" />
+                                        </Link>                  
+                                    </div> 
+                                    <div className="col-lg-3">        
+                                        <Link   
+                                            onClick={()=> window.open(
+                                                getconfig.getconfig.SocialTiktok ? getconfig.getconfig.SocialTiktok.link : ""
+                                                , "_blank")}
+                                            >
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialTiktok ? getconfig.getconfig.SocialTiktok.description : ""}`} alt="tt" />
+                                        </Link>                  
+                                    </div> 
                                 </div>
-
+                                
+               
                             {/* <div className="row">
                                     
                                    
                                     
-                                    <Link   
-                                    onClick={()=> window.open(
-                                        getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.link : ""
-                                        , "_blank")}
-                                    >
-                                    <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.description : ""}`} alt="yb" width={32} height={32} />
-                                    </Link>
+                                   
 
                                  
                                 </div> */}

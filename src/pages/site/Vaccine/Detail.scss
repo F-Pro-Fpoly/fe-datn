@@ -1,0 +1,135 @@
+#spec{
+    padding: 0;
+    max-width: 2000px;
+    padding-top: 8%;
+    .specialBlock_19{
+        background-color: #f4f4f4;
+        position: relative;
+        .containerFix{
+            position: relative;
+            z-index: 2;
+            .wrapBox{
+                padding-top: 5vh;
+                padding-bottom: 5vh;
+                .text_1{
+                    font-size: 30px;
+                    font-weight: 700;
+                    color: #144E78;
+                    margin-bottom: 15px;
+                    .breadcrumbFix{
+                        background-color: transparent;
+                        padding: 0;
+                        .breadcrumb-item{
+                            font-size: 14px;
+                            display: inline;
+                            color: #ffffff;
+                            span{
+                                color: #000000 !important;
+                                font-size: 14px !important;
+                                transition: all 0.3s !important;
+                                line-height: 1.5 !important; 
+                                font-weight: normal !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } 
+    .specialBlock_19::before{
+        content: "";
+        background-image: url(https://nhakhoathanhan.vn/uploads/img/background_14.png);
+        background-position: 0 0;
+        background-size: contain;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.6;
+        z-index: 1;
+    }
+
+    .section_1{
+        padding-top: 30px;
+        margin-bottom: 30px;
+
+        .vaccine-info-detail{
+            background-image: url(https://vax.vnvc.vn/_nuxt/img/VaccineDetailBackground.711ed82.png);
+            border-radius: 34px;
+            padding: 47px;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: cover;
+            &>h2,h3,h4,h5{
+                color: white;
+                line-height: 35px;
+            }
+        }
+
+        .image_vaccsin{
+
+            &>img{
+                height: 100%;
+                width: 100%;
+                transition: 0.3s;
+            }
+        }
+    }
+
+
+}
+
+/* =========================== Responesive ================================  */
+
+
+@media screen and (max-width: 1150px) {
+    #spec {
+        .rightBlock{      
+            .wrapOwlSlideTab{
+               
+              &>a{
+                color: white;
+                margin-right: 2%;
+                width: 16%;
+                // font-size: 1px;
+              } 
+            }
+        }
+       
+    }
+}
+
+@media screen and (max-width: 898px) {
+    #spec {
+        .rightBlock{     
+            .wrapOwlSlideTab{
+                display: none;     
+            }
+        }
+       
+    }
+}
+
+@media screen and (max-width: 769px) {
+    #spec {
+        .peopleBlock{
+            display: flex;
+            flex-wrap: wrap;
+            padding-bottom: 0px;
+            position: relative;
+            flex-direction: column;
+            .wrapImg{
+                width: 100% !important;
+            }
+            .rightBlock{
+                width: 100% !important;
+                 padding-left: 0 !important; 
+                 padding-bottom: 0 !important; 
+                 margin-top: 0  !important;
+            }
+        }
+       
+       
+    }
+}

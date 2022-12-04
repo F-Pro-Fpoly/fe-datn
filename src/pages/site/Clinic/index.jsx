@@ -37,6 +37,7 @@ function Clinic () {
     }, []);
     return (
        <>
+
         <ToastContainer />
         <ClinicUiHeader specialist={specialist} />     
         <ClinicUiContent listDoctor={listDoctor} />

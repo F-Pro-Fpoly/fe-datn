@@ -1,58 +1,50 @@
-import  { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
-import { getListServiceAPI } from "../../../services/normal/VaccineService";
-import Loading from "../../../components/Loading/Loading";
-function VaccineContent () {
 
-    const [list, setList] = useState([]);
-    const [loading, getLoading] = useState(false);
-    
-    const start = async () => {
-        getLoading(true)
-        setList([])
-        let res = await getListServiceAPI( 1)
-        let data = res.data
-        let dataArr = data.data
-        getLoading(false)
-        setList(dataArr)
-      
-    }
+function VaccineContent (props) {
 
-  useEffect(() => {
-   
-        document.title = "Đặt lịch tiêm vaccine"
-      start()
-  
-  }, [])
         return (
             <section className="vaccine-content">
                 <div className="container">
                     <div className="row vaccine-row">
-                        {list.map((item,index) => {
+                        {props.list.map((item,index) => {
                             return(
-                                <div className="col-xl-3 col-md-6 col-12">
+                                <div className="col-xl-3 col-md-6 col-12" key={index}>
                                 <div className="vaccine-content-item">
                                     <div className="vaccine-content-header">
                                         <div>
                                             <h4>{item.name}</h4>
-                                            <p>
-                                            Nguồn gốc: Sanofi Pasteur (Pháp)
-                                            Ho gà, bạch hầu, uốn ván, viêm gan B, bại liệt và các bệnh do Hib
+                                            <p>Nguồn gốc: {item.national_name}.</p>
+                                            <p>                                           
+                                            {      
+                                               item.sick.map((i,v) => {
+                                                    return (
+                                                        <span key={v}>{i.name} &nbsp;</span> 
+                                                    )                                               
+                                                })
+                                            }
+                                          
                                             </p>
     
                                             <div className="vaccine-content-price">
-                                                <span>996,000VND</span>
+                                                <span>{item.price_formated}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="vaccine-content-body">
-                                        <span>Phòng bệnh: </span><br /><br />
-                                        <p className="mb-2">
-                                        Ho gà, Uốn ván, Bại liệt, Viêm phổi, Viêm gan B, Viêm màng não do vi khuẩn Haemophilus influenza týp B (Hib), Bạch hầu
-                                        </p>
-    
-                                        <Link to={`/`} className="vaccine-btn">
-                                            Chọn
+                                        <span >Phòng bệnh:
+                                            <p className="mb-2">
+                                            {      
+                                                item.sick.map((i,v) => {
+                                                    return (
+                                                        <span key={v}>{i.name} &nbsp;</span> 
+                                                    )                                               
+                                                })
+                                            }
+                                            </p>
+                                        </span>
+                                        <Link to={`/vaccine/${item.slug}/${item.id}`} className="vaccine-btn" style={{marginTop:"15%"}}>
+                                            Xem chi tiết
                                         </Link>
                                     </div>
                                 </div>

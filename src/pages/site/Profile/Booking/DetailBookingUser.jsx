@@ -25,7 +25,7 @@ function DetailBookingUser() {
     }, [])
 
 
-
+console.log(value);
     return ( 
        
       <>
@@ -76,7 +76,7 @@ function DetailBookingUser() {
     
                     <div className="col-md-6">
                         <label className="form-label">Ngày sinh</label>
-                        <input type="email" disabled className="form-control" 
+                        <input type="text" disabled className="form-control" 
                         name="text"
                         defaultValue={value.birthday}
                         placeholder="Nhập địa chỉ email" />
@@ -84,9 +84,23 @@ function DetailBookingUser() {
     
                     <div className="col-md-6">
                         <label className="form-label">Số điện thoại</label>
-                        <input type="email" disabled className="form-control" 
+                        <input type="text" disabled className="form-control" 
                         name="text"
                         defaultValue={value.phone}
+                        placeholder="Nhập địa chỉ email" />
+                    </div>
+                    <div className="col-md-6">
+                        <label className="form-label">Thời gian khám</label>
+                        <input  disabled className="form-control" 
+                        name="text"
+                        value={value.time_start +" - "+value.time_end}
+                        placeholder="Nhập địa chỉ email" />
+                    </div>
+    
+                    <div className="col-md-6">
+                        <label className="form-label">Ngày khám</label>
+                        <input type="text" disabled className="form-control" 
+                        defaultValue={value.date}
                         placeholder="Nhập địa chỉ email" />
                     </div>
                 </div>

@@ -11,6 +11,9 @@ import CreateDalandar from './Doctor/AddBooking';
 import ListBooking from './Doctor/ListBooking';
 import DetailBooking from './Doctor/DetailBooking';
 import { RoleMiddleware } from '../../../Middleware';
+import ConfigProfile from './Doctor/ProfileDoctor/ConfigProfile';
+import DetailBookingVaccineUser from './Booking/DetailBookingVaccineUser';
+import MedicalRecord from './Booking/MedicalRecord';
 
 function Profile () {
 
@@ -54,9 +57,12 @@ function Profile () {
                     </div>       
                     <Routes>
                         <Route path="/" element={<Info changGender={changGender} changAvt = {changAvt} infoUser={infoUser}  />} />
+                        <Route path="/chi-tiet/:id" element={<ConfigProfile/>} />
+                        <Route path="/ho-so/:id" element={<MedicalRecord/>} />
                         <Route path="/lich-kham" element={<Booking  />} />
                         <Route path="/danh-sach-lich-kham" element={<ListBooking  />} />
                         <Route path="/chi-tiet-lich-dat/:id" element={<Details  />} />
+                        <Route path="/chi-tiet-lich-tiem/:id" element={<DetailBookingVaccineUser  />} />
                         <Route path="/them-lich-kham"  element={RoleMiddleware([2] ,   <CreateDalandar/> )} />
                         <Route path="/chi-tiet-lich-kham/:id" element={RoleMiddleware([2],  <DetailBooking/>)} />
                     </Routes>

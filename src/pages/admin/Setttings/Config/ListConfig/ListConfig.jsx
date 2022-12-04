@@ -34,18 +34,18 @@ function ListConfig() {
         setPage(number)
     }
 
-    const click = (event) => {
-        console.log(event.target.checked);
-    } 
+    // const click = (event) => {
+    //     console.log(event.target.checked);
+    // } 
      useEffect(() => {
         start();
     }, [page])
     
     return ( 
         <div className="adminItem">
-               <div className="addConfig">                  
+               {/* <div className="addConfig">                  
                     <Link  to="/admin/cau-hinh-chung/add" className="btn btn-primary"> Thêm config</Link>                          
-                </div>
+                </div> */}
             <Table striped bordered hover className='table-striped'>            
                 <thead>
                     <tr>
@@ -82,6 +82,14 @@ function ListConfig() {
                                             ? 
                                                 <img src={`${process.env.REACT_APP_BE}${item.description}`} alt="SocialYoutube" width={80} />
                                             :
+                                            item.code == "SocialTiktok"
+                                            ? 
+                                                <img src={`${process.env.REACT_APP_BE}${item.description}`} alt="SocialTiktok" width={80} />
+                                            :
+                                            item.code == "SocialGroup"
+                                            ? 
+                                                <img src={`${process.env.REACT_APP_BE}${item.description}`} alt="SocialGroup" width={80} />
+                                            :
                                             item.description
                                          }       
                                         </td>
@@ -98,15 +106,7 @@ function ListConfig() {
                                         <td>
                                             <Link to={`/admin/cau-hinh-chung/update/${item.id}`} className="btn">
                                                 <i className="fas fa-edit"></i>
-                                            </Link> |
-                                            <button className="btn" onClick={async () => {
-                                                if(window.confirm(`Bạn có muốn xóa ${item.code}`)){
-                                                    await deleteSettingServiceAPI(item.id , token )
-                                                    start()
-                                                }
-                                            }}>
-                                                <i className="fas fa-trash"></i>
-                                            </button>
+                                            </Link>                                     
                                         </td>
                                     </tr>    
                                 )

@@ -134,6 +134,42 @@ function getInfoDoctor({token,id}) {
     return API.get(url,{headers: headers});
 }
 
+function getInfoDoctorV2({token,id}) {
+    let headers = {};
+    let url = `normal/user/infoDoctor/${id}`;
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.get(url,{headers: headers});
+}
+function DoctorProfile({token,id}) {
+    let headers = {};
+    let url = `auth/doctor-profile/detail/${id}`;
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.get(url,{headers: headers});
+}
+function DoctorAddProfile({token,data= {}}) {
+    let headers = {};
+    let url = `auth/doctor-profile/add`;
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.post(url,data,{headers: headers});
+}
+function UpdateDoctorProfile({token,id,data={}}) {
+    let headers = {};
+    let url = `auth/doctor-profile/edit/${id}`;
+    url += `?_method=PUT`
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }else{
+        throw "Bạn chưa đăng nhập"
+    }
+    return API.post(url,data,{headers: headers});
+}
+
 function getListUsersV2({token, search = {}, limit = 6, page = 1}) {
     try {
         let headers ={}; 
@@ -174,9 +210,4 @@ function getUserClientService({token}) {
     }
     return API.get(url,{headers: headers});
 }
-
-
-
-
-
-export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor, updateUserClient, getUserClientService, getListUsersV2_1}
+export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor, updateUserClient, getUserClientService, getListUsersV2_1,DoctorProfile,UpdateDoctorProfile,DoctorAddProfile, EditUserApi,getInfoDoctorV2}

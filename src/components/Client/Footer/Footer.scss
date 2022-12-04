@@ -77,15 +77,14 @@
             }
         }
         .social {
-         
               &>.row{
-                &>a{
-                  
-                    &>img{
-                        width: 67%;
+                &>.col-lg-3{
+                    &>a{
+                        &>img{
+                            width: 150px; 
+                        }   
                     }
-              }
-
+                }
                
             }
         }
@@ -97,11 +96,11 @@
 
     &>.container{  
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         flex-direction: row;
         flex-wrap: nowrap;
-        align-content: stretch;
-        align-items: flex-start; 
+        align-content: center;
+        align-items: center;
     }
     .coppyright{
         text-align: center;

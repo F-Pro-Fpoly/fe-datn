@@ -30,6 +30,7 @@ function ListUser() {
     "name": "",
     "email": "",
     "active": "",
+    "role_code":""
   });
   const [page, setPage] = useState(1);
   // paginate
@@ -52,7 +53,7 @@ function ListUser() {
   useEffect(()=>{
 
     start();
-  },[]);
+  },[page]);
 
   const hanleSearch = async () =>{
     getListUser([]);
@@ -73,12 +74,14 @@ function ListUser() {
   const onChangePage = (number) =>{
     setPage(number);
   }
-  const handlePageClick = async  (page) => {
+  const handlePageClick = async  (page1) => {
     try {
-      page = page + 1;
+    
+      page1 = page1.selected
+      page1 = page1 + 1;
       getListUser([]);
       getLoading(true);
-      let res = await getListUsersAPI(token, {}, page);
+      let res = await getListUsersAPI(token,search, page1);
       let data = res.data;
       let dataArr = data.data;
 
@@ -86,8 +89,8 @@ function ListUser() {
       getListUser(dataArr);
 
       // handle paginate
-      // let pagination = data.meta.pagination ?? null;
-      // setPaginate(pagination);
+      let pagination = data.meta.pagination ?? null;
+      setPaginate(pagination);
     } catch (error) {
       
     }
@@ -107,6 +110,15 @@ function ListUser() {
             onChange={(e)=>setSearch({...search, "email": e.target.value})}
            value={search.email} placeholder="Email" />
         </div>
+        <div className="col-2">
+          <select  className='form-control'  onChange={(e)=>setSearch({...search, "role_code": e.target.value})}
+           value={search.role_code}>
+          <option>--Chọn--</option>
+          <option value="admin">Admin</option>
+          <option value="doctor">Bác sĩ</option>
+          <option value="customer">Người dùng</option>
+          </select>
+        </div>
       </div>
       <div className='mt-3 mb-3'>
         <button className='btn btn-primary' onClick={hanleSearch}>Tìm kiếm</button>
@@ -122,6 +134,7 @@ function ListUser() {
               <th>Địa chỉ</th>
               <th>Số điện thoại</th>
               <th>Kích hoạt</th>
+              <th>Role</th>
               <th>Ảnh đại diện</th>
             </tr>
           </thead>
@@ -135,6 +148,7 @@ function ListUser() {
                   <td>{val.address ?? null}</td>
                   <td>{val.phone}</td>
                   <td>{val.active === 1 ?"Đang kích hoạt":"Ngừng kích hoạt"}</td>
+                  <td>{val.role_name}</td>
                   <td >
                     <img className='listUser-img' src={val.avatar} alt="Ảnh user" />
                   </td>
