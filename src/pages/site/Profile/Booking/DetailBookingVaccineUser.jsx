@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import { toast,ToastContainer } from 'react-toastify';
 import { getDetailMyBookingServiceAPI } from "../../../../services/BookingService";
+import DetailInfo from "../Doctor/DetailBooking/DetailInfo";
 function DetailBookingVaccineUser() {
 
     const token = useSelector(state => state.auth.token)
@@ -44,7 +45,7 @@ function DetailBookingVaccineUser() {
             <div className="card border">
         
             <div className="card-header border-bottom">
-                <h4 className="card-header-title">Chi tiết lịch khám</h4>
+                <h4 className="card-header-title">Chi tiết lịch tiêm </h4>
             </div>
             
             <div className="card-body">
@@ -89,18 +90,6 @@ function DetailBookingVaccineUser() {
                         defaultValue={value.phone}
                         placeholder="Nhập địa chỉ email" />
                     </div>
-                    <div className="col-md-6">
-                        <label className="form-label">Trạng thái thanh toán</label>
-                        <input className="form-control"name = "code" disabled
-                        defaultValue={value.payment_method == "default" ? "Thanh toán tại cơ sở y tế" : "Thanh toán qua momo"}
-                        type="text" placeholder="Trạng thái thanh toán" />
-                    </div>
-                    <div className="col-md-6">
-                        <label className="form-label">Trạng thái thanh toán</label>
-                        <input className="form-control"name = "code" disabled
-                        defaultValue={value.payment_method == "default" ? "Thanh toán tại cơ sở y tế" : "Thanh toán qua momo"}
-                        type="text" placeholder="Trạng thái thanh toán" />
-                    </div>
                 </div>
             
                
@@ -117,7 +106,15 @@ function DetailBookingVaccineUser() {
                         defaultValue={value.description} disabled>
                         </textarea>
                     </div>   
-
+                 
+                    <DetailInfo 
+                        data={value.injection_info}
+                        onChange={(is_update) => {
+                            if(is_update){
+                                start();
+                            }
+                        }}
+                    />
 
 
                     <div className="row g-3">

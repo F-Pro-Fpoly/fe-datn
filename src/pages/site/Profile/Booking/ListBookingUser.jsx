@@ -236,15 +236,27 @@ function ListBookingUser() {
                             <div className="row g-3" style={{textAlign: "center"}}>
                             <div className="col-md-4">
                                    
+                             </div>
+                            <div className="col-md-4">
+                     
+                                 
+                                {item.type_Injection_info == "screening_test" ? 
+                                <span>  
+                                   {item.type_Injection_info_name}
+                                </span>  
+                                :
+                                <span>  
+                                  {item.type_Injection_info_name}
+                                </span>  
+                                }
+                            
+                                    <h6 className="mb-0">{item.time_apointment}</h6>
                                 </div>
 
                                 <div className="col-md-4">
-                                    <span>Ngày khám</span>
-                                    <h6 className="mb-0">{item.time_apointment}</h6>
+                                   
                                 </div>
-                                <div className="col-md-4">
                                
-                                </div>
                             </div>
                         </div>
                         </div>                       
