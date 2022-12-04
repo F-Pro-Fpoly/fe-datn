@@ -54,11 +54,18 @@ function Menu(infoUser) {
                                 </li> */}
                                </>
                                 :
+                               <>
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to="/ho-so-ca-nhan/lich-kham">
                                         <i className="bi bi-people fa-fw me-2"></i>Lịch khám của tôi
                                     </NavLink>
                                  </li>
+                                 <li className="nav-item">
+                                 <NavLink className="nav-link" to={`/ho-so-ca-nhan/ho-so/${infoUser.infoUser.id}`}>
+                                     <i className="bi bi-people fa-fw me-2"></i>Hồ sơ bệnh án
+                                 </NavLink>
+                              </li>
+                               </>
                             }
                            
 {/* 
