@@ -20,7 +20,7 @@ function Introduce () {
         </div>
         <div className="flex-Introduce col-12">
             <div className={`pleft col-xl-6 col-md-6 col-12 ${more?"more":''}`} onClick={()=>setMore(false)}>
-                <h3>TRUNG TÂM Y TẾ FPRO - SỨC KHỎE CỦA BẠN LÀ XỨ MỆNH CUẨ CHÚNG TÔI</h3>
+                <h3>TRUNG TÂM Y TẾ FPRO - SỨC KHỎE CỦA BẠN LÀ SỨ MỆNH CỦA CHÚNG TÔI</h3>
                 <p>Vắc xin là một thành tựu y học vĩ đại của nhân loại. Mỗi năm, vắc xin cứu sống gần 3 triệu người trước những dịch bệnh nguy hiểm,
                  gần một nửa trẻ em trên toàn thế giới được bảo vệ bởi vắc xin khỏi bệnh tật, khuyết tật và tử vong. Tại Việt Nam, trong 25 năm qua, 
                  vắc xin đã bảo vệ hơn 6,7 triệu trẻ em và ngăn chặn hàng trăm ngàn ca tử vong do các bệnh truyền nhiễm chết người.</p>
