@@ -91,7 +91,7 @@ function Footer (getconfig) {
                         </div>
                         <div className="col-xl-3 col-md-4 col-12" style={{ alignSelf: "start"}}>
                       
-                            <div className="social" >
+                            <div className="social" style={{paddingTop: "15%"}}>
                             <div className="row">
                                 <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
                                     <div className="col-lg-3">
