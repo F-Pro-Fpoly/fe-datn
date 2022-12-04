@@ -106,15 +106,7 @@ function ListConfig() {
                                         <td>
                                             <Link to={`/admin/cau-hinh-chung/update/${item.id}`} className="btn">
                                                 <i className="fas fa-edit"></i>
-                                            </Link> |
-                                            <button className="btn" onClick={async () => {
-                                                if(window.confirm(`Bạn có muốn xóa ${item.code}`)){
-                                                    await deleteSettingServiceAPI(item.id , token )
-                                                    start()
-                                                }
-                                            }}>
-                                                <i className="fas fa-trash"></i>
-                                            </button>
+                                            </Link>                                     
                                         </td>
                                     </tr>    
                                 )

@@ -14,7 +14,13 @@ function ClinicUiContent({listDoctor = []}) {
                                  <ClinicUiTime dataItem={item} />
                              </div>
                          )
-                    }   
+                    }else{
+                        return(
+                            <div className="boxcontent" >
+                                <h3>Hiện tại chuyên khoa chưa có lịch khám cho hôm nay</h3>
+                            </div>
+                        )
+                    }
                 })}     
                 </div>           
             </div>
