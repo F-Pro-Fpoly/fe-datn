@@ -207,3 +207,47 @@
         }
     }
 }
+
+.schedule-top{
+    display: flex;
+    gap: 0 10px;
+}
+
+
+
+@media screen and (max-width: 800px) {
+    .boxcontent{
+        flex-wrap: wrap !important;
+        flex: 0 0 100%;
+        max-width: 100%;
+        &>.image{
+            flex: 0 0 40%;
+            max-width: 40%;
+        }
+        &>.infocontent{
+            flex: 0 0 60%;
+            max-width: 60%;
+        }
+        &>.schedule{
+            flex: 0 0 100%;
+            max-width: 100%;
+            width: auto;
+        }
+
+    }
+
+    .schedule-top{
+        width: 100% !important;
+        flex: 0 0 100%;
+        margin-top: 20px;
+    }
+
+    .infocontent-info{
+        display:-webkit-box;
+        -webkit-line-clamp:5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+    }
+}

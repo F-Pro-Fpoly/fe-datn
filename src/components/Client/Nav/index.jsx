@@ -131,9 +131,10 @@ function Nav (getconfig){
                             <div className="navb-mobile-contact">
                                 <i className="fa-regular fa-bell"></i>
                             </div>
-                            <div className="navb-mobile-avatars">
-                                <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" />
-                            </div>
+                            <Link className="navb-mobile-avatars" to={`/ho-so-ca-nhan`}>
+                                {/* <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" /> */}
+                                <img src={user ? user.avatar : 'https://booking.webestica.com/assets/images/avatar/01.jpg'} alt="" />
+                            </Link>
                         </div>
                     </div>
                 </div>
