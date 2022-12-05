@@ -5,6 +5,7 @@ import Table from "react-bootstrap/esm/Table";
 import { useSelector } from "react-redux";
 
 // import "./listContac.scss";
+
 import { deleteContact, getContact } from "../../../../services/ContactService";
 import Paginate from "../../../../components/Paginate/Paginate";
 import Loading from "../../../../components/Loading/Loading";
@@ -23,6 +24,9 @@ function ListContactBooking() {
     });
 
     const type = 1;
+
+   
+
     const start = async () => {
       getLoading(true)
       setListContact([])
@@ -35,7 +39,7 @@ function ListContactBooking() {
       let pagination = data.meta.pagination ?? null;
       setPaginate(pagination);
   }
-    useEffect(() => {
+   useEffect(() => {  
         start();
     }, [page])
 

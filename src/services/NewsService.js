@@ -118,10 +118,50 @@ function getList3NewsCatgory({token}) {
         return [];
     }
 }
+function deleteCommentAPI({token, id}){
+    try {
+        let headers = {};
+        let url = `auth/news/delete/${id}`;
+        if(token) {
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+        }
+        return API.delete(url,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+function getlistComment({token, id}) {
+    let headers ={}; 
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    console.log();
+    return API.get(`auth/news/list_news_comment/${id}`, {headers:headers});
+}
 
-
+function getOneNewComment({token, id}) {
+    let headers ={}; 
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    console.log();
+    return API.get(`auth/news/one_news_comment/${id}`, {headers:headers});
+}
+function updateComment({token, data, id}) {
+    let headers ={}; 
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    return API.put(`auth/news/update_news_comment/${id}`,data,{headers: headers});
+}
 export { 
     getListNewsAPI,createListNewsAPI,getListAllNewslist,
     getNewslist,getListNewslistClient,getNewslistClient,
-    updateNewslist,getList3NewsCatgory,deleteNewsAPI
+    updateNewslist,getList3NewsCatgory,deleteNewsAPI,
+    deleteCommentAPI,getlistComment,
+    getOneNewComment,updateComment
 }
