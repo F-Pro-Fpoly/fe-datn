@@ -154,8 +154,9 @@ function DetailBooking() {
                     <div className="form-group mb-3">
                       
                         <select name="statusBooking" className="form-control" id=""
-                        value={ value.status_id ? value.status_id : 0} 
-                        onChange ={(e) => setValue( {...value, status_id: e.target.value})}
+                            value={ value.status_id ? value.status_id : 0} 
+                            onChange ={(e) => setValue( {...value, status_id: e.target.value})}
+                            disabled={value.status_id == 4 ? true: false}
                         >
                             <option value="0" disabled>Chọn trạng thái</option>
                             {
