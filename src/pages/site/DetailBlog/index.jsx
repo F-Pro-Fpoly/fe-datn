@@ -1,18 +1,27 @@
 import "./DetailBlog.scss";
 import "../News/Blog.scss";
 import { Link } from "react-router-dom"
-import {useEffect, useState} from 'react';
+import {useEffect, useState,useRef} from 'react';
 import { useParams } from "react-router";
-import {  getNewsDetailClient,getlistTopWeek1API,getlistTopWeek3API,getlistNewsCategoryAPI } from "../../../services/normal/NewsService";
+import {
+        getNewsDetailClient,
+        getlistTopWeek1API,
+        getlistTopWeek3API,
+        createCommentAPI 
+    } from "../../../services/normal/NewsService";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../components/Loading/Loading";
 import { setLoading } from "../../../redux/slices/InterfaceSile";
 import { ListConfigService } from '../../../services/normal/ConfigService';
+import { toast,ToastContainer } from 'react-toastify';
+import Comment from "./Comment";
+import InputComment from "./InputComment";
 export default function DitailNews(){
     const [getconfig, setConfig] = useState([])
   const param = useParams();
   const dispatch = useDispatch();
-  const token = useSelector(state => state.auth.token);
+  const token = useSelector((state)=>state.auth.token);
+  const FormRep = useRef();
   const [NewsDetail, setDetail] = useState({
     "code": "",
     "name":"",
@@ -64,6 +73,8 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
   useEffect (()=>{
       start();
   }, []);
+
+
     return(
       <div className="Newsdetail">
             <div className="page-title wb">
@@ -115,17 +126,27 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                     <div className="pp"  dangerouslySetInnerHTML={{__html: NewsDetail.content}}> 
                                     </div>
                                 </div>
-                            <hr className="invis2"/>
-                                <div className="custombox clearfix">
-                                    <h4 className="small-title">Bình luận</h4>
-                                        <div className="row">
-                                            <div className="col-lg-12">
-                                                <div className="comments-list">
-                                                <div className="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="" data-numposts="5"></div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <hr className="invis2"/>
+
+                            <div className="custombox clearfix">
+                                <h4 className="small-title">3 bình luận</h4>
+                                <div className="row">
+                                    <div className="col-lg-12">
+                                        <Comment />
+                                    </div>
                                 </div>
+                            </div>
+
+                            <hr className="invis2"/>
+
+                            <div className="custombox clearfix">
+                                <h4 className="small-title">Bình luận</h4>
+                                <div className="row">
+                                <div className="col-lg-12">
+                                    <InputComment />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12">
@@ -136,7 +157,7 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                             {
                                 ListTopWeek1.map((item,index) => {
                                     return(
-                                <div className="sf_right_featured--box sf_right_featured--first-box">
+                                <div className="sf_right_featured--box sf_right_featured--first-box"key={index}>
                                     <div className="sf_right_featured--box-thumb"> 
                                         <Link to={item.slug}>
                                             <div className="sf_right_featured--thumbnail-container"> 

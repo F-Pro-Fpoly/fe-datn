@@ -78,55 +78,53 @@ const hanleSearch = async () =>{
   </div>
       
         <div className="listNews">
-           
-                <Table>
-          <thead>
-            <tr>
-
-              <th>STT</th>
-              <th>Mã Tin</th>
-              <th>Tên tin</th>
-              <th>Đường dẫn</th>
-              <th>Kích hoạt</th>
-              <th>Nổi bật</th>
-              <th>Danh mục tin</th>
-              <th>File</th>
-            </tr>
-          </thead>
-          <tbody>
-          {
-              ListNews.map((val, index)=>(
-              <tr key={index}>
-                  <td>{index+1}</td>
-                  <td>{val.code}</td>
-                  <td>{val.name}</td>
-                  <td>{val.slug}</td>                
-                  <td>{val.status === 1 ? <span className="text-success">Đang kích hoạt</span>:<span className="text-danger">Ngừng kích hoạt</span>}</td>
-                  <td>{val.featured === 1 ? <span className="text-success">Nổi bật</span>:<span className="text-danger">Không nỗi bật</span>}</td>
-                  <td>{val.category_name}</td>
-                  <td><img className='hinh'src={ `${process.env.REACT_APP_BE}${val.file}` } alt="hinh" /></td>
-                  <td>
-                  <Link to={`/admin/tin-tuc/edit/${val.id}`}><i style={{cursor: "pointer"}} className="fas fa-edit"></i></Link>
-                  | <i 
-                  onClick={async()=>{if(window.confirm("Bạn có thật sự muốn xóa")){
-                    await deleteNewsAPI({token: token, id: val.id});
-                    start();
-                  }}}
-                  style={{cursor: "pointer"}} className="fa fa-trash"></i></td>
-            </tr>
-          
-          ))
-        }
-        
-            
-          </tbody>
-          
+        <Table>
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Mã Tin</th>
+                  <th>Tên tin</th>
+                  <th>Đường dẫn</th>
+                  <th>Kích hoạt</th>
+                  <th>Nổi bật</th>
+                  <th>Danh mục tin</th>
+                  <th >File</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+              {ListNews.map((val, index)=>(
+                  <tr key={index}>
+                      <td>{index+1}</td>
+                      <td>{val.code}</td>
+                      <td>{val.name}</td>
+                      <td>{val.slug}</td>                
+                      <td>{val.status === 1 ? <span className="text-success">Đang kích hoạt</span>:<span className="text-danger">Ngừng kích hoạt</span>}</td>
+                      <td>{val.featured === 1 ? <span className="text-success">Nổi bật</span>:<span className="text-danger">Không nỗi bật</span>}</td>
+                      <td>{val.category_name}</td>
+                      <td><img className='hinh'src={ `${process.env.REACT_APP_BE}${val.file}` } alt="hinh"/></td>
+                    
+                      <td>
+                        <button  type="button" className="btn">
+                          <Link to={`/admin/tin-tuc/edit/${val.id}`}>
+                            <i style={{cursor: "pointer"}} className="fas fa-edit"></i>
+                          </Link>
+                        </button>         
+                        <button  type="button" className="btn">
+                          <i onClick={async()=>
+                            {if(window.confirm("Bạn có thật sự muốn xóa"))
+                              {await deleteNewsAPI({token: token, id: val.id});
+                              start();
+                            }}}
+                          style={{cursor: "pointer"}} className="fa fa-trash"></i> 
+                        </button>
+                      </td>
+                  </tr>
+                ))}  
+              </tbody>
           </Table>
-          {
-          loading && <Loading />
-        }
-         {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
-     
+          {loading && <Loading />}
+          {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
         </div>  
        </>
     );
