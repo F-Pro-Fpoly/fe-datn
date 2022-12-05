@@ -119,7 +119,7 @@ function ListBooking() {
                 {
                   listbooking.length == 0 ? 
                     <tr >
-                     <td colSpan="7" style={{textAlign:"center"}}> { loading ? <Loading /> :  "Hiện chưa có người đặt lịch"} </td>
+                     <td colSpan="8" style={{textAlign:"center"}}> { loading ? <Loading /> :  "Hiện chưa có người đặt lịch"} </td>
                   </tr>
                 
                   :
