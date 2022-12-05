@@ -110,6 +110,7 @@ function ListBooking() {
                   <th>Tên người đặt</th>
                   <th>Ngày khám</th>
                   <th>Giờ khám</th>
+                  <th>Vaccine</th>
                   <th>Trạng thái</th>
                   <th>Thao tác</th>     
                 </tr>
@@ -130,6 +131,7 @@ function ListBooking() {
                       <td>{val.customer_name}</td>
                       <td>{val.date}</td>
                       <td>{val.time_start} - {val.time_end}</td>
+                      <td>{val.vaccine_name ?? ''}</td>
                       <td>{val.status_name}</td>
                       <td><Link to={`/ho-so-ca-nhan/chi-tiet-lich-kham/${val.id}`}><i className="fas fa-edit"></i></Link></td>
                     </tr>
