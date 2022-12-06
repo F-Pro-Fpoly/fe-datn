@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import LoadingGlobal from "../../../components/LoadingGlobal";
 import { toast,ToastContainer } from 'react-toastify';
+import { Button as ButtonMui } from "@mui/material";
+import GoogleLogin from 'react-google-login';
+import { gapi } from "gapi-script";
 import { Link } from "react-router-dom";
 
 const schema = object({
@@ -22,10 +25,12 @@ function Login() {
         resolver: yupResolver(schema)
     });
 
+    const clientId = "991219474491-720scu1n3qdf7224g2h9d7j92u3q7h5i.apps.googleusercontent.com";
+
+
     const [loading, setLoading] = useState(false);
 
     let navigate = useNavigate();
-
 
     // redux
     const user = useSelector((state) => state.auth.user)
@@ -39,7 +44,12 @@ function Login() {
         if (user) {
             navigate('/')
         }
+
+        gapi.load("client:auth2", () => {
+            gapi.auth2.init({clientId:clientId})
+        })
     }, [user]);
+
 
     const onSubmit = async response => {
         setLoading(true);
@@ -63,6 +73,24 @@ function Login() {
         }
 
     }
+
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
+
+    // const handleFireBase = async () => {
+    //     const auth = getAuth();
+    //     signInWithEmailAndPassword(auth, email, password)
+    //     .then((userCredential) => {
+    //         // Signed in 
+    //         const user = userCredential.user;
+    //         // ...
+    //     })
+    //     .catch((error) => {
+    //         const errorCode = error.code;
+    //         const errorMessage = error.message;
+    //     });
+    // }
 
     return (
         <>
@@ -92,12 +120,29 @@ function Login() {
                     </div>
                     <div className="login">Hoặc đăng nhập bằng</div>
                     <div className="link">
-                        <div className="facebook">
+                        {/* <div className="facebook">
                             <i className="fa fa-facebook-f"><span>Facebook</span></i>
                         </div>
                         <div className="instagram">
                             <i className="fa fa-instagram"><span>Instagram</span></i>
-                        </div>
+                        </div> */}
+                        <GoogleLogin
+                            clientId={clientId}
+                            buttonText="Login"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                            render={renderProps => {
+                                return(
+                                    <div className="instagram" 
+                                        onClick={renderProps.onClick} 
+                                        disabled={renderProps.disabled}
+                                    >
+                                        <i class="fa-brands fa-google"><span>Google</span></i>
+                                    </div>
+                                )
+                            }}
+                        />
                     </div>
                     <div className="signup">Không có tài khoản? 
                        <Link to={"/register"}> Đăng ký ngay</Link>
