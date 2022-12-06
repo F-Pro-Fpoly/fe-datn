@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Form, Modal, Table } from "react-bootstrap";   
 import { useSelector } from "react-redux";
-import { listVaccineCategory } from "../../../../services/VaccineCategory";
+import { listVaccineCategory,deleteVaccinetCategory } from "../../../../services/VaccineCategory";
 import AddCateVaccine from "./AddCateVaccine";
 import ReactPaginate from 'react-paginate';
 import { Link } from "react-router-dom";
@@ -100,7 +100,12 @@ function ListCateVaccine() {
                                             <i className="fa-solid fa-pen-to-square"></i>
                                         </button>
                                         <button type="button" className="btn">
-                                            <i className="fa-solid fa-trash"></i>
+                                        <i 
+                                            onClick={async()=>{if(window.confirm("Bạn có thật sự muốn xóa")){
+                                                await deleteVaccinetCategory({token: token, id: item.id});
+                                                start();
+                                            }}}
+                                            style={{cursor: "pointer"}} className="fa fa-trash"></i>
                                         </button>
                                     </td>
                                 </tr>

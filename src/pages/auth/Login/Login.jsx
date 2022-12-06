@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-import "./Login.css";
+import "./Login.scss";
 import {useForm} from "react-hook-form";
 import { object, string, ref } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -14,6 +13,7 @@ import { toast,ToastContainer } from 'react-toastify';
 import { Button as ButtonMui } from "@mui/material";
 import GoogleLogin from 'react-google-login';
 import { gapi } from "gapi-script";
+import { Link } from "react-router-dom";
 
 const schema = object({
     email: string().required('email không được bỏ trống').min(8, 'Email quá ngắn').email('email không đúng định dạng'),
@@ -94,39 +94,61 @@ function Login() {
 
     return (
         <>
-        {loading && <LoadingGlobal />}
-
-        <div className="auth-wrapper">
-            <h2 className='mb-4 text-center'>Đăng Nhập</h2>
-            <ToastContainer />
-            <Form method='post' action='#' onSubmit={handleSubmit(onSubmit)}>
-                {/* {message&&<p className="text-dange">{message}</p>} */}
-                <Form.Group className='mb-3' controlId="formBasicEmail">
-                    <Form.Label>Nhập email</Form.Label>
-                    <Form.Control type="email" placeholder="Nhập email" {...register('email')} />
-                    <p className='text-danger'>{errors.email?.message}</p>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" {...register('password')} />
-                    <p className='text-danger'>{errors.password?.message}</p>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    {/* <div className="g-signin2" data-onsuccess="onSignIn">
-                        Đăng nhập với google
-                    </div> */}
-                    <GoogleLogin
-                        clientId={clientId}
-                        buttonText="Login"
-                        onSuccess={responseGoogle}
-                        onFailure={responseGoogle}
-                        cookiePolicy={'single_host_origin'}
-                    />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Đăng Nhập
-                </Button>
-            </Form>
+        {/* {loading && <LoadingGlobal />} */}
+        <div className="login">
+        <ToastContainer />
+            <div className="content">
+                <h2>Đăng nhập</h2>
+                <form action="" onSubmit={handleSubmit(onSubmit)}>
+                
+                    <div className="field">
+                        <span className="fa fa-envelope"></span>
+                        <input type="text" required placeholder="Nhập email"  {...register('email')}/>
+                        <p className='text-danger'>{errors.email?.message}</p>
+                    </div>
+                    <div className="field space">
+                        <span className="fa fa-lock"></span>
+                        <input type="password" className="password" required placeholder="Nhập mật khẩu"  {...register('password')} />
+                        <p className='text-danger'>{errors.password?.message}</p>
+        
+                    </div>
+                    <div className="pass">
+                        <Link>Quên mật khẩu?</Link>
+                    </div>
+                    <div className="field">
+                        <button className='btn btn-primary' type="submit">Đăng nhập</button>
+                    </div>
+                    <div className="login">Hoặc đăng nhập bằng</div>
+                    <div className="link">
+                        {/* <div className="facebook">
+                            <i className="fa fa-facebook-f"><span>Facebook</span></i>
+                        </div>
+                        <div className="instagram">
+                            <i className="fa fa-instagram"><span>Instagram</span></i>
+                        </div> */}
+                        <GoogleLogin
+                            clientId={clientId}
+                            buttonText="Login"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                            render={renderProps => {
+                                return(
+                                    <div className="instagram" 
+                                        onClick={renderProps.onClick} 
+                                        disabled={renderProps.disabled}
+                                    >
+                                        <i class="fa-brands fa-google"><span>Google</span></i>
+                                    </div>
+                                )
+                            }}
+                        />
+                    </div>
+                    <div className="signup">Không có tài khoản? 
+                       <Link to={"/register"}> Đăng ký ngay</Link>
+                    </div>
+                </form>
+            </div>
         </div>
         </>
      );

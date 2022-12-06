@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loading from "../../../../components/Loading/Loading";
 import Paginate from "../../../../components/Paginate/Paginate";
-import {getDepartment} from "../../../../services/DepartmentService"
+import {getDepartment,deleteDepartment} from "../../../../services/DepartmentService"
 
 function ListDepartment() {
     const token = useSelector(state => state.auth.token);
@@ -66,8 +66,13 @@ function ListDepartment() {
                                     <Link to={`/admin/phong-ban/update/${val.id}`} className="btn">
                                         <i className="fas fa-edit"></i>
                                     </Link> |
-                                    <button className="btn">
-                                        <i className="fas fa-trash"></i>
+                                    <button type="button" className="btn">
+                                        <i 
+                                            onClick={async()=>{if(window.confirm("Bạn có thật sự muốn xóa")){
+                                                await deleteDepartment({token: token, id: val.id});
+                                                start();
+                                            }}}
+                                        style={{cursor: "pointer"}} className="fa fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>

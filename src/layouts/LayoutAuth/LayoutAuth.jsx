@@ -4,7 +4,7 @@ import "./LayoutAuth.scss";
 
 function LayoutAuth() {
     return ( 
-        <div className='layout-auth'>
+        <div className='bg-img'>
             <Outlet />
         </div>
      );

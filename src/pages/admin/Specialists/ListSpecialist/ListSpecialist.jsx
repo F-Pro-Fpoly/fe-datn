@@ -3,7 +3,7 @@ import { useState } from "react";
 import Table from "react-bootstrap/esm/Table";
 import { useSelector } from "react-redux";
 import Loading from "../../../../components/Loading/Loading";
-import { getListServiceAPI } from "../../../../services/SpecialistService";
+import { getListServiceAPI,deleteSpecialist } from "../../../../services/SpecialistService";
 import Paginate from '../../../../components/Paginate/Paginate';
 import "./ListSpecialist.scss"
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ function ListSpecialist() {
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
     
-    useEffect(() => {
+   
       
         const start = async () => {
             getLoading(true)
@@ -32,7 +32,7 @@ function ListSpecialist() {
             let pagination = data.meta.pagination ?? null;
             setPaginate(pagination);
         }
-      
+   useEffect(() => {    
         start();
     }, [page])
 
@@ -62,7 +62,16 @@ function ListSpecialist() {
                   <td>{val.name}</td>
                   <td className="button">
                   <Link to={`/admin/specialist/update/${val.id}`}><i className="fas fa-edit"></i></Link>  
-                  | <i className="fa fa-trash"></i></td>
+                  | 
+                  <button type="button" className="btn">
+                                        <i 
+                                            onClick={async()=>{if(window.confirm("Bạn có thật sự muốn xóa")){
+                                                await deleteSpecialist({token: token, id: val.id});
+                                                start();
+                        }}}
+                     style={{cursor: "pointer"}} className="fa fa-trash"></i>
+                  </button>
+                  </td>
                 </tr>
               ))
             }

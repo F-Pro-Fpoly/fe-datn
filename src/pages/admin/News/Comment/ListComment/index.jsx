@@ -5,33 +5,33 @@ import { Link } from "react-router-dom";
 import Table from "react-bootstrap/esm/Table";
 import { useSelector } from "react-redux";
 
-import "./listContac.scss";
-import { deleteContact, getContact } from "../../../../services/ContactService";
-import Paginate from "../../../../components/Paginate/Paginate";
-import Loading from "../../../../components/Loading/Loading";
+// import "./listContac.scss";
+import { deleteContact, getContact } from "../../../../../services/ContactService";
+import Paginate from "../../../../../components/Paginate/Paginate";
+import Loading from "../../../../../components/Loading/Loading";
 import { toast,ToastContainer } from 'react-toastify';
 
-function ListContact() {
+function ListComment() {
 
     const token = useSelector(state => state.auth.token);
 
-    const [listContact, setListContact] = useState([]);
+    const [listComment, setListComment] = useState([]);
     const [loading, getLoading] = useState(false);
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState({
-      "status" : ""
+      "name" : ""
     });
 
     const type = 0;
         const start = async () => {
             getLoading(true)
-            setListContact([])
+            setListComment([])
             let res = await getContact({token,page,search, type}) 
             let data = res.data 
             let dataArr = data.data
             getLoading(false)
-            setListContact(dataArr)
+            setListComment(dataArr)
             // handle paginate
             let pagination = data.meta.pagination ?? null;
             setPaginate(pagination);
@@ -49,12 +49,12 @@ function ListContact() {
     const HandleSearch = async (value) => {
       value.preventDefault();
       getLoading(true)
-      setListContact([])
+      setListComment([])
       let res = await getContact({token,page,search,type}) 
       let data = res.data 
       let dataArr = data.data
       getLoading(false)
-      setListContact(dataArr)
+      setListComment(dataArr)
       // handle paginate
       let pagination = data.meta.pagination ?? null;
       setPaginate(pagination);
@@ -63,11 +63,6 @@ function ListContact() {
     
     return ( 
         <>
-        {/* <div className="a">   
-            <Link to='/admin/chinh-sua-menu/add'>
-               <button className="btn btn-primary">Thêm trang mới</button>
-            </Link>
-        </div> */}
 
 <ToastContainer
                 position="top-right"
@@ -86,13 +81,9 @@ function ListContact() {
         <div className="adminItem">
           <div className='row mt-3 mb-3' >
             <div className="col-2 form-group">
-                <select name="status" id="" defaultValue={0}
-                  onChange={(e)=>setSearch({...search, "status": e.target.value})}
-                className="form-control">
-                    <option value="0" disabled>Chọn Trạng thái</option>
-                    <option value="8">Đã phản hồi</option>
-                    <option value="9">Chưa phản hồi</option>
-                </select>
+            <input type="text" className='form-control' value={search.name} 
+        onChange={(e)=>setSearch({...search, "name": e.target.value})}
+        placeholder="Họ tên" />
             </div>
             <div className="col-2">
               <button className='btn btn-primary' onClick={HandleSearch} >Tìm kiếm</button>
@@ -107,29 +98,19 @@ function ListContact() {
                 <th>STT</th>
                 <th>Họ và tên</th>
                 <th>Email</th>
-                <th>Trạng thái</th>
-                <th>Ngày liên hệ</th>
+                <th>Ngày bình luận</th>
                 <th>Thao tác</th>
               </tr>
             </thead>
             <tbody>
               {
-                listContact.map((val, index)=>(
+                listComment.map((val, index)=>(
                   <tr key={index   }>
                     <td >{index+1}</td>
                     <td>{val.name}</td>
                     <td>{val.email} </td>
-                    {val.status_id == 9 ? 
-                      <td style={{color:"red"}}>{val.status}</td> 
-                      :  
-                      <td style={{color:"green"}}>{val.status}</td>
-                    }
                     <td>{val.created_at}</td>
                     <td className="button" >
-
-                    <Link to={`/admin/lien-he/tra-loi-lien-he/${val.id}`  } className="btn">
-                                                <i className="fas fa-edit"></i>
-                    </Link> |
                     <button className="btn" onClick={async () => {
                         if(window.confirm(`Bạn có muốn xóa ${val.name}`)){
                             const id = val.id
@@ -156,4 +137,4 @@ function ListContact() {
         </>
      );
 }
-export default ListContact;
+export default ListComment;

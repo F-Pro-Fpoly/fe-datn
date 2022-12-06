@@ -43,6 +43,7 @@ import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateS
 import AddNews from "./pages/admin/News/AddNews";
 import ListNews from "./pages/admin/News/ListNews";
 import UpdateNews from "./pages/admin/News/UpdateNews";
+import ListComment from "./pages/admin/News/Comment/ListComment";
 
 import AddNewsCategory from "./pages/admin/NewsCategory/AddNewsCategory";
 import ListNewsCategory from "./pages/admin/NewsCategory/ListNewsCategory";
@@ -164,6 +165,7 @@ function Web() {
                         <Route element={< ListNews />} path="list" />
                         <Route element={< AddNews />}  path="add" />
                         <Route element={< UpdateNews />} path="edit/:id" />
+                        <Route element={< ListComment />} path="list_news_comment/:slug" />
                     </Route>
                     <Route path="danh-muc">
                         <Route element={< ListNewsCategory />} path="list" />

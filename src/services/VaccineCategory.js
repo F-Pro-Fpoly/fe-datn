@@ -52,5 +52,17 @@ function getCategoryApi({token, id}) {
 
     return API.get(url, {headers: headers});
 }
-
-export { listVaccineCategory,createVaccineCategory, updateCategory, getCategoryApi }
+function deleteVaccinetCategory({token, id}){
+    try {
+        let headers = {};
+        let url = `auth/vaccine-category/delete/${id}`;
+        if(token) {
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+        }
+        return API.delete(url,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+export { listVaccineCategory,createVaccineCategory, updateCategory, getCategoryApi,deleteVaccinetCategory }

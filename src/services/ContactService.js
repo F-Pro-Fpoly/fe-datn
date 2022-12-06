@@ -94,7 +94,20 @@ function getListContactAPI(token = null, search = {}, page = 1) {
     }
 
 }
+function deleteContactBookings({token, id}){
+    try {
+        let headers = {};
+        let url = `auth/contact/delete/${id}`;
+        if(token) {
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+        }
+        return API.delete(url,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 
 
 
-export { creatContactApi, deleteContact,getContact,getListContactAPI, getDetailContact,putReplyContact}
+export { creatContactApi, deleteContact,getContact,getListContactAPI, getDetailContact,putReplyContact,deleteContactBookings}
