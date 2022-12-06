@@ -5,15 +5,15 @@ import {useForm} from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number, date, InferType, ref } from 'yup';
 import { toast,ToastContainer } from 'react-toastify';
-
+import { useSelector, useDispatch } from 'react-redux';
 
 import {registerApi} from "../../../services/AuthService";
-
-
+import GoogleLogin from 'react-google-login';
+import { gapi } from "gapi-script";
 import "./Register.scss";
 import LoadingGlobal from '../../../components/LoadingGlobal';
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 const schema = object({
     name: string().required('Họ tên không được bỏ trống').min(8, 'Họ tên quá ngắn'),
     email: string().required('email không được bỏ trống').min(8, 'Email quá ngắn').email('email không đúng định dạng'),
@@ -26,7 +26,7 @@ function Register() {
     const { register, handleSubmit, watch, formState: { errors }, reset, setError  } = useForm({
         resolver: yupResolver(schema)
     });
-
+    const clientId = "991219474491-720scu1n3qdf7224g2h9d7j92u3q7h5i.apps.googleusercontent.com";
     const [loading, setLoading] = useState(false);
 
     const onSubmit = async data => {
@@ -50,15 +50,28 @@ function Register() {
         }
 
     };
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
+    let navigate = useNavigate();
+    const user = useSelector((state) => state.auth.user)
+    useEffect(() => {
+        document.title = "login"
+        if (user) {
+            navigate('/')
+        }
 
-    document.title = "Trang đăng ký";
+        gapi.load("client:auth2", () => {
+            gapi.auth2.init({clientId:clientId})
+        })
+    }, [user]);
 
     return ( 
         <>
         <div className="register">
         <ToastContainer />
             <div className="content">
-                <h2>Login Form</h2>
+                <h2>Đăng ký</h2>
                 <form action="" onSubmit={handleSubmit(onSubmit)}>
               
                     <div className="field">
@@ -68,7 +81,7 @@ function Register() {
                     </div>
                     <div className="field space">
                         <span className="fa fa-envelope"></span>
-                        <input type="eamil" required placeholder="Nhập eamil"  {...register('email')} />
+                        <input type="eamil" required placeholder="Nhập email"  {...register('email')} />
                         <p className='text-danger'>{errors.email?.message}</p>
         
                     </div>
@@ -98,12 +111,23 @@ function Register() {
                     </div>
                     <div className="login">Hoặc đăng ký bằng</div>
                     <div className="link">
-                        <div className="facebook">
-                            <i className="fa fa-facebook-f"><span>Facebook</span></i>
-                        </div>
-                        <div className="instagram">
-                            <i className="fa fa-instagram"><span>Instagram</span></i>
-                        </div>
+                    <GoogleLogin
+                            clientId={clientId}
+                            buttonText="Login"
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                            render={renderProps => {
+                                return(
+                                    <div className="instagram" 
+                                        onClick={renderProps.onClick} 
+                                        disabled={renderProps.disabled}
+                                    >
+                                        <i class="fa-brands fa-google"><span>Google</span></i>
+                                    </div>
+                                )
+                            }}
+                        />
                     </div>
                     <div className="signup">
                        <Link to={"/login"}> Đăng nhập ngay</Link>
