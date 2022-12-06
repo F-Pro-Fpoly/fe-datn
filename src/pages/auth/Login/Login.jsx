@@ -11,7 +11,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import LoadingGlobal from "../../../components/LoadingGlobal";
 import { toast,ToastContainer } from 'react-toastify';
-
+import { Button as ButtonMui } from "@mui/material";
+import GoogleLogin from 'react-google-login';
+import { gapi } from "gapi-script";
 
 const schema = object({
     email: string().required('email không được bỏ trống').min(8, 'Email quá ngắn').email('email không đúng định dạng'),
@@ -23,10 +25,12 @@ function Login() {
         resolver: yupResolver(schema)
     });
 
+    const clientId = "991219474491-720scu1n3qdf7224g2h9d7j92u3q7h5i.apps.googleusercontent.com";
+
+
     const [loading, setLoading] = useState(false);
 
     let navigate = useNavigate();
-
 
     // redux
     const user = useSelector((state) => state.auth.user)
@@ -40,7 +44,12 @@ function Login() {
         if (user) {
             navigate('/')
         }
+
+        gapi.load("client:auth2", () => {
+            gapi.auth2.init({clientId:clientId})
+        })
     }, [user]);
+
 
     const onSubmit = async response => {
         setLoading(true);
@@ -65,6 +74,24 @@ function Login() {
 
     }
 
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
+
+    // const handleFireBase = async () => {
+    //     const auth = getAuth();
+    //     signInWithEmailAndPassword(auth, email, password)
+    //     .then((userCredential) => {
+    //         // Signed in 
+    //         const user = userCredential.user;
+    //         // ...
+    //     })
+    //     .catch((error) => {
+    //         const errorCode = error.code;
+    //         const errorMessage = error.message;
+    //     });
+    // }
+
     return (
         <>
         {loading && <LoadingGlobal />}
@@ -83,6 +110,18 @@ function Login() {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" {...register('password')} />
                     <p className='text-danger'>{errors.password?.message}</p>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    {/* <div className="g-signin2" data-onsuccess="onSignIn">
+                        Đăng nhập với google
+                    </div> */}
+                    <GoogleLogin
+                        clientId={clientId}
+                        buttonText="Login"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                        cookiePolicy={'single_host_origin'}
+                    />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Đăng Nhập
