@@ -113,7 +113,7 @@ function Login() {
         
                     </div>
                     <div className="pass">
-                        <Link>Quên mật khẩu?</Link>
+                        <Link to={'/forgetPassword'}>Quên mật khẩu?</Link>
                     </div>
                     <div className="field">
                         <button className='btn btn-primary' type="submit">Đăng nhập</button>

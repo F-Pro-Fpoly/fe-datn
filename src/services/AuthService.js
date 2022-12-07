@@ -12,4 +12,13 @@ function loginApi(data) {
     return API.post('/login', data);
 }
 
-export {registerApi, loginApi}
+function forgetPassApi(data) {
+    return API.post('/normal/user/forgetPass', data);
+}
+
+
+function changePassApi({data, id}) {
+    return API.post(`/normal/user/ChangePass/${id}`, data);
+}
+
+export {registerApi, loginApi, forgetPassApi,changePassApi}

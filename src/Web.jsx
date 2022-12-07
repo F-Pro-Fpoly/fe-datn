@@ -72,6 +72,8 @@ import Test1 from "./pages/Test/Test1";
 import InjectionRegistration from "./pages/site/Vaccine/InjectionRegistration";
 import Detail from "./pages/site/Vaccine/Detail";
 import Report from "./pages/admin/Report";
+import ForgetPassword from "./pages/auth/ForgetPassword";
+import ChangPassword from "./pages/auth/ChangPassword";
 
 function Web() {
     const user = useSelector((state) => state.auth.user);
@@ -102,6 +104,8 @@ function Web() {
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
                     <Route path="/login"  element={<Login />}/>
+                    <Route path="/forgetPassword"  element={<ForgetPassword />}/>
+                    <Route path="/changePassword/:id"  element={<ChangPassword />}/>
                     <Route path="/logout"  element={<Logout />}/>
                 </Route>
                 <Route element={ RoleMiddleware([1, 2] ,<LayoutAdmin/>) } path="admin">
