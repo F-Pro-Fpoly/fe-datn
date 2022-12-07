@@ -12,4 +12,10 @@ function loginApi(data) {
     return API.post('/login', data);
 }
 
-export {registerApi, loginApi}
+function loginGoogleApi ({data}) {
+    let headers = {};
+    let url = `/login-google`;
+    return API.post(url, data,{headers: headers});
+}
+
+export {registerApi, loginApi, loginGoogleApi}

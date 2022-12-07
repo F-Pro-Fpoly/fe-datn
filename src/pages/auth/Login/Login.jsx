@@ -3,7 +3,7 @@ import "./Login.scss";
 import {useForm} from "react-hook-form";
 import { object, string, ref } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {loginApi} from "../../../services/AuthService";
+import {loginApi, loginGoogleApi} from "../../../services/AuthService";
 import { useSelector, useDispatch } from 'react-redux';
 import { addUser } from "../../../redux/slices/AuthSlice";
 import { useNavigate } from "react-router-dom";
@@ -74,8 +74,21 @@ function Login() {
 
     }
 
-    const responseGoogle = (response) => {
-        console.log(response);
+    const responseGoogle = async (response) => {
+        try {
+            setLoading(true);
+            let res = await loginGoogleApi({data: response});
+            let data = res.data;
+            dispatch(addUser(data.data));  
+            setLoading(false); 
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    }
+
+    const responseErrorGoogle = async (response) => {
+
     }
 
     // const handleFireBase = async () => {
@@ -130,7 +143,7 @@ function Login() {
                             clientId={clientId}
                             buttonText="Login"
                             onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
+                            onFailure={responseErrorGoogle}
                             cookiePolicy={'single_host_origin'}
                             render={renderProps => {
                                 return(
