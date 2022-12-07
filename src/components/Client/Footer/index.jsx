@@ -93,56 +93,52 @@ function Footer (getconfig) {
                         </div>
                         <div className="col-xl-3 col-md-4 col-12" style={{ alignSelf: "start"}}>
                       
-                            <div className="social" style={{paddingTop: "15%"}}>
-                            <div className="row">
-                                <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
-                                    <div className="col-lg-3">
+                            <div className="social" style={{paddingTop: "10%"}}>
+                            <div className="sf-social">
+                                        <div className="sf-social__wrapper">
+                                            <div className="sf-social--header">
+                                                <h2>Kết nối với chúng tôi</h2>
+                                            </div>
+                                <div className="sf-social-icons">
+                                    <div className="sf-social-icon--container">
                                         <Link   
                                             onClick={()=> window.open(
                                                 getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.link : ""
                                                 , "_blank")}
                                             >
-                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.description : ""}`} alt="fb" />
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialFaceBook ? getconfig.getconfig.SocialFaceBook.description : ""}`} alt="fb"className="img-icon" />
                                         </Link>    
                                     </div>   
-                                    <div className="col-lg-3">        
+                                    <div className="sf-social-icon--container">        
                                         <Link   
                                             onClick={()=> window.open(
                                                 getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.link : ""
                                                 , "_blank")}
                                             >
-                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.description : ""}`} alt="fb" />
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialYoutube ? getconfig.getconfig.SocialYoutube.description : ""}`} alt="fb"className="img-icon" />
                                         </Link>                  
                                     </div>   
-                                    <div className="col-lg-3">        
+                                    <div className="sf-social-icon--container">        
                                         <Link   
                                             onClick={()=> window.open(
                                                 getconfig.getconfig.SocialGroup ? getconfig.getconfig.SocialGroup.link : ""
                                                 , "_blank")}
                                             >
-                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialGroup ? getconfig.getconfig.SocialGroup.description : ""}`} alt="Group" />
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialGroup ? getconfig.getconfig.SocialGroup.description : ""}`} alt="Group"className="img-icon" />
                                         </Link>                  
                                     </div> 
-                                    <div className="col-lg-3">        
+                                    <div className="sf-social-icon--container">        
                                         <Link   
                                             onClick={()=> window.open(
                                                 getconfig.getconfig.SocialTiktok ? getconfig.getconfig.SocialTiktok.link : ""
                                                 , "_blank")}
                                             >
-                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialTiktok ? getconfig.getconfig.SocialTiktok.description : ""}`} alt="tt" />
+                                            <img src={`${process.env.REACT_APP_BE}${ getconfig.getconfig.SocialTiktok ? getconfig.getconfig.SocialTiktok.description : ""}`} alt="tt" className="img-icon" />
                                         </Link>                  
                                     </div> 
                                 </div>
-                                
-               
-                            {/* <div className="row">
-                                    
-                                   
-                                    
-                                   
-
-                                 
-                                </div> */}
+                            </div>
+                            </div>
                             </div>
                         </div>
                     </div>
