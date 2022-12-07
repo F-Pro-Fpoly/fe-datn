@@ -18,4 +18,13 @@ function loginGoogleApi ({data}) {
     return API.post(url, data,{headers: headers});
 }
 
-export {registerApi, loginApi, loginGoogleApi}
+function forgetPassApi(data) {
+    return API.post('/normal/user/forgetPass', data);
+}
+
+
+function changePassApi({data, id}) {
+    return API.post(`/normal/user/ChangePass/${id}`, data);
+}
+
+export {registerApi, loginApi, loginGoogleApi, forgetPassApi,changePassApi}
