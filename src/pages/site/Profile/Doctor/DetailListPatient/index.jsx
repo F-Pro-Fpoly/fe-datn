@@ -15,7 +15,7 @@ function DetailListPatient() {
     const param = useParams();
     const id = param.id
     const [search,setSearch] = useState({
-      "is_vaccine" : "",
+      "is_vaccine" : 0,
     });
     const start = async () => {
         setLoading(true)
