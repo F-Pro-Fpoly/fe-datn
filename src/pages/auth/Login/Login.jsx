@@ -107,7 +107,7 @@ function Login() {
 
     return (
         <>
-        {/* {loading && <LoadingGlobal />} */}
+        {loading && <LoadingGlobal />}
         <div className="login">
         <ToastContainer />
             <div className="content">
@@ -117,14 +117,13 @@ function Login() {
                     <div className="field">
                         <span className="fa fa-envelope"></span>
                         <input type="text" required placeholder="Nhập email"  {...register('email')}/>
-                        <p className='text-danger'>{errors.email?.message}</p>
                     </div>
+                    <p className='text-danger'>{errors.email?.message}</p>
                     <div className="field space">
                         <span className="fa fa-lock"></span>
                         <input type="password" className="password" required placeholder="Nhập mật khẩu"  {...register('password')} />
-                        <p className='text-danger'>{errors.password?.message}</p>
-        
                     </div>
+                    <p className='text-danger'>{errors.password?.message}</p>
                     <div className="pass">
                         <Link to={'/forgetPassword'}>Quên mật khẩu?</Link>
                     </div>
@@ -151,7 +150,7 @@ function Login() {
                                         onClick={renderProps.onClick} 
                                         disabled={renderProps.disabled}
                                     >
-                                        <i class="fa-brands fa-google"><span>Google</span></i>
+                                        <i className="fa-brands fa-google"><span>Google</span></i>
                                     </div>
                                 )
                             }}

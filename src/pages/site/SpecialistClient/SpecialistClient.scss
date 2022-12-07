@@ -150,6 +150,7 @@
                             -webkit-box-orient: vertical;
                             overflow: hidden;
                             margin-top: 20px;
+                            color: #333;
                         }
                         .btnType_1{
                             min-width: 9rem;
@@ -308,5 +309,8 @@
     .rightBlock {
         float: left;
         width: 100%;
+    }
+    .btnType_1{
+        display: none !important;
     }
 }

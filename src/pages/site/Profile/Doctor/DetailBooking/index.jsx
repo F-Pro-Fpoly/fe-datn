@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { getDetailMyBookingServiceAPI, getListStatuServiceAPI, updateBookingDoctorServiceAPI } from "../../../../../services/BookingService";
 import { toast,ToastContainer } from 'react-toastify';
 import {Button} from '@mui/material';
 import DetailInfo from "./DetailInfo";
+import {setLoading} from '../../../../../redux/slices/InterfaceSile'
+
 function DetailBooking() {
     const [isVaccine, setIsVaccine] = useState(false);
     const token = useSelector(state => state.auth.token)
+    const dispatch = useDispatch();
     const param  = useParams();
     const id = param.id;
     const formRef = useRef();
@@ -19,6 +22,7 @@ function DetailBooking() {
 
 
     const start = async () => {
+        dispatch(setLoading(true));
         let res = await getDetailMyBookingServiceAPI(token,id);
         let status = await getListStatuServiceAPI(token,1)
         let dataStatus = status.data
@@ -31,6 +35,7 @@ function DetailBooking() {
         if(dataArr.injection_info) {
             setIsVaccine(true);
         }
+        dispatch(setLoading(false));
     }
 
     useEffect(() => { 
@@ -212,6 +217,7 @@ function DetailBooking() {
                     {isVaccine &&
                     <DetailInfo 
                         data={value.injection_info}
+                        booking_id={value.id}
                         onChange={(is_update) => {
                             if(is_update){
                                 start();
