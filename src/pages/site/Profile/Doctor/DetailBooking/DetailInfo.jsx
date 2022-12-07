@@ -9,8 +9,9 @@ import Info from "./Info";
 import AddIcon from '@mui/icons-material/Add';
 import AddInjection from "./AddInjection";
 import { Form, Modal } from "react-bootstrap";
+import {createInjectionInfo} from "../../../../../services/InjectionInfo"
 
-function DetailInfo({data = [], onChange}) {
+function DetailInfo({data = [], onChange, booking_id}) {
     const token = useSelector(state => state.auth.token);
     const onChangeInfo = (value) => {
         onChange(value);
@@ -47,15 +48,29 @@ function DetailInfo({data = [], onChange}) {
             let dateReq = {
                 ...dataInjection,
                 'type': 're_injection',
-                // ''
+                'booking_id': booking_id,
+                'status_code': 'NEWVACCINE'
             };
+            // console.log(dateReq);
+            // return;
+
+            let res = await createInjectionInfo({token, data:dateReq});
+            let message = res.data.message;
+            toast.success(message);
+            setModalInjection(false);
+            setDataInjection({
+                'type_name': '',
+                'time_apointment': ''
+            })
+
+            onChange(true);
         } catch (error) {
             if (error.response) {
                 let message = error.response.data.message;
-                toast(message);
+                toast.error(message);
                 return
             }
-            toast(error);
+            toast.error(error);
         }
     }
 
@@ -94,7 +109,7 @@ function DetailInfo({data = [], onChange}) {
                     <Modal.Title>Thêm lịch</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={handleSubmitInjection}>
+                    <div>
                         <Form.Group>
                             <Form.Label>Tên mũi tiêm</Form.Label>
                             <Form.Control
@@ -116,10 +131,11 @@ function DetailInfo({data = [], onChange}) {
                             <Button
                                 variant="contained"
                                 color="success"
-                                type="submit"
+                                type="button"
+                                onClick={handleSubmitInjection}
                             >Thêm</Button>
                         </Form.Group>
-                    </Form>
+                    </div>
 
                 </Modal.Body>
             </Modal>
