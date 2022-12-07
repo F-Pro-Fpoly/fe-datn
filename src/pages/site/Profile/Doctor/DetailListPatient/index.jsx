@@ -14,27 +14,43 @@ function DetailListPatient() {
     const [list, setList] = useState([]);
     const param = useParams();
     const id = param.id
-  
+    const [search,setSearch] = useState({
+      "is_vaccine" : "",
+    });
     const start = async () => {
         setLoading(true)
-        let res = await getDetailListPatientServiceAPI(token, id);
+        let res = await getDetailListPatientServiceAPI(token, id, search);
         let data = res.data
         let dataArr = data.data;
         setLoading(false)
         setList(dataArr)
-
-
     }
 
 
     useEffect(() => {
         start()
-    }, [])
+    }, [search])
     
 
+
     return (  
+        <>
+           <div className="row g-3 mb-3 form-group">
         
-        <div className="table-responsive">
+            <div className="col-md-2">
+              <button className='btn btn-primary'
+               onClick={(e)=>setSearch({...search, "is_vaccine": 0})}
+              >Lịch khám bệnh</button>   
+            </div>
+            <div className="col-md-2">
+            <button className='btn btn-primary'
+              onClick={(e)=>setSearch({...search, "is_vaccine": 1})}
+              >Lịch tiêm</button>
+            </div>
+      
+        </div>
+
+         <div className="table-responsive">
             <Table  bordered hover>
               <thead>
                 <tr>
@@ -54,13 +70,13 @@ function DetailListPatient() {
                 
                   :
 
-                  list.map((val, index)=>(
-                    <tr key={index}>
-                      <td>{index+1}</td>
-                      <td>{val.code}</td>
-                      <td>{val.specialist_name}</td>
-                      <td>{val.status_name}</td>
-                      <td><Link to={`/ho-so-ca-nhan/chi-tiet-lich-kham/${val.id}`}><i className="fas fa-edit"></i></Link></td>
+                     list.map((val, index)=>(
+                      <tr key={index}>
+                        <td>{index+1}</td>
+                        <td>{val.code}</td>
+                        <td>{val.specialist_name}</td>
+                        <td>{val.status_name}</td>
+                        <td><Link to={`/ho-so-ca-nhan/chi-tiet-lich-kham/${val.id}`}><i className="fas fa-edit"></i></Link></td>
                     </tr>
                   ))
                 }
@@ -70,6 +86,8 @@ function DetailListPatient() {
             </Table>      
          
         </div>
+        </>
+     
     );
 }
 
