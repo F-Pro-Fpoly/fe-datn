@@ -41,13 +41,14 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
           let res = await getNewsDetailClient({token, slug});
           let data = res.data.data;
 
-          let resTW3 = await getlistTopWeek3API(token);
-          let dataNew = resTW3.data;
-          let dataTW3 = dataNew.data;
-
-          let resTW1 = await getlistTopWeek1API(token);
-          let dataNew1 = resTW1.data;
-          let dataTW1 = dataNew1.data;
+          let restw = await getlistTopWeek1API(token);
+          let datatw1 = restw.data;
+          let datatw = datatw1.data;
+          getListTopWeek1(datatw);
+          let resTW = await getlistTopWeek3API(token);
+          let dataNew3 = resTW.data;
+          let dataTW3 = dataNew3.data;
+          getListTopWeek3(dataTW3);
 
           let respon = await ListConfigService()
           let dataa = respon.data;
@@ -64,8 +65,6 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
           });
           dispatch(setLoading(false))
           setDetail(data);
-          getListTopWeek1(dataTW3);
-          getListTopWeek3(dataTW1);
           getLoading(false)
 
   }
@@ -205,7 +204,7 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                     <div className="sf-social">
                                         <div className="sf-social__wrapper">
                                             <div className="sf-social--header">
-                                                <h2>Kết nối với Sforum</h2>
+                                                <h2>Kết nối với FPro</h2>
                                             </div>
                                             <div className="sf-social-icons">
                                                 <div className="sf-social-icon--container"> 
