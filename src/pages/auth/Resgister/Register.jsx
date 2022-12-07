@@ -123,7 +123,7 @@ function Register() {
                                         onClick={renderProps.onClick} 
                                         disabled={renderProps.disabled}
                                     >
-                                        <i class="fa-brands fa-google"><span>Google</span></i>
+                                        <i className="fa-brands fa-google"><span>Google</span></i>
                                     </div>
                                 )
                             }}

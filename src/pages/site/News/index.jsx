@@ -164,7 +164,7 @@ function News(){
                             <div className="sf-social">
                                 <div className="sf-social__wrapper">
                                     <div className="sf-social--header">
-                                        <h2>Kết nối với Sforum</h2>
+                                        <h2>Kết nối với FPro</h2>
                                     </div>
                                     <div className="sf-social-icons">
                                         <div className="sf-social-icon--container"> 

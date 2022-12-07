@@ -57,18 +57,21 @@ document.title = "Chi tiết tin";
                           color="text.primary"
                         >
                           {item.content} 
-                        </Typography>
-                        <samp><p>
+                        
+                        <div className='row'>
+                          <div className='col-8'>
                           <i className="far fa-clock"></i> {item.created_at}
-
+                          </div>
+                          <div className='col-4'>
                           <i onClick={async()=>
-                              {if(window.confirm("Bạn có thật sự muốn xóa"))
-                                {await deleteCommentAPI({token: token, id: item.id});
-                                start();
-                              }}}
-                            style={{cursor: "pointer"}} className="fa fa-trash"></i> 
-                          </p>
-                        </samp>
+                                {if(window.confirm("Bạn có thật sự muốn xóa"))
+                                  {await deleteCommentAPI({token: token, id: item.id});
+                                  start();
+                                }}}
+                              style={{cursor: "pointer"}} className="fa fa-trash"></i> 
+                          </div>
+                          </div>
+                         </Typography>
                       </React.Fragment>
                     }
            
