@@ -25,11 +25,11 @@ function News(){
           let data = res.data;
           let dataArr = data.data;
           getNews(dataArr);
-          let restw = await getlistTopWeek1API(token);
+          let restw = await getlistTopWeek1API({token});
           let datatw1 = restw.data;
           let datatw = datatw1.data;
           getListTopWeek1(datatw);
-          let resTW = await getlistTopWeek3API(token);
+          let resTW = await getlistTopWeek3API({token});
           let dataNew3 = resTW.data;
           let dataTW3 = dataNew3.data;
           getListTopWeek3(dataTW3);
