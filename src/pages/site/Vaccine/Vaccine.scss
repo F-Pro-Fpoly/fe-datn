@@ -149,9 +149,9 @@
     }
 }
 
-@media screen and (max-width: 1080px) {
-
+@media screen and (max-width: 1090px) {
     .vaccine {
+        padding-top: 20px;
         &-title{
             &-left{
                flex: 0 0 100%;
@@ -179,6 +179,18 @@
                 &>button{
                     width: 10%;
                 }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .vaccine{
+        &-title{
+            padding-top: 10px;
+            &-left{
+                flex-direction: column;
+                gap: 10px 0;
             }
         }
     }
