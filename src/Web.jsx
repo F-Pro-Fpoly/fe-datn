@@ -96,8 +96,8 @@ function Web() {
                     <Route path="/vaccine" element={ <Vaccine /> } />
                     <Route path="/vaccine/:slug/:id" element={ <Detail /> } />
                    
-                    <Route path="/tin-tuc/*"  element={<News />}/>
-                    <Route path="/tin-tuc/:slug"  element={ (<DetailNews />)}/>
+                    <Route path="/tin-tuc/"  element={<News />}/>
+                    <Route path="/chi-tiet/:slug"  element={ (<DetailNews />)}/>
                     <Route path="/dang-ky-tiem" element={ <InjectionRegistration /> } />
                 </Route>
                

@@ -1,14 +1,10 @@
 import API from '../api';
 // import axios from 'axios';
-function getListNewsAPI(token, search = {}, page = 1, limit = 6) {
+function getListNewsAPI( search = {}, page = 1, limit = 6) {
     
     try {
         let headers ={}; 
         let url = `normal/news/list?`;
-        if(token){
-            headers = {...headers, "Authorization": `Bearer ${token}`};
-            // console.log(configs);
-        }
         for (const key in search) {
             url += `${key}=${search[key]}&`;
         }
@@ -21,35 +17,27 @@ function getListNewsAPI(token, search = {}, page = 1, limit = 6) {
 
 }
 
-function getlistTopWeek1API({token,data}) {
+function getlistTopWeek1API() {
     try {
         let headers ={}; 
         let url = `normal/news/topWeek1?`;
-        if(token){
-            headers = {...headers, "Authorization": `Bearer ${token}`};
-            // console.log(configs);
-        }
-        return API.get(url,data,{headers: headers});
+        return API.get(url,{headers: headers});
     } catch (error) {
         console.error(error);
         return [];
     }
 }
-function getlistTopWeek3API({token}) {
+function getlistTopWeek3API() {
     try {
         let headers ={}; 
         let url = `normal/news/topWeek3?`;
-        if(token){
-            headers = {...headers, "Authorization": `Bearer ${token}`};
-            // console.log(configs);
-        }
-        return API.get(url, {headers: headers});
+        return API.get(url,{headers: headers});
     } catch (error) {
         console.error(error);
         return [];
     }
 }
-function getNewsDetailClient({token, slug}) {
+function getNewsDetailClient(token,slug) {
     let headers ={}; 
     if(token){
         headers = {...headers, "Authorization": `Bearer ${token}`};

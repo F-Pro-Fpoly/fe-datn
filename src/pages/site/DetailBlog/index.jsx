@@ -37,15 +37,16 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
   const slug = param.slug;
   document.title = "Chi tiết tin";
   const start = async () =>{
-          dispatch(setLoading(true))
-          let res = await getNewsDetailClient({token, slug});
+          setDetail([]);
+          getLoading(true);
+          let res = await getNewsDetailClient(token,slug);
           let data = res.data.data;
 
-          let restw = await getlistTopWeek1API(token);
+          let restw = await getlistTopWeek1API();
           let datatw1 = restw.data;
           let datatw = datatw1.data;
           getListTopWeek1(datatw);
-          let resTW = await getlistTopWeek3API(token);
+          let resTW = await getlistTopWeek3API();
           let dataNew3 = resTW.data;
           let dataTW3 = dataNew3.data;
           getListTopWeek3(dataTW3);
@@ -53,29 +54,20 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
           let respon = await ListConfigService()
           let dataa = respon.data;
           let dataArrr = dataa.data;
-          setConfig(dataArrr)
-
-          setDetail({
-              ...NewsDetail,
-              code: data.code ?? null,
-              name: data.name ?? null,
-              file: data.file ?? null,
-              content: data.content ?? null,
-              views: data.views ?? 0,
-          });
-          dispatch(setLoading(false))
+          setConfig(dataArrr);
           setDetail(data);
-          getLoading(false)
-
+          getLoading(false);
   }
 
   useEffect (()=>{
       start();
-  }, []);
+  }, [param]);
 
 
     return(
+      
       <div className="Newsdetail">
+          {loading && <Loading />}
             <div className="page-title wb">
                 <div className="container news">
                     <div className="row">
@@ -92,12 +84,14 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                     </div>
                 </div>
             </div>
+           
                 <section className="section">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                             <div className="page-wrapper">
                                 <div className="blog-title-area">
+                              
                                     <h2>{NewsDetail.name}</h2>
                                     <div className="blog-meta big-meta">
                                         <small>
@@ -128,7 +122,7 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                 <hr className="invis2"/>
 
                             <div className="custombox clearfix">
-                                <h4 className="small-title">3 bình luận</h4>
+                                <h4 className="small-title">Chi tiết bình luận</h4>
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <Comment />
@@ -158,7 +152,7 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                     return(
                                 <div className="sf_right_featured--box sf_right_featured--first-box"key={index}>
                                     <div className="sf_right_featured--box-thumb"> 
-                                        <Link to={item.slug}>
+                                        <Link to={`/chi-tiet/${item.slug}`}>
                                             <div className="sf_right_featured--thumbnail-container"> 
                                                 <img src={ `${process.env.REACT_APP_BE}${item.file}` } data-pin-no-hover="true"/>
                                                 <div className="sf_right_featured--thumb-overlay"></div>
@@ -166,7 +160,7 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                         </Link>
                                     </div>
                                     <div className="sf_right_featured--box-content">
-                                    <Link to={item.slug}>{item.name}</Link>
+                                    <Link to={`/chi-tiet/${item.slug}`}>{item.name}</Link>
                                     </div>
                                 </div>
                                           )                                                 
@@ -180,7 +174,7 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                 return(
                                     <div className="sf_right_featured--box sf_right_featured--small-box"key={index}>
                                     <div className="sf_right_featured--box-thumb"> 
-                                            <Link to={item.slug}>
+                                            <Link to={`/chi-tiet/${item.slug}`}>
                                             <div className="sf_right_featured--thumbnail-container">
                                                 <img src={ `${process.env.REACT_APP_BE}${item.file}` } alt="website template image" className="img-fluid float-left"/>
                                                 <div className="sf_right_featured--thumb-overlay"></div>
@@ -188,7 +182,7 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                             </Link>
                                     </div>
                                     <div className="sf_right_featured--box-content"> 
-                                        <Link to={item.slug}>{item.name}</Link>
+                                        <Link to={`/chi-tiet/${item.slug}`}>{item.name}</Link>
                                     </div>
                                                 
                                     </div>

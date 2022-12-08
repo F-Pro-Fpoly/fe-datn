@@ -33,7 +33,7 @@ document.title = "Chi tiết tin";
     }
     useEffect(()=>{
     start()
-    },[]);
+    },[param]);
 
     return(
       <>
@@ -41,45 +41,37 @@ document.title = "Chi tiết tin";
               {
           Comment.map((item,index) => {
           return(
-                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} key={index}>
-                <ListItem alignItems="flex-start">
-                  <ListItemAvatar>
-                    <Avatar src={`${process.env.REACT_APP_BE}${item.user_avatar}`}/>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={item.user_name}
-                    secondary={
-                      <React.Fragment>
-                        <Typography
-                          sx={{ display: 'inline' }}
-                          component="span"
-                          variant="body2"
-                          color="text.primary"
-                        >
-                          {item.content} 
-                        
-                        <div className='row'>
-                          <div className='col-8'>
-                          <i className="far fa-clock"></i> {item.created_at}
-                          </div>
-                          <div className='col-4'>
-                          <i onClick={async()=>
-                                {if(window.confirm("Bạn có thật sự muốn xóa"))
-                                  {await deleteCommentAPI({token: token, id: item.id});
-                                  start();
-                                }}}
-                              style={{cursor: "pointer"}} className="fa fa-trash"></i> 
-                          </div>
-                          </div>
-                         </Typography>
-                      </React.Fragment>
-                    }
-           
-                  />
-                 
-                </ListItem>
-               
-              </List>
+          <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} key={index}>
+          <ListItem alignItems="flex-start">
+            <ListItemAvatar>
+              <Avatar alt="Remy Sharp" src={`${item.user_avatar}`} />
+            </ListItemAvatar>
+            <ListItemText
+              primary={item.user_name}
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    sx={{ display: 'inline' }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    {item.content}<br/>
+                  </Typography>
+                  <i className="far fa-clock"></i> {item.created_at}
+                  <i onClick={async()=>
+                                     {if(window.confirm("Bạn có thật sự muốn xóa"))
+                                       {await deleteCommentAPI({token: token, id: item.id});
+                                        start();
+                                        }}}
+                                    style={{cursor: "pointer"}} className="fa fa-trash"></i> 
+
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+          <Divider variant="inset" component="li" />
+        </List>
               )                  
             })
             }
