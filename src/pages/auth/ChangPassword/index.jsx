@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { Navigate, useParams } from 'react-router';
+import { Navigate, useNavigate, useParams } from 'react-router';
 import { toast,ToastContainer } from 'react-toastify';
 import { changePassApi } from '../../../services/AuthService';
 
 
 
 function ChangPassword() {
-    
+        let navigate = useNavigate();
         const formRefPass = useRef();
         const param = useParams()
         const id = param.id
@@ -22,15 +22,15 @@ function ChangPassword() {
                 let res = await changePassApi(req);   
                 let message = res.data.message;     
                 toast.success(message);
-                Navigate('/');
+                navigate('/login')
              
 
 
             } catch (error) {
                 
-                // let message = error.response.data.message
+                let message = error.response.data.message
                 console.log(error);
-                // toast.error(message)
+                toast.error(message)
             }
         }
         useEffect(() => {
