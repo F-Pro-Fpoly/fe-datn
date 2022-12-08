@@ -74,6 +74,7 @@ import Detail from "./pages/site/Vaccine/Detail";
 import Report from "./pages/admin/Report";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 import ChangPassword from "./pages/auth/ChangPassword";
+import Tomail from "./pages/auth/Logout/Tomail";
 
 function Web() {
     const user = useSelector((state) => state.auth.user);
@@ -107,6 +108,7 @@ function Web() {
                     <Route path="/forgetPassword"  element={<ForgetPassword />}/>
                     <Route path="/changePassword/:id"  element={<ChangPassword />}/>
                     <Route path="/logout"  element={<Logout />}/>
+                    <Route path="/tomail"  element={<Tomail />}/>
                 </Route>
                 <Route element={ RoleMiddleware([1, 2] ,<LayoutAdmin/>) } path="admin">
                     <Route index  element={<div><Dashboard/></div>}/>
