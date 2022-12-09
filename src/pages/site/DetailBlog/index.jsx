@@ -242,13 +242,6 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                     </div>
                                 </div>
                                 </div>
-                                <div className="widget">
-                                    <div className="banner-spot clearfix">
-                                        <div className="banner-img">
-                                            <Link><img src="../img/banner_03.jpg" alt="" className="img-fluid"/></Link> 
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
