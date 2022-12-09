@@ -9,7 +9,6 @@ import Pagination from 'react-bootstrap/Pagination';
 import ReactPaginate from 'react-paginate';
 import { ListConfigService } from '../../../services/normal/ConfigService';
 function News(){
-    const token = useSelector(state => state.auth.token);
     const [getconfig, setConfig] = useState([])
     const [ListNews, getNews] = useState([]);
     const [ListTopWeek3, getListTopWeek3] = useState([]);
@@ -21,15 +20,15 @@ function News(){
     const start = async () => {
           getNews([]);
           getLoading(true);
-          let res = await getListNewsAPI(token, {status:1}, page);
+          let res = await getListNewsAPI( {status:1}, page);
           let data = res.data;
           let dataArr = data.data;
           getNews(dataArr);
-          let restw = await getlistTopWeek1API({token});
+          let restw = await getlistTopWeek1API();
           let datatw1 = restw.data;
           let datatw = datatw1.data;
           getListTopWeek1(datatw);
-          let resTW = await getlistTopWeek3API({token});
+          let resTW = await getlistTopWeek3API();
           let dataNew3 = resTW.data;
           let dataTW3 = dataNew3.data;
           getListTopWeek3(dataTW3);
@@ -81,7 +80,7 @@ function News(){
                             <div className="row">
                                 <div className="col-md-4">
                                     <div className="post-media">
-                                        <Link to={item.slug}>
+                                        <Link to={`/chi-tiet/${item.slug}`}>
                                             <img src={`${process.env.REACT_APP_BE}${item.file}`} alt="" className="img-fluid"/>
                                             <div className="hovereffect"></div>
                                         </Link>
@@ -89,7 +88,7 @@ function News(){
                                 </div>
                                                             
                                 <div className="blog-meta big-meta col-md-8">
-                                    <Link to={item.slug}>
+                                    <Link to={`/chi-tiet/${item.slug}`}>
                                         <h4>{item.name}</h4>
                                         <p className="an " dangerouslySetInnerHTML={{__html: item.content}}></p>
                                     </Link>
@@ -122,7 +121,7 @@ function News(){
                                         return(
                                                 <div className="sf_right_featured--box sf_right_featured--first-box" key={index}>
                                                     <div className="sf_right_featured--box-thumb"> 
-                                                        <Link to={val.slug}>
+                                                        <Link to={`/chi-tiet/${val.slug}`}>
                                                             <div className="sf_right_featured--thumbnail-container"> 
                                                                 <img src={ `${process.env.REACT_APP_BE}${val.file}` } data-pin-no-hover="true"/>
                                                                 <div className="sf_right_featured--thumb-overlay"></div>
@@ -130,7 +129,7 @@ function News(){
                                                         </Link>
                                                     </div>
                                                     <div className="sf_right_featured--box-content">
-                                                        <Link to={val.slug}>{val.name}</Link>
+                                                        <Link to={`/chi-tiet/${val.slug}`}>{val.name}</Link>
                                                     </div>
                                                 </div>
                                             )                                                 
@@ -143,7 +142,7 @@ function News(){
                                     return(
                                         <div className="sf_right_featured--box sf_right_featured--small-box" key={index}>
                                             <div className="sf_right_featured--box-thumb"> 
-                                                    <Link to={item.slug}>
+                                                    <Link to={`/chi-tiet/${item.slug}`}>
                                                     <div className="sf_right_featured--thumbnail-container">
                                                         <img src={ `${process.env.REACT_APP_BE}${item.file}` } alt="website template image" className="img-fluid float-left"/>
                                                         <div className="sf_right_featured--thumb-overlay"></div>
@@ -151,7 +150,7 @@ function News(){
                                                     </Link>
                                             </div>
                                             <div className="sf_right_featured--box-content"> 
-                                                <Link to={item.slug}>{item.name}</Link>
+                                                <Link to={`/chi-tiet/${item.slug}`}>{item.name}</Link>
                                             </div>                                                   
                                         </div>
                                     )                                                 

@@ -37,7 +37,34 @@ function getDetailSereiceAPI(id = null) {
         return [];
     }
 }
+function getListVaccineCateAPI({token,active=1}) {
+    try {
+        let headers ={}; 
+        let url = `normal/vaccine_category/list_dmCategory?active${active}`;
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        return API.get(url,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+function getListCateAPI({token,id}) {
+    try {
+        let headers ={}; 
+        let url = `normal/vaccine/list_dm?category_ids${id}`;
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        return API.get(url,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 
 
-
-export { getListServiceAPI, getDetailSereiceAPI, getListVaccineNormalApi}
+export { getListServiceAPI, getDetailSereiceAPI, getListVaccineNormalApi,getListVaccineCateAPI,getListCateAPI}
