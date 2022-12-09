@@ -12,17 +12,16 @@ function Vaccine() {
     const token = useSelector(state => state.auth.token);
     const [list, setList] = useState([]);
     const [loading, getLoading] = useState(false);
-    const [category,setCate] = useState([]);
+    const [category,getCate] = useState([]);
     const param = useParams();
     const [search,setSearch]  = useState('');
-    const id = param.id;
     const start = async () => {
         getLoading(true);
         setList([]);
         let restw = await getListVaccineCateAPI({token});
         let dataCa = restw.data;
         let datatw = dataCa.data;
-        setCate(datatw);
+        getCate(datatw);
         let res = await getListServiceAPI( 1,search);
         let data = res.data;
         let dataArr = data.data;
@@ -60,9 +59,8 @@ function Vaccine() {
                                     {category.map((item,index)=>{
                                     return(
                                         <li className="vaccine-title-li"key={index}>
-                                            <Link >{item.name}</Link>
+                                            <Link  to={`/vaccinecate/${item.id}`}>{item.name}</Link>
                                         </li>
-                                       
                                         )                  
                                     })
                                     }
