@@ -161,9 +161,10 @@ function Info({item, index, dataStatus = [], onChange}) {
                         {check != 2 ? 
                            <Button variant="text" onClick={()=>handleIsUpdate(true)}>Thu gọn</Button> :
                     <Button 
-                    variant="contained" color="success" size="small"
-                    onClick={updateInjection}
-                >Xác nhận</Button>    
+                        variant="contained" color="success" size="small"
+                        onClick={updateInjection}
+                    >Xác nhận
+                    </Button>    
                     }
                 </div>
             </div>

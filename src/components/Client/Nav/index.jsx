@@ -5,6 +5,9 @@ import logo from "../../../image/logo.png"
 import {  getListServiceAPI } from "../../../services/normal/MenuService";
 import "./Nav.scss"
 import ProfileNav from "../ProfileNav/ProfileNav";
+import login from "../../../image/login.png"
+
+
 function Nav (getconfig){
     const path = useLocation()
     const navRef = useRef();
@@ -131,9 +134,10 @@ function Nav (getconfig){
                             <div className="navb-mobile-contact">
                                 <i className="fa-regular fa-bell"></i>
                             </div>
-                            <div className="navb-mobile-avatars">
-                                <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" />
-                            </div>
+                            <Link className="navb-mobile-avatars" to={`/ho-so-ca-nhan`}>
+                                {/* <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" /> */}
+                                <img src={user ? user.avatar : login} alt="" />
+                            </Link>
                         </div>
                     </div>
                 </div>

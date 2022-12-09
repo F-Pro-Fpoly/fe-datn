@@ -88,36 +88,43 @@ function ClinicUiTime({dataItem}) {
     return ( 
         <>           
             <div className="image">
-                <img src={`${process.env.REACT_APP_BE}${item.avatar}`} alt="" />
+                <img src={`${item.avatar}`} alt="" />
                 <Link to={"/doi-ngu-bac-si/"+item.slug_name+"/"+item.id}>Xem thêm</Link>
             </div>
             <div className="infocontent"> 
                 <h3>{item.name}</h3>
-                <span>{item.user_info}</span>          
+                <span className="infocontent-info">{item.user_info}</span>          
             </div>
 
             <div className="schedule">
-            <div className="row g-3 mb-3 form-group" style={{
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "nowrap",
-                marginRight : "10px"
-            }}>
-         
-                <select name="" className="form-control"  id="" onChange={(e)=>handleDateInput(e)} style={{
-                    marginRight:"5%"
-                }}>
-                    {item.schedule_dates.map((val, index) => (
-                        <option value={val.date} key={index}>{val.date_format}</option>
-                    ))}                     
-                </select>
+                <div className="mb-3 schedule-top">         
+                    {/* <select name="" className="form-control col-4"  id="" onChange={(e)=>handleDateInput(e)} style={{
+                        marginRight:"5%"
+                    }}>
+                        {item.schedule_dates.map((val, index) => (
+                            <option value={val.date} key={index}>{val.date_format}</option>
+                        ))}                     
+                    </select>
        
-                <select name="" className="form-control"  id="" onChange={(e)=>handleIntervalInput(e)}>
-                  <option value="M">Buổi sáng</option>  
-                  <option value="A">Buổi chiều</option>  
-                </select>
-
+                    <select name="" className="form-control col-4"  id="" onChange={(e)=>handleIntervalInput(e)}>
+                        <option value="M">Buổi sáng</option>  
+                        <option value="A">Buổi chiều</option>  
+                    </select> */}
+                    <div className="col-4">
+                        <select name="" className="form-control col-4"  id="" onChange={(e)=>handleDateInput(e)}>
+                            {item.schedule_dates.map((val, index) => (
+                                <option value={val.date} key={index}>{val.date_format}</option>
+                            ))}                     
+                        </select>
                     </div>
+                    <div className="col-4">
+                        <select name="" className="form-control col-4"  id="" onChange={(e)=>handleIntervalInput(e)}>
+                            <option value="M">Buổi sáng</option>  
+                            <option value="A">Buổi chiều</option>  
+                        </select>
+                    </div>
+
+                </div>
                 <div className="title">
                     <i className="fa-solid fa-calendar-days"></i>&nbsp;
                     <span>LỊCH KHÁM</span>
@@ -129,7 +136,7 @@ function ClinicUiTime({dataItem}) {
                                 <span>{val.time_start} - {val.time_end}</span>
                             </a>
                         </div>
-                    ))}                                    
+                    ))}
                 </div> 
             </div>
         </>

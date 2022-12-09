@@ -90,30 +90,29 @@ function SpecialistClient () {
                              
                         {loading && <Loading />}
                         {
-                    ListSpecialist.map((item,index) => {
-                    return(
-                          <div className="wrapManyNews" key={index}>                          
-                                    <div className="specialBlock_20">
-                                        <div className="wrapImgPart">
-                                            <Link className="imgPart figure1" to={item.slug}>
-                                        <img src={ `${process.env.REACT_APP_BE}${item.thumbnail_name}` } alt="" />
-                                      </Link>
-                                  </div>
-                                  <div className="textPart">
-                                      <Link className="linkNews">
-                                        <p className="titleNews">{item.name}</p>
-                                      </Link>
-                              
-                                      <p className="desNews">
-                                      {item.short_description}
-                                        </p>
-                                        <Link to={item.slug} className="btnType_1">Xem thêm</Link>
-                                  </div>
-                              </div>
-                          </div>
-                           )
-                                          
-                          })
+                            ListSpecialist.map((item,index) => {
+                                  return(
+                                        <Link className="wrapManyNews" to={item.slug} key={index}>                          
+                                            <div className="specialBlock_20">
+                                                <div className="wrapImgPart">
+                                                    <Link className="imgPart figure1" to={item.slug}>
+                                                      <img src={ `${process.env.REACT_APP_BE}${item.thumbnail_name}` } alt="" />
+                                                    </Link>
+                                                </div>
+                                                <div className="textPart">
+                                                    <Link className="linkNews">
+                                                      <p className="titleNews">{item.name}</p>
+                                                    </Link>
+                                            
+                                                    <p className="desNews">
+                                                      {item.short_description}
+                                                    </p>
+                                                    <Link to={item.slug} className="btnType_1">Xem thêm</Link>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    )                                               
+                              })
                           }
                         </div>
                         <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 rightBlock" id="sidebarBlock">

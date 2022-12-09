@@ -65,7 +65,8 @@ function ModalAddress({showModal, onHide}) {
                 bithday: dataModalAddress.bithday,
                 city_code: dataModalAddress.city.value,
                 district_code: dataModalAddress.district.value,
-                ward_code: dataModalAddress.ward.value
+                ward_code: dataModalAddress.ward.value,
+                address: dataModalAddress.address
             };
             let res = await updateUserClient({token, data})
             let message = res.data.message;

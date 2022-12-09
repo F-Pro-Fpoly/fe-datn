@@ -354,3 +354,21 @@
         width: 100% !important;
     }
 }
+
+@media screen and (max-width: 471px) {
+    .table-left{
+        .head{
+            width: 100% !important; 
+        }
+        .total{
+            text-align: unset !important;
+            margin-left: 0  !important     
+        }
+
+        .tbody{
+            padding: 0 !important;
+        }
+    }
+   
+  
+}

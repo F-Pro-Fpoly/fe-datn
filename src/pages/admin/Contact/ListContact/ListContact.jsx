@@ -24,21 +24,21 @@ function ListContact() {
     });
 
     const type = 0;
-    
-    const start = async () => {
-      getLoading(true)
-      setListContact([])
-      let res = await getContact({token,page,search, type}) 
-      let data = res.data 
-      let dataArr = data.data
-      getLoading(false)
-      setListContact(dataArr)
-      // handle paginate
-      let pagination = data.meta.pagination ?? null;
-      setPaginate(pagination);
-  }
+        const start = async () => {
+            getLoading(true)
+            setListContact([])
+            let res = await getContact({token,page,search, type}) 
+            let data = res.data 
+            let dataArr = data.data
+            getLoading(false)
+            setListContact(dataArr)
+            // handle paginate
+            let pagination = data.meta.pagination ?? null;
+            setPaginate(pagination);
+        }
 
     useEffect(() => { 
+
         start();
     }, [page])
 

@@ -210,4 +210,43 @@ function getUserClientService({token}) {
     }
     return API.get(url,{headers: headers});
 }
-export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor, updateUserClient, getUserClientService, getListUsersV2_1,DoctorProfile,UpdateDoctorProfile,DoctorAddProfile, EditUserApi,getInfoDoctorV2}
+
+
+function getListPatientServiceAPI(token = null, page = 1, search = {}) {
+    
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+
+        let url =`auth/user/listPatient`;
+        url += `?page=${page}&limit=10&name=${search.name}&date=${search.date}`
+        return API.get(url, {headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+
+}
+
+function getDetailListPatientServiceAPI(token = null,id = null, search = null) {
+    
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+
+        let url =`auth/user/listPatientDetail?user_id=${id}&is_vaccine=${search.is_vaccine}&limit=10`;
+        return API.get(url, {headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+
+}
+
+export { getListUsersAPI, createUserApi, deleteUser, updateUser, getUser,updateUserByName ,getInfo ,updatePassWord, getListUsersV2, getInfoDoctor, updateUserClient, getUserClientService, getListUsersV2_1,DoctorProfile,UpdateDoctorProfile,DoctorAddProfile, EditUserApi,getInfoDoctorV2,getListPatientServiceAPI,getDetailListPatientServiceAPI}

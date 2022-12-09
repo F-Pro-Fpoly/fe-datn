@@ -43,6 +43,7 @@ import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateS
 import AddNews from "./pages/admin/News/AddNews";
 import ListNews from "./pages/admin/News/ListNews";
 import UpdateNews from "./pages/admin/News/UpdateNews";
+import ListComment from "./pages/admin/News/Comment/ListComment";
 
 import AddNewsCategory from "./pages/admin/NewsCategory/AddNewsCategory";
 import ListNewsCategory from "./pages/admin/NewsCategory/ListNewsCategory";
@@ -72,6 +73,9 @@ import Test1 from "./pages/Test/Test1";
 import InjectionRegistration from "./pages/site/Vaccine/InjectionRegistration";
 import Detail from "./pages/site/Vaccine/Detail";
 import Report from "./pages/admin/Report";
+import ForgetPassword from "./pages/auth/ForgetPassword";
+import ChangPassword from "./pages/auth/ChangPassword";
+import Tomail from "./pages/auth/Logout/Tomail";
 
 function Web() {
     const user = useSelector((state) => state.auth.user);
@@ -94,15 +98,18 @@ function Web() {
                     <Route path="/vaccine" element={ <Vaccine /> } />
                     <Route path="/vaccine/:slug/:id" element={ <Detail /> } />
                    
-                    <Route path="/tin-tuc/*"  element={<News />}/>
-                    <Route path="/tin-tuc/:slug"  element={ (<DetailNews />)}/>
+                    <Route path="/tin-tuc/"  element={<News />}/>
+                    <Route path="/chi-tiet/:slug"  element={ (<DetailNews />)}/>
                     <Route path="/dang-ky-tiem" element={ <InjectionRegistration /> } />
                 </Route>
                
                 <Route element={<LayoutAuth />}>
                     <Route path="/register"  element={<Register />}/>
                     <Route path="/login"  element={<Login />}/>
+                    <Route path="/forgetPassword"  element={<ForgetPassword />}/>
+                    <Route path="/changePassword/:id"  element={<ChangPassword />}/>
                     <Route path="/logout"  element={<Logout />}/>
+                    <Route path="/tomail"  element={<Tomail />}/>
                 </Route>
                 <Route element={ RoleMiddleware([1, 2] ,<LayoutAdmin/>) } path="admin">
                     <Route index  element={<div><Dashboard/></div>}/>
@@ -165,6 +172,7 @@ function Web() {
                         <Route element={< ListNews />} path="list" />
                         <Route element={< AddNews />}  path="add" />
                         <Route element={< UpdateNews />} path="edit/:id" />
+                        <Route element={< ListComment />} path="list_news_comment/:slug" />
                     </Route>
                     <Route path="danh-muc">
                         <Route element={< ListNewsCategory />} path="list" />

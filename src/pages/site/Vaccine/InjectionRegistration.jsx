@@ -115,7 +115,7 @@ function InjectionRegistration() {
                 </div>
 
                 <div className="row">
-                    <div className="col-8">
+                    <div className="col-xl-8 col-md-12">
                         <div className="dang-ky-tiem-wrapper mt-3">
                             <div className="booking-main-address-top">
                                 <div className='booking-main-address-l'>
@@ -137,27 +137,38 @@ function InjectionRegistration() {
                                     <br />
                                     <span>{user.phone ?? ''}</span>
                                 </div>
-                                <div className="">
-                                    <p>
-                                        <span>
-                                            {user.address + ' ' ?? ''}
-                                        </span>
-                                        <span>
-                                            {user.ward_full_name  + ' '}, 
-                                        </span>
-                                        <span>
-                                            {user.district_full_name  + ' '}, 
-                                        </span>
-                                        <span>
-                                            {user.city_full_name}
-                                        </span>
-                                    </p>
-                                </div>
+                                {
+                                    user.address ? (
+                                        <div className="">
+                                            <p>
+                                                <span>
+                                                    {user.address + ' ' ?? ''}
+                                                </span>
+                                                <span>
+                                                    {(user.ward_full_name ?? '')  + ' '}, 
+                                                </span>
+                                                <span>
+                                                    {(user.district_full_name ?? '')  + ' '}, 
+                                                </span>
+                                                <span>
+                                                    {(user.city_full_name ?? '')}
+                                                </span>
+                                            </p>
+                                        </div>
+                                    ): (
+                                        <div className="">
+                                            <p>
+                                                Vui lòng nhập địa chỉ
+                                            </p>
+                                        </div>
+                                    )
+                                }
+                                
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-4">
+                    <div className="col-xl-4 col-md-12">
                         <div className="dang-ky-tiem-wrapper mt-3">
                             <h6>Chọn ngày</h6>
                             <div>

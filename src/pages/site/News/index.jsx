@@ -1,16 +1,14 @@
 import "./Blog.scss";
 import { Link } from "react-router-dom";
-import { getListNewsAPI,getlistTopWeek3API,getlistTopWeek1API} from "../../../services/normal/NewsService";
+import { getListNewsAPI,getlistTopWeek1API,getlistTopWeek3API} from "../../../services/normal/NewsService";
 import Loading from "../../../components/Loading/Loading";
 import {useDispatch,useSelector} from "react-redux";
 import { useEffect, useState } from "react";
 import Paginate from '../../../components/Paginate/Paginate';
 import Pagination from 'react-bootstrap/Pagination';
 import ReactPaginate from 'react-paginate';
-import ListUser from "../../admin/User/ListUser/ListUser";
 import { ListConfigService } from '../../../services/normal/ConfigService';
 function News(){
-    const token = useSelector(state => state.auth.token);
     const [getconfig, setConfig] = useState([])
     const [ListNews, getNews] = useState([]);
     const [ListTopWeek3, getListTopWeek3] = useState([]);
@@ -18,48 +16,37 @@ function News(){
     const [loading, getLoading] = useState(false);
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
-      document.title = "Tin tức";
-      const start = async () => {
+    document.title = "Tin tức";  
+    const start = async () => {
           getNews([]);
           getLoading(true);
-    
-          let res = await getListNewsAPI(token, {status:1}, page);
+          let res = await getListNewsAPI( {status:1}, page);
           let data = res.data;
           let dataArr = data.data;
-          
-  
-          let resTW3 = await getlistTopWeek3API(token);
-          let dataNew = resTW3.data;
-          let dataTW3 = dataNew.data;
-
-          let resTW1 = await getlistTopWeek1API(token);
-          let dataNew1 = resTW1.data;
-          let dataTW1 = dataNew1.data;
-  
-          let respon = await ListConfigService()
+          getNews(dataArr);
+          let restw = await getlistTopWeek1API();
+          let datatw1 = restw.data;
+          let datatw = datatw1.data;
+          getListTopWeek1(datatw);
+          let resTW = await getlistTopWeek3API();
+          let dataNew3 = resTW.data;
+          let dataTW3 = dataNew3.data;
+          getListTopWeek3(dataTW3);
+          let respon = await ListConfigService();
           let dataa = respon.data;
           let dataArrr = dataa.data;
-          setConfig(dataArrr)
-
-          getListTopWeek1(dataTW3);
-          getListTopWeek3(dataTW1);
-
-  
-          getNews(dataArr);
+          setConfig(dataArrr);
           let Pagination = data.meta.pagination ?? null;
           setPaginate(Pagination);
-  
           getLoading(false);
-        
-      };
+      }
       useEffect(()=>{
-
-        start();
+        start()
       },[page]);
+
       const onChangePage = (number) =>{
         setPage(number);
       }
-
       return(
         <div className="News">
         <div className="page-title wb">
@@ -93,7 +80,7 @@ function News(){
                             <div className="row">
                                 <div className="col-md-4">
                                     <div className="post-media">
-                                        <Link to={item.slug}>
+                                        <Link to={`/chi-tiet/${item.slug}`}>
                                             <img src={`${process.env.REACT_APP_BE}${item.file}`} alt="" className="img-fluid"/>
                                             <div className="hovereffect"></div>
                                         </Link>
@@ -101,7 +88,7 @@ function News(){
                                 </div>
                                                             
                                 <div className="blog-meta big-meta col-md-8">
-                                    <Link to={item.slug}>
+                                    <Link to={`/chi-tiet/${item.slug}`}>
                                         <h4>{item.name}</h4>
                                         <p className="an " dangerouslySetInnerHTML={{__html: item.content}}></p>
                                     </Link>
@@ -112,16 +99,15 @@ function News(){
                             </div>
                             )                  
                             })
-                            } 
-                            
+                            }
                         </div>                       
                     </div>
                     <hr className="invis3"/>
                     <div className="row ">
                         <div className="col-md-12 ">
-                        <nav aria-label="Page navigation">
-                        {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
-                        </nav>
+                            <nav aria-label="Page navigation">
+                                {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
+                            </nav>
                         </div>
                     </div> 
                   </>
@@ -131,33 +117,32 @@ function News(){
                         <div className="widget">
                             <div className="sf_right_featured--header"><h2>Xem nhiều tuần qua</h2></div>
                             {
-                                ListTopWeek1.map((item,index) => {
-                                    return(
-                                <div className="sf_right_featured--box sf_right_featured--first-box">
-                                    <div className="sf_right_featured--box-thumb"> 
-                                        <Link to={item.slug}>
-                                            <div className="sf_right_featured--thumbnail-container"> 
-                                                <img src={ `${process.env.REACT_APP_BE}${item.file}` } data-pin-no-hover="true"/>
-                                                <div className="sf_right_featured--thumb-overlay"></div>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                    <div className="sf_right_featured--box-content">
-                                    <Link to={item.slug}>{item.name}</Link>
-                                    </div>
-                                </div>
-                                          )                                                 
-                                        })
-                                    }  
+                                ListTopWeek1.map((val,index) =>{
+                                        return(
+                                                <div className="sf_right_featured--box sf_right_featured--first-box" key={index}>
+                                                    <div className="sf_right_featured--box-thumb"> 
+                                                        <Link to={`/chi-tiet/${val.slug}`}>
+                                                            <div className="sf_right_featured--thumbnail-container"> 
+                                                                <img src={ `${process.env.REACT_APP_BE}${val.file}` } data-pin-no-hover="true"/>
+                                                                <div className="sf_right_featured--thumb-overlay"></div>
+                                                            </div>
+                                                        </Link>
+                                                    </div>
+                                                    <div className="sf_right_featured--box-content">
+                                                        <Link to={`/chi-tiet/${val.slug}`}>{val.name}</Link>
+                                                    </div>
+                                                </div>
+                                            )                                                 
+                                })
+                            }
                             </div>
                         <div className="widget">
                             <div className="blog-list-widget">
-                         {
-                                ListTopWeek3.map((item,index) => {
+                         { ListTopWeek3.map((item,index) => {
                                     return(
                                         <div className="sf_right_featured--box sf_right_featured--small-box" key={index}>
                                             <div className="sf_right_featured--box-thumb"> 
-                                                    <Link to={item.slug}>
+                                                    <Link to={`/chi-tiet/${item.slug}`}>
                                                     <div className="sf_right_featured--thumbnail-container">
                                                         <img src={ `${process.env.REACT_APP_BE}${item.file}` } alt="website template image" className="img-fluid float-left"/>
                                                         <div className="sf_right_featured--thumb-overlay"></div>
@@ -165,12 +150,12 @@ function News(){
                                                     </Link>
                                             </div>
                                             <div className="sf_right_featured--box-content"> 
-                                                <Link to={item.slug}>{item.name}</Link>
+                                                <Link to={`/chi-tiet/${item.slug}`}>{item.name}</Link>
                                             </div>                                                   
                                         </div>
                                     )                                                 
                                 })
-                            }   
+                            }
                             </div>
                     </div>
                     <div className="widget">
@@ -178,7 +163,7 @@ function News(){
                             <div className="sf-social">
                                 <div className="sf-social__wrapper">
                                     <div className="sf-social--header">
-                                        <h2>Kết nối với Sforum</h2>
+                                        <h2>Kết nối với FPro</h2>
                                     </div>
                                     <div className="sf-social-icons">
                                         <div className="sf-social-icon--container"> 

@@ -7,6 +7,8 @@ import { getListBookingDoctorServiceAPI, getListStatuServiceAPI } from "../../..
 import Paginate from '../../../../../components/Paginate/Paginate';
 import { Link } from "react-router-dom";
 import moment from "moment";
+
+
 function ListBooking() {
 
     const token = useSelector(state => state.auth.token);
@@ -15,6 +17,9 @@ function ListBooking() {
     const [loading, getLoading] = useState(false);
     const [status, setStatus] = useState([])
     const now = moment().format('YYYY-MM-DD');
+    const [paginate, setPaginate] = useState(null);
+    const [page, setPage] = useState(1);
+
     const [search,setSearch] = useState({
       "date" : now,
       "status" : "",
@@ -25,7 +30,7 @@ function ListBooking() {
     const start = async () => {
       getLoading(true)
       getListbooking([])
-      let res = await getListBookingDoctorServiceAPI(token,search,id_doctor) 
+      let res = await getListBookingDoctorServiceAPI(token,page,search,id_doctor) 
       let status = await getListStatuServiceAPI(token,1)
       let dataStatus = status.data
       let dataArrStatus = dataStatus.data
@@ -34,11 +39,20 @@ function ListBooking() {
       let dataArr = data.data
       getLoading(false)
       getListbooking(dataArr)
+
+      // handle paginate
+      let pagination = data.meta.pagination ?? null;
+      setPaginate(pagination);
+  }
+
+  
+  const onChangePage = (number) =>{
+    setPage(number);
   }
 
     useEffect(() => {
         start();
-    }, [])
+    }, [page])
 
 
 
@@ -46,11 +60,15 @@ function ListBooking() {
         e.preventDefault();
         getLoading(true)
         getListbooking([])
-        let res = await getListBookingDoctorServiceAPI(token,search,id_doctor) 
+        let res = await getListBookingDoctorServiceAPI(token,page,search,id_doctor) 
         let data = res.data 
         let dataArr = data.data
         getLoading(false)
         getListbooking(dataArr)
+
+        // handle paginate
+        let pagination = data.meta.pagination ?? null;
+        setPaginate(pagination);
     }
     
     return ( 
@@ -110,6 +128,7 @@ function ListBooking() {
                   <th>Tên người đặt</th>
                   <th>Ngày khám</th>
                   <th>Giờ khám</th>
+                  <th>Vaccine</th>
                   <th>Trạng thái</th>
                   <th>Thao tác</th>     
                 </tr>
@@ -118,7 +137,7 @@ function ListBooking() {
                 {
                   listbooking.length == 0 ? 
                     <tr >
-                     <td colSpan="7" style={{textAlign:"center"}}> { loading ? <Loading /> :  "Hiện chưa có người đặt lịch"} </td>
+                     <td colSpan="8" style={{textAlign:"center"}}> { loading ? <Loading /> :  "Hiện chưa có người đặt lịch"} </td>
                   </tr>
                 
                   :
@@ -130,6 +149,7 @@ function ListBooking() {
                       <td>{val.customer_name}</td>
                       <td>{val.date}</td>
                       <td>{val.time_start} - {val.time_end}</td>
+                      <td>{val.vaccine_name ?? ''}</td>
                       <td>{val.status_name}</td>
                       <td><Link to={`/ho-so-ca-nhan/chi-tiet-lich-kham/${val.id}`}><i className="fas fa-edit"></i></Link></td>
                     </tr>
@@ -140,7 +160,7 @@ function ListBooking() {
               
             </Table>      
         </div>
-        
+        {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
         </>
      );
 }

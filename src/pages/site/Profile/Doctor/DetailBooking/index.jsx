@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { getDetailMyBookingServiceAPI, getListStatuServiceAPI, updateBookingDoctorServiceAPI } from "../../../../../services/BookingService";
 import { toast,ToastContainer } from 'react-toastify';
 import {Button} from '@mui/material';
 import DetailInfo from "./DetailInfo";
+import {setLoading} from '../../../../../redux/slices/InterfaceSile'
+
 function DetailBooking() {
     const [isVaccine, setIsVaccine] = useState(false);
     const token = useSelector(state => state.auth.token)
+    const dispatch = useDispatch();
     const param  = useParams();
     const id = param.id;
     const formRef = useRef();
@@ -19,6 +22,7 @@ function DetailBooking() {
 
 
     const start = async () => {
+        dispatch(setLoading(true));
         let res = await getDetailMyBookingServiceAPI(token,id);
         let status = await getListStatuServiceAPI(token,1)
         let dataStatus = status.data
@@ -31,6 +35,7 @@ function DetailBooking() {
         if(dataArr.injection_info) {
             setIsVaccine(true);
         }
+        dispatch(setLoading(false));
     }
 
     useEffect(() => { 
@@ -154,8 +159,9 @@ function DetailBooking() {
                     <div className="form-group mb-3">
                       
                         <select name="statusBooking" className="form-control" id=""
-                        value={ value.status_id ? value.status_id : 0} 
-                        onChange ={(e) => setValue( {...value, status_id: e.target.value})}
+                            value={ value.status_id ? value.status_id : 0} 
+                            onChange ={(e) => setValue( {...value, status_id: e.target.value})}
+                            disabled={value.status_id == 4 ? true: false}
                         >
                             <option value="0" disabled>Chọn trạng thái</option>
                             {
@@ -211,6 +217,7 @@ function DetailBooking() {
                     {isVaccine &&
                     <DetailInfo 
                         data={value.injection_info}
+                        booking_id={value.id}
                         onChange={(is_update) => {
                             if(is_update){
                                 start();

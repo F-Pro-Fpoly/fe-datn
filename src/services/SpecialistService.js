@@ -90,8 +90,21 @@ function updateSpecialist({token, data, id}) {
     }
     return API.put(`auth/specialist/edit/${id}`,data,{headers: headers});
 }
+function deleteSpecialist({token, id}){
+    try {
+        let headers = {};
+        let url = `auth/specialist/delete/${id}`;
+        if(token) {
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+        }
+        return API.delete(url,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 
 export { 
     getListServiceAPI,postListServiceAPI, getListAllSpecialist, 
-    getSpecialist, getListSpecialistClient, getSpecialistClient, updateSpecialist
+    getSpecialist, getListSpecialistClient, getSpecialistClient, updateSpecialist,deleteSpecialist
 }

@@ -173,7 +173,7 @@
                                 .banner-spot{background:#edeff2 no-repeat scroll center right / auto 100%;clear:both;display:block;
                                 height:auto;margin:0 auto;padding:15px;position:relative}
                                 .banner-img img{margin:auto;text-align:center;max-width:768px;float:none;width:100%;display:block}
-                                hr.invis2 {border:0;margin:5rem 0}
+                                hr.invis2 {border:0;margin:3rem 0}
                                 .blog-box{
                                 box-shadow: 4px 4px 10px 0 rgb(0 0 0 / 20%);
                                 padding: 10px 0 0 9px;
@@ -208,6 +208,27 @@
                             .blog-meta a{
                                 color: #111111;
                             }
+                            .comments-list small {
+                                color: #999 !important;
+                                font-size: 11px;
+                                letter-spacing: 2px;
+                                margin-top: 5px;
+                                padding-left: 10px;
+                                text-transform: uppercase;
+                            }
+                            .user_name {
+                                font-size: 16px;
+                                font-weight: 500;
+                            }
+                            .comments-list p {
+                                margin-bottom: 1rem;
+                            }
+                            .media-body .btn-primary {
+                                padding: 5px 15px !important;
+                                font-size: 11px !important;
+                                
+                            }
+
                             .sf-social__wrapper {
                             padding: 13px;
                             border: .5px solid #e7e7e7;
@@ -333,6 +354,61 @@
                             }
                             .img-icon{
                                 width: 35px;
+                            }
+                            .form-wrapper .form-control {
+                                background: #fff none repeat scroll 0 0;
+                                border: 1px dashed #dadada;
+                                border-radius: 0;
+                                font-size: 14px;
+                                font-weight: 400;
+                                line-height: 1;
+                                letter-spacing: 0.3px;
+                                margin-bottom: 1.4rem;
+                                min-height: 50px;
+                                text-transform: none;
+                            }
+                            .comments-list .media {
+                                padding: 1rem;
+                                margin-bottom: 15px;
+                            }
+                            .media {
+                                display: -webkit-box;
+                                display: -webkit-flex;
+                                display: -ms-flexbox;
+                                display: flex;
+                                -webkit-box-align: start;
+                                -webkit-align-items: flex-start;
+                                -ms-flex-align: start;
+                                align-items: flex-start;
+                            }
+                            .comments-list img {
+                                max-width: 80px;
+                                margin-right: 30px;
+                            }
+                            .media-body {
+                                -webkit-box-flex: 1;
+                                -webkit-flex: 1 1 0%;
+                                -ms-flex: 1 1 0%;
+                                flex: 1 1 0%;
+                            }
+                            .last-child {
+                                margin-bottom: 0 !important;
+                            }
+                            .small-title {
+                                background: #edeff2 none repeat scroll 0 0;
+                                font-size: 16px;
+                                left: 5%;
+                                line-height: 1;
+                                margin: 0;
+                                padding: 0.6rem 1.5rem;
+                                position: absolute;
+                                text-align: center;
+                                top: -18px;
+                            }
+                            .custombox {
+                                position: relative;
+                                padding: 3rem 2rem;
+                                border: 1px dashed #dadada;
                             }
 }
 @media (max-width: 590px){

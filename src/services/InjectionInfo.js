@@ -10,6 +10,17 @@ function updateInjectionInfo({token, data}) {
     return API.put(url ,data,{headers: headers});
 }
 
+function createInjectionInfo ({token, data}) {
+    let headers ={}; 
+    let url = `auth/injection-info/add`;
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+        // console.log(configs);
+    }
+    return API.post(url ,data,{headers: headers});
+}
+
 export {
-    updateInjectionInfo
+    updateInjectionInfo,
+    createInjectionInfo
 }
