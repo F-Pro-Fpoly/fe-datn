@@ -3,22 +3,30 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Vaccine.scss"
 import VaccineContent from "./VaccineContent";
-import { getListServiceAPI } from "../../../services/normal/VaccineService";
+import { getListServiceAPI,getListVaccineCateAPI} from "../../../services/normal/VaccineService";
 import Loading from "../../../components/Loading/Loading";
 import  {  useState } from "react";
+import {useSelector} from "react-redux";
+import { useParams } from "react-router";
 function Vaccine() {
-
+    const token = useSelector(state => state.auth.token);
     const [list, setList] = useState([]);
-    const [loading, getLoading] = useState(false); 
+    const [loading, getLoading] = useState(false);
+    const [category,getCate] = useState([]);
+    const param = useParams();
     const [search,setSearch]  = useState('');
     const start = async () => {
-        getLoading(true)
-        setList([])
-        let res = await getListServiceAPI( 1,search)
-        let data = res.data
-        let dataArr = data.data
+        getLoading(true);
+        setList([]);
+        let restw = await getListVaccineCateAPI({token});
+        let dataCa = restw.data;
+        let datatw = dataCa.data;
+        getCate(datatw);
+        let res = await getListServiceAPI( 1,search);
+        let data = res.data;
+        let dataArr = data.data;
         getLoading(false)
-        setList(dataArr)
+        setList(dataArr);
       
     }
 
@@ -46,20 +54,18 @@ function Vaccine() {
                                         <i className="fa-solid fa-bars"></i>
                                         <span>DANH MỤC</span>
                                     </button>
-                                    <ul className="vaccine-title-list">
-                                        <li className="vaccine-title-li">
-                                            <Link to={`/`}>Vaccine cho trẻ em</Link>
+                                   
+                                    <ul className="vaccine-title-list" >
+                                    {category.map((item,index)=>{
+                                    return(
+                                        <li className="vaccine-title-li"key={index}>
+                                            <Link  to={`/vaccinecate/${item.id}`}>{item.name}</Link>
                                         </li>
-                                        <li className="vaccine-title-li">
-                                            <Link to={`/`}>Vaccine cho trẻ tiền học đường</Link>
-                                        </li>
-                                        <li className="vaccine-title-li">
-                                            <Link to={`/`}>Vaccine cho trẻ vị thành niên</Link>
-                                        </li>
-                                        <li className="vaccine-title-li">
-                                            <Link to={`/`}>Vaccine cho người trưởng thành</Link>
-                                        </li>
+                                        )                  
+                                    })
+                                    }
                                     </ul>
+                              
                                 </div>
                             </div>
                             <div className="vaccine-title-item">

@@ -30,23 +30,22 @@ function InputComment(){
         }
     
       }
-    return(
-       
+    return(<>
+              <ToastContainer
+              position="top-right"
+              autoClose={4000}
+              hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover/>
             <form className="form-wrapper" onSubmit={submitForm} ref={FormRep}>
-                <ToastContainer
-                 position="top-right"
-                  autoClose={4000}
-                  hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover/>
                  <textarea className="form-control" placeholder="Nhập nội dung bình luận" name="content"></textarea>
                 <button type="submit" className="btn btn-primary">Gửi bình luận</button>
             </form>
-
+            </>
     )
 }
 export default InputComment;
