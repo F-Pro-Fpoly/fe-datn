@@ -3,16 +3,17 @@ import logo from "../../../../image/logo.png"
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getDetailListPatientServiceAPI, getUser } from "../../../../services/UserService";
 import Loading from "../../../../components/Loading/Loading";
 import "./MedicalRecord.scss"
 import CollapsibleTable from "./Collape";
+import {setLoading as setLoadingG} from "../../../../redux/slices/InterfaceSile"
 
 function MedicalRecord() {
 
-
+    const dispatch = useDispatch();
     const token = useSelector(state => state.auth.token)
     const [loading, setLoading] = useState(false);
     const [list, setList] = useState([]);
@@ -23,21 +24,68 @@ function MedicalRecord() {
       "is_vaccine" : 0,
     });
     const start = async () => {
-        setLoading(true)
-        let res = await getDetailListPatientServiceAPI(token, id, search);
+        dispatch(setLoadingG(true))
+        let res = await getDetailListPatientServiceAPI(token, id, {
+            "is_vaccine" : 0
+        });
         let data = res.data
         let dataArr = data.data;
 
         let infoUser = await getUser({token,id});
         let dataUser = infoUser.data.data
         setInfoUser(dataUser)
-        setLoading(false)
+        dispatch(setLoadingG(false))
         setList(dataArr)
     }
 
     useEffect(() => {
         start()
-    }, [search])
+
+    }, []);
+
+    const handleHistoryBtn = async () => {
+        try {
+            dispatch(setLoadingG(true))
+            let res = await getDetailListPatientServiceAPI(token, id, {
+                "is_vaccine" : 0
+            });
+            let data = res.data
+            let dataArr = data.data;
+
+            let infoUser = await getUser({token,id});
+            let dataUser = infoUser.data.data
+            setInfoUser(dataUser)
+            dispatch(setLoadingG(false))
+            setList(dataArr)
+            setSearch({
+                "is_vaccine" : 0,
+            })
+        } catch (error) {
+            
+        }
+    }
+
+    const handleVaccineBtn = async () => {
+        try {
+            dispatch(setLoadingG(true))
+            let res = await getDetailListPatientServiceAPI(token, id, {
+                "is_vaccine" : 1
+            });
+            let data = res.data
+            let dataArr = data.data;
+
+            let infoUser = await getUser({token,id});
+            let dataUser = infoUser.data.data
+            setInfoUser(dataUser)
+            dispatch(setLoadingG(false))
+            setList(dataArr)
+            setSearch({
+                "is_vaccine" : 1,
+            })
+        } catch (error) {
+            
+        }
+    }
     
    
     return ( 
@@ -82,13 +130,15 @@ function MedicalRecord() {
                         <div className="row g-3 mb-3 form-group">                   
                             <div className="col-md-2" style={{minWidth: "20%"}}>
                                 <button className='btn btn-primary'
-                                   onClick={(e)=>setSearch({...search, "is_vaccine": 0})}
+                                //    onClick={(e)=>setSearch({...search, "is_vaccine": 0})}
+                                onClick={handleHistoryBtn}
                                 >Lịch sử khám bệnh</button>   
                             </div>
                             <div className="col-md-2" style={{minWidth: "20%"}}>
                                 <button className='btn btn-primary'
                                 style={{width: "100%"}}
-                                  onClick={(e)=>setSearch({...search, "is_vaccine": 1})}
+                                //   onClick={(e)=>setSearch({...search, "is_vaccine": 1})}
+                                onClick={handleVaccineBtn}
                                 >Lịch sử tiêm</button>
                             </div>               
                         </div>

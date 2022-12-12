@@ -48,7 +48,7 @@ function Row(props) {
           {row.vaccine_name}
         </TableCell>
         <TableCell align="center">{row.status_name}</TableCell>
-        {console.log(row)}
+        {/* {console.log(row)} */}
         <TableCell align="right">
             <Link to={`/ho-so-ca-nhan/chi-tiet-lich-kham/${row.id}`}><i className="fas fa-edit"></i></Link>    
         </TableCell>
@@ -96,18 +96,16 @@ function Row(props) {
 }
 
 
-export default function CollapsibleTable(props) {
+export default function CollapsibleTable({list}) {
 
   const [rows, setRowss] = useState([]);
  
     useEffect(() => {
-  
-      let Arr =  props.list.map((item,value) => {
-        
+      console.log(list);
+      let Arr = list.map((item, index) => {
         return  createData(item.id, item.vaccine_name, item.status_name, item.injection_info)
       })
-    setRowss(Arr)
-
+      setRowss(Arr)
     }, [])
     
 
