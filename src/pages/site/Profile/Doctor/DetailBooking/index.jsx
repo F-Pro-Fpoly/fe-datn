@@ -136,13 +136,13 @@ function DetailBooking() {
                         placeholder="Nhập địa chỉ email" />
                     </div>
                 </div>
-            
+         
                 {
                     !isVaccine && (
                         <div className="mb-3">
                             <label className="form-label">Trạng thái thanh toán</label>
                             <input className="form-control"name = "code" disabled
-                            defaultValue={value.payment_method == "default" ? "Thanh toán tại cơ sở y tế" : "Thanh toán qua momo"}
+                            defaultValue={value.payment_method = "default" ? "Thanh toán tại cơ sở y tế" : "Thanh toán qua momo"}
                             type="text" placeholder="Trạng thái thanh toán" />
                         </div>  
                     )

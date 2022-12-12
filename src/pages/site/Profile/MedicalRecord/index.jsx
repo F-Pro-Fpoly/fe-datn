@@ -1,0 +1,153 @@
+import "./MedicalRecord.scss"
+import logo from "../../../../image/logo.png"
+import { useState } from 'react';
+import { useEffect } from 'react';
+import Table from 'react-bootstrap/Table';
+import { useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { getDetailListPatientServiceAPI, getUser } from "../../../../services/UserService";
+import Loading from "../../../../components/Loading/Loading";
+import "./MedicalRecord.scss"
+import CollapsibleTable from "./Collape";
+
+function MedicalRecord() {
+
+
+    const token = useSelector(state => state.auth.token)
+    const [loading, setLoading] = useState(false);
+    const [list, setList] = useState([]);
+    const [infoUser, setInfoUser] = useState({});
+    const param = useParams();
+    const id = param.id
+    const [search,setSearch] = useState({
+      "is_vaccine" : 0,
+    });
+    const start = async () => {
+        setLoading(true)
+        let res = await getDetailListPatientServiceAPI(token, id, search);
+        let data = res.data
+        let dataArr = data.data;
+
+        let infoUser = await getUser({token,id});
+        let dataUser = infoUser.data.data
+        setInfoUser(dataUser)
+        setLoading(false)
+        setList(dataArr)
+    }
+
+    useEffect(() => {
+        start()
+    }, [search])
+    
+   
+    return ( 
+        <div className="vstack gap-4">
+            <div className="card border">
+            
+            <div className="card-header border-bottom">
+                <h4 className="card-header-title">HỒ SƠ BỆNH ÁN</h4>
+            </div>
+            
+             
+            <div className="card-body">
+
+                <div className="header-box">
+                    <h3>Thông tin cá nhân</h3>
+                    <div className="row">
+                        <div className="col-md-1"></div>
+                        <div className="col-md-3">
+                            <div className="image">
+                                <img
+                                src={`${process.env.REACT_APP_BE}${infoUser.thumbnail_name}`}
+                                alt="ảnh đại điện" />
+                            </div>
+                        </div>
+                        <div className="col-md-1"></div>
+                        <div className="col-md-6">
+                            <div className="info">
+                         
+                                <p>Họ và tên: {infoUser.name}</p>
+                                <p>Ngày sinh: {infoUser.date}</p>
+                                <p>Địa chỉ email: {infoUser.email}</p>
+                                <p>Số điện thoại: {infoUser.phone}</p>
+                                <p>Giới tính: {infoUser.gender == 1 ? "Nam" :infoUser.gender ==  2 ? "Nữ" : "Khác" }</p>
+
+                            </div>
+                        </div>
+                    </div>                 
+                </div>
+                <div className="body-box">          
+                    <>
+                    <h3>Lịch sử khám</h3>
+                        <div className="row g-3 mb-3 form-group">                   
+                            <div className="col-md-2" style={{minWidth: "20%"}}>
+                                <button className='btn btn-primary'
+                                   onClick={(e)=>setSearch({...search, "is_vaccine": 0})}
+                                >Lịch sử khám bệnh</button>   
+                            </div>
+                            <div className="col-md-2" style={{minWidth: "20%"}}>
+                                <button className='btn btn-primary'
+                                style={{width: "100%"}}
+                                  onClick={(e)=>setSearch({...search, "is_vaccine": 1})}
+                                >Lịch sử tiêm</button>
+                            </div>               
+                        </div>
+                        
+                        {
+                            search.is_vaccine == 0 ?
+                            <div className="table-responsive">
+                            <Table  bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>STT</th>               
+                                    <th>Chuyên khoa</th>       
+                                    <th>Nội dung khám</th>       
+                                    <th>Kết quả sau khám</th>       
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>     
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    loading ? <Loading /> :
+                                    list.map((val, index)=>(
+                                                     
+                                    val.is_vaccine == 0 ?
+                                    <tr key={index}>
+                                        <td>{index+1}</td>
+                                        <td>{val.specialist_name}</td>
+                                        <td>{val.description}</td>
+                                        <td>{val.infoAfterExamination}</td>
+                                        <td>{val.status_name}</td>
+                                        <td><Link to={`/ho-so-ca-nhan/chi-tiet-lich-kham/${val.id}`}><i className="fas fa-edit"></i></Link></td>
+                                    </tr>
+                                    : ""
+                                  
+                                ))
+                                } 
+                                                            
+                            </tbody>
+                
+                            </Table>               
+                        </div>
+                        :
+                 
+                        <CollapsibleTable list = {list} />
+ 
+                 
+           
+                        }
+
+
+                    
+                    </>
+                </div>
+   
+        
+            </div>
+        </div>
+        </div>
+     ); 
+}
+
+export default MedicalRecord;
