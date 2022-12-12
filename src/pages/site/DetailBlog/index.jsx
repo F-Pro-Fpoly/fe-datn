@@ -18,6 +18,7 @@ import Comment from "./Comment";
 import InputComment from "./InputComment";
 export default function DitailNews(){
     const [getconfig, setConfig] = useState([])
+    const user = useSelector(state => state.auth.user);
   const param = useParams();
   const dispatch = useDispatch();
   const token = useSelector((state)=>state.auth.token);
@@ -135,8 +136,14 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                             <div className="custombox clearfix">
                                 <h4 className="small-title">Bình luận</h4>
                                 <div className="row">
-                                <div className="col-lg-12">
-                                    <InputComment />
+                                    <div className="col-lg-12">
+                                        {
+                                            user ? (
+                                                <InputComment />
+                                            ):(
+                                                <h5>Vui lòng đăng nhập để bình luận</h5>
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>
