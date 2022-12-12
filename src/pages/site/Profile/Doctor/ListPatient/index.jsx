@@ -6,16 +6,10 @@ import { Link } from 'react-router-dom';
 import Loading from '../../../../../components/Loading/Loading';
 import Paginate from "../../../../../components/Paginate/Paginate";
 import { getListPatientServiceAPI } from '../../../../../services/UserService';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-
 
 function ListPatient() {
 
-    const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const token = useSelector(state => state.auth.token)
     const [loading, setLoading] = useState(false);
     const [list, setList] = useState([]);
@@ -97,7 +91,7 @@ function ListPatient() {
                   <th>Ngày sinh</th>
                   <th>Ngày khám gần nhất</th>       
                   <th>Hồ sơ bệnh án</th>
-                  <th>Thao tác</th>     
+                  {/* <th>Thao tác</th>      */}
                 </tr>
               </thead>
               <tbody>
@@ -119,10 +113,10 @@ function ListPatient() {
                        :
                         <span className='text-warning'>Chưa đặt lịch khám bao giờ</span>}</td>
                       <td>
-                        <Link onClick={handleShow}> Xem hồ sơ</Link>
+                        <Link to={`/ho-so-ca-nhan/ho-so-benh-an/${val.id}`}> Xem hồ sơ</Link>
                       </td>
                     
-                      <td><Link to={`/ho-so-ca-nhan/chi-tiet-danh-sach-lich-kham/${val.id}`}><i className="fas fa-edit"></i></Link></td>
+                      {/* <td><Link to={`/ho-so-ca-nhan/chi-tiet-danh-sach-lich-kham/${val.id}`}><i className="fas fa-edit"></i></Link></td> */}
                     </tr>
                   ))
                 }
@@ -134,55 +128,7 @@ function ListPatient() {
         </div>
 
 
-        <Modal show={show} onHide={handleClose}>
-                    
-                    <div className="mod" > 
-                        <Modal.Header closeButton>
-                        <Modal.Title>Hồ sơ bệnh án</Modal.Title>
-                        </Modal.Header>
-                 
-                        <Modal.Body>
-
-                            <h3>để gì trong đây giờ 😒😒😒😒😒</h3>
-
-                                        {/* <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
-                                            
-                                            <Form.Control type="text" name="name" className="form-control" placeholder="Nhập họ tên" />
-                                            
-                                        </Form.Group>
-                                        <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
-                                            
-                                        <Form.Control type="hidden" name="type" className="form-control" value="1" />
-                                            
-                                        </Form.Group>
-                                        <Form.Group className="mb-3 form-group " controlId="formBasicEmail">
-                                            
-                                            <Form.Control type="email" name="email" className="form-control" placeholder="Nhập địa chỉ email" />
-                                            
-                                        </Form.Group>
-                                        <Form.Group className="mb-3 form-group " controlId="formBasicEmail">
-                                            
-                                            <Form.Control type="text" name="phone" className="form-control" placeholder="Nhập số điện thoại" />
-                                            
-                                        </Form.Group>
-                                        <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
-                                        
-                                            <Form.Control type="text" name="contents" className="form-control" placeholder="Nhập vấn đề quan tâm" />
-                                            
-                                        </Form.Group>
-                                 */}
-                                
-                        </Modal.Body>
-                        <Modal.Footer>
-                       
-                        <Button variant="primary"   onClick={handleClose}>
-                            Đóng
-                        </Button>
-                        </Modal.Footer>
-                       
-                    </div>
-                    </Modal>
-
+    
         </>
 
     );

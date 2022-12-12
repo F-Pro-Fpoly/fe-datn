@@ -49,7 +49,7 @@ function Menu(infoUser) {
                                 </li>
                                  <li className="nav-item">
                                  <NavLink className="nav-link" to="/ho-so-ca-nhan/danh-sach-nguoi-benh">
-                                     <i className="bi bi-people fa-fw me-2"></i>Danh sách người bệnh
+                                     <i className="bi bi-people fa-fw me-2"></i>Danh sách bệnh nhân
                                  </NavLink>
                                 </li>
                                </>
@@ -61,7 +61,7 @@ function Menu(infoUser) {
                                     </NavLink>
                                  </li>
                                  <li className="nav-item">
-                                 <NavLink className="nav-link" to={`/ho-so-ca-nhan/ho-so/${infoUser.infoUser.id}`}>
+                                 <NavLink className="nav-link" to={`/ho-so-ca-nhan/ho-so-benh-an/${infoUser.infoUser.id}`}>
                                      <i className="bi bi-people fa-fw me-2"></i>Hồ sơ bệnh án
                                  </NavLink>
                               </li>
