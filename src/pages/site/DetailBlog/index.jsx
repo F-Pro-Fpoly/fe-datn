@@ -59,7 +59,6 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
           setDetail(data);
           getLoading(false);
   }
-
   useEffect (()=>{
       start();
   }, [param]);
@@ -107,7 +106,7 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                                 <i className="fa fa-eye"></i> {NewsDetail.views}
                                             </Link> 
                                         </small>
-                                            <Link>
+                                            <Link to={`/danh-muc-tin/${NewsDetail.category_id}`}>
                                             Danh Mục: {NewsDetail.category_name}
                                             </Link>
                                     </div>

@@ -38,6 +38,7 @@ import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
 import Profile from "./pages/site/Profile";
 import News from "./pages/site/News";
 import DetailNews from "./pages/site/DetailBlog";
+import NewsCate from "./pages/site/DetailBlog/NewsCate";
 import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateSpecialist";
 
 import AddNews from "./pages/admin/News/AddNews";
@@ -101,6 +102,7 @@ function Web() {
                    
                     <Route path="/tin-tuc/"  element={<News />}/>
                     <Route path="/chi-tiet/:slug"  element={ (<DetailNews />)}/>
+                    <Route path="/danh-muc-tin/:id"  element={ (<NewsCate />)}/>
                     <Route path="/dang-ky-tiem" element={ <InjectionRegistration /> } />
                 </Route>
                
