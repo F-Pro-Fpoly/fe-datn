@@ -25,25 +25,31 @@ function ProfileDoctor() {
         document.title = "Thông tin bác sĩ"
     }, [])
 
+
+
     return ( 
-        <div className="container-fluid" id="spec">  
-              <div className="specialBlock_19">
-                <div className="container containerFix">
-                  <div className="wrapBox">
-                    <p className="text_1" style={{textTransform:"uppercase"}}>Bác sĩ { infoDoctor.doctor_name }</p>
-                    <div className="">
-                      <ol className="breadcrumb breadcrumbFix">
-                        <li className="breadcrumb-item">
-                          <Link to="/"><span style={{fontWeight: "700"}}>Trang chủ</span></Link>
-                        </li>
-                        <li className="breadcrumb-item">
-                          <span style={{fontWeight: "700"}}>Đội ngũ bác sĩ</span>
-                        </li>
-                      </ol>
-                    </div>
+
+       
+            <div className="container-fluid" id="spec">  
+            { infoDoctor != "none"  ?
+        <>
+             <div className="specialBlock_19">
+              <div className="container containerFix">
+                <div className="wrapBox">
+                  <p className="text_1" style={{textTransform:"uppercase"}}>Bác sĩ { infoDoctor.doctor_name }</p>
+                  <div className="">
+                    <ol className="breadcrumb breadcrumbFix">
+                      <li className="breadcrumb-item">
+                        <Link to="/"><span style={{fontWeight: "700"}}>Trang chủ</span></Link>
+                      </li>
+                      <li className="breadcrumb-item">
+                        <span style={{fontWeight: "700"}}>Đội ngũ bác sĩ</span>
+                      </li>
+                    </ol>
                   </div>
                 </div>
               </div>
+            </div>
             <div className="section_1">
                 <div className="container">
                     <div className="wrapPeopleBlock">
@@ -66,7 +72,7 @@ function ProfileDoctor() {
                                                     <img alt="facebook" src="https://nhakhoathanhan.vn/uploads/img/faceItem_2.svg" />
                                             </Link>
                                                 </div>
-                                         
+                                        
                                         </div>
                                     </div>
                                     <p className="textInfo"></p>
@@ -79,9 +85,9 @@ function ProfileDoctor() {
                                     <a href="#gt" className="btn btn-primary" style={{marginRight: "2%"}}>Giới thiệu</a>
                                     <a href="#td" className="btn btn-primary" style={{marginRight: "2%"}}>Trình độ</a>
                                     <a href="#kn" className="btn btn-primary" style={{marginRight: "2%"}}>Kinh nghiệm</a>
-           
+            
                         
-                      
+                        
                                 </div>
                             </div>
                         </div>
@@ -97,7 +103,7 @@ function ProfileDoctor() {
                         <div className="data_contents">
                         <p></p>
                         <p dir="ltr" role="presentation" dangerouslySetInnerHTML={{__html: infoDoctor.introduce}} /> 
-                         
+                        
                     </div>
                     </div>
                     <div className="containerFix" id="td">
@@ -107,7 +113,7 @@ function ProfileDoctor() {
                         <div className="data_contents">
                         <p></p>
                         <p dir="ltr" role="presentation" dangerouslySetInnerHTML={{__html: infoDoctor.level}} /> 
-         
+        
                         </div>
                     </div>
                 
@@ -118,14 +124,29 @@ function ProfileDoctor() {
                         <div className="data_contents">
                         <p></p>
                         <p dir="ltr" role="presentation" dangerouslySetInnerHTML={{__html: infoDoctor.experience}} /> 
-                       
+                        
                         </div>
                     </div>
 
                 </div>
             </div>
-              
-          </div>
+        </>
+               : 
+            <div className="aibietgidau">
+                <div class="site">
+                <div class="sketch">
+                    <div class="bee-sketch red"></div>
+                    <div class="bee-sketch blue"></div>
+            </div>
+
+           <span className="font">
+           <h1>Bác sĩ
+                <small>Hiện tại chưa có thông tin</small></h1>
+           </span>
+            </div>
+            </div>
+                  }
+            </div>
     )
 
 }

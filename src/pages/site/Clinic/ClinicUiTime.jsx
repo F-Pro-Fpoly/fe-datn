@@ -130,13 +130,22 @@ function ClinicUiTime({dataItem}) {
                     <span>LỊCH KHÁM</span>
                 </div>
                 <div className="row schedule-time">
-                    {timeSlots.map((val, index) => (
+
+
+                    { 
+                    timeSlots.length > 0 ? 
+                    timeSlots.map((val, index) => (
                         <div className="col-4 schedule-time-col" key={index} onClick={()=>saveBookingInfo2(val)}>
                             <a href="#" className="schedule-time-item">
                                 <span>{val.time_start} - {val.time_end}</span>
                             </a>
                         </div>
-                    ))}
+                    ))
+                        :
+                    <div className="col-6 schedule-time-col">
+                        Hiện tại chưa có lịch khám
+                    </div>
+                }
                 </div> 
             </div>
         </>

@@ -119,6 +119,9 @@ function ListBooking() {
           </div>
         </div>
 
+        {
+          search.is_vaccine == 0 ?
+
         <div className="table-responsive">
             <Table  bordered hover>
               <thead>
@@ -128,7 +131,7 @@ function ListBooking() {
                   <th>Tên người đặt</th>
                   <th>Ngày khám</th>
                   <th>Giờ khám</th>
-                  <th>Vaccine</th>
+                  <th>Hồ sơ bệnh án</th>
                   <th>Trạng thái</th>
                   <th>Thao tác</th>     
                 </tr>
@@ -149,7 +152,8 @@ function ListBooking() {
                       <td>{val.customer_name}</td>
                       <td>{val.date}</td>
                       <td>{val.time_start} - {val.time_end}</td>
-                      <td>{val.vaccine_name ?? ''}</td>
+                      {/* <td>{val.vaccine_name ?? ''}</td> */}
+                      <td> <Link to={`/ho-so-ca-nhan/ho-so-benh-an/${val.user_id}`}> Xem hồ sơ</Link></td>
                       <td>{val.status_name}</td>
                       <td><Link to={`/ho-so-ca-nhan/chi-tiet-lich-kham/${val.id}`}><i className="fas fa-edit"></i></Link></td>
                     </tr>
@@ -160,6 +164,51 @@ function ListBooking() {
               
             </Table>      
         </div>
+
+                :
+                <div className="table-responsive">
+                <Table  bordered hover>
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>Mã lịch khám</th>
+                      <th>Tên người đặt</th>
+                      <th>Ngày khám</th>
+                      <th>Hồ sơ bệnh án</th>
+                      <th>Trạng thái</th>
+                      <th>Thao tác</th>     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      listbooking.length == 0 ? 
+                        <tr >
+                         <td colSpan="8" style={{textAlign:"center"}}> { loading ? <Loading /> :  "Hiện chưa có người đặt lịch"} </td>
+                      </tr>
+                    
+                      :
+    
+                      listbooking.map((val, index)=>(
+                      
+                        <tr key={index}>
+                          <td>{index+1}</td>
+                          <td>{val.code}</td>
+                          <td>{val.customer_name}</td>
+                          <td>{val.time_apointment}</td>
+                          <td> <Link to={`/ho-so-ca-nhan/ho-so-benh-an/${val.user_id}`}> Xem hồ sơ</Link></td>
+                          <td>{val.status_name}</td>
+                          <td><Link to={`/ho-so-ca-nhan/chi-tiet-lich-kham/${val.id}`}><i className="fas fa-edit"></i></Link></td>
+                        </tr>
+                      ))
+                    }
+                    
+                  </tbody>
+                  
+                </Table>      
+            </div>
+              }
+
+
         {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
         </>
      );
