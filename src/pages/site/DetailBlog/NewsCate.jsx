@@ -1,48 +1,55 @@
-import "./Blog.scss";
+import "../News/Blog.scss";
 import { Link } from "react-router-dom";
-import { getListNewsAPI,getlistTopWeek1API,getlistTopWeek3API} from "../../../services/normal/NewsService";
+import { getListCateAPI,getlistTopWeek1API,getlistTopWeek3API} from "../../../services/normal/NewsService";
 import Loading from "../../../components/Loading/Loading";
 import {useDispatch,useSelector} from "react-redux";
 import { useEffect, useState } from "react";
 import Paginate from '../../../components/Paginate/Paginate';
 import Pagination from 'react-bootstrap/Pagination';
-import ReactPaginate from 'react-paginate';
+import { useParams } from "react-router";
 import { ListConfigService } from '../../../services/normal/ConfigService';
-function News(){
+function NewsCate(){
     const [getconfig, setConfig] = useState([])
-    const [ListNews, getNews] = useState([]);
+    const [ListCate, getCate] = useState([]);
     const [ListTopWeek3, getListTopWeek3] = useState([]);
     const [ListTopWeek1, getListTopWeek1] = useState([]);
     const [loading, getLoading] = useState(false);
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
+    const param = useParams();
     document.title = "Tin tức";  
     const start = async () => {
-          getNews([]);
+        getCate([]);
           getLoading(true);
-          let res = await getListNewsAPI( {status:1}, page);
+          const id =param.id;
+
+          let res = await getListCateAPI({id,page,status:1});
           let data = res.data;
           let dataArr = data.data;
-          getNews(dataArr);
+          getCate(dataArr);
+
           let restw = await getlistTopWeek1API();
           let datatw1 = restw.data;
           let datatw = datatw1.data;
           getListTopWeek1(datatw);
+
           let resTW = await getlistTopWeek3API();
           let dataNew3 = resTW.data;
           let dataTW3 = dataNew3.data;
           getListTopWeek3(dataTW3);
+
           let respon = await ListConfigService();
           let dataa = respon.data;
           let dataArrr = dataa.data;
           setConfig(dataArrr);
+
           let Pagination = data.meta.pagination ?? null;
           setPaginate(Pagination);
           getLoading(false);
       }
       useEffect(()=>{
         start()
-      },[page]);
+      },[param,page]);
 
       const onChangePage = (number) =>{
         setPage(number);
@@ -53,14 +60,15 @@ function News(){
             <div className="container news">
                 <div className="row">
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <h1>Tin Tức</h1>
+                        <h1>Tin Tức {ListCate.category_name}</h1>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
-                        <ol className="breadcrumb">
+                 
+                        <ol className="breadcrumb" >
                             <li className="breadcrumb-item"><Link to={"/"}>Trang chủ </Link></li>
                             <li className="breadcrumb-item">Tin tức</li>
-                          
                         </ol>
+             
                     </div>                   
                 </div>
             </div>
@@ -71,12 +79,15 @@ function News(){
                 <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12 left-side">   
                 <>
                     <div className="page-wrapper">  
-                        <div className="blog-list clearfix">
+                        <div className="blog-list clearfix">    
                             {
-                        ListNews.map((item,index) => {
+                        ListCate.map((item,index) => {
                         return(
+                           
                         <div className="blog-box"  key={index}>
+                            
                             <div className="row">
+                              
                                 <div className="col-md-4">
                                     <div className="post-media">
                                         <Link to={`/chi-tiet/${item.slug}`}>
@@ -91,9 +102,8 @@ function News(){
                                         <h4>{item.name}</h4>
                                         <p className="an " dangerouslySetInnerHTML={{__html: item.content}}></p>
                                     </Link>
-                                    <samp>
-                                        <p><i className="far fa-clock"></i> {item.created_at}</p>
-                                        <p>Danh mục: {item.category_name}</p>
+                                    <samp><p><i className="far fa-clock"></i> {item.created_at}</p>
+                                    <p>Danh mục: {item.category_name}</p>
                                     </samp>
                                 </div> 
                             </div>
@@ -217,4 +227,4 @@ function News(){
   
       );
   }
-export default News;
+export default NewsCate;
