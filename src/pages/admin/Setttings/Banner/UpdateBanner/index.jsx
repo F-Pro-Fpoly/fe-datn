@@ -17,26 +17,24 @@ function UpdateBanner() {
     const formRef = useRef();
     const [loading, getLoading] = useState(false);
     const [silde,setSilde] = useState([])
-    const [textEditer, setTextEditer] = useState('');
+   
     const start = async () => {
         let res = await getDetailBanner({token,id})
         let data = res.data
         let dataArr = data.data
         setSilde(dataArr)
-        setTextEditer(dataArr.description)
+
     }
 
     useEffect(() => {
-
         start()
-
     }, [])
     
 
     const hanndleSubmit = async (data) => {
         data.preventDefault();
         const formData = new FormData(formRef.current)
-        formData.append('description', textEditer.description);
+        formData.append('description', silde.description);
         const req = {
             "token" : token,
             "data": formData,  
@@ -79,13 +77,13 @@ function UpdateBanner() {
                 </div>
                 <div className="form-group mb-2">
                     <label htmlFor="" className="form-label">Mô tả</label>
-
+                    {console.log(silde)}
                     <Editor
                             apiKey='v7uxagccs26096o8eu0kae4sbg90s9bicobdondox6ybfxen'
                             // onInit={(evt, editor) => editorRef.current = editor}
-                            defaultValue={silde.description}
+                            value={silde.description}
                             onEditorChange={(event, editor) => {
-                                setTextEditer({...textEditer, description: editor.getContent()})
+                                setSilde({...silde, description: editor.getContent()})
                             }}
                             init={{
                                 height: 500,
