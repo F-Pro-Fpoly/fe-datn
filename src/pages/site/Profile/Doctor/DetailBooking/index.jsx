@@ -20,6 +20,7 @@ function DetailBooking() {
     const [value, setValue] = useState([]);
     const [status, setStatus] = useState([])
     const [changeState, setchangeState] = useState("");
+    const [inputDisable, setInputDisable] = useState();
 
 
     const start = async () => {
@@ -32,6 +33,7 @@ function DetailBooking() {
         let data = res.data;
         let dataArr = data.data;
         setValue(dataArr);
+        setInputDisable(dataArr.status_id);
 
         if(dataArr.injection_info) {
             setIsVaccine(true);
@@ -47,6 +49,7 @@ function DetailBooking() {
 
     const HandleSubmit = async (e) => {
         e.preventDefault();
+        dispatch(setLoading(true));
         const formData = new FormData(formRef.current)
 
         const req = {
@@ -59,16 +62,15 @@ function DetailBooking() {
             let res =  await updateBookingDoctorServiceAPI(req);
             let message = res.data.message;
             toast.success(message);
+            dispatch(setLoading(false));
         } catch (error) {
             console.log(error);
             let res = error.response;
             let status = res.status;
-            console.log(status);
-          
-                let data = res.data;
-                let message = data.message;
-                toast.error(message);
-          
+            let data = res.data;
+            let message = data.message;
+            toast.error(message);
+            dispatch(setLoading(false));
         }
 
     }
@@ -185,7 +187,7 @@ function DetailBooking() {
                         <select name="statusBooking" className="form-control" id=""
                             value={ value.status_id ? value.status_id : 0} 
                             onChange ={(e) => setValue( {...value, status_id: e.target.value})}
-                            disabled={value.status_id == 4 ? true: false}
+                            disabled={inputDisable == 4 ? true: false}
                         >
                             <option value="0" disabled>Chọn trạng thái</option>
                             {
