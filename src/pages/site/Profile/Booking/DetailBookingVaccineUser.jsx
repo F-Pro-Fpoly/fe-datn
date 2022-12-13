@@ -56,6 +56,13 @@ function DetailBookingVaccineUser() {
                     defaultValue={value.code}
                     type="text" placeholder="Mã lịch khám" />
                 </div>   
+
+                <div className="mb-3">
+                    <label className="form-label">Tên vaccine</label>
+                    <input className="form-control" name = "code" disabled
+                    defaultValue={value.vaccine_name}
+                    type="text" placeholder="Tên vaccine" />
+                </div>   
                 
                 <div className="row g-3">
                     <div className="col-md-6">
