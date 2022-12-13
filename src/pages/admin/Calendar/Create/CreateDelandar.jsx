@@ -89,6 +89,7 @@ function CreateDalandar() {
     }
     const handleSubmitModal = async (e) => {
         e.preventDefault();
+        dispatch(setLoading(true));
         let formData = new FormData(formRef.current);
         // console.log(formData.getAll('timeslot'));
         let dateFormat = moment(new Date(date)).format('YYYY-MM-DD');
@@ -103,7 +104,9 @@ function CreateDalandar() {
             // start()
             handleSearchBtn();
             setShow(false)
+            dispatch(setLoading(false));
         } catch (error) {
+            dispatch(setLoading(false));
             let res = error.res;
             let message = res.data.message;
             toast.error(message);
