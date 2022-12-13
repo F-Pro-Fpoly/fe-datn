@@ -91,7 +91,10 @@ function News(){
                                         <h4>{item.name}</h4>
                                         <p className="an " dangerouslySetInnerHTML={{__html: item.content}}></p>
                                     </Link>
-                                    <samp><p><i className="far fa-clock"></i> {item.created_at}</p></samp>
+                                    <samp>
+                                        <p><i className="far fa-clock"></i> {item.created_at}</p>
+                                        <p>Danh mục: {item.category_name}</p>
+                                    </samp>
                                 </div> 
                             </div>
                             <hr className="invis"/>

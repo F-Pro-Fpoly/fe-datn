@@ -63,11 +63,12 @@ function NewsCate(){
                         <h1>Tin Tức {ListCate.category_name}</h1>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
-                        <ol className="breadcrumb">
+                 
+                        <ol className="breadcrumb" >
                             <li className="breadcrumb-item"><Link to={"/"}>Trang chủ </Link></li>
-                            <li className="breadcrumb-item">Tin tức thuộc {ListCate.category_name}</li>
-                          
+                            <li className="breadcrumb-item">Tin tức</li>
                         </ol>
+             
                     </div>                   
                 </div>
             </div>
@@ -82,8 +83,11 @@ function NewsCate(){
                             {
                         ListCate.map((item,index) => {
                         return(
+                           
                         <div className="blog-box"  key={index}>
+                            
                             <div className="row">
+                              
                                 <div className="col-md-4">
                                     <div className="post-media">
                                         <Link to={`/chi-tiet/${item.slug}`}>
@@ -98,7 +102,9 @@ function NewsCate(){
                                         <h4>{item.name}</h4>
                                         <p className="an " dangerouslySetInnerHTML={{__html: item.content}}></p>
                                     </Link>
-                                    <samp><p><i className="far fa-clock"></i> {item.created_at}</p></samp>
+                                    <samp><p><i className="far fa-clock"></i> {item.created_at}</p>
+                                    <p>Danh mục: {item.category_name}</p>
+                                    </samp>
                                 </div> 
                             </div>
                             <hr className="invis"/>
