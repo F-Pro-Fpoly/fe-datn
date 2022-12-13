@@ -106,10 +106,11 @@ function Info({item, index, dataStatus = [], onChange}) {
                     </span>
                 </div>
                 <div className="col-12 mt-3">
+                   
                     <div className="row align-items-end">
                         <div className="col-4">
                             <span className="me-2">Ngày: {dataItem.time_apointment}</span>
-                            <Form.Select value={dataItem.status_id} onChange={(e) => setDataItem({...dataItem, status_id: e.target.value})}
+                            <Form.Select defaultValue={dataItem.status_id} onChange={(e) => setDataItem({...dataItem, status_id: e.target.value})}
                             disabled = {check != 2 ? true : false}
                             >
                                 <option value="">--Chọn--</option>
@@ -123,9 +124,13 @@ function Info({item, index, dataStatus = [], onChange}) {
                                 
 
                                 {check != 2 ? 
-                                
+
                                 <div className="col-4">
-                                <Button className="btn btn-primary">Tải file</Button> 
+                                    {
+                                         dataItem.file_id ?   <a href={`${process.env.REACT_APP_BE}${ dataItem.file_link}` }
+                                         className="btn btn-primary">Tải file</a>  : ""
+                                    }
+                           
                                 </div>
                                 :
                                 <div className="col-4">
