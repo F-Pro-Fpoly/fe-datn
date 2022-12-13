@@ -15,6 +15,7 @@ function DetailBooking() {
     const param  = useParams();
     const id = param.id;
     const formRef = useRef();
+    const checkRole = useSelector(state => state.auth.user.role_id)
 
     const [value, setValue] = useState([]);
     const [status, setStatus] = useState([])
@@ -114,7 +115,14 @@ function DetailBooking() {
                     type="text" placeholder="Tên vaccine" />
                 </div> 
                 :
-                ""}
+              
+                <div className="mb-3">
+                    <label className="form-label">Tên chuyên khoa</label>
+                    <input className="form-control" name = "specialist_name" disabled
+                    defaultValue={value.specialist_name}
+                    type="text" placeholder="Tên chuyên khoa" />
+                </div> 
+              }
 
 
 
@@ -166,7 +174,7 @@ function DetailBooking() {
                 
             
                 <div className="mb-3">
-                    <label className="form-label">Thông tin khám</label>
+                    <label className="form-label">Thông tin từ bệnh nhân</label>
                     <textarea name="" className="form-control" style={{resize:"none"}} id="" cols="5" rows="2"
                     defaultValue={value.description} disabled>
                     </textarea>
@@ -197,19 +205,23 @@ function DetailBooking() {
                                 <textarea name="reasonCancel" className="form-control" style={{resize:"none"}}
                                 defaultValue={value.reasonCancel ? value.reasonCancel : ""}
                                 id="" cols="5" rows="2"
+                                disabled= {checkRole != 2 ? true : false}
                                 ></textarea>
                             </div>   
                          :
                         <>
                             <div className="mb-3">
-                                <label className="form-label">Thông tin khám</label>
+                                <label className="form-label">Thông tin sau khám</label>
                                 <textarea name="info" className="form-control" style={{resize:"none"}}
                                 defaultValue={value.infoAfterExamination ? value.infoAfterExamination : ""}
                                 id="" cols="5" rows="2"
+                                disabled= {checkRole != 2 ? true : false}
                                 ></textarea>
                             </div>   
 
                               {
+                                checkRole != 2 ? "" :
+
                                  value.is_vaccine  == 1 ? "" :
 
                                  <div className="mb-3">
@@ -249,16 +261,27 @@ function DetailBooking() {
 
                  
 
-                 
-                      
+                 {
+                    checkRole != 2  ? 
+
                     <div className="row g-3">
-                        <div className="col-md-2">
-                            <button className="btn btn-primary" style={{width:"100%"}} type="submit">Xác nhận</button>
-                        </div>
-                        <div className="col-md-2">
-                            <Link className="btn btn-primary" style={{width:"100%"}} to="/ho-so-ca-nhan/danh-sach-lich-kham">Danh sách</Link>
-                        </div>
+
+                    <div className="col-md-2">
+                        <Link className="btn btn-primary" style={{width:"100%"}} to="/ho-so-ca-nhan/lich-kham">Trở về</Link>
                     </div>
+                    </div>
+                :
+                <div className="row g-3">
+                    <div className="col-md-2">
+                        <button className="btn btn-primary" style={{width:"100%"}} type="submit">Xác nhận</button>
+                    </div>
+                    <div className="col-md-2">
+                        <Link className="btn btn-primary" style={{width:"100%"}} to="/ho-so-ca-nhan/danh-sach-lich-kham">Danh sách</Link>
+                    </div>
+                </div>
+                 }
+                      
+                    
                 </form> 
     
             </div>

@@ -67,7 +67,7 @@ function Profile () {
                         <Route path="/chi-tiet-lich-dat/:id" element={<Details  />} />
                         <Route path="/chi-tiet-lich-tiem/:id" element={<DetailBookingVaccineUser  />} />
                         <Route path="/danh-sach-nguoi-benh"  element={RoleMiddleware([2] ,   <ListPatient/> )} />
-                        <Route path="/chi-tiet-lich-kham/:id" element={RoleMiddleware([2],  <DetailBooking/>)} />
+                        <Route path="/chi-tiet-lich-kham/:id" element={ <DetailBooking/>} />
                         <Route path="/chi-tiet-danh-sach-lich-kham/:id" element={RoleMiddleware([2],  <DetailListPatient/>)} />
                     </Routes>
                    
