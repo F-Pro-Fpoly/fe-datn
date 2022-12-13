@@ -108,7 +108,7 @@ function DetailBookingVaccineUser() {
                 
             
                     <div className="mb-3">
-                        <label className="form-label">Thông tin khám</label>
+                        <label className="form-label">Thông tin từ bệnh nhân</label>
                         <textarea name="" className="form-control" style={{resize:"none"}} id="" cols="5" rows="2"
                         defaultValue={value.description} disabled>
                         </textarea>
