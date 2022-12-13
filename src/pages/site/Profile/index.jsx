@@ -27,7 +27,6 @@ function Profile () {
         setInfoUser({...infoUser, gender: input})
     }
     const changAvt = (input) => {
-        console.log(input);
         setInfoUser({...infoUser, avatar: input})
     }
     const start  = async () =>{

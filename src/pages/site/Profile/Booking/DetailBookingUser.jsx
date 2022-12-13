@@ -25,7 +25,7 @@ function DetailBookingUser() {
     }, [])
 
 
-console.log(value);
+
     return ( 
        
       <>
