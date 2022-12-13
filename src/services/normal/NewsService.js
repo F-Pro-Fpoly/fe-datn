@@ -99,7 +99,19 @@ function updateComment({token, data, id}) {
     }
     return API.put(`auth/news_comment/update_news_comment/${id}`,data,{headers: headers});
 }
+function getListCateAPI(id,search = '') {
+    try {
+        let headers ={}; 
+        let url = `normal/news/news-detail`;
+        url += `?category_ids=${id}&name=${search}`;
+        return API.get(url,{headers: headers});
+        
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 export { getListNewsAPI,getlistTopWeek3API,getlistComment
-        ,getlistTopWeek1API,getNewsDetailClient,
+        ,getlistTopWeek1API,getNewsDetailClient,getListCateAPI,
         createCommentAPI,deleteCommentAPI,updateComment,getOneComment
 }

@@ -410,6 +410,13 @@
                                 padding: 3rem 2rem;
                                 border: 1px dashed #dadada;
                             }
+                            .an {
+                                display: block;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;  /* số dòng hiển thị */
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                            }
 }
 @media (max-width: 590px){
 .pp .float-right, .pp .float-left {

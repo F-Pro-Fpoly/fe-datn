@@ -51,12 +51,15 @@ document.title = "Chi tiết tin";
               secondary={
                 <React.Fragment>
                   <Typography
+                  className='an'
                     sx={{ display: 'inline' }}
                     component="span"
                     variant="body2"
                     color="text.primary"
+
                   >
-                    {item.content}<br/>
+                    {item.content}
+                    <br/>
                   </Typography>
                   <i className="far fa-clock"></i> {item.created_at}
                 </React.Fragment>
