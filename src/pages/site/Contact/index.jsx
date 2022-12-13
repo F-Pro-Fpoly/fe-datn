@@ -85,12 +85,6 @@ function Contact(){
                                     <input  type="text" placeholder="VD: 0794248804" name="phone" />
                                     <label>Số điện thoại</label>
                                   </div>
-                                  {/* <div className="flex-rev-contact">
-                                      <select  name="type" id="">
-                                          <option value="0" >Liên hệ</option>
-                                      </select>
-                                      <label>Đăng ký lịch khám </label>
-                                    </div> */}
                                   <div className="flex-rev-contact">
                                     <textarea placeholder="Nhập nội dung vào ô này !...." name="contents" ></textarea>
                                     <label >Nội dung</label>

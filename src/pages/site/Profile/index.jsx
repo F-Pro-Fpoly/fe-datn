@@ -13,9 +13,10 @@ import DetailBooking from './Doctor/DetailBooking';
 import { RoleMiddleware } from '../../../Middleware';
 import ConfigProfile from './Doctor/ProfileDoctor/ConfigProfile';
 import DetailBookingVaccineUser from './Booking/DetailBookingVaccineUser';
-import MedicalRecord from './Booking/MedicalRecord';
+
 import ListPatient from './Doctor/ListPatient';
 import DetailListPatient from './Doctor/DetailListPatient';
+import MedicalRecord from './MedicalRecord';
 
 function Profile () {
 
@@ -60,7 +61,7 @@ function Profile () {
                     <Routes>
                         <Route path="/" element={<Info changGender={changGender} changAvt = {changAvt} infoUser={infoUser}  />} />
                         <Route path="/chi-tiet/:id" element={<ConfigProfile/>} />
-                        <Route path="/ho-so/:id" element={<MedicalRecord/>} />
+                        <Route path="/ho-so-benh-an/:id" element={<MedicalRecord />} />
                         <Route path="/lich-kham" element={<Booking  />} />
                         <Route path="/danh-sach-lich-kham" element={<ListBooking  />} />
                         <Route path="/chi-tiet-lich-dat/:id" element={<Details  />} />

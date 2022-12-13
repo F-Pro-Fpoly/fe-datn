@@ -90,7 +90,12 @@ function DetailBooking() {
             <div className="card border">
         
             <div className="card-header border-bottom">
-                <h4 className="card-header-title">Chi tiết lịch khám</h4>
+                {value.is_vaccine == 0 ?
+                    <h4 className="card-header-title">Chi tiết lịch khám</h4>
+                    :
+                    <h4 className="card-header-title">Chi tiết lịch tiêm</h4>
+                }
+               
             </div>
             
             <div className="card-body">
@@ -101,7 +106,18 @@ function DetailBooking() {
                     defaultValue={value.code}
                     type="text" placeholder="Mã lịch khám" />
                 </div>   
-                
+                {value.is_vaccine == 1 ? 
+                <div className="mb-3">
+                    <label className="form-label">Tên vaccine</label>
+                    <input className="form-control" name = "name_vaccine" disabled
+                    defaultValue={value.vaccine_name}
+                    type="text" placeholder="Tên vaccine" />
+                </div> 
+                :
+                ""}
+
+
+
                 <div className="row g-3">
                     <div className="col-md-6">
                         <label className="form-label">Họ và tên</label>
@@ -136,13 +152,13 @@ function DetailBooking() {
                         placeholder="Nhập địa chỉ email" />
                     </div>
                 </div>
-            
+         
                 {
                     !isVaccine && (
                         <div className="mb-3">
                             <label className="form-label">Trạng thái thanh toán</label>
                             <input className="form-control"name = "code" disabled
-                            defaultValue={value.payment_method == "default" ? "Thanh toán tại cơ sở y tế" : "Thanh toán qua momo"}
+                            defaultValue={value.payment_method = "default" ? "Thanh toán tại cơ sở y tế" : "Thanh toán qua momo"}
                             type="text" placeholder="Trạng thái thanh toán" />
                         </div>  
                     )
