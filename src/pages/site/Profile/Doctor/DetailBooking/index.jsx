@@ -209,22 +209,28 @@ function DetailBooking() {
                                 ></textarea>
                             </div>   
 
-                            <div className="mb-3">
-                                <label className="form-label">File đính kèm</label>
-                                <input className="form-control" name = "file" 
-                                type="file" placeholder="Thông tin khám" />
+                              {
+                                 value.is_vaccine  == 1 ? "" :
 
-                                {
-                                    value.file_name ? 
-                                
-                                    <div className="mb-3">
-                                    <p>Có 1 file đã upload</p>
-                                    <a href={`${process.env.REACT_APP_BE}${ value.file_name}` }
-                                    className="btn btn-primary">Tải file</a> 
-                                    </div>
-                                    : ""
-                                }                 
-                            </div>  
+                                 <div className="mb-3">
+                                    <label className="form-label">File đính kèm</label>
+                                    <input className="form-control" name = "file" 
+                                    type="file" placeholder="Thông tin khám" />
+
+                                    {
+                                        value.file_name ? 
+                                    
+                                        <div className="mb-3">                                 
+                                            <a href={`${process.env.REACT_APP_BE}${ value.file_name}` }
+                                            className="btn btn-primary">Tải file</a> 
+                                        </div>
+                                        : ""
+                                    }                 
+                                </div>  
+
+                              }  
+
+                            
                         </>
                         
                     }
