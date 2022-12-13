@@ -22,7 +22,8 @@ function NewsCate(){
         getCate([]);
           getLoading(true);
           const id =param.id;
-          let res = await getListCateAPI(id,{},page);
+
+          let res = await getListCateAPI({id,page,status:1});
           let data = res.data;
           let dataArr = data.data;
           getCate(dataArr);
