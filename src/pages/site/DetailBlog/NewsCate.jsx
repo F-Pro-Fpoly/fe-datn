@@ -79,7 +79,7 @@ function NewsCate(){
                 <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12 left-side">   
                 <>
                     <div className="page-wrapper">  
-                        <div className="blog-list clearfix">    
+                        <div className="blog-list clearfix"> 
                             {
                         ListCate.map((item,index) => {
                         return(
@@ -118,6 +118,7 @@ function NewsCate(){
                     <div className="row ">
                         <div className="col-md-12 ">
                             <nav aria-label="Page navigation">
+                            {loading && <Loading />}
                                 {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
                             </nav>
                         </div>

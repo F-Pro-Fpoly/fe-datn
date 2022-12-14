@@ -93,7 +93,9 @@ function News(){
                                     </Link>
                                     <samp>
                                         <p><i className="far fa-clock"></i> {item.created_at}</p>
-                                        <p>Danh mục: {item.category_name}</p>
+                                        <Link to={`/danh-muc-tin/${item.category_id}`}>
+                                            Danh Mục: {item.category_name}
+                                            </Link>
                                     </samp>
                                 </div> 
                             </div>
@@ -108,6 +110,7 @@ function News(){
                     <div className="row ">
                         <div className="col-md-12 ">
                             <nav aria-label="Page navigation">
+                            {loading && <Loading />}
                                 {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
                             </nav>
                         </div>
