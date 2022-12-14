@@ -110,19 +110,25 @@ function ClinicUiTime({dataItem}) {
                         <option value="M">Buổi sáng</option>  
                         <option value="A">Buổi chiều</option>  
                     </select> */}
-                    <div className="col-4">
+                    {
+                        item.schedule_dates.length == 0 ? 
+                        "" : <>
+                          <div className="col-12">
                         <select name="" className="form-control col-4"  id="" onChange={(e)=>handleDateInput(e)}>
                             {item.schedule_dates.map((val, index) => (
                                 <option value={val.date} key={index}>{val.date_format}</option>
                             ))}                     
                         </select>
                     </div>
-                    <div className="col-4">
+                    <div className="col-12">
                         <select name="" className="form-control col-4"  id="" onChange={(e)=>handleIntervalInput(e)}>
                             <option value="M">Buổi sáng</option>  
                             <option value="A">Buổi chiều</option>  
                         </select>
                     </div>
+                        </>
+                    }
+                  
 
                 </div>
                 <div className="title">

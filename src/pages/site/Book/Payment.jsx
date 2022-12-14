@@ -11,11 +11,11 @@ function Payment({bookingDescription}) {
     let dataPayment = [
         {
             'payment_method': "default",
-            'price': "100,000"
+            'price': "100000"
         },
         {
             'payment_method': "momo",
-            'price': "90,000"
+            'price': "90000"
         }
     ];
     const token = useSelector(state => state.auth.token);
@@ -132,7 +132,11 @@ function Payment({bookingDescription}) {
                     <div className='row mt-2 ms-0 me-0'>
                         <h4 className='booking-hr booking-hr--dashed py-2'>Thanh toán tại cơ sở y tế</h4>
                         {paymentData && (
-                            <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>{paymentData.price} <span className='text-dark'>VNĐ</span></span></p>
+                            
+                            <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>
+                                
+                          
+                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(paymentData.price)} </span></p>
 
                         )}
                     </div>
