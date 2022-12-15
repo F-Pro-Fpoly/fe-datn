@@ -104,7 +104,7 @@ function getListCateAPI({id,page = 1,limit = 6}) {
     try {
         let headers ={}; 
         let url = `normal/news/list-news-in-category/`;
-        url += `${id}/?limit=${limit}&page=${page}&status=1`;
+        url += `${id}?limit=${limit}&page=${page}&status=1`;
         return API.get(url, {headers: headers});
     } catch (error) {
         console.error(error);
