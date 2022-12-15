@@ -5,16 +5,39 @@ import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import "./NavBarTop.scss";
 import {useDispatch, useSelector} from "react-redux";
 import Logout from "../../../pages/auth/Logout/Logout";
-
+import { getDatabase, ref, child, get ,onValue} from "firebase/database";
+import { database } from "../../../firebase";
+import { useState } from "react";
+import { toast, ToastContainer } from 'react-toastify';
 function NavBarTop({navEl2}) {
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
-
+    const [data,setData] = useState()
+    const [quantity,setQuantity] = useState()
     const handleNavM = () =>{
         navEl2.classList.toggle('admin-toggle');
     }
+
+    useEffect(() => {
+        const db = getDatabase();
+        const starCountRef = ref(db, 'notification/');
+        onValue(starCountRef, (snapshot) => {
+        const data = snapshot.val();
+        setData(data);
+        let quatity = snapshot.size
+        setQuantity(quatity)
+        });
+    }, [])
+    
+    // console.log(data["-NJEiwE4wg6t9chFv_6e"]);
+    // if(data){
+    //     toast.success("Có 1 tin nhắn mới");
+    // }
     return ( 
+       <>
+        <ToastContainer />
         <nav className="navBarTop">
+                      
             <div className="navBarTop-left">
                 <a className="navBarTop-toggle" onClick={handleNavM}>
                     <i className="bi bi-justify-left"></i>
@@ -25,7 +48,7 @@ function NavBarTop({navEl2}) {
                     <div className="navBarTop-alert-wrapper" id="menu-alert" data-bs-toggle="dropdown"  aria-expanded="false" type="button">
                         <i className="bi bi-chat"></i>
                         <div className="navBarTop-alert-count">
-                            <span>5</span>
+                            <span>{quantity}</span>
                         </div>
                     </div>
                     <DropdownMenu id="menu-alert" className="dropdown-menu-secondary">
@@ -65,6 +88,7 @@ function NavBarTop({navEl2}) {
                 </div>
             </div>
         </nav>
+       </>
      );
 }
 
