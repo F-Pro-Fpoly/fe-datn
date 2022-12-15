@@ -85,7 +85,7 @@ function DetailBookingUser() {
                         <input type="text" disabled className="form-control" 
                         name="text"
                         defaultValue={value.birthday}
-                        placeholder="Nhập địa chỉ email" />
+                        placeholder="Ngày sinh" />
                     </div>
     
                     <div className="col-md-6">
@@ -93,21 +93,21 @@ function DetailBookingUser() {
                         <input type="text" disabled className="form-control" 
                         name="text"
                         defaultValue={value.phone}
-                        placeholder="Nhập địa chỉ email" />
+                        placeholder="Số điện thoại" />
                     </div>
                     <div className="col-md-6">
                         <label className="form-label">Thời gian khám</label>
                         <input  disabled className="form-control" 
                         name="text"
                         value={value.time_start +" - "+value.time_end}
-                        placeholder="Nhập địa chỉ email" />
+                        placeholder="Thời gian khám" />
                     </div>
     
                     <div className="col-md-6">
                         <label className="form-label">Ngày khám</label>
                         <input type="text" disabled className="form-control" 
                         defaultValue={value.date}
-                        placeholder="Nhập địa chỉ email" />
+                        placeholder="Ngày khám" />
                     </div>
                 </div>
             
