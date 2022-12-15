@@ -38,6 +38,7 @@ import UpdateConfig from "./pages/admin/Setttings/Config/UpdateConfig";
 import Profile from "./pages/site/Profile";
 import News from "./pages/site/News";
 import DetailNews from "./pages/site/DetailBlog";
+import NewsCate from "./pages/site/DetailBlog/NewsCate";
 import UpdateSpecialist from "./pages/admin/Specialists/UpdateSpecialist/UpdateSpecialist";
 
 import AddNews from "./pages/admin/News/AddNews";
@@ -76,6 +77,7 @@ import Report from "./pages/admin/Report";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 import ChangPassword from "./pages/auth/ChangPassword";
 import Tomail from "./pages/auth/Logout/Tomail";
+import VaccineCate from "./pages/site/Vaccine/VaccinCate";
 
 function Web() {
     const user = useSelector((state) => state.auth.user);
@@ -96,10 +98,12 @@ function Web() {
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                     <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
                     <Route path="/vaccine" element={ <Vaccine /> } />
+                    <Route path="/vaccinecate/:id" element={<VaccineCate/> } />
                     <Route path="/vaccine/:slug/:id" element={ <Detail /> } />
                    
                     <Route path="/tin-tuc/"  element={<News />}/>
                     <Route path="/chi-tiet/:slug"  element={ (<DetailNews />)}/>
+                    <Route path="/danh-muc-tin/:id"  element={ (<NewsCate />)}/>
                     <Route path="/dang-ky-tiem" element={ <InjectionRegistration /> } />
                 </Route>
                

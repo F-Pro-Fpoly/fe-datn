@@ -18,6 +18,7 @@ import Comment from "./Comment";
 import InputComment from "./InputComment";
 export default function DitailNews(){
     const [getconfig, setConfig] = useState([])
+    const user = useSelector(state => state.auth.user);
   const param = useParams();
   const dispatch = useDispatch();
   const token = useSelector((state)=>state.auth.token);
@@ -58,7 +59,6 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
           setDetail(data);
           getLoading(false);
   }
-
   useEffect (()=>{
       start();
   }, [param]);
@@ -106,7 +106,7 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                                 <i className="fa fa-eye"></i> {NewsDetail.views}
                                             </Link> 
                                         </small>
-                                            <Link>
+                                            <Link to={`/danh-muc-tin/${NewsDetail.category_id}`}>
                                             Danh Mục: {NewsDetail.category_name}
                                             </Link>
                                     </div>
@@ -135,8 +135,14 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                             <div className="custombox clearfix">
                                 <h4 className="small-title">Bình luận</h4>
                                 <div className="row">
-                                <div className="col-lg-12">
-                                    <InputComment />
+                                    <div className="col-lg-12">
+                                        {
+                                            user ? (
+                                                <InputComment />
+                                            ):(
+                                                <h5>Vui lòng đăng nhập để bình luận</h5>
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -241,13 +247,6 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                         </div>
                                     </div>
                                 </div>
-                                </div>
-                                <div className="widget">
-                                    <div className="banner-spot clearfix">
-                                        <div className="banner-img">
-                                            <Link><img src="../img/banner_03.jpg" alt="" className="img-fluid"/></Link> 
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

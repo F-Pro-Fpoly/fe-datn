@@ -51,21 +51,17 @@ document.title = "Chi tiết tin";
               secondary={
                 <React.Fragment>
                   <Typography
+                  className='an'
                     sx={{ display: 'inline' }}
                     component="span"
                     variant="body2"
                     color="text.primary"
+
                   >
-                    {item.content}<br/>
+                    {item.content}
+                    <br/>
                   </Typography>
                   <i className="far fa-clock"></i> {item.created_at}
-                  <i onClick={async()=>
-                                     {if(window.confirm("Bạn có thật sự muốn xóa"))
-                                       {await deleteCommentAPI({token: token, id: item.id});
-                                        start();
-                                        }}}
-                                    style={{cursor: "pointer"}} className="fa fa-trash"></i> 
-
                 </React.Fragment>
               }
             />

@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import Web from './Web';
 import GlobalStyle from './components/GlobalStyle';
 
-
 function App() {
   
   return (

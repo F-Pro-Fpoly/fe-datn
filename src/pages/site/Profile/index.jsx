@@ -13,9 +13,10 @@ import DetailBooking from './Doctor/DetailBooking';
 import { RoleMiddleware } from '../../../Middleware';
 import ConfigProfile from './Doctor/ProfileDoctor/ConfigProfile';
 import DetailBookingVaccineUser from './Booking/DetailBookingVaccineUser';
-import MedicalRecord from './Booking/MedicalRecord';
+
 import ListPatient from './Doctor/ListPatient';
 import DetailListPatient from './Doctor/DetailListPatient';
+import MedicalRecord from './MedicalRecord';
 
 function Profile () {
 
@@ -26,7 +27,6 @@ function Profile () {
         setInfoUser({...infoUser, gender: input})
     }
     const changAvt = (input) => {
-        console.log(input);
         setInfoUser({...infoUser, avatar: input})
     }
     const start  = async () =>{
@@ -60,13 +60,13 @@ function Profile () {
                     <Routes>
                         <Route path="/" element={<Info changGender={changGender} changAvt = {changAvt} infoUser={infoUser}  />} />
                         <Route path="/chi-tiet/:id" element={<ConfigProfile/>} />
-                        <Route path="/ho-so/:id" element={<MedicalRecord/>} />
+                        <Route path="/ho-so-benh-an/:id" element={<MedicalRecord />} />
                         <Route path="/lich-kham" element={<Booking  />} />
                         <Route path="/danh-sach-lich-kham" element={<ListBooking  />} />
                         <Route path="/chi-tiet-lich-dat/:id" element={<Details  />} />
                         <Route path="/chi-tiet-lich-tiem/:id" element={<DetailBookingVaccineUser  />} />
                         <Route path="/danh-sach-nguoi-benh"  element={RoleMiddleware([2] ,   <ListPatient/> )} />
-                        <Route path="/chi-tiet-lich-kham/:id" element={RoleMiddleware([2],  <DetailBooking/>)} />
+                        <Route path="/chi-tiet-lich-kham/:id" element={ <DetailBooking/>} />
                         <Route path="/chi-tiet-danh-sach-lich-kham/:id" element={RoleMiddleware([2],  <DetailListPatient/>)} />
                     </Routes>
                    

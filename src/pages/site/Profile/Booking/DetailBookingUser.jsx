@@ -25,7 +25,7 @@ function DetailBookingUser() {
     }, [])
 
 
-console.log(value);
+
     return ( 
        
       <>
@@ -42,7 +42,6 @@ console.log(value);
         />
 
             <div className="card border">
-        
             <div className="card-header border-bottom">
                 <h4 className="card-header-title">Chi tiết lịch khám</h4>
             </div>
@@ -53,6 +52,13 @@ console.log(value);
                     <label className="form-label">Mã lịch khám</label>
                     <input className="form-control" name = "code" disabled
                     defaultValue={value.code}
+                    type="text" placeholder="Mã lịch khám" />
+                </div>   
+
+                <div className="mb-3">
+                    <label className="form-label">Tên chuyên khoa</label>
+                    <input className="form-control" name = "code" disabled
+                    defaultValue={value.specialist_name}
                     type="text" placeholder="Mã lịch khám" />
                 </div>   
                 
@@ -79,7 +85,7 @@ console.log(value);
                         <input type="text" disabled className="form-control" 
                         name="text"
                         defaultValue={value.birthday}
-                        placeholder="Nhập địa chỉ email" />
+                        placeholder="Ngày sinh" />
                     </div>
     
                     <div className="col-md-6">
@@ -87,21 +93,21 @@ console.log(value);
                         <input type="text" disabled className="form-control" 
                         name="text"
                         defaultValue={value.phone}
-                        placeholder="Nhập địa chỉ email" />
+                        placeholder="Số điện thoại" />
                     </div>
                     <div className="col-md-6">
                         <label className="form-label">Thời gian khám</label>
                         <input  disabled className="form-control" 
                         name="text"
                         value={value.time_start +" - "+value.time_end}
-                        placeholder="Nhập địa chỉ email" />
+                        placeholder="Thời gian khám" />
                     </div>
     
                     <div className="col-md-6">
                         <label className="form-label">Ngày khám</label>
                         <input type="text" disabled className="form-control" 
                         defaultValue={value.date}
-                        placeholder="Nhập địa chỉ email" />
+                        placeholder="Ngày khám" />
                     </div>
                 </div>
             
@@ -112,16 +118,23 @@ console.log(value);
                     type="text" placeholder="Trạng thái thanh toán" />
                 </div>   
                 <div className="mb-3">
-                    <label className="form-label">Trạng thái lịch khán</label>
+                    <label className="form-label">Trạng thái lịch khám</label>
                     <input className="form-control"name = "code" disabled
                       defaultValue={value.status_name } />
                 </div>   
                 
             
                     <div className="mb-3">
-                        <label className="form-label">Thông tin khám</label>
+                        <label className="form-label">Thông tin từ bệnh nhân</label>
                         <textarea name="" className="form-control" style={{resize:"none"}} id="" cols="5" rows="2"
                         defaultValue={value.description} disabled>
+                        </textarea>
+                    </div>   
+            
+                    <div className="mb-3">
+                        <label className="form-label">Kết quả sau khám</label>
+                        <textarea name="" className="form-control" style={{resize:"none"}} id="" cols="5" rows="2"
+                        defaultValue={value.infoAfterExamination} disabled>
                         </textarea>
                     </div>   
 

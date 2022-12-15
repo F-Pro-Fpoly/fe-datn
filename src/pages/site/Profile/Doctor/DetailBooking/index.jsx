@@ -15,10 +15,12 @@ function DetailBooking() {
     const param  = useParams();
     const id = param.id;
     const formRef = useRef();
+    const checkRole = useSelector(state => state.auth.user.role_id)
 
     const [value, setValue] = useState([]);
     const [status, setStatus] = useState([])
     const [changeState, setchangeState] = useState("");
+    const [inputDisable, setInputDisable] = useState();
 
 
     const start = async () => {
@@ -31,6 +33,7 @@ function DetailBooking() {
         let data = res.data;
         let dataArr = data.data;
         setValue(dataArr);
+        setInputDisable(dataArr.status_id);
 
         if(dataArr.injection_info) {
             setIsVaccine(true);
@@ -46,6 +49,7 @@ function DetailBooking() {
 
     const HandleSubmit = async (e) => {
         e.preventDefault();
+        dispatch(setLoading(true));
         const formData = new FormData(formRef.current)
 
         const req = {
@@ -58,16 +62,15 @@ function DetailBooking() {
             let res =  await updateBookingDoctorServiceAPI(req);
             let message = res.data.message;
             toast.success(message);
+            dispatch(setLoading(false));
         } catch (error) {
             console.log(error);
             let res = error.response;
             let status = res.status;
-            console.log(status);
-          
-                let data = res.data;
-                let message = data.message;
-                toast.error(message);
-          
+            let data = res.data;
+            let message = data.message;
+            toast.error(message);
+            dispatch(setLoading(false));
         }
 
     }
@@ -90,7 +93,12 @@ function DetailBooking() {
             <div className="card border">
         
             <div className="card-header border-bottom">
-                <h4 className="card-header-title">Chi tiết lịch khám</h4>
+                {value.is_vaccine == 0 ?
+                    <h4 className="card-header-title">Chi tiết lịch khám</h4>
+                    :
+                    <h4 className="card-header-title">Chi tiết lịch tiêm</h4>
+                }
+               
             </div>
             
             <div className="card-body">
@@ -101,7 +109,25 @@ function DetailBooking() {
                     defaultValue={value.code}
                     type="text" placeholder="Mã lịch khám" />
                 </div>   
-                
+                {value.is_vaccine == 1 ? 
+                <div className="mb-3">
+                    <label className="form-label">Tên vaccine</label>
+                    <input className="form-control" name = "name_vaccine" disabled
+                    defaultValue={value.vaccine_name}
+                    type="text" placeholder="Tên vaccine" />
+                </div> 
+                :
+              
+                <div className="mb-3">
+                    <label className="form-label">Tên chuyên khoa</label>
+                    <input className="form-control" name = "specialist_name" disabled
+                    defaultValue={value.specialist_name}
+                    type="text" placeholder="Tên chuyên khoa" />
+                </div> 
+              }
+
+
+
                 <div className="row g-3">
                     <div className="col-md-6">
                         <label className="form-label">Họ và tên</label>
@@ -136,13 +162,13 @@ function DetailBooking() {
                         placeholder="Nhập địa chỉ email" />
                     </div>
                 </div>
-            
+         
                 {
                     !isVaccine && (
                         <div className="mb-3">
                             <label className="form-label">Trạng thái thanh toán</label>
                             <input className="form-control"name = "code" disabled
-                            defaultValue={value.payment_method == "default" ? "Thanh toán tại cơ sở y tế" : "Thanh toán qua momo"}
+                            defaultValue={value.payment_method = "default" ? "Thanh toán tại cơ sở y tế" : "Thanh toán qua momo"}
                             type="text" placeholder="Trạng thái thanh toán" />
                         </div>  
                     )
@@ -150,7 +176,7 @@ function DetailBooking() {
                 
             
                 <div className="mb-3">
-                    <label className="form-label">Thông tin khám</label>
+                    <label className="form-label">Thông tin từ bệnh nhân</label>
                     <textarea name="" className="form-control" style={{resize:"none"}} id="" cols="5" rows="2"
                     defaultValue={value.description} disabled>
                     </textarea>
@@ -161,7 +187,7 @@ function DetailBooking() {
                         <select name="statusBooking" className="form-control" id=""
                             value={ value.status_id ? value.status_id : 0} 
                             onChange ={(e) => setValue( {...value, status_id: e.target.value})}
-                            disabled={value.status_id == 4 ? true: false}
+                            disabled={inputDisable == 4 ? true: false}
                         >
                             <option value="0" disabled>Chọn trạng thái</option>
                             {
@@ -181,34 +207,44 @@ function DetailBooking() {
                                 <textarea name="reasonCancel" className="form-control" style={{resize:"none"}}
                                 defaultValue={value.reasonCancel ? value.reasonCancel : ""}
                                 id="" cols="5" rows="2"
+                                disabled= {checkRole != 2 ? true : false}
                                 ></textarea>
                             </div>   
                          :
                         <>
                             <div className="mb-3">
-                                <label className="form-label">Thông tin khám</label>
+                                <label className="form-label">Thông tin sau khám</label>
                                 <textarea name="info" className="form-control" style={{resize:"none"}}
                                 defaultValue={value.infoAfterExamination ? value.infoAfterExamination : ""}
                                 id="" cols="5" rows="2"
+                                disabled= {checkRole != 2 ? true : false}
                                 ></textarea>
                             </div>   
 
-                            <div className="mb-3">
-                                <label className="form-label">File đính kèm</label>
-                                <input className="form-control" name = "file" 
-                                type="file" placeholder="Thông tin khám" />
+                              {
+                                checkRole != 2 ? "" :
 
-                                {
-                                    value.file_name ? 
-                                
-                                    <div className="mb-3">
-                                    <p>Có 1 file đã upload</p>
-                                    <a href={`${process.env.REACT_APP_BE}${ value.file_name}` }
-                                    className="btn btn-primary">Tải file</a> 
-                                    </div>
-                                    : ""
-                                }                 
-                            </div>  
+                                 value.is_vaccine  == 1 ? "" :
+
+                                 <div className="mb-3">
+                                    <label className="form-label">File đính kèm</label>
+                                    <input className="form-control" name = "file" 
+                                    type="file" placeholder="Thông tin khám" />
+
+                                    {
+                                        value.file_name ? 
+                                    
+                                        <div className="mb-3">                                 
+                                            <a href={`${process.env.REACT_APP_BE}${ value.file_name}` }
+                                            className="btn btn-primary">Tải file</a> 
+                                        </div>
+                                        : ""
+                                    }                 
+                                </div>  
+
+                              }  
+
+                            
                         </>
                         
                     }
@@ -227,16 +263,27 @@ function DetailBooking() {
 
                  
 
-                 
-                      
+                 {
+                    checkRole != 2  ? 
+
                     <div className="row g-3">
-                        <div className="col-md-2">
-                            <button className="btn btn-primary" style={{width:"100%"}} type="submit">Xác nhận</button>
-                        </div>
-                        <div className="col-md-2">
-                            <Link className="btn btn-primary" style={{width:"100%"}} to="/ho-so-ca-nhan/danh-sach-lich-kham">Danh sách</Link>
-                        </div>
+
+                    <div className="col-md-2">
+                        <Link className="btn btn-primary" style={{width:"100%"}} to="/ho-so-ca-nhan/lich-kham">Trở về</Link>
                     </div>
+                    </div>
+                :
+                <div className="row g-3">
+                    <div className="col-md-2">
+                        <button className="btn btn-primary" style={{width:"100%"}} type="submit">Xác nhận</button>
+                    </div>
+                    <div className="col-md-2">
+                        <Link className="btn btn-primary" style={{width:"100%"}} to="/ho-so-ca-nhan/danh-sach-lich-kham">Danh sách</Link>
+                    </div>
+                </div>
+                 }
+                      
+                    
                 </form> 
     
             </div>

@@ -132,18 +132,23 @@ function Payment({bookingDescription}) {
                     <div className='row mt-2 ms-0 me-0'>
                         <h4 className='booking-hr booking-hr--dashed py-2'>Thanh toán tại cơ sở y tế</h4>
                         {paymentData && (
-                            <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>{paymentData.price} <span className='text-dark'>VND</span></span></p>
+                            
+                            <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>
+                                
+                          
+                                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(paymentData.price)} </span></p>
 
                         )}
                     </div>
                 )
             }
+           
             {
                 paymentMethod == 'momo' && (
                     <div className="row mt-2 ms-0 me-0">
                         <h4 className='booking-hr booking-hr--dashed py-2'>Thanh toán qua momo</h4>
                         {paymentData && (
-                            <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>{paymentData.price} <span className='text-dark'>VND</span></span></p>
+                            <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>{paymentData.price} <span className='text-dark'>VNĐ</span></span></p>
                         )}
                     </div>
                 )

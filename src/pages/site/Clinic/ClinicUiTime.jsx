@@ -110,19 +110,25 @@ function ClinicUiTime({dataItem}) {
                         <option value="M">Buổi sáng</option>  
                         <option value="A">Buổi chiều</option>  
                     </select> */}
-                    <div className="col-4">
+                    {
+                        item.schedule_dates.length == 0 ? 
+                        "" : <>
+                          <div className="col-12">
                         <select name="" className="form-control col-4"  id="" onChange={(e)=>handleDateInput(e)}>
                             {item.schedule_dates.map((val, index) => (
                                 <option value={val.date} key={index}>{val.date_format}</option>
                             ))}                     
                         </select>
                     </div>
-                    <div className="col-4">
+                    <div className="col-12">
                         <select name="" className="form-control col-4"  id="" onChange={(e)=>handleIntervalInput(e)}>
                             <option value="M">Buổi sáng</option>  
                             <option value="A">Buổi chiều</option>  
                         </select>
                     </div>
+                        </>
+                    }
+                  
 
                 </div>
                 <div className="title">
@@ -130,13 +136,22 @@ function ClinicUiTime({dataItem}) {
                     <span>LỊCH KHÁM</span>
                 </div>
                 <div className="row schedule-time">
-                    {timeSlots.map((val, index) => (
+
+
+                    { 
+                    timeSlots.length > 0 ? 
+                    timeSlots.map((val, index) => (
                         <div className="col-4 schedule-time-col" key={index} onClick={()=>saveBookingInfo2(val)}>
                             <a href="#" className="schedule-time-item">
                                 <span>{val.time_start} - {val.time_end}</span>
                             </a>
                         </div>
-                    ))}
+                    ))
+                        :
+                    <div className="col-6 schedule-time-col">
+                        Hiện tại chưa có lịch khám
+                    </div>
+                }
                 </div> 
             </div>
         </>
