@@ -101,8 +101,11 @@ function Book () {
                 'ward_code': optionWardSelect.value ?? null,
                 'ward_name': optionWardSelect.label ?? null,
                 'address' : address,
-                'birthday': moment(new Date(paymentInfo.birthday)).format("YYYY-MM-DD")
+                'birthday': paymentInfo.birthday ? moment(new Date(paymentInfo.birthday)).format("YYYY-MM-DD") : null
             };
+            if(!dataAddress.birthday || !dataAddress.city_code || !dataAddress.district_code || !dataAddress.ward_code || !dataAddress.address){
+                throw "Vui lòng nhập đầy đủ thông tin";
+            }
             if(token){
                 let res = await updateUserClient({token, data: dataAddress});
                 let message = res.data.message;
