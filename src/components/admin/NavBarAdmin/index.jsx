@@ -56,14 +56,14 @@ function NavBarAdmin({className}) {
             <div className="navBarAdmin-main accordion" id="accordionExample">
                 {user.role_id == 1 && (
                 <>
-                <NavBarItem name="Dashboard" icon="bi bi-speedometer2" to="/admin" />
+                <NavBarItem name="Trang chủ" icon="bi bi-speedometer2" to="/admin" />
                 <NavBarItem id="users" name="Quản lý người dùng" countTitle={counts['user-count']} dropdownArr={[
                     {
-                        name: "Thêm user",
+                        name: "Thêm người dùng",
                         to: "/admin/add-user"
                     },
                     {
-                        name: "List user",
+                        name: "Danh sách người dùng",
                         to: "/admin/list-user"
                     },
                 ]} icon="bi bi-people-fill" />

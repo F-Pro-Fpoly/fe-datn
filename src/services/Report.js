@@ -43,6 +43,20 @@ function exportBooking({token, params}) {
         params: params
     });
 }
+function exportPatient({token, id}) {
+    let url = `auth/user/get-medical-record/${id}`;
+    let headers = {
+        'content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    };
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.get(url,{
+        headers: headers, 
+        responseType: 'blob',
+       
+    });
+}
 
 
-export {exportTurnover, exportBookingDay, exportBooking}
+export {exportTurnover, exportBookingDay, exportBooking, exportPatient}
