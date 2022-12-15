@@ -329,7 +329,7 @@ function Book () {
             <div className="booking-main">
                 <div className="container">
                     <div className="row">
-                        <div className="col-8">
+                        <div className="col-lg-8">
                             <div className="booking-main-left">
                                 <div className="booking-main-item">
                                     <div className="booking-main-wrapper">
@@ -390,7 +390,7 @@ function Book () {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-4 position-relative">
+                        <div className="col-lg-4 position-relative">
                             <Payment bookingDescription={bookingDescription} /> 
                         </div>
                     </div>
