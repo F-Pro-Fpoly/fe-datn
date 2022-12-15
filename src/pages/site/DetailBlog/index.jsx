@@ -19,25 +19,26 @@ import InputComment from "./InputComment";
 export default function DitailNews(){
     const [getconfig, setConfig] = useState([])
     const user = useSelector(state => state.auth.user);
-  const param = useParams();
-  const dispatch = useDispatch();
-  const token = useSelector((state)=>state.auth.token);
-  const FormRep = useRef();
-  const [NewsDetail, setDetail] = useState({
-    "code": "",
-    "name":"",
-    "file":"",
-    "views": null,
-    "content": "", 
-}); 
+    const param = useParams();
+    const dispatch = useDispatch();
+    const token = useSelector((state)=>state.auth.token);
+    const FormRep = useRef();
+    const [NewsDetail, setDetail] = useState({
+        "code": "",
+        "name":"",
+        "file":"",
+        "views": null,
+        "content": "", 
+    }); 
+    const comentRef = useRef(null);
 
 
-const [ListTopWeek3, getListTopWeek3] = useState([]);
-const [ListTopWeek1, getListTopWeek1] = useState([]);
-  const [loading, getLoading] = useState(false);
-  const slug = param.slug;
-  document.title = "Chi tiết tin";
-  const start = async () =>{
+    const [ListTopWeek3, getListTopWeek3] = useState([]);
+    const [ListTopWeek1, getListTopWeek1] = useState([]);
+    const [loading, getLoading] = useState(false);
+    const slug = param.slug;
+    document.title = "Chi tiết tin";
+    const start = async () =>{
           setDetail([]);
           getLoading(true);
           let res = await getNewsDetailClient(token,slug);
@@ -58,14 +59,14 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
           setConfig(dataArrr);
           setDetail(data);
           getLoading(false);
-  }
-  useEffect (()=>{
-      start();
-  }, [param]);
-
-
+    }
+    useEffect (()=>{
+        start();
+    }, [param]);
+    const handleInputComent = () => {
+        comentRef.current.handleStart();
+    }
     return(
-      
       <div className="Newsdetail">
           {loading && <Loading />}
             <div className="page-title wb">
@@ -121,24 +122,15 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                 </div>
                                 <hr className="invis2"/>
 
-                            <div className="custombox clearfix">
-                                <h4 className="small-title">Chi tiết bình luận</h4>
-                                <div className="row">
-                                    <div className="col-lg-12">
-                                        <Comment />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <hr className="invis2"/>
-
-                            <div className="custombox clearfix">
+                                <div className="custombox clearfix">
                                 <h4 className="small-title">Bình luận</h4>
                                 <div className="row">
                                     <div className="col-lg-12">
                                         {
                                             user ? (
-                                                <InputComment />
+                                                <InputComment
+                                                    onSubmit={handleInputComent}
+                                                />
                                             ):(
                                                 <h5>Vui lòng đăng nhập để bình luận</h5>
                                             )
@@ -146,6 +138,20 @@ const [ListTopWeek1, getListTopWeek1] = useState([]);
                                     </div>
                                 </div>
                             </div>
+                            
+                            <hr className="invis2"/>
+                            <div className="custombox clearfix">
+                                <h4 className="small-title">Chi tiết bình luận</h4>
+                                <div className="row">
+                                    <div className="col-lg-12">
+                                        <Comment
+                                            ref={comentRef}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                     <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12">

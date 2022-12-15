@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -8,38 +7,57 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { useEffect, useLayoutEffect } from "react";
-import { useState } from "react";
+import { useState,  forwardRef, useImperativeHandle, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../components/Loading/Loading";
+import Paginate from '../../../components/Paginate/Paginate';
 import { setLoading } from "../../../redux/slices/InterfaceSile";
-import { getlistComment,deleteCommentAPI } from "../../../services/normal/NewsService";
+import { getlistComment } from "../../../services/normal/NewsService";
 import { useParams } from "react-router";
-function Comment(){
+const Comment = forwardRef(({}, ref) => {
   const token = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
   const param = useParams();
   const [loading, getLoading] = useState(false);
   const [Comment, getComment] = useState([]);
+  const [paginate, setPaginate] = useState(null);
+  const [page, setPage] = useState(1);
   const slug = param.slug;
-document.title = "Chi tiết tin";
+  document.title = "Chi tiết tin";
+   
     const start = async () => {
       getComment([]);
       getLoading(true);
-      let res = await getlistComment({token,slug});
+      let res = await getlistComment(slug, page);
       let data = res.data;
       let dataArr = data.data;
-      getComment(dataArr);
+  
       getLoading(false);
-    }
+      getComment(dataArr);
+  
+      // handle paginate
+      let pagination = data.meta.pagination ?? null;
+      setPaginate(pagination);
+    };
+    useImperativeHandle(ref, () => ({
+      async handleStart() {
+        await start();
+      }
+    }))
+
     useEffect(()=>{
     start()
-    },[param]);
-
+    },[param,page]);
+    const onChangePage = (number) =>{
+      setPage(number);
+    }
+    const an = (event)=>{
+      let elementor = event.target;
+      elementor.classList.toggle("an")
+    }
     return(
       <>
-      {loading && <Loading />}
-              {
-          Comment.map((item,index) => {
+      {Comment.map((item,index) => {
           return(
           <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} key={index}>
           <ListItem alignItems="flex-start">
@@ -51,7 +69,8 @@ document.title = "Chi tiết tin";
               secondary={
                 <React.Fragment>
                   <Typography
-                  className='an'
+                    onClick={an}
+                    className="an"
                     sx={{ display: 'inline' }}
                     component="span"
                     variant="body2"
@@ -71,7 +90,9 @@ document.title = "Chi tiết tin";
               )                  
             })
             }
+             {loading && <Loading />}
+             {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
             </>
     )
-}
+})
 export default Comment;

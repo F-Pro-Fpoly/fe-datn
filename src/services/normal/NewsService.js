@@ -60,14 +60,10 @@ function createCommentAPI({token, data,slug}) {
         return [];
     }
 }
-function getlistComment({token, slug}) {
+function getlistComment(slug,page = 1,limit = 6) {
     let headers ={}; 
-    if(token){
-        headers = {...headers, "Authorization": `Bearer ${token}`};
-        // console.log(configs);
-    }
     console.log();
-    return API.get(`normal/news/news-comment/${slug}`, {headers:headers});
+    return API.get(`normal/news/news-comment/${slug}?limit=${limit}&page=${page}`, {headers:headers});
 }
 function getOneComment({token, id}) {
     let headers ={}; 
