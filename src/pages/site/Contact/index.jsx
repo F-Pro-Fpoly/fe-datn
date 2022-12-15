@@ -4,6 +4,12 @@ import { toast,ToastContainer } from 'react-toastify';
 import {  useEffect, useRef,useState} from 'react';
 import {creatContactApi} from "../../../services/ContactService";
 import { ListConfigService } from '../../../services/normal/ConfigService';
+import { getDatabase, ref, set } from "firebase/database";
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function Contact(){
     const token = useSelector((state)=>state.auth.token);
     const FormRep = useRef();
@@ -15,8 +21,10 @@ function Contact(){
         "data": formData,
         "type":0
       };
+  
       try {
         let res = await creatContactApi(req,token);
+        writeUserData(formData.get("name"), formData.get("contents"), "contact_"+getRandomInt(1000000000))
         FormRep.current.reset();
         toast.success(res.data.message) ;     
       } catch (error) {
@@ -38,6 +46,11 @@ function Contact(){
   start()
 
 }, []);
+
+
+
+
+
     return(
       <div className="contact">
             <div className="page-title">
@@ -98,4 +111,13 @@ function Contact(){
           </div>
     );
 };
+
+function writeUserData(name,content, userId) {
+  const db = getDatabase();
+  set(ref(db, 'contact/' + userId), {
+    username: name,
+    content: content,
+    status: "A"
+  });
+}
 export default Contact;
