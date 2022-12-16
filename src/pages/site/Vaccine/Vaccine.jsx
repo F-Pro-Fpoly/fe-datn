@@ -81,7 +81,7 @@ function Vaccine() {
                                     {category.map((item,index)=>{
                                     return(
                                         <li className="vaccine-title-li"key={index}>
-                                            <Link  to={`/vaccinecate/${item.id}`}>{item.name}</Link>
+                                            <Link  to={`/danh-muc-vaccine/${item.id}`}>{item.name}</Link>
                                         </li>
                                         )                  
                                     })
