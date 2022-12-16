@@ -7,39 +7,57 @@ import { getListServiceAPI,getListVaccineCateAPI} from "../../../services/normal
 import Loading from "../../../components/Loading/Loading";
 import  {  useState } from "react";
 import {useSelector} from "react-redux";
-import { useParams } from "react-router";
+import { useParams,useSearchParams  } from "react-router-dom";
+import useDebounce from "../../../hooks/useDebounce";
+import { useRef } from "react";
 function Vaccine() {
     const token = useSelector(state => state.auth.token);
     const [list, setList] = useState([]);
     const [loading, getLoading] = useState(false);
     const [category,getCate] = useState([]);
     const param = useParams();
-    const [search,setSearch]  = useState('');
-    const start = async () => {
+    const [searchParam] = useSearchParams()
+    const [search,setSearch]  = useState({
+        limit: 12,
+    });
+    const firstRef = useRef(false);
+    const searchDebounce = useDebounce(search, 500);
+    const [panigateVaccine, setPanigateVaccine] = useState();
+
+    const start = async (page) => {
         getLoading(true);
         setList([]);
         let restw = await getListVaccineCateAPI({token});
         let dataCa = restw.data;
         let datatw = dataCa.data;
         getCate(datatw);
-        let res = await getListServiceAPI( 1,search);
+        let res = await getListServiceAPI( 1,{...search, page: page ?? 1});
         let data = res.data;
         let dataArr = data.data;
         getLoading(false)
         setList(dataArr);
-      
+        setPanigateVaccine(data.meta.pagination);
     }
 
-  useEffect(() => {
-   
+
+    useEffect(() => {
+        let page = searchParam.get('page')
         document.title = "Đặt lịch tiêm vaccine"
-      start()
-  
-  }, [search])
+        start(page)
+    
+    }, [searchDebounce, searchParam])
+
+    // useEffect(() => {
+    //     let page = searchParam.get('page');
+    //     if(firstRef){
+    //         start(page);
+    //     }
+    //     firstRef = true;
+    // }, [searchParam])
 
 
   const searchVaccine  = (e) => {
-    setSearch(e.target.value)
+    setSearch({...search, name: e.target.value});
   } 
 
     return ( 
@@ -90,7 +108,10 @@ function Vaccine() {
                 </div>
             </section>
 
-            <VaccineContent  list={list}/>
+            <VaccineContent  
+                paginate={panigateVaccine}
+                list={list}
+            />
         </div>
      );
 }
