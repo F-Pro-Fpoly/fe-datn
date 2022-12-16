@@ -21,6 +21,7 @@ function NavBarTop({navEl2}) {
     }
 
     useEffect(() => {
+       try {
         const db = getDatabase();
         const starCountRef = query(ref(db, 'contact'), orderByChild('status'), equalTo("A"));
         onValue(starCountRef , (snapshot) => {
@@ -34,6 +35,9 @@ function NavBarTop({navEl2}) {
         setQuantity(quatity)
         });
 
+       } catch (error) {
+        
+       }
        
     
     }, [])
