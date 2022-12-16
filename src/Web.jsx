@@ -98,7 +98,7 @@ function Web() {
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                     <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
                     <Route path="/vaccine" element={ <Vaccine /> } />
-                    <Route path="/vaccinecate/:id" element={<VaccineCate/> } />
+                    <Route path="/danh-muc-vaccine/:id" element={<VaccineCate/> } />
                     <Route path="/vaccine/:slug/:id" element={ <Detail /> } />
                    
                     <Route path="/tin-tuc/"  element={<News />}/>

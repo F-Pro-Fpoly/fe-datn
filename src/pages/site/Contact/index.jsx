@@ -43,6 +43,7 @@ function Contact(){
       setConfig(dataArrr)
  }
  useEffect(() => {
+  document.title = "Trang liên hệ"
   start()
 
 }, []);

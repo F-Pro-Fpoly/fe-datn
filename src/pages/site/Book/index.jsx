@@ -101,8 +101,11 @@ function Book () {
                 'ward_code': optionWardSelect.value ?? null,
                 'ward_name': optionWardSelect.label ?? null,
                 'address' : address,
-                'birthday': moment(new Date(paymentInfo.birthday)).format("YYYY-MM-DD")
+                'birthday': paymentInfo.birthday ? moment(new Date(paymentInfo.birthday)).format("YYYY-MM-DD") : null
             };
+            if(!dataAddress.birthday || !dataAddress.city_code || !dataAddress.district_code || !dataAddress.ward_code || !dataAddress.address){
+                throw "Vui lòng nhập đầy đủ thông tin";
+            }
             if(token){
                 let res = await updateUserClient({token, data: dataAddress});
                 let message = res.data.message;
@@ -326,7 +329,7 @@ function Book () {
             <div className="booking-main">
                 <div className="container">
                     <div className="row">
-                        <div className="col-8">
+                        <div className="col-lg-8">
                             <div className="booking-main-left">
                                 <div className="booking-main-item">
                                     <div className="booking-main-wrapper">
@@ -387,7 +390,7 @@ function Book () {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-4 position-relative">
+                        <div className="col-lg-4 position-relative">
                             <Payment bookingDescription={bookingDescription} /> 
                         </div>
                     </div>

@@ -10,6 +10,7 @@ import Loading from "../../../../components/Loading/Loading";
 import "./MedicalRecord.scss"
 import CollapsibleTable from "./Collape";
 import {setLoading as setLoadingG} from "../../../../redux/slices/InterfaceSile"
+import Paginate from "../../../../components/Paginate/Paginate";
 
 function MedicalRecord() {
 
@@ -23,32 +24,44 @@ function MedicalRecord() {
     const [search,setSearch] = useState({
       "is_vaccine" : 0,
     });
+    const [paginate, setPaginate] = useState(null);
+    const [page, setPage] = useState(1);
+
+
     const start = async () => {
         dispatch(setLoadingG(true))
         let res = await getDetailListPatientServiceAPI(token, id, {
             "is_vaccine" : 0
-        });
+        }, page);
         let data = res.data
         let dataArr = data.data;
 
-        let infoUser = await getUser({token,id});
+        let infoUser = await getUser({token,id,page});
         let dataUser = infoUser.data.data
         setInfoUser(dataUser)
         dispatch(setLoadingG(false))
         setList(dataArr)
+        
+        // handle paginate
+        let pagination = data.meta.pagination ?? null;
+        setPaginate(pagination);
     }
 
     useEffect(() => {
         start()
+    }, [page]);
 
-    }, []);
+    const onChangePage = (number) =>{
+        setPage(number);
+      }
+  
 
     const handleHistoryBtn = async () => {
         try {
             dispatch(setLoadingG(true))
             let res = await getDetailListPatientServiceAPI(token, id, {
                 "is_vaccine" : 0
-            });
+            },page);
             let data = res.data
             let dataArr = data.data;
 
@@ -178,7 +191,8 @@ function MedicalRecord() {
                                                             
                             </tbody>
                 
-                            </Table>               
+                            </Table>     
+                            {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}          
                         </div>
                         :
                  

@@ -1,14 +1,19 @@
 
 import { Link } from "react-router-dom";
-import { useParams } from "react-router";
 import { getListCateAPI,getListVaccineCateAPI} from "../../../services/normal/VaccineService";
 import Loading from "../../../components/Loading/Loading";
 import {useDispatch,useSelector} from "react-redux";
 import { useEffect, useState } from "react";
+import { useParams,useSearchParams} from "react-router-dom";
+import useDebounce from "../../../hooks/useDebounce";
+import { useRef } from "react";
 function VaccineCate () {
     const token = useSelector(state => state.auth.token);
     const [category,getCate] = useState([]);
-    const [search,setSearch]  = useState('');
+    const [searchParam] = useSearchParams()
+    const [search,setSearch]  = useState();
+    const firstRef = useRef(false);
+    const searchDebounce = useDebounce(search, 500);
     const [ListCate, getVaccinCate] = useState([]);
     const param = useParams();
     const [loading, getLoading] = useState(false);
@@ -16,7 +21,7 @@ function VaccineCate () {
     const start = async () => {
         getLoading(true);
         getVaccinCate([]);
-        let res = await getListCateAPI(id,search);
+        let res = await getListCateAPI(id,{...search});
         let data = res.data;
         let dataArr = data.data;
         let restw = await getListVaccineCateAPI();
@@ -27,17 +32,17 @@ function VaccineCate () {
         getVaccinCate(dataArr);
     }
     useEffect(() => {
-   
+    
         document.title = "Đặt lịch tiêm vaccine"
-      start()
-  
-  }, [search,param])
+        start()
+    
+    }, [searchDebounce, searchParam])
 
 
-  const searchVaccine  = (e) => {
-    setSearch(e.target.value)
-  } 
-        return (
+    const searchVaccine  = (e) => {
+        setSearch({...search, name: e.target.value});
+      } 
+          return (
             <div className="vaccine">
             <section className="vaccine-title">
                 <div className="container">
@@ -54,7 +59,7 @@ function VaccineCate () {
                                     {category.map((item,index)=>{
                                     return(
                                         <li className="vaccine-title-li"key={index}>
-                                            <Link  to={`/vaccinecate/${item.id}`}>{item.name}</Link>
+                                            <Link  to={`/danh-muc-vaccine/${item.id}`}>{item.name}</Link>
                                         </li>
                                         )                  
                                     })

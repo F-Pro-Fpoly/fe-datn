@@ -1,14 +1,17 @@
 
-import {useEffect, useState,useRef} from 'react';
-import { createCommentAPI} from "../../../services/normal/NewsService";
+import {useEffect, useState,useRef, forwardRef, useImperativeHandle} from 'react';
+import { createCommentAPI,getlistComment} from "../../../services/normal/NewsService";
 import { useDispatch, useSelector } from "react-redux";
 import { toast,ToastContainer } from 'react-toastify';
+import Loading from "../../../components/Loading/Loading";
 import { useParams } from "react-router";
-function InputComment(){
+import PropTypes from 'prop-types';
+const InputComment = ({onSubmit}) =>{
     const dispatch = useDispatch();
     const token = useSelector((state)=>state.auth.token);
     const param = useParams();
     const FormRep = useRef();
+    const [Comment, getComment] = useState([]);
     const submitForm = async (event) =>{
         event.preventDefault();
         const slug = param.slug;
@@ -21,7 +24,12 @@ function InputComment(){
         try {
           let res = await createCommentAPI(req);
           FormRep.current.reset();
-          toast.success(res.data.message) ;     
+          toast.success(res.data.message);
+          let ress = await getlistComment(slug);
+          let datalist = ress.data;
+          getComment(datalist);
+          onSubmit();
+
         } catch (error) {
           let res = error.response;
           let data = res.data;
@@ -30,7 +38,10 @@ function InputComment(){
         }
     
       }
+      useEffect(()=>{
+      },[param]);
     return(<>
+   
               <ToastContainer
               position="top-right"
               autoClose={4000}
@@ -42,10 +53,14 @@ function InputComment(){
             draggable
             pauseOnHover/>
             <form className="form-wrapper" onSubmit={submitForm} ref={FormRep}>
-                 <textarea className="form-control" placeholder="Nhập nội dung bình luận" name="content"></textarea>
+                 <textarea className="form-control" maxLength="255" placeholder="Nhập nội dung bình luận" name="content"></textarea>
                 <button type="submit" className="btn btn-primary">Gửi bình luận</button>
             </form>
             </>
     )
+}
+
+InputComment.propTypes = {
+  onSubmit: PropTypes.func
 }
 export default InputComment;

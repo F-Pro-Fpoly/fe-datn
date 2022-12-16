@@ -1,32 +1,35 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loading from '../../../../../components/Loading/Loading';
 import Paginate from "../../../../../components/Paginate/Paginate";
+import { exportPatient } from '../../../../../services/Report';
 import { getListPatientServiceAPI } from '../../../../../services/UserService';
+import ExportFile from "../../../../../hooks/useExportFile";
+import { setLoading } from '../../../../../redux/slices/InterfaceSile';
 
 function ListPatient() {
 
 
     const token = useSelector(state => state.auth.token)
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoadingg] = useState(false);
     const [list, setList] = useState([]);
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
-    
+    const dispatch = useDispatch();
     const [search,setSearch] = useState({
       "name" : "",
       "date" : "",
      
     });
     const start = async () => {
-        setLoading(true)
+      setLoadingg(true)
         let res = await getListPatientServiceAPI(token,page,search);
         let data = res.data
         let dataArr = data.data;
-        setLoading(false)
+        setLoadingg(false)
         setList(dataArr)
 
         // handle paginate
@@ -46,17 +49,36 @@ function ListPatient() {
 
     const HandleSearch = async (e) => {
       e.preventDefault();
-      setLoading(true)
+      setLoadingg(true)
       let res = await getListPatientServiceAPI(token,page,search) 
       let data = res.data 
       let dataArr = data.data
-      setLoading(false)
+      setLoadingg(false)
       setList(dataArr)
 
       // handle paginate
       let pagination = data.meta.pagination ?? null;
       setPaginate(pagination);
   }
+
+
+  const handleExport = async (value) => {
+    try {
+      dispatch(setLoading(true));
+      let id = value
+      let res = await exportPatient({token, id})
+      ExportFile(res.data, 'export_Patient.pdf');
+      dispatch(setLoading(false));
+    } catch (error) {
+      if(error.response) {
+        console.log(error.response.data.message);
+        dispatch(setLoading(false));
+        return;
+      }
+    }
+   
+    
+  } 
 
     return (  
         <>
@@ -91,7 +113,7 @@ function ListPatient() {
                   <th>Ngày sinh</th>
                   <th>Ngày khám gần nhất</th>       
                   <th>Hồ sơ bệnh án</th>
-                  {/* <th>Thao tác</th>      */}
+                  <th>Xuất PDF</th>     
                 </tr>
               </thead>
               <tbody>
@@ -115,7 +137,14 @@ function ListPatient() {
                       <td>
                         <Link to={`/ho-so-ca-nhan/ho-so-benh-an/${val.id}`}> Xem hồ sơ</Link>
                       </td>
-                    
+                      <td>
+                        {val.lastBooking ? 
+                        <Link onClick={() => handleExport(val.id)}>Tải xuống</Link>
+                          :
+                          <span style={{color:"#ccc"}} disabled>Tải xuống</span>
+                      }
+
+                      </td>
                       {/* <td><Link to={`/ho-so-ca-nhan/chi-tiet-danh-sach-lich-kham/${val.id}`}><i className="fas fa-edit"></i></Link></td> */}
                     </tr>
                   ))

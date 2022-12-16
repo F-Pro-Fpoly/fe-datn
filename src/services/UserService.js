@@ -231,7 +231,7 @@ function getListPatientServiceAPI(token = null, page = 1, search = {}) {
 
 }
 
-function getDetailListPatientServiceAPI(token = null,id = null, search = null) {
+function getDetailListPatientServiceAPI(token = null,id = null, search = null, page = 1) {
     
     try {
         let headers ={}; 
@@ -240,7 +240,7 @@ function getDetailListPatientServiceAPI(token = null,id = null, search = null) {
             // console.log(configs);
         }
 
-        let url =`auth/user/listPatientDetail?user_id=${id}&is_vaccine=${search.is_vaccine}&limit=10`;
+        let url =`auth/user/listPatientDetail?user_id=${id}&is_vaccine=${search.is_vaccine}&limit=10&page=${page}`;
         return API.get(url, {headers: headers});
     } catch (error) {
         console.error(error);

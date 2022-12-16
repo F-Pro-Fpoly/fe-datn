@@ -21,6 +21,7 @@ function NavBarTop({navEl2}) {
     }
 
     useEffect(() => {
+       try {
         const db = getDatabase();
         const starCountRef = query(ref(db, 'contact'), orderByChild('status'), equalTo("A"));
         onValue(starCountRef , (snapshot) => {
@@ -34,6 +35,9 @@ function NavBarTop({navEl2}) {
         setQuantity(quatity)
         });
 
+       } catch (error) {
+        
+       }
        
     
     }, [])
@@ -82,8 +86,8 @@ function NavBarTop({navEl2}) {
                                     return(                                       
                                     <Link to="/admin/lien-he/danh-sach-lien-he" className="navBarTop-link" key={index}>
                                         <div style={{borderBottom: "1px solid #ccc"}}>                                                        
-                                            <p>{item.username}</p>                                
-                                            <p>{item.content}</p>
+                                            <p>Tên người gửi: {item.username}</p>                                
+                                            <p>Nội dung: {item.content}</p>
                                         </div>
                                     </Link>                                                                  
                                     )
@@ -101,14 +105,14 @@ function NavBarTop({navEl2}) {
                     </div>
                     <DropdownMenu id="menu-avata" className="menu-avata">
                         <ul className="navBarTop-list">
-                            <li className="navBarTop-item">
+                            {/* <li className="navBarTop-item">
                                 <Link to="/profile" className="navBarTop-link">Profile</Link>
                             </li>
                             <li className="navBarTop-item">
                                 <Link to="/profile" className="navBarTop-link">Profile</Link>
-                            </li>
+                            </li> */}
                             <li className="navBarTop-item">
-                                <Link to="/logout" className="navBarTop-link">Logout</Link>
+                                <Link to="/logout" className="navBarTop-link">Đăng xuất</Link>
                             </li>
                         </ul>
                     </DropdownMenu>
