@@ -58,10 +58,10 @@ function Footer (getconfig) {
                     </div>                                
                         <div className="address">
                             <div className="row">
-                                <h3>{ getconfig.getconfig.NameCompany ? getconfig.getconfig.NameCompany.description : ""}</h3>                   
+                                <h3>Số điện thoại: { getconfig.getconfig.NameCompany ? getconfig.getconfig.NameCompany.description : ""}</h3>                   
                                 <p>{ getconfig.getconfig.phone ? getconfig.getconfig.phone.description : ""}</p>    
                                 <h3>Văn phòng</h3>
-                                <p>{ getconfig.getconfig.address ? getconfig.getconfig.address.description : ""}</p>
+                                <p>Địa chỉ: { getconfig.getconfig.address ? getconfig.getconfig.address.description : ""}</p>
                             </div>                                   
                         </div>
                     </div>
