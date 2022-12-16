@@ -132,7 +132,9 @@ export default function DitailNews(){
                                                     onSubmit={handleInputComent}
                                                 />
                                             ):(
-                                                <h5>Vui lòng đăng nhập để bình luận</h5>
+                                                <h5>Vui lòng 
+                                                <Link to={"/login"} className="text-primary"> đăng nhập </Link>    
+                                                 để bình luận</h5>
                                             )
                                         }
                                     </div>
