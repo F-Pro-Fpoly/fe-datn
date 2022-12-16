@@ -45,7 +45,7 @@ function Vaccine() {
         document.title = "Đặt lịch tiêm vaccine"
         start(page)
     
-    }, [searchDebounce, searchParam])
+    }, [searchDebounce])
 
     // useEffect(() => {
     //     let page = searchParam.get('page');
@@ -59,6 +59,10 @@ function Vaccine() {
   const searchVaccine  = (e) => {
     setSearch({...search, name: e.target.value});
   } 
+
+  const handleOnChangePageContent = async (page) => {
+    await start(page);
+  }
 
     return ( 
         <div className="vaccine">
@@ -111,6 +115,7 @@ function Vaccine() {
             <VaccineContent  
                 paginate={panigateVaccine}
                 list={list}
+                onchangePage={handleOnChangePageContent}
             />
         </div>
      );
