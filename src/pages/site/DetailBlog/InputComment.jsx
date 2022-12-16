@@ -53,7 +53,7 @@ const InputComment = ({onSubmit}) =>{
             draggable
             pauseOnHover/>
             <form className="form-wrapper" onSubmit={submitForm} ref={FormRep}>
-                 <input className="form-control" maxLength="100" placeholder="Nhập nội dung bình luận" name="content"/>
+                 <textarea className="form-control" maxLength="255" placeholder="Nhập nội dung bình luận" name="content"></textarea>
                 <button type="submit" className="btn btn-primary">Gửi bình luận</button>
             </form>
             </>
