@@ -211,6 +211,7 @@ function News(){
                             </div>
                         </div>
                     </div>
+                    
                   </div>
                 </div>
               </div>
