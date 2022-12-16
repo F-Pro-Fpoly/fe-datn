@@ -1,6 +1,6 @@
 import "../News/Blog.scss";
 import { Link } from "react-router-dom";
-import { getListCateAPI,getlistTopWeek1API,getlistTopWeek3API} from "../../../services/normal/NewsService";
+import { getListCateAPI,getlistTopWeek1API,getlistTopWeek3API,getListNewsDMAPI} from "../../../services/normal/NewsService";
 import Loading from "../../../components/Loading/Loading";
 import {useDispatch,useSelector} from "react-redux";
 import { useEffect, useState } from "react";
@@ -17,6 +17,7 @@ function NewsCate(){
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
     const param = useParams();
+    const [ListDM, getListDM] = useState([]);
     document.title = "Tin tức";  
     const start = async () => {
         getCate([]);
@@ -37,7 +38,10 @@ function NewsCate(){
           let dataNew3 = resTW.data;
           let dataTW3 = dataNew3.data;
           getListTopWeek3(dataTW3);
-
+          let resDM = await getListNewsDMAPI();
+          let dataDM = resDM.data;
+          let dataDMT = dataDM.data;
+          getListDM(dataDMT);
           let respon = await ListConfigService();
           let dataa = respon.data;
           let dataArrr = dataa.data;
@@ -219,6 +223,23 @@ function NewsCate(){
                             </div>
                         </div>
                     </div>
+                    <div className="widget">
+                                <h2 className="widget-title">Danh mục tin tức</h2>
+                              
+                                        <div className="link-widget">
+                                        {ListDM.map((item,index) => {
+                                    return( 
+                                        <ul>
+                                            <li><Link to={`/danh-muc-tin/${item.id}`}>
+                                             {item.name}
+                                            </Link></li>
+                                        </ul>
+                                                    )                                                 
+                                                })
+                                            }
+                                              
+                                </div>
+                </div>
                   </div>
                 </div>
               </div>

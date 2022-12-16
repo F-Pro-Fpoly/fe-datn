@@ -1,6 +1,6 @@
 import "./Blog.scss";
 import { Link } from "react-router-dom";
-import { getListNewsAPI,getlistTopWeek1API,getlistTopWeek3API} from "../../../services/normal/NewsService";
+import { getListNewsAPI,getlistTopWeek1API,getlistTopWeek3API,getListNewsDMAPI} from "../../../services/normal/NewsService";
 import Loading from "../../../components/Loading/Loading";
 import {useDispatch,useSelector} from "react-redux";
 import { useEffect, useState } from "react";
@@ -13,6 +13,7 @@ function News(){
     const [ListNews, getNews] = useState([]);
     const [ListTopWeek3, getListTopWeek3] = useState([]);
     const [ListTopWeek1, getListTopWeek1] = useState([]);
+    const [ListDM, getListDM] = useState([]);
     const [loading, getLoading] = useState(false);
     const [paginate, setPaginate] = useState(null);
     const [page, setPage] = useState(1);
@@ -31,7 +32,11 @@ function News(){
           let resTW = await getlistTopWeek3API();
           let dataNew3 = resTW.data;
           let dataTW3 = dataNew3.data;
-          getListTopWeek3(dataTW3);
+          getListTopWeek1(datatw);
+          let resDM = await getListNewsDMAPI();
+          let dataDM = resDM.data;
+          let dataDMT = dataDM.data;
+          getListDM(dataDMT);
           let respon = await ListConfigService();
           let dataa = respon.data;
           let dataArrr = dataa.data;
@@ -211,7 +216,23 @@ function News(){
                             </div>
                         </div>
                     </div>
-                    
+                    <div className="widget">
+                                <h2 className="widget-title">Danh mục tin tức</h2>
+                              
+                                        <div className="link-widget">
+                                        {ListDM.map((item,index) => {
+                                    return( 
+                                        <ul>
+                                            <li><Link to={`/danh-muc-tin/${item.id}`}>
+                                             {item.name}
+                                            </Link></li>
+                                        </ul>
+                                                    )                                                 
+                                                })
+                                            }
+                                              
+                                </div>
+                </div>
                   </div>
                 </div>
               </div>

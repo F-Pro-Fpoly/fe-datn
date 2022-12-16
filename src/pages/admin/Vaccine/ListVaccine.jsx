@@ -68,6 +68,7 @@ function ListVaccine() {
                     </Form.Group>
                 </div>
             </div>
+            
             <div className="adminItem">
                 <Table responsive striped bordered hover>
                     <thead>
