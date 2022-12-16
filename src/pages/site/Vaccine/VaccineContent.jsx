@@ -71,11 +71,11 @@ function VaccineContent (props) {
                         {props.paginate && (
                             <ReactPaginate
                                 breakLabel="..."
-                                nextLabel="next >"
+                                nextLabel=">"
                                 onClick={handlePageClick}
                                 pageRangeDisplayed={5}
                                 pageCount={props.paginate.total_pages ?? 0}
-                                previousLabel="< previous"
+                                previousLabel="<"
                                 className="pagination"
                                 pageClassName="page-item"
                                 pageLinkClassName="page-link"
