@@ -79,7 +79,7 @@ function ListCateVaccine() {
                             <th>Tên danh mục</th>
                             <th>Slug</th>
                             <th>Danh mục cha</th>
-                            <th>Action</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>

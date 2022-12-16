@@ -55,7 +55,7 @@ function ListVaccine() {
     
     return ( 
         <div className="adminWrapper">
-            <h3>Danh Sách VACCINE</h3>
+            <h3>DANH SÁCH VACCINE</h3>
             <div className="adminItem">
                 <div className="row">
                     <Form.Group className="col-3">
@@ -77,7 +77,7 @@ function ListVaccine() {
                             <th>Tên Vaccine</th>
                             <th>Slug</th>
                             <th>Giá</th>
-                            <th>Action</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
