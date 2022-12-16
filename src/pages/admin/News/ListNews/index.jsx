@@ -82,8 +82,8 @@ const hanleSearch = async () =>{
               <thead>
                 <tr>
                   <th>STT</th>
-                  <th>Mã Tin</th>
-                  <th>Tên tin</th>
+                  <th >Tên tin</th>
+                  <th>Đường dẫn</th>
                   <th>Kích hoạt</th>
                   <th>Nổi bật</th>
                   <th>Danh mục tin</th>
@@ -94,14 +94,11 @@ const hanleSearch = async () =>{
               {ListNews.map((val, index)=>(
                   <tr key={index}>
                       <td>{index+1}</td>
-                      <td>{val.code}</td>
-                      <td>{val.name}</td>
+                      <td >{val.name}</td>
                       <td>{val.slug}</td>                
                       <td>{val.status === 1 ? <span className="text-success">Đang kích hoạt</span>:<span className="text-danger">Ngừng kích hoạt</span>}</td>
                       <td>{val.featured === 1 ? <span className="text-success">Nổi bật</span>:<span className="text-danger">Không nổi bật</span>}</td>
                       <td>{val.category_name}</td>
-                      
-                    
                       <td>
                         <button  type="button" className="btn">
                           <Link to={`/admin/tin-tuc/edit/${val.id}`}>

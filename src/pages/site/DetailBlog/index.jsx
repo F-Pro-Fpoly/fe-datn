@@ -99,16 +99,11 @@ export default function DitailNews(){
                                     <h2>{NewsDetail.name}</h2>
                                     <div className="blog-meta big-meta">
                                         <small>
-                                            <Link>
                                                 <i className="far fa-clock"></i>
                                                 {NewsDetail.created_at}
-                                            </Link>
-                                        
                                         </small>
                                         <small>
-                                            <Link>
                                                 <i className="fa fa-eye"></i> {NewsDetail.views}
-                                            </Link> 
                                         </small>
                                             <Link to={`/danh-muc-tin/${NewsDetail.category_id}`}>
                                             Danh Mục: {NewsDetail.category_name}
