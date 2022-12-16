@@ -59,7 +59,7 @@ const Comment = forwardRef(({}, ref) => {
       <>
       {Comment.map((item,index) => {
           return(
-          <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} key={index}>
+          <List sx={{ width: '100%', maxWidth: 850, bgcolor: 'background.paper' }} key={index}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
               <Avatar alt="Remy Sharp" src={`${item.user_avatar}`} />
