@@ -70,7 +70,8 @@ function Report() {
 
     const handleExportExcelBooking = async () => {
         if(!code){
-            throw "vui lòng nhập code";
+            toast.error("vui lòng nhập code");
+            // throw "";
         }
         try {
             dispatch(setLoading(true));

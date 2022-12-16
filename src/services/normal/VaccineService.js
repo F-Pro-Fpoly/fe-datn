@@ -51,7 +51,7 @@ function getListVaccineCateAPI(active=1) {
 function getListCateAPI(id,search = '') {
     try {
         let headers ={}; 
-        let url = `normal/vaccine/list_dm/`;
+        let url = `normal/vaccine/list_dm`;
         url += `?category_ids=${id}&name=${search}`;
         return API.get(url,{headers: headers});
         
