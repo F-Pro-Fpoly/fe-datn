@@ -87,19 +87,19 @@ function Register() {
                     </div>
                     <div className="field space">
                         <span className="fa fa-user"></span>
-                        <input type="text"  required placeholder="Nhập Username"  {...register('username')} />
+                        <input type="text"  required placeholder="Nhập tên tài khoản"  {...register('username')} />
                         <p className='text-danger'>{errors.username?.message}</p>
         
                     </div>
                     <div className="field space">
                         <span className="fa fa-lock"></span>
-                        <input type="password" className="password" required placeholder="Nhập password"  {...register('password')} />
+                        <input type="password" className="password" required placeholder="Nhập mật khẩu"  {...register('password')} />
                         <p className='text-danger'>{errors.password?.message}</p>
         
                     </div>
                     <div className="field space">
                         <span className="fa fa-lock"></span>
-                        <input type="password" className="password" required placeholder="Nhập lại Password"  {...register('RePassword')} />
+                        <input type="password" className="password" required placeholder="Nhập lại mật khẩu"  {...register('RePassword')} />
                         <p className='text-danger'>{errors.RePassword?.message}</p>
         
                     </div>
@@ -109,8 +109,8 @@ function Register() {
                     <div className="field">
                         <button className='btn btn-primary' type="submit">Đăng ký</button>
                     </div>
-                    <div className="login">Hoặc đăng ký bằng</div>
-                    <div className="link">
+                    <div className="login">Nếu có tài khoản</div>
+                    {/* <div className="link">
                     <GoogleLogin
                             clientId={clientId}
                             buttonText="Login"
@@ -128,7 +128,7 @@ function Register() {
                                 )
                             }}
                         />
-                    </div>
+                    </div> */}
                     <div className="signup">
                        <Link to={"/login"}> Đăng nhập ngay</Link>
                     </div>

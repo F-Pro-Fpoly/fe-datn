@@ -10,16 +10,16 @@ function NavBarAdmin({className}) {
     const token = useSelector((state) => state.auth.token);
     const user = useSelector(state => state.auth.user);
     const [counts, setCounts] = useState({});
-    let NavLich = [
-        {
-            name: "Danh sách lịch khám",
-            to: "/admin/booking/list"
-        },
-        {
-            "name": "Tạo lịch",
-            to: "/admin/booking/add"
-        }
-    ]
+    // let NavLich = [
+    //     {
+    //         name: "Danh sách lịch khám",
+    //         to: "/admin/booking/list"
+    //     },
+    //     {
+    //         "name": "Tạo lịch",
+    //         to: "/admin/booking/add"
+    //     }
+    // ]
 
     // if(user.role_id == 2) {
     //     NavLich = [
@@ -126,7 +126,10 @@ function NavBarAdmin({className}) {
                 )}
                 
                 
-                <NavBarItem id="booking" name="Đặt lịch khám" countTitle={counts['booking-count']} dropdownArr={NavLich} icon="bi bi-bookmark-plus" />
+                <NavBarItem id="booking" name="Tạo lịch khám" 
+                // countTitle={counts['booking-count']}     
+                to="/admin/booking/add"
+                 icon="bi bi-bookmark-plus" />
                 
                 {
                     user.role_id ==1 && (

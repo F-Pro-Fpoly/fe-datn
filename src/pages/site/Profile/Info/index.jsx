@@ -263,7 +263,9 @@ function Info( props) {
 
                           <div className="col-12">
                             <label className="form-label">Thông tin bác sĩ</label>
-                            <textarea className="form-control" rows="3" spellCheck="false" defaultValue={props.infoUser.user_info} ></textarea>
+                            <textarea 
+                            name='user_info'
+                            className="form-control" rows="3" spellCheck="false" defaultValue={props.infoUser.user_info} ></textarea>
                         </div>
                         :
                         ""

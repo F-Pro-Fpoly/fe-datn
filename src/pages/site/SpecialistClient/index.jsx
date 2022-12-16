@@ -102,8 +102,7 @@ function SpecialistClient () {
                                                 <div className="textPart">
                                                     <Link className="linkNews">
                                                       <p className="titleNews">{item.name}</p>
-                                                    </Link>
-                                            
+                                                    </Link>                                           
                                                     <p className="desNews">
                                                       {item.short_description}
                                                     </p>
