@@ -38,6 +38,7 @@ function ListVaccine() {
     }
     const handlePageClick = async (page) =>{
         try {
+            page = page.selected;
             page = page + 1; 
             let res = await listVaccine({token, limit: 10, page: page ?? null});
             let data = res.data.data;

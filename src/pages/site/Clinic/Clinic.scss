@@ -223,6 +223,7 @@
         flex-wrap: wrap !important;
         flex: 0 0 100%;
         max-width: 100%;
+        padding: 20px 5px !important;
         &>.image{
             flex: 0 0 40%;
             max-width: 40%;
@@ -235,6 +236,10 @@
             flex: 0 0 100%;
             max-width: 100%;
             width: auto;
+        }
+
+        .schedule-time{
+            width: auto !important;
         }
 
     }
