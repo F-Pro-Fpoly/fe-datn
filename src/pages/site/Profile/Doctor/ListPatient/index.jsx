@@ -138,7 +138,12 @@ function ListPatient() {
                         <Link to={`/ho-so-ca-nhan/ho-so-benh-an/${val.id}`}> Xem hồ sơ</Link>
                       </td>
                       <td>
+                        {val.lastBooking ? 
                         <Link onClick={() => handleExport(val.id)}>Tải xuống</Link>
+                          :
+                          <span style={{color:"#ccc"}} disabled>Tải xuống</span>
+                      }
+
                       </td>
                       {/* <td><Link to={`/ho-so-ca-nhan/chi-tiet-danh-sach-lich-kham/${val.id}`}><i className="fas fa-edit"></i></Link></td> */}
                     </tr>
