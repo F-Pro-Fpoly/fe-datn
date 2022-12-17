@@ -148,9 +148,11 @@ function Payment({bookingDescription}) {
                     {/* <div className="col-12">
                         <Form.Check type='radio' value="momo"  id='payment-method-momo' label="Thanh toán qua MOMO" name="payment-method" />
                     </div> */}
-                    <div className="col-12">
-                        <Form.Check type='radio' value="vnpay"  id='payment-method-vnpay' label="Thanh toán qua VNpay" name="payment-method" />
-                    </div>
+                   {
+                    token &&  <div className="col-12">
+                    <Form.Check type='radio' value="vnpay"  id='payment-method-vnpay' label="Thanh toán qua VNpay" name="payment-method" />
+                </div>
+                   }
                    
 
                 </div>
