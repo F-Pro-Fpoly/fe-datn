@@ -7,6 +7,7 @@ import { Form, Modal, Table } from "react-bootstrap";
 import AddVaccine from "./AddVaccine";  
 import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate';
+import { Button } from "@mui/material";
 function ListVaccine() {
     const token = useSelector(state => state.auth.token);
     const [listCate, setListCate] = useState([]);
@@ -16,6 +17,10 @@ function ListVaccine() {
         'isUpdate': false,
         'id': null,
     });
+    const [search, setSearch] = useState({
+        'code': '',
+        'name': ''
+    })
 
     const handleShowModel = () => {
 
@@ -27,7 +32,7 @@ function ListVaccine() {
     }
     const start = async () => {
         try {
-            let res = await listVaccine({token, limit: 10});
+            let res = await listVaccine({token, limit: 10, search});
             let data = res.data.data;
             let pagination = res.data.meta.pagination ?? {};
             setListCate(data);
@@ -52,7 +57,11 @@ function ListVaccine() {
         setModal(true)
     }
     useEffect(() => {start()}, [])
-    
+
+    const handleSearch = () => {
+        start();
+    }
+ 
     return ( 
         <div className="adminWrapper">
             <h3>DANH SÁCH VACCINE</h3>
@@ -60,12 +69,22 @@ function ListVaccine() {
                 <div className="row">
                     <Form.Group className="col-3">
                         <Form.Label htmlFor="" className="form-lable-fro">Mã Vaccine</Form.Label>
-                        <Form.Control type="text" />
+                        <Form.Control type="text" value={search.code} onChange={(e) => setSearch({...search, code: e.target.value})} />
                     </Form.Group>
                     <Form.Group className="col-3">
                         <Form.Label htmlFor="" className="form-lable-fro">Tên Vaccine</Form.Label>
-                        <Form.Control type="text" />
+                        <Form.Control type="text" value={search.name} onChange={(e) => setSearch({...search, name: e.target.value})} />
                     </Form.Group>
+                </div>
+                <div className="row mt-3">
+                    <div className="col-12">
+                        <Button 
+                            type="button"
+                            variant="contained"
+                            color="primary"
+                            onClick={handleSearch}
+                        >Tìm kiếm</Button>
+                    </div>
                 </div>
             </div>
             
