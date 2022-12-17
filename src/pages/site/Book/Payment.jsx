@@ -1,20 +1,28 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import { Form } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { Navigate, useNavigate } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { setLoading } from '../../../redux/slices/InterfaceSile';
 import { createBookingService } from '../../../services/normal/BookingService';
+import { paymentVNPAY } from '../../../services/Payment';
 
 function Payment({bookingDescription}) {
+  
     const navigate = useNavigate();
+    const formPaymentVNPAY = useRef();
     let dataPayment = [
         {
             'payment_method': "default",
             'price': "100000"
         },
+        // {
+        //     'payment_method': "momo",
+        //     'price': "90000"
+        // },
         {
-            'payment_method': "momo",
+            'payment_method': "vnpay",
             'price': "90000"
         }
     ];
@@ -22,7 +30,7 @@ function Payment({bookingDescription}) {
     const [paymentMethod, setPaymentMethod] = useState('default');
     const [paymentData, setPaymentData] = useState({});
     const dispatch = useDispatch();
-
+    const [searchParam] = useSearchParams();
     const handleOnchangePaymentMethod = (e) => {
         dispatch(setLoading(true));
         let payment_method = e.target.value;
@@ -55,6 +63,7 @@ function Payment({bookingDescription}) {
 
         return null;
     }
+
     const handlePayment = async () => {
         dispatch(setLoading(true));
         try {
@@ -90,11 +99,9 @@ function Payment({bookingDescription}) {
             let res = await createBookingService({token, data: dataReq});
             let message = res.data.message;
             dispatch(setLoading(true));
-            toast.success(message);
-
             setTimeout(()=>{
                 dispatch(setLoading(true));
-                navigate('/');
+                navigate('/cam-on-da-dat-lich');
                 dispatch(setLoading(false));
             }, 2000);
         } catch (error) {
@@ -103,6 +110,24 @@ function Payment({bookingDescription}) {
             toast.error(message);
         } 
     }
+  
+
+    const PaymentVNPAY = async (e) => {
+       
+        e.preventDefault();
+        let booking_info2 = JSON.parse(sessionStorage['booking_info2'] ?? "{}");
+        const req = {
+            "data": booking_info2,
+            "token": token,
+            // "dataSpe" : booking_info2
+          };
+    
+        let res = await paymentVNPAY(req);
+        window.location.assign(res.data.data);
+       
+    }
+
+
 
     useEffect(() =>{
         handleChangePaymentMethod(paymentMethod, dataPayment);
@@ -120,9 +145,14 @@ function Payment({bookingDescription}) {
                     <div className="col-12" >
                         <Form.Check type='radio' value="default" defaultChecked  id='payment-method-default' label="Thanh toán tại cơ sở" name="payment-method" />
                     </div>
+                    {/* <div className="col-12">
+                        <Form.Check type='radio' value="momo"  id='payment-method-momo' label="Thanh toán qua MOMO" name="payment-method" />
+                    </div> */}
                     <div className="col-12">
-                        <Form.Check type='radio' value="momo"  id='payment-method-momo' label="Thanh toán qua momo" name="payment-method" />
+                        <Form.Check type='radio' value="vnpay"  id='payment-method-vnpay' label="Thanh toán qua VNpay" name="payment-method" />
                     </div>
+                   
+
                 </div>
                 {/*  */}
                 
@@ -135,7 +165,6 @@ function Payment({bookingDescription}) {
                             
                             <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>
                                 
-                          
                                 {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(paymentData.price)} </span></p>
 
                         )}
@@ -143,21 +172,43 @@ function Payment({bookingDescription}) {
                 )
             }
            
-            {
+            {/* {
                 paymentMethod == 'momo' && (
                     <div className="row mt-2 ms-0 me-0">
                         <h4 className='booking-hr booking-hr--dashed py-2'>Thanh toán qua momo</h4>
                         {paymentData && (
-                            <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>{paymentData.price} <span className='text-dark'>VNĐ</span></span></p>
+                            <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(paymentData.price)}</span></p>
+                        )}
+                    </div>
+                )
+            } */}
+            {
+                paymentMethod == 'vnpay' && (
+                    <div className="row mt-2 ms-0 me-0">
+                        <h4 className='booking-hr booking-hr--dashed py-2'>Thanh toán qua VNpay</h4>
+                        {paymentData && (
+                            <p className='d-flex justify-content-between fw-bold'>Tổng tiền cần thanh toán: <span className='text-danger fw-bold'>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(paymentData.price)}</span></p>
                         )}
                     </div>
                 )
             }
             {
                 paymentMethod && (
-                    <div className='mt-3'>
+                    
+                    <>
+                    {
+                        paymentMethod == 'vnpay' ?
+                        <div className='mt-3'>
+                       <button className='btn btn-primary booking-button--full booking-button--payment' onClick={PaymentVNPAY}>Thanh Toán</button>
+                       </div>
+                        :
+                        <div className='mt-3'>
                         <button className='btn btn-primary booking-button--full booking-button--payment' onClick={handlePayment}>Thanh Toán</button>
                     </div>
+                    }
+                 
+                    </>
+                    
                 )
             }
         </div>
