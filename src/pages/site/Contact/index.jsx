@@ -49,9 +49,6 @@ function Contact(){
 }, []);
 
 
-
-
-
     return(
       <div className="contact">
             <div className="page-title">
@@ -86,21 +83,25 @@ function Contact(){
                               </div>
                               <div className="form-contact">
                                 <h1>Liên hệ</h1>
-                                <form  onSubmit={submitContact} ref={FormRep} method="post" >
+                                <form  onSubmit={submitContact} ref={FormRep} method="post" className="was-validated">
                                   <div className="flex-rev-contact">
-                                    <input  type="text" placeholder="VD: Nguyễn Văn A" name="name"  />
+                                    <input  type="text" placeholder="VD: Nguyễn Văn A" name="name"required />
+                                    <div className="invalid-feedback">Nhập họ tên.</div>
                                     <label>Họ tên</label>
+                                    
                                   </div>
                                   <div className="flex-rev-contact">
-                                    <input  type="email" placeholder="VD: fpro.info@gmail.com" name="email" />
+                                    <input  type="email" placeholder="VD: fpro.info@gmail.com" name="email"required />
+                                    <div className="invalid-feedback">Nhập email.</div>
                                     <label> Email</label> 
                                   </div>
                                   <div className="flex-rev-contact">
-                                    <input  type="text" placeholder="VD: 0794248804" name="phone" />
+                                    <input  type="text" placeholder="VD: 0794248804" name="phone" required/>
+                                    <div className="invalid-feedback">Nhập số điện thoại.</div>
                                     <label>Số điện thoại</label>
                                   </div>
                                   <div className="flex-rev-contact">
-                                    <textarea placeholder="Nhập nội dung vào ô này !...." name="contents" ></textarea>
+                                    <textarea placeholder="Nhập nội dung vào ô này !...." name="contents" required></textarea>
                                     <label >Nội dung</label>
                                   </div>
                                   <button className="button-contact">Gửi Email</button>
