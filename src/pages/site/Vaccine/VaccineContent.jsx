@@ -9,6 +9,7 @@ function VaccineContent (props) {
     const navigate = useNavigate();
     const is_first_render = useRef(false);
     const handlePageClick =  (page1) => {
+        // console.log(page1);
         page1 = page1.selected
         page1 = page1 + 1 ;
         props.onchangePage(page1);
@@ -72,7 +73,7 @@ function VaccineContent (props) {
                             <ReactPaginate
                                 breakLabel="..."
                                 nextLabel=">"
-                                onClick={handlePageClick}
+                                onPageChange={handlePageClick}
                                 pageRangeDisplayed={5}
                                 pageCount={props.paginate.total_pages ?? 0}
                                 previousLabel="<"
