@@ -15,8 +15,8 @@ function Contact(){
     const token = useSelector((state)=>state.auth.token);
     const FormRep = useRef();
     const [getconfig, setConfig] = useState([])
-    const submitContact = async (event) =>{
-      event.preventDefault();
+    const submitContact = async data =>{
+      console.log(data);
       const formData = new FormData(FormRep.current);
       const req = {
         "data": formData,
@@ -24,7 +24,7 @@ function Contact(){
       };
   
       try {
-        let res = await creatContactApi(req,token);
+        let res = await creatContactApi(req,token,data);
         writeUserData(formData.get("name"), formData.get("contents"), "contact_"+getRandomInt(1000000000))
         FormRep.current.reset();
         toast.success(res.data.message) ;     
@@ -32,7 +32,7 @@ function Contact(){
         let res = error.response;
         let data = res.data;
         let messages = data.message;
-        toast.error(messages);
+        toast.error("Không đc bỏ trống các trường này");
       }
   
     }
