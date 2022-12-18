@@ -92,18 +92,15 @@ function Contact(){
                                 <form  onSubmit={submitContact} ref={FormRep} method="post" className="was-validated">
                                   <div className="flex-rev-contact">
                                     <input  type="text" placeholder="VD: Nguyễn Văn A" name="name"required />
-                                    <div className="invalid-feedback">Họ tên không đuọc bỏ trống.</div>
                                     <label>Họ tên</label>
                                     
                                   </div>
                                   <div className="flex-rev-contact">
                                     <input  type="email" placeholder="VD: fpro.info@gmail.com" name="email"required />
-                                    <div className="invalid-feedback">Email không đuọc bỏ trống.</div>
                                     <label> Email</label> 
                                   </div>
                                   <div className="flex-rev-contact">
                                     <input  type="text" placeholder="VD: 0794248804" name="phone" required/>
-                                    <div className="invalid-feedback">Số điện thoại không đuọc bỏ trống.</div>
                                     <label>Số điện thoại</label>
                                   </div>
                                   <div className="flex-rev-contact">
