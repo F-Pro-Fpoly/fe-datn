@@ -17,11 +17,11 @@ function VaccineCate () {
     const [ListCate, getVaccinCate] = useState([]);
     const param = useParams();
     const [loading, getLoading] = useState(false);
-    const id =param.id;
+    const slug =param.slug;
     const start = async () => {
         getLoading(true);
         getVaccinCate([]);
-        let res = await getListCateAPI(id,{...search});
+        let res = await getListCateAPI(slug,{...search});
         let data = res.data;
         let dataArr = data.data;
         let restw = await getListVaccineCateAPI();
@@ -36,7 +36,7 @@ function VaccineCate () {
         document.title = "Đặt lịch tiêm vaccine"
         start()
     
-    }, [searchDebounce, searchParam])
+    }, [searchDebounce, searchParam,param])
 
 
     const searchVaccine  = (e) => {
@@ -59,7 +59,7 @@ function VaccineCate () {
                                     {category.map((item,index)=>{
                                     return(
                                         <li className="vaccine-title-li"key={index}>
-                                            <Link  to={`/danh-muc-vaccine/${item.id}`}>{item.name}</Link>
+                                            <Link  to={`/danh-muc-vaccine/${item.slug}`}>{item.name}</Link>
                                         </li>
                                         )                  
                                     })

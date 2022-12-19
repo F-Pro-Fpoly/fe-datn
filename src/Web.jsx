@@ -78,6 +78,7 @@ import ForgetPassword from "./pages/auth/ForgetPassword";
 import ChangPassword from "./pages/auth/ChangPassword";
 import Tomail from "./pages/auth/Logout/Tomail";
 import VaccineCate from "./pages/site/Vaccine/VaccinCate";
+import Thanks from "./pages/site/Book/Thanks";
 
 function Web() {
     const user = useSelector((state) => state.auth.user);
@@ -98,13 +99,14 @@ function Web() {
                     <Route path="/ho-so-ca-nhan/*"  element={ AuthMiddlware ( <Profile /> )}/>  
                     <Route path="/doi-ngu-bac-si/:slug/:id"  element={  <ProfileDoctor /> }/>  
                     <Route path="/vaccine" element={ <Vaccine /> } />
-                    <Route path="/danh-muc-vaccine/:id" element={<VaccineCate/> } />
+                    <Route path="/danh-muc-vaccine/:slug" element={<VaccineCate/> } />
                     <Route path="/vaccine/:slug/:id" element={ <Detail /> } />
                    
                     <Route path="/tin-tuc/"  element={<News />}/>
                     <Route path="/chi-tiet/:slug"  element={ (<DetailNews />)}/>
                     <Route path="/danh-muc-tin/:id"  element={ (<NewsCate />)}/>
                     <Route path="/dang-ky-tiem" element={ <InjectionRegistration /> } />
+                    <Route path="/cam-on-da-dat-lich" element={ < Thanks /> } />
                 </Route>
                
                 <Route element={<LayoutAuth />}>

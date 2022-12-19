@@ -108,7 +108,23 @@ function getListCateAPI({id,page = 1,limit = 6}) {
     }
 
 }
+function getListNewsDMAPI( search = {}, page = 1, limit = 6) {
+    
+    try {
+        let headers ={}; 
+        let url = `normal/news/list-news-catagory?`;
+        for (const key in search) {
+            url += `${key}=${search[key]}&`;
+        }
+        url += `limit=${limit}&page=${page}`;
+        return API.get(url, {headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+
+}
 export { getListNewsAPI,getlistTopWeek3API,getlistComment
         ,getlistTopWeek1API,getNewsDetailClient,getListCateAPI,
-        createCommentAPI,deleteCommentAPI,updateComment,getOneComment
+        createCommentAPI,deleteCommentAPI,updateComment,getOneComment,getListNewsDMAPI
 }

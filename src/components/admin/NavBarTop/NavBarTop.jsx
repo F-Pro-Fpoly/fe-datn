@@ -79,14 +79,16 @@ function NavBarTop({navEl2}) {
                             <span>{quantity? quantity : 0 }</span>
                         </div>
                     </div>
-                    <DropdownMenu id="menu-alert" className="dropdown-menu-secondary">
+                    <DropdownMenu id="menu-alert" className="dropdown-menu-secondary"
+                    
+                    >
                         <ul className="navBarTop-list">
                             <li className="navBarTop-item">              
                                 { result.map((item,index) => {
                                     return(                                       
                                     <Link to="/admin/lien-he/danh-sach-lien-he" className="navBarTop-link" key={index}>
                                         <div style={{borderBottom: "1px solid #ccc"}}>                                                        
-                                            <p>Tên người gửi: {item.username}</p>                                
+                                            <p style={{fontWeight: "700"}}>Tên người gửi: {item.username}</p>                                
                                             <p>Nội dung: {item.content}</p>
                                         </div>
                                     </Link>                                                                  

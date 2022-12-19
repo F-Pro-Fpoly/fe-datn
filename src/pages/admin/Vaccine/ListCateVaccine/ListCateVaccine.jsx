@@ -1,20 +1,27 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Form, Modal, Table } from "react-bootstrap";   
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { listVaccineCategory,deleteVaccinetCategory } from "../../../../services/VaccineCategory";
 import AddCateVaccine from "./AddCateVaccine";
 import ReactPaginate from 'react-paginate';
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import {setLoading} from "../../../../redux/slices/InterfaceSile"
 
 function ListCateVaccine() {
     const [modal, setModal] = useState(false);
     const token = useSelector(state => state.auth.token);
+    const dispatch = useDispatch();
     const [listCate, setListCate] = useState([]);
     const [pagination, setPagination] = useState({});
     const [update, setUpdate] = useState({
         'isUpdate': false,
         'id': null,
+    });
+    const [search, setSearch] = useState({
+        code: '',
+        name: ''
     });
 
     const handleShowModel = () => {
@@ -27,22 +34,28 @@ function ListCateVaccine() {
     }
     const start = async () => {
         try {
+            dispatch(setLoading(true))
             let res = await listVaccineCategory({token, limit: 10});
             let data = res.data.data;
             let pagination = res.data.meta.pagination ?? {};
             setListCate(data);
             setPagination(pagination);
+            dispatch(setLoading(false))
         } catch (error) {
-            
+            dispatch(setLoading(false))
         }
     }
     const handlePageClick = async (page) =>{
         try {
+            dispatch(setLoading(true))
             page = page + 1; 
             let res = await listVaccineCategory({token, limit: 10, page: page ?? null});
             let data = res.data.data;
             setListCate(data);
+            dispatch(setLoading(false))
+
         } catch (error) {
+            dispatch(setLoading(false))
             
         }
     }
@@ -50,7 +63,21 @@ function ListCateVaccine() {
         setUpdate({...update, isUpdate: true, id: id});
         setModal(true)
     }
-    useEffect(() => {start()}, [])
+    useEffect(() => {start()}, []);
+
+    const  handleSearch = async () => {
+        try {
+            dispatch(setLoading(true))
+            let res = await listVaccineCategory({token, limit: 10, search: search});
+            let data = res.data.data;
+            let pagination = res.data.meta.pagination ?? {};
+            setListCate(data);
+            setPagination(pagination);
+            dispatch(setLoading(false))
+        } catch (error) {
+            dispatch(setLoading(false))
+        }
+    }
 
     return ( 
         <div className="adminWrapper">
@@ -59,12 +86,29 @@ function ListCateVaccine() {
                 <div className="row">
                     <Form.Group className="col-3">
                         <Form.Label htmlFor="" className="form-lable-fro">Mã danh mục</Form.Label>
-                        <Form.Control type="text" />
+                        <Form.Control 
+                            type="text"
+                            value={search.code}
+                            onChange={(e) => setSearch({...search, code: e.target.value})}
+                        />
                     </Form.Group>
                     <Form.Group className="col-3">
                         <Form.Label htmlFor="" className="form-lable-fro">Tên danh mục</Form.Label>
-                        <Form.Control type="text" />
+                        <Form.Control 
+                            type="text"
+                            value={search.name}
+                            onChange={(e) => setSearch({...search, name: e.target.value})}
+                        />
                     </Form.Group>
+                </div>
+                <div className="row mt-3">
+                    <div className="col-12">
+                        <Button
+                            color="primary"
+                            variant="contained"
+                            onClick={handleSearch}
+                        >Tìm kiếm</Button>
+                    </div>
                 </div>
             </div>
             <div className="adminItem">
@@ -79,7 +123,7 @@ function ListCateVaccine() {
                             <th>Tên danh mục</th>
                             <th>Slug</th>
                             <th>Danh mục cha</th>
-                            <th>Action</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>

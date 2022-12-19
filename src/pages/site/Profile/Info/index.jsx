@@ -1,17 +1,21 @@
 import React, { useRef } from 'react';
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { toast,ToastContainer } from 'react-toastify';
 import { getInfo, updatePassWord, updateUser } from '../../../../services/UserService';
 import Moment from 'moment';
 import { useEffect } from 'react';
+import { refreshToken } from '../../../../services/AuthService';
+import {addUser} from "../../../../redux/slices/AuthSlice";
+import {setLoading} from "../../../../redux/slices/InterfaceSile";
 
 
 function Info( props) {
    
     const token = useSelector(state => state.auth.token )
-    const id = props.infoUser.id
+    const id = props.infoUser.id;
+    const dispatch = useDispatch();
    
     const formRef = useRef();
     const formRefPass = useRef();
@@ -20,12 +24,13 @@ function Info( props) {
         props.changGender(e.target.value)
     }
     const avt = (e) => {
-        console.log(e.target.files[0]);
+        // console.log(e.target.files[0]);
         props.changAvt(e.target.files[0])
     }
 
     const onSubmit  = async (e) => {
         e.preventDefault();
+        dispatch(setLoading(true));
         const formData = new FormData(formRef.current)
 
         const req = {
@@ -36,20 +41,26 @@ function Info( props) {
       
 
         try {
-            let res = await updateUser(req)
+            let res = await updateUser(req);
+
+            let resRefesh = await refreshToken({token});
+            let dataRefesh = resRefesh.data;
+            dispatch(addUser(dataRefesh.data));
             let message = res.data.message;
             toast.success(message);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             let res = error.response;
             let status = res.status;
-            console.log(status);
+            // console.log(status);
             if(status === 422){
                 let data = res.data;
                 let message = data.message;
                 toast.error(message);
             }
         }
+
+        dispatch(setLoading(false));
     }
 
     const ChangePassWord = async (e) => {
@@ -66,10 +77,10 @@ function Info( props) {
             let message = res.data.message;
             toast.success(message);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             let res = error.response;
             let status = res.status;
-            console.log(status);
+            // console.log(status);
             if(status === 401){
                 let data = res.data;
                 let message = data.message;
@@ -263,7 +274,9 @@ function Info( props) {
 
                           <div className="col-12">
                             <label className="form-label">Thông tin bác sĩ</label>
-                            <textarea className="form-control" rows="3" spellCheck="false" defaultValue={props.infoUser.user_info} ></textarea>
+                            <textarea 
+                            name='user_info'
+                            className="form-control" rows="3" spellCheck="false" defaultValue={props.infoUser.user_info} ></textarea>
                         </div>
                         :
                         ""

@@ -7,7 +7,7 @@ import {
         getNewsDetailClient,
         getlistTopWeek1API,
         getlistTopWeek3API,
-        createCommentAPI 
+        getListNewsDMAPI
     } from "../../../services/normal/NewsService";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../components/Loading/Loading";
@@ -32,7 +32,7 @@ export default function DitailNews(){
     }); 
     const comentRef = useRef(null);
 
-
+    const [ListDM, getListDM] = useState([]);
     const [ListTopWeek3, getListTopWeek3] = useState([]);
     const [ListTopWeek1, getListTopWeek1] = useState([]);
     const [loading, getLoading] = useState(false);
@@ -52,7 +52,10 @@ export default function DitailNews(){
           let dataNew3 = resTW.data;
           let dataTW3 = dataNew3.data;
           getListTopWeek3(dataTW3);
-
+          let resDM = await getListNewsDMAPI();
+          let dataDM = resDM.data;
+          let dataDMT = dataDM.data;
+          getListDM(dataDMT);
           let respon = await ListConfigService()
           let dataa = respon.data;
           let dataArrr = dataa.data;
@@ -96,16 +99,11 @@ export default function DitailNews(){
                                     <h2>{NewsDetail.name}</h2>
                                     <div className="blog-meta big-meta">
                                         <small>
-                                            <Link>
                                                 <i className="far fa-clock"></i>
                                                 {NewsDetail.created_at}
-                                            </Link>
-                                        
                                         </small>
                                         <small>
-                                            <Link>
                                                 <i className="fa fa-eye"></i> {NewsDetail.views}
-                                            </Link> 
                                         </small>
                                             <Link to={`/danh-muc-tin/${NewsDetail.category_id}`}>
                                             Danh Mục: {NewsDetail.category_name}
@@ -256,6 +254,23 @@ export default function DitailNews(){
                                     </div>
                                 </div>
                                 </div>
+                                <div className="widget">
+                                <h2 className="widget-title">Danh mục tin tức</h2>
+                              
+                                        <div className="link-widget">
+                                        {ListDM.map((item,index) => {
+                                    return( 
+                                        <ul>
+                                            <li><Link to={`/danh-muc-tin/${item.id}`}>
+                                             {item.name}
+                                            </Link></li>
+                                        </ul>
+                                                    )                                                 
+                                                })
+                                            }
+                                              
+                                </div>
+                </div>
                             </div>
                         </div>
                     </div>

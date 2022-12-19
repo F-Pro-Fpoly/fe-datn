@@ -143,9 +143,9 @@ function ClinicUiTime({dataItem}) {
                     timeSlots.length > 0 ? 
                     timeSlots.map((val, index) => (
                         <div className="col-4 schedule-time-col" key={index} onClick={()=>saveBookingInfo2(val)}>
-                            <a href="#" className="schedule-time-item">
+                            <Link to="#" className="schedule-time-item">
                                 <span>{val.time_start} - {val.time_end}</span>
-                            </a>
+                            </Link>
                         </div>
                     ))
                         :

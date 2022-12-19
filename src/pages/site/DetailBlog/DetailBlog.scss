@@ -70,6 +70,15 @@
                                 -ms-flex: 1 1 0%;
                                 flex: 1 1 0%;
                             }
+                            .link-widget li {
+                                padding: 0.4rem 0.2rem 0.6rem;
+                                text-transform: capitalize;
+                                line-height: 1;
+                                font-weight: 500;
+                                position: relative;
+                                margin: 0;
+                                border-bottom: 1px dashed #dadada;
+                            }
                             .media {
                                 display: -webkit-box;
                                 display: -webkit-flex;

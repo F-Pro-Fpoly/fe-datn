@@ -27,4 +27,13 @@ function changePassApi({data, id}) {
     return API.post(`/normal/user/ChangePass/${id}`, data);
 }
 
-export {registerApi, loginApi, loginGoogleApi, forgetPassApi,changePassApi}
+function refreshToken ({token}) {
+    let headers = {};
+    if(token){
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    let url = `/refresh`;
+    return API.get(url,{headers: headers});
+}
+
+export {registerApi, loginApi, loginGoogleApi, forgetPassApi,changePassApi, refreshToken}

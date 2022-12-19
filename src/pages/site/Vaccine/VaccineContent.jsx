@@ -3,22 +3,19 @@ import { useEffect, useRef } from "react";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import {useNavigate} from "react-router-dom";
+import PropTypes from 'prop-types';
 
 function VaccineContent (props) {
     const navigate = useNavigate();
     const is_first_render = useRef(false);
     const handlePageClick =  (page1) => {
-        console.log(page1);
-        if(is_first_render){
-            page1 = page1.selected
-            page1 = page1 + 1;
-            navigate(`/vaccine?page=${page1}`)   
-        }
+        // console.log(page1);
+        page1 = page1.selected
+        page1 = page1 + 1 ;
+        props.onchangePage(page1);
     }
 
-    useEffect(() => {
-        // is_first_render = true;
-    }, [])
+
     return (
         <section className="vaccine-content">
             <div className="container">
@@ -75,11 +72,11 @@ function VaccineContent (props) {
                         {props.paginate && (
                             <ReactPaginate
                                 breakLabel="..."
-                                nextLabel="next >"
+                                nextLabel=">"
                                 onPageChange={handlePageClick}
                                 pageRangeDisplayed={5}
                                 pageCount={props.paginate.total_pages ?? 0}
-                                previousLabel="< previous"
+                                previousLabel="<"
                                 className="pagination"
                                 pageClassName="page-item"
                                 pageLinkClassName="page-link"
@@ -88,9 +85,8 @@ function VaccineContent (props) {
                                 nextClassName="page-item"
                                 previousLinkClassName="page-link"
                                 nextLinkClassName="page-link"
-                                initialPage={props.paginate.current_page ?? 1}
+                                // initialPage={props.paginate.current_page ?? 1}
                             />
-
                         )}
                     </div>
                 </div>
@@ -99,5 +95,11 @@ function VaccineContent (props) {
     );
     
 }
+
+VaccineContent.propTypes = {
+    paginate: PropTypes.array,
+    list: PropTypes.array,
+    onchangePage: PropTypes.func
+};
 
 export default VaccineContent;
