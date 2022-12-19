@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+
 import "./FormBookIndex.scss"
 import Container from 'react-bootstrap/Container';
 import img from '../../../../image/img_15.png'
@@ -26,7 +26,24 @@ function FormBookIndex () {
             let res = error.response;
             let data = res.data;
             let messages = data.message;
-            toast.error(messages);
+            let name = messages.name ?  messages.name[0] : ""
+            if(name !="")  {
+                toast.error(name)
+            }
+            let email = messages.email ? messages.email[0] : ""
+            if(email !="")  {
+                toast.error(email)
+            }
+          
+            let contents = messages.contents?  messages.contents[0] :""
+            if(contents !="")  {
+                toast.error(contents)
+            }
+            let phone = messages.phone? messages.phone[0] : ""
+            if(phone !="")  {
+                toast.error(phone)
+            }
+     
         }
     }
 
