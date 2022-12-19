@@ -1,41 +1,41 @@
 
 import "./Box.scss"
 
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import { creatContactApi } from "../../../../services/ContactService";
-import { toast,ToastContainer } from 'react-toastify';
-import Form from 'react-bootstrap/Form';
-import { useRef } from "react";
+// import React, { useState } from 'react';
+// import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
+// import { creatContactApi } from "../../../../services/ContactService";
+// import { toast,ToastContainer } from 'react-toastify';
+// import Form from 'react-bootstrap/Form';
+// import { useRef } from "react";
 function Policy () {
   
-    const [show, setShow] = useState(false);
+    // const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleClose = () => setShow(false);
+    // const handleShow = () => setShow(true);
 
 
-    const formRef = useRef();
+    // const formRef = useRef();
  
-    const handleSubmit = async (e) => {
+    // const handleSubmit = async (e) => {
      
-        e.preventDefault();
-        const formData = new FormData(formRef.current)
-        const req  = {
-            "data" : formData
-        }
-        try {
-            const res =  await creatContactApi(req) 
-            formRef.current.reset();
-            toast.success(res.data.message) ; 
-        } catch (error) {
-            let res = error.response;
-            let data = res.data;
-            let messages = data.message;
-            toast.error(messages);
-        }
-    }
+    //     e.preventDefault();
+    //     const formData = new FormData(formRef.current)
+    //     const req  = {
+    //         "data" : formData
+    //     }
+    //     try {
+    //         const res =  await creatContactApi(req) 
+    //         formRef.current.reset();
+    //         toast.success(res.data.message) ; 
+    //     } catch (error) {
+    //         let res = error.response;
+    //         let data = res.data;
+    //         let messages = data.message;
+    //         toast.error(messages);
+    //     }
+    // }
 
     return ( 
 
@@ -132,7 +132,7 @@ function Policy () {
                     </div>
                 </div>
          
-                <Modal show={show} onHide={handleClose}>
+                {/* <Modal show={show} onHide={handleClose}>
                     
                 <div className="mod" > 
                     <Modal.Header closeButton>
@@ -179,13 +179,13 @@ function Policy () {
                     </Modal.Footer>
                     </Form>
                 </div>
-                </Modal>
+                </Modal> */}
             
 
 
-               <div className="Register">
+               {/* <div className="Register">
                     <button onClick={handleShow} className="btn-type1" style={{border:"none"}}>LIÊN HỆ TƯ VẤN</button>
-               </div>
+               </div> */}
             </div>
         </div>
  
