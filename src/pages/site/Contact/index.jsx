@@ -15,16 +15,15 @@ function Contact(){
     const token = useSelector((state)=>state.auth.token);
     const FormRep = useRef();
     const [getconfig, setConfig] = useState([])
-    const submitContact = async data =>{
-      console.log(data);
+    const submitContact = async (event) =>{
+      event.preventDefault();
       const formData = new FormData(FormRep.current);
       const req = {
         "data": formData,
         "type":0
       };
-  
       try {
-        let res = await creatContactApi(req,token,data);
+        let res = await creatContactApi(req,token);
         writeUserData(formData.get("name"), formData.get("contents"), "contact_"+getRandomInt(1000000000))
         FormRep.current.reset();
         toast.success(res.data.message) ;     
@@ -32,7 +31,7 @@ function Contact(){
         let res = error.response;
         let data = res.data;
         let messages = data.message;
-        toast.error("Không đc bỏ trống các trường này");
+        toast.error("Không bỏ trống các trường này");
       }
   
     }
@@ -91,20 +90,20 @@ function Contact(){
                                 <h1>Liên hệ</h1>
                                 <form  onSubmit={submitContact} ref={FormRep} method="post" className="was-validated">
                                   <div className="flex-rev-contact">
-                                    <input  type="text" placeholder="VD: Nguyễn Văn A" name="name"required />
+                                    <input  type="text" placeholder="VD: Nguyễn Văn A" name="name" />
                                     <label>Họ tên</label>
                                     
                                   </div>
                                   <div className="flex-rev-contact">
-                                    <input  type="email" placeholder="VD: fpro.info@gmail.com" name="email"required />
+                                    <input  type="email" placeholder="VD: fpro.info@gmail.com" name="email" />
                                     <label> Email</label> 
                                   </div>
                                   <div className="flex-rev-contact">
-                                    <input  type="text" placeholder="VD: 0794248804" name="phone" required/>
+                                    <input  type="text" placeholder="VD: 0794248804" name="phone" />
                                     <label>Số điện thoại</label>
                                   </div>
                                   <div className="flex-rev-contact">
-                                    <textarea placeholder="Nhập nội dung vào ô này !...." name="contents" required></textarea>
+                                    <textarea placeholder="Nhập nội dung vào ô này !...." name="contents" ></textarea>
                                     <label >Nội dung</label>
                                   </div>
                                   <button className="button-contact">Gửi Email</button>
