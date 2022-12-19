@@ -1,0 +1,57 @@
+.Policy {
+    .policy-box{
+        background: url("img/blur-04.4f6865d2.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        text-align: left;
+        background-attachment: fixed;
+        padding: 70px 0px;
+        position: relative;
+    }
+    .policy-box h1{
+        font-size: 30px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 15px;
+        position: relative;
+    }
+    .policy-box::before{
+        background: rgba(67, 66, 66, 0.6);
+        content: "";
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+    }
+    .policy-main{
+        padding: 70px 0px;
+    }
+    .policy-item{
+        font-size: 14px;
+        display: inline;
+        color: #ffffff;
+    }
+    .conten-policy{
+        position: relative;
+        background: #fff;
+        margin: -100px auto 120px;
+        border-radius: 5px;
+        min-height: 300px;
+        padding: 30px;
+        max-width: 1140px;
+        border: 1px solid #ddd;
+    }
+    .padding-li{
+        padding: 0 30px 30px;
+        margin-left: 20px;
+    }
+    .padding-lis{
+        margin-left: 30px;
+        list-style-type: none;
+    }
+}

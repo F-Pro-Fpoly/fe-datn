@@ -79,6 +79,8 @@ import ChangPassword from "./pages/auth/ChangPassword";
 import Tomail from "./pages/auth/Logout/Tomail";
 import VaccineCate from "./pages/site/Vaccine/VaccinCate";
 import Thanks from "./pages/site/Book/Thanks";
+import Policy from "./pages/site/PrivacyPolicy";
+
 
 function Web() {
     const user = useSelector((state) => state.auth.user);
@@ -107,6 +109,8 @@ function Web() {
                     <Route path="/danh-muc-tin/:id"  element={ (<NewsCate />)}/>
                     <Route path="/dang-ky-tiem" element={ <InjectionRegistration /> } />
                     <Route path="/cam-on-da-dat-lich" element={ < Thanks /> } />
+                    <Route path="/chinh-sach-bao-mat" element={ <Policy /> } />
+
                 </Route>
                
                 <Route element={<LayoutAuth />}>
