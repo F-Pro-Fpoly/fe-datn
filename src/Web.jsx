@@ -61,6 +61,7 @@ import ListContactBooking from "./pages/admin/Contact/ListContactBooking/ListCon
 
 import ReplyContactBooking from "./pages/admin/Contact/ListContactBooking/replyContactBooking";
 import ReplyContact from "./pages/admin/Contact/ListContact/replyContact";
+
 import ListNewsletter from "./pages/admin/Newsletter/ListNewsletter";
 import ListBanner from "./pages/admin/Setttings/Banner/ListBanner";
 import UpdateCateVaccine from "./pages/admin/Vaccine/ListCateVaccine/UpdateCateVaccine";
@@ -78,6 +79,8 @@ import ChangPassword from "./pages/auth/ChangPassword";
 import Tomail from "./pages/auth/Logout/Tomail";
 import VaccineCate from "./pages/site/Vaccine/VaccinCate";
 import Thanks from "./pages/site/Book/Thanks";
+import Policy from "./pages/site/PrivacyPolicy";
+
 
 function Web() {
     const user = useSelector((state) => state.auth.user);
@@ -106,6 +109,8 @@ function Web() {
                     <Route path="/danh-muc-tin/:id"  element={ (<NewsCate />)}/>
                     <Route path="/dang-ky-tiem" element={ <InjectionRegistration /> } />
                     <Route path="/cam-on-da-dat-lich" element={ < Thanks /> } />
+                    <Route path="/chinh-sach-bao-mat" element={ <Policy /> } />
+
                 </Route>
                
                 <Route element={<LayoutAuth />}>
