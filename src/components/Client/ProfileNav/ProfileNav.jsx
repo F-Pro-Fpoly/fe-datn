@@ -75,10 +75,11 @@ function ProfileNav() {
         : 
         <>
             <li className="text-light">
-                <i className="fa-solid fa-right-to-bracket"></i>
+                <i class="bi bi-box-arrow-in-left"></i>
                 <Link className="text-light" to="/login"><span>Đăng nhập</span></Link>  
             </li>
-            <li className="text-light">                       
+            <li className="text-light">                   
+                <i class="bi bi-person-plus"></i>
                 <Link className="text-light" to="/register"><span>Đăng ký</span></Link>                         
             </li>
         </>

@@ -36,7 +36,7 @@ function Footer (getconfig) {
     return (
         <>
           <form action="" onSubmit={submitNewsletter} ref={formRef}>
-            <div className="newsletter">        
+            <div className="newsletter repon-newslt">        
           
                 <h3>ĐĂNG KÝ NHẬN TIN MỚI NHẤT TỪ FPRO</h3>
               

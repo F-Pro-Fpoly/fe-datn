@@ -160,8 +160,10 @@
 
 
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 768px) {
+  
     .footer1{
+        text-align: center;
         .cot1:first-child{
             text-align: center;
         }
@@ -178,18 +180,19 @@
         }
         
     }
-    .newsletter{
+    .repon-newslt{
         flex-wrap: wrap;
         h3{
             width: auto;
             max-width: 100%;
             flex: 0 0 100%;
             text-align: center;
+            font-size: 22px;
         }
         .send{
             width: auto;
             max-width: 100%;
-            flex: 0 0 100%;
+            flex: 1;
         }
     }
     .footer2{
