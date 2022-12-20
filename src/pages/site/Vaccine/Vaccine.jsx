@@ -6,12 +6,15 @@ import VaccineContent from "./VaccineContent";
 import { getListServiceAPI,getListVaccineCateAPI} from "../../../services/normal/VaccineService";
 import Loading from "../../../components/Loading/Loading";
 import  {  useState } from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useParams,useSearchParams  } from "react-router-dom";
 import useDebounce from "../../../hooks/useDebounce";
 import { useRef } from "react";
+import {setLoading} from "../../../redux/slices/InterfaceSile";
+
 function Vaccine() {
     const token = useSelector(state => state.auth.token);
+    const dispatch = useDispatch();
     const [list, setList] = useState([]);
     const [loading, getLoading] = useState(false);
     const [category,getCate] = useState([]);
@@ -25,18 +28,24 @@ function Vaccine() {
     const [panigateVaccine, setPanigateVaccine] = useState();
 
     const start = async (page) => {
-        getLoading(true);
-        setList([]);
-        let restw = await getListVaccineCateAPI({token});
-        let dataCa = restw.data;
-        let datatw = dataCa.data;
-        getCate(datatw);
-        let res = await getListServiceAPI( 1,{...search, page: page ?? 1});
-        let data = res.data;
-        let dataArr = data.data;
-        getLoading(false)
-        setList(dataArr);
-        setPanigateVaccine(data.meta.pagination);
+        try {
+            dispatch(setLoading(true));
+            getLoading(true);
+            setList([]);
+            let restw = await getListVaccineCateAPI({token});
+            let dataCa = restw.data;
+            let datatw = dataCa.data;
+            getCate(datatw);
+            let res = await getListServiceAPI( 1,{...search, page: page ?? 1});
+            let data = res.data;
+            let dataArr = data.data;
+            getLoading(false)
+            setList(dataArr);
+            setPanigateVaccine(data.meta.pagination);
+            dispatch(setLoading(false));
+        } catch (error) {
+            dispatch(setLoading(false));
+        }
     }
 
 
