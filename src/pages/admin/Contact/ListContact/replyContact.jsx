@@ -9,6 +9,7 @@ import {useParams, useNavigate  } from "react-router-dom";
 import LoadingBtn from "../../../../components/LoadingBtn/LoadingBtn";
 import { useForm } from "react-hook-form";
 import { toast,ToastContainer } from 'react-toastify';
+import { equalTo, getDatabase, onValue, orderByChild, query, ref, remove } from "firebase/database";
 function ReplyContact() {
     const formRef = useRef();
     const token = useSelector(state => state.auth.token);
@@ -40,26 +41,36 @@ function ReplyContact() {
             "data": formData,  
         }
         try {
+            
             getLoading(true)
             let res =  await putReplyContact(req);
+
+            const db = getDatabase();
+
+            remove(ref(db,"contact/"+listContact.id_contact_firebase))
+            .then(() => {})
+            .catch((error) => {alert(error)})
+
             let message = res.data.message;
             getLoading(false)
             navigate("/admin/lien-he/danh-sach-lien-he")
             toast.success(message);
+
+            
         } catch (error) {
-            console.log(error);
-            let res = error.response;
-            let status = res.status;
-            console.log(status);
-            if(status === 422){
-                let data = res.data;
-                let message = data.message;
-                toast.error(message);
-            }
+            // console.log(error);
+            // let res = error.response;
+            // let status = res.status;
+            // console.log(status);
+            // if(status === 422){
+            //     let data = res.data;
+            //     let message = data.message;
+            //     toast.error(message);
+            // }
         }
 
     }
-
+    
     return ( 
         <>
    <ToastContainer

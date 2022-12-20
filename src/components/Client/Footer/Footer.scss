@@ -61,11 +61,14 @@
                     justify-content: center;
                     align-items: flex-start;
                    
-               
+                    &> h3{ 
+                        font-size: 25px;
+                    }
                &> a{
                     line-height: 40px;     
                     text-decoration: none;
                     color: #4AC3D2;
+                    font-size: 18px;
                 }
             }
         }
@@ -73,8 +76,17 @@
     
             &>.row{       
                 line-height: 40px;     
-                
+                &> h3{ 
+                    font-size: 25px;
+                }
+                &> a{
+                    line-height: 40px;     
+                    text-decoration: none;
+                    color: #4AC3D2;
+                    font-size: 18px;
+                }
             }
+          
         }
         .social {
               &>.row{
