@@ -6,7 +6,7 @@ import { cancelBookingServiceAPI, getMyBookingServiceAPI } from '../../../../ser
 import { useEffect } from 'react';
 import Loading from '../../../../components/Loading/Loading';
 import { ToastContainer, toast } from "react-toastify";
-
+import "./ListBookingUser.scss"
 function ListBookingUser() {
 
     const token = useSelector(state => state.auth.token )
@@ -56,7 +56,7 @@ function ListBookingUser() {
         <div className="card-body p-0">
 
 
-            <ul className="nav nav-tabs nav-bottom-line nav-responsive nav-justified" role="tablist">
+            <ul className="nav nav-tabs nav-bottom-line nav-responsive nav-justified reponsive-nav" role="tablist">
                 <li className="nav-item" role="presentation"> 
                     <a className="nav-link mb-0 active" data-bs-toggle="tab" href="#tab-1" aria-selected="true" role="tab"><i className="bi bi-briefcase-fill fa-fw me-1"></i>Lịch khám đã đặt</a> 
                 </li>
@@ -90,12 +90,12 @@ function ListBookingUser() {
                         <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
                             
                             <div className="d-flex align-items-center">
-                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
+                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0 image-reponsive">
                                    
                                 <img src={`${process.env.REACT_APP_BE}${item.specialist_image}`} alt="" /> 
                                 </div>	
                                 
-                                <div className="ms-2">
+                                <div className="ms-2 reponsive-bookingList">
                                     <h6 className="card-title mb-0">{item.specialist_name}</h6>
                                     <ul className="nav nav-divider small">
                                         <li className="nav-item"><b>Mã đặt lịch</b>: {item.code }</li>
@@ -115,7 +115,7 @@ function ListBookingUser() {
                             </div>
 
                             
-                            <div className="mt-2 mt-md-0" style={{
+                            <div className="mt-2 mt-md-0 responsive-button" style={{
                                 display: "flex",
                                 flexFlow:" column wrap",
                                 placeContent: "center",
@@ -149,7 +149,7 @@ function ListBookingUser() {
 
                         
                         <div className="card-body">
-                            <div className="row g-3" style={{textAlign: "center"}}>
+                            <div className="row g-3 responsive-time" style={{textAlign: "center"}}>
                                 <div className="col-sm-6 col-md-4">
                                     <span>Giờ bắt đầu</span>
                                     <h6 className="mb-0">{item.time_start}</h6>
@@ -174,12 +174,12 @@ function ListBookingUser() {
                         <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
                             
                             <div className="d-flex align-items-center">
-                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
+                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0 image-reponsive">
                                    
                                 <img src={`${process.env.REACT_APP_BE}${item.specialist_image}`} alt="" /> 
                                 </div>	
                                 
-                                <div className="ms-2">
+                                <div className="ms-2 reponsive-bookingList">
                                     <h6 className="card-title mb-0">{item.vaccine_name}</h6>
                                     <ul className="nav nav-divider small">
                                         <li className="nav-item"><b>Mã đặt lịch</b>: {item.code }</li>
@@ -199,7 +199,7 @@ function ListBookingUser() {
                             </div>
 
                             
-                            <div className="mt-2 mt-md-0" style={{
+                            <div className="mt-2 mt-md-0 responsive-button" style={{
                                 display: "flex",
                                 flexFlow:" column wrap",
                                 placeContent: "center",

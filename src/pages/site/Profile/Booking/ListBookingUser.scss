@@ -1,0 +1,40 @@
+@media screen and (max-width: 769px) {
+    .reponsive-nav{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: stretch;
+        font-size: 12px;
+    }
+    .image-reponsive{
+        min-width: 25%;
+        margin-right: 4%;
+    }
+    .reponsive-bookingList{
+            line-height: 25px;
+            &>h6{
+
+                font-size: 18px;
+                font-weight: 700;
+
+            }
+    }
+    .responsive-button{
+        margin-left: 4%;
+        &>a{
+            margin-right: 2%;
+        }
+    }
+    .responsive-time{
+       
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: space-around;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
