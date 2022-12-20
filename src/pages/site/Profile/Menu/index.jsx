@@ -39,17 +39,17 @@ function Menu(infoUser) {
                                <>
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to={`/ho-so-ca-nhan/chi-tiet/${infoUser.infoUser.id}`}>
-                                        <i className="bi bi-people fa-fw me-2"></i>Hồ sơ chi tiết
+                                    <i className="bi bi-info-square"></i> Hồ sơ chi tiết
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to="/ho-so-ca-nhan/danh-sach-lich-kham">
-                                        <i className="bi bi-people fa-fw me-2"></i>Danh sách lịch khám
+                                    <i className="bi bi-card-checklist"></i> Danh sách lịch khám
                                     </NavLink>
                                 </li>
                                  <li className="nav-item">
                                  <NavLink className="nav-link" to="/ho-so-ca-nhan/danh-sach-nguoi-benh">
-                                     <i className="bi bi-people fa-fw me-2"></i>Danh sách bệnh nhân
+                                 <i className="bi bi-person-lines-fill"></i> Danh sách bệnh nhân
                                  </NavLink>
                                 </li>
                                </>
@@ -57,12 +57,12 @@ function Menu(infoUser) {
                                <>
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to="/ho-so-ca-nhan/lich-kham">
-                                        <i className="bi bi-people fa-fw me-2"></i>Lịch khám của tôi
+                                    <i className="bi bi-list-ul"></i>  Lịch khám của tôi
                                     </NavLink>
                                  </li>
                                  <li className="nav-item">
                                  <NavLink className="nav-link" to={`/ho-so-ca-nhan/ho-so-benh-an/${infoUser.infoUser.id}`}>
-                                     <i className="bi bi-people fa-fw me-2"></i>Hồ sơ bệnh án
+                                    <i className="bi bi-clipboard-plus"></i> Hồ sơ bệnh án
                                  </NavLink>
                               </li>
                                </>

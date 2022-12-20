@@ -275,7 +275,7 @@ function ListBookingUser() {
                             <div className="col-md-9">
                                 <h6>Có vẻ như bạn chưa từng đặt lịch với FPRO</h6>
                                 <h4 className="mb-2">Hãy đặt lịch ngay để nhận được nhiều ưu đãi.</h4>
-                                <Link href="hotel-list.html" className="btn btn-primary-soft mb-0">Đặt lịch ngay</Link>
+                                <Link to="/chuyen-khoa" className="btn btn-primary-soft mb-0">Đặt lịch ngay</Link>
                             </div>
                             
                             <div className="col-md-3 text-end">
@@ -306,12 +306,12 @@ function ListBookingUser() {
                         <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
                             
                             <div className="d-flex align-items-center">
-                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
+                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0 image-reponsive">
                                    
                                 <img src={`${process.env.REACT_APP_BE}${item.specialist_image}`} alt="" /> 
                                 </div>	
                                 
-                                <div className="ms-2">
+                                <div className="ms-2 reponsive-bookingList">
                                     <h6 className="card-title mb-0">{item.specialist_name}</h6>
                                     <ul className="nav nav-divider small">
                                         <li className="nav-item"><b>Mã đặt lịch</b>: {item.code }</li>
@@ -331,7 +331,7 @@ function ListBookingUser() {
                             </div>
 
                             
-                            <div className="mt-2 mt-md-0" style={{
+                            <div className="mt-2 mt-md-0 responsive-button" style={{
                                 display: "flex",
                                 flexFlow:" column wrap",
                                 placeContent: "center",
@@ -356,7 +356,7 @@ function ListBookingUser() {
 
                         
                         <div className="card-body">
-                            <div className="row g-3" style={{textAlign: "center"}}>
+                            <div className="row g-3 responsive-time" style={{textAlign: "center"}}>
                                 <div className="col-sm-6 col-md-4">
                                     <span>Giờ bắt đầu</span>
                                     <h6 className="mb-0">{item.time_start}</h6>
@@ -381,12 +381,12 @@ function ListBookingUser() {
                         <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
                             
                             <div className="d-flex align-items-center">
-                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
+                                <div className="p-icon-lg bg-light rounded-circle flex-shrink-0 image-reponsive">
                                    
                                 <img src={`${process.env.REACT_APP_BE}${item.specialist_image}`} alt="" /> 
                                 </div>	
                                 
-                                <div className="ms-2">
+                                <div className="ms-2 reponsive-bookingList">
                                     <h6 className="card-title mb-0">{item.vaccine_name}</h6>
                                     <ul className="nav nav-divider small">
                                         <li className="nav-item"><b>Mã đặt lịch</b>: {item.code }</li>
@@ -406,7 +406,7 @@ function ListBookingUser() {
                             </div>
 
                             
-                            <div className="mt-2 mt-md-0" style={{
+                            <div className="mt-2 mt-md-0 responsive-button" style={{
                                 display: "flex",
                                 flexFlow:" column wrap",
                                 placeContent: "center",
@@ -480,12 +480,12 @@ function ListBookingUser() {
                             <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
                                 
                                 <div className="d-flex align-items-center">
-                                    <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
+                                    <div className="p-icon-lg bg-light rounded-circle flex-shrink-0 image-reponsive">
                                        
                                     <img src={`${process.env.REACT_APP_BE}${item.specialist_image}`} alt="" /> 
                                     </div>	
                                     
-                                    <div className="ms-2">
+                                    <div className="ms-2 reponsive-bookingList">
                                         <h6 className="card-title mb-0">{item.specialist_name}</h6>
                                         <ul className="nav nav-divider small">
                                             <li className="nav-item"><b>Mã đặt lịch</b>: {item.code }</li>
@@ -505,7 +505,7 @@ function ListBookingUser() {
                                 </div>
     
                                 
-                                <div className="mt-2 mt-md-0" style={{
+                                <div className="mt-2 mt-md-0 responsive-button" style={{
                                     display: "flex",
                                     flexFlow:" column wrap",
                                     placeContent: "center",
@@ -530,8 +530,8 @@ function ListBookingUser() {
     
                             
                             <div className="card-body">
-                                <div className="row g-3" style={{textAlign: "center"}}>
-                                    <div className="col-sm-6 col-md-4">
+                                <div className="row g-3 responsive-time" style={{textAlign: "center"}}>
+                                    <div className="col-sm-6 col-md-4 ">
                                         <span>Giờ bắt đầu</span>
                                         <h6 className="mb-0">{item.time_start}</h6>
                                     </div>
@@ -555,12 +555,12 @@ function ListBookingUser() {
                             <div className="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
                                 
                                 <div className="d-flex align-items-center">
-                                    <div className="p-icon-lg bg-light rounded-circle flex-shrink-0">
+                                    <div className="p-icon-lg bg-light rounded-circle flex-shrink-0 image-reponsive">
                                        
                                     <img src={`${process.env.REACT_APP_BE}${item.specialist_image}`} alt="" /> 
                                     </div>	
                                     
-                                    <div className="ms-2">
+                                    <div className="ms-2 reponsive-bookingList">
                                         <h6 className="card-title mb-0">{item.vaccine_name}</h6>
                                         <ul className="nav nav-divider small">
                                             <li className="nav-item"><b>Mã đặt lịch</b>: {item.code }</li>
@@ -580,7 +580,7 @@ function ListBookingUser() {
                                 </div>
     
                                 
-                                <div className="mt-2 mt-md-0" style={{
+                                <div className="mt-2 mt-md-0 responsive-button" style={{
                                     display: "flex",
                                     flexFlow:" column wrap",
                                     placeContent: "center",
@@ -598,14 +598,14 @@ function ListBookingUser() {
                                          <p className="text-success text-md-end mb-0">Thanh toán qua momo</p>
                                      }
                                      </> */}
-                                     <Link className='btn btn-primary' to={`/ho-so-ca-nhan/chi-tiet-lich-tiem/${item.id}`}>Xem chi tiết</Link>
+                                     <Link className='btn btn-primary responsive-button' to={`/ho-so-ca-nhan/chi-tiet-lich-tiem/${item.id}`}>Xem chi tiết</Link>
                                     
                                 </div>
                             </div>
     
                             
-                            <div className="card-body">
-                                <div className="row g-3" style={{textAlign: "center"}}>
+                            <div className="card-body ">
+                                <div className="row g-3 " style={{textAlign: "center"}}>
                                 <div className="col-md-4">
                                        
                                     </div>
@@ -633,7 +633,7 @@ function ListBookingUser() {
                             <div className="col-md-9">
                                 <h6>Có vẻ như bạn chưa từng đặt lịch với FPRO</h6>
                                 <h4 className="mb-2">Hãy đặt lịch ngay để nhận được nhiều ưu đãi.</h4>
-                                <Link href="hotel-list.html" className="btn btn-primary-soft mb-0">Đặt lịch ngay</Link>
+                                <Link to="/chuyen-khoa" className="btn btn-primary-soft mb-0">Đặt lịch ngay</Link>
                             </div>
                             
                             <div className="col-md-3 text-end">
