@@ -18,13 +18,16 @@ function Contact(){
     const submitContact = async (event) =>{
       event.preventDefault();
       const formData = new FormData(FormRep.current);
-      const req = {
-        "data": formData,
-        "type":0
-      };
+
       try {
+        let id_contact_firebase  =  "contact_"+getRandomInt(1000000000)
+        formData.append("id_contact_firebase", id_contact_firebase)
+        const req = {
+          "data": formData,
+          "type":0
+        };
         let res = await creatContactApi(req,token);
-        writeUserData(formData.get("name"), formData.get("contents"), "contact_"+getRandomInt(1000000000))
+        writeUserData(formData.get("name"), formData.get("contents"), id_contact_firebase)
         FormRep.current.reset();
         toast.success(res.data.message) ;     
       } catch (error) {
