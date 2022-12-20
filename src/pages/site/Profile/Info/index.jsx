@@ -12,7 +12,7 @@ import {setLoading} from "../../../../redux/slices/InterfaceSile";
 
 
 function Info( props) {
-   
+    const avtne = useSelector(state => state.auth.user.avatar )
     const token = useSelector(state => state.auth.token )
     const id = props.infoUser.id;
     const dispatch = useDispatch();
@@ -157,7 +157,7 @@ function Info( props) {
                         <div className="d-flex align-items-center">
                             <label className="position-relative me-4" htmlFor="uploadfile-1" title="Replace this pic">
                                 <span className="avatar avatar-xl">
-                                    <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={`${process.env.REACT_APP_BE}${props.infoUser.thumbnail_name}`}                         
+                                    <img id="uploadfile-1-preview" className="avatar-img rounded-circle border border-white border-3 shadow" src={avtne}                         
                                     alt="Avatar" />                      
                                 </span>
                                                     
