@@ -1,13 +1,11 @@
 import API from './api';
 // import axios from 'axios';
 
-function creatContactApi({data,token,type=0}) {
+function creatContactApi({data}) {
     try {
         let headers ={}; 
-        let url = `normal/contact/add?type=${type}`;
-        if(token) {
-            headers = {...headers, "Authorization": `Bearer ${token}`};
-        }
+        let url = `normal/contact/add`;
+      
         return API.post(url, data,{headers: headers});
     } catch (error) {
         console.error(error);

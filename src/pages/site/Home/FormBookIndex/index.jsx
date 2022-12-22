@@ -88,6 +88,7 @@ function FormBookIndex () {
                                         <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
                                          
                                         <Form.Control type="hidden" name="type" className="form-control" value="1" />
+                                        <Form.Control type="hidden" name="id_contact_firebase" className="form-control" value="" />
                                            
                                         </Form.Group>
                                         <Form.Group className="mb-3 form-group " controlId="formBasicEmail">

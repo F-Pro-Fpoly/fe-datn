@@ -62,6 +62,7 @@ function FormBookIndexx () {
                                 <div className="form-group">
                                     <input type="text" className="form-control" placeholder="Vấn đề bạn quan tâm?" name="contents" />
                                     <input type="hidden" name="type" value="1" />
+                                    <input type="hidden" name="id_contact_firebase" value="" />
                                 </div>
                                
                                 <div className="btnRegister">
