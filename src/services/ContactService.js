@@ -12,7 +12,6 @@ function creatContactApi({data}) {
         return [];
     }
 }
-
 function deleteContact({token, id}){
     try {
         let headers = {};
@@ -26,9 +25,6 @@ function deleteContact({token, id}){
         return [];
     }
 }
-
-
-
 function getContact({token,page=1,search ={}, type= null}) {
     try {
         let headers ={}; 
