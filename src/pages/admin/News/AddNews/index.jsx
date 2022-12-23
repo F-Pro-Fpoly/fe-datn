@@ -8,11 +8,13 @@ import { getListAllNewsCatgory} from "../../../../services/NewsCategory";
 import { ToastContainer, toast } from "react-toastify";
 import {createListNewsAPI} from "../../../../services/NewsService";
 import { uploadFileService } from "../../../../services/normal/FileService";
-
+import Loading from "../../../../components/Loading/Loading";
+import LoadingBtn from "../../../../components/LoadingBtn/LoadingBtn";
 function News() {
     const token = useSelector(state => state.auth.token);
     let FormRef = useRef();
     const [textEditer, setTextEditer] = useState('');
+    const [loading, getLoading] = useState(false);
     const [NewsCategory, setNewsCategory] = useState([]);
     useEffect(()=>{
         const startApi = async () => {
@@ -34,10 +36,17 @@ function News() {
             formData.append('file_name', file_name);
             // console.log(file_name);
             // return;
+            getLoading(true);
             let res = await createListNewsAPI({token, data: formData});
             let data = res.data;
+            getLoading(false);
             toast.success(data.message);
         } catch (error) {
+            getLoading(false);
+            let res = error.response;
+            let data = res.data;
+            let messages = data.message;
+            toast.error("Không bỏ trống cái trường dưới đây");
         }
     }
 
@@ -115,7 +124,7 @@ function News() {
                     </div>
                 </div>
                 <Form.Group className="mt-2">
-                    <Button variant="primary" type="submit">Thêm tin tức</Button>
+                    <Button variant="primary" type="submit">{loading ?  (<LoadingBtn />) : "Thêm"}</Button>
                 </Form.Group>
             </Form>
         </div>

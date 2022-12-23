@@ -3,9 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import {createNewsCatgoryAPI} from "../../../../services/NewsCategory"
-
+import Loading from "../../../../components/Loading/Loading";
+import LoadingBtn from "../../../../components/LoadingBtn/LoadingBtn";
 function NewsCategory() {
     const token = useSelector((state)=>state.auth.token);
+    const [loading, getLoading] = useState(false);
     const FormRep = useRef();
     const submitForm = async (event) =>{
       event.preventDefault();
@@ -15,14 +17,17 @@ function NewsCategory() {
         "data": formData
       };
       try {
+        getLoading(true);
         let res = await createNewsCatgoryAPI(req);
         FormRep.current.reset();
+        getLoading(false);
         toast.success(res.data.message) ;     
       } catch (error) {
+        getLoading(false);
         let res = error.response;
         let data = res.data;
         let messages = data.message;
-        toast.error(messages);
+        toast.error("Không bỏ trống cái trường dưới đây");
       }
   
     }
@@ -75,7 +80,7 @@ function NewsCategory() {
         
                 </div>
                 <Form.Group className="mt-2">
-                    <Button variant="primary" type="submit">Thêm loại tin</Button>
+                    <Button variant="primary" type="submit">{loading ?  (<LoadingBtn />) : "Thêm"}</Button>
                 </Form.Group>
             </Form>
         </div>
