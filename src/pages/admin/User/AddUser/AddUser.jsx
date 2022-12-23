@@ -34,24 +34,13 @@ function AddUser() {
 
   return (
     <Form onSubmit={submitForm} ref={FormRep}>
-      <ToastContainer
-        position="top-right"
-        autoClose={4000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        />
-        {/* Same as */}
-      <ToastContainer />
 
+      <ToastContainer />
+      <h3>THÊM THÀNH VIÊN</h3>
 
       <Form.Group className="mb-3" controlId="FormUsername">
         <Form.Label>Tên đăng nhập</Form.Label>
-        <Form.Control type="text" name="username" placeholder="Nhập username" />
+        <Form.Control type="text" name="username" placeholder="Nhập tên đăng nhập" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formPassword">
         <Form.Label>Mật khẩu</Form.Label>
@@ -84,7 +73,7 @@ function AddUser() {
       </Form.Group>
       
       <Button variant="primary" type="submit">
-        Submit
+        Xác nhận
       </Button>
     </Form>
   );
