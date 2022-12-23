@@ -2,7 +2,7 @@ import { Box, Button, Chip, FormControlLabel, FormGroup, FormLabel, Stack, Switc
 import { useEffect } from "react";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import CustomizedHook from "../../../components/Input/CustomizedHook/CustomizedHook";
 import { getListServiceV2 } from "../../../services/SicksService";
@@ -14,7 +14,7 @@ import Select from 'react-select';
 import { getNationalService } from "../../../services/NationalService";
 import { useNavigate } from "react-router";
 import { SearchCheckBox } from "../../../components/Input";
-
+import { setLoading } from '../../../redux/slices/InterfaceSile';
 
 function AddVaccine() {
     const token = useSelector(state => state.auth.token);
@@ -37,7 +37,7 @@ function AddVaccine() {
     const [selectedImg, setSelectedImg] = useState();
     const [arrayNational, setArrayNational] = useState([]);
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     async function start () {
         try {
             let res = await getListServiceV2({token, search:{
@@ -97,7 +97,9 @@ function AddVaccine() {
     async function handleSubmitForm (e) {
         e.preventDefault();
         // uploadfile
+        
         try {
+          
             let img_name = undefined;
             if(imgAvatar){
                 let formData = new FormData();
@@ -105,7 +107,7 @@ function AddVaccine() {
                 let resUpload = await uploadFileService({token, data: formData});
                 img_name = resUpload.data.data.file_name;
             }
-
+            dispatch(setLoading(true));
             let res = await createVaccineService({token, data:{
                 ...dataVaccine,
                 'img_link': img_name ?? null
@@ -125,6 +127,7 @@ function AddVaccine() {
             })
             setTimeout(() => {
                 navigate("/admin/vaccine/list")
+                dispatch(setLoading(false));
             }, 2000)
         } catch (error) {
             // hadle errr

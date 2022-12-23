@@ -8,6 +8,8 @@ import AddVaccine from "./AddVaccine";
 import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate';
 import { Button } from "@mui/material";
+import { toast, ToastContainer } from "react-toastify";
+
 function ListVaccine() {
     const token = useSelector(state => state.auth.token);
     const [listCate, setListCate] = useState([]);
@@ -64,6 +66,7 @@ function ListVaccine() {
  
     return ( 
         <div className="adminWrapper">
+              <ToastContainer />
             <h3>DANH SÁCH VACCINE</h3>
             <div className="adminItem">
                 <div className="row">
@@ -121,6 +124,7 @@ function ListVaccine() {
                                         <i 
                                             onClick={async()=>{if(window.confirm("Bạn có thật sự muốn xóa")){
                                                 await deleteVaccine({token: token, id: item.id});
+                                                toast.success("xóa thành công");
                                                 start();
                                             }}}
                                             style={{cursor: "pointer"}} className="fa fa-trash"></i>

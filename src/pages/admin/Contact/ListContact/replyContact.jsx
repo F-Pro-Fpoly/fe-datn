@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./listContac.scss";
 import { getContact, getDetailContact, putReplyContact } from "../../../../services/ContactService";
 import Loading from "../../../../components/Loading/Loading";
@@ -10,6 +10,8 @@ import LoadingBtn from "../../../../components/LoadingBtn/LoadingBtn";
 import { useForm } from "react-hook-form";
 import { toast,ToastContainer } from 'react-toastify';
 import { equalTo, getDatabase, onValue, orderByChild, query, ref, remove } from "firebase/database";
+import { setLoading } from "../../../../redux/slices/InterfaceSile";
+// import { setLoading } from '../../../redux/slices/InterfaceSile';
 function ReplyContact() {
     const formRef = useRef();
     const token = useSelector(state => state.auth.token);
@@ -18,15 +20,17 @@ function ReplyContact() {
     const navigate = useNavigate();
     const [listContact, setListContact] = useState([]);
     const [loading, getLoading] = useState(false);
-
+    const dispatch = useDispatch();
     useEffect(() => {
         const start = async () => {
+            dispatch(setLoading(true));
             getLoading(true)
             setListContact([])
             let res = await getDetailContact({token,id}) 
             let data = res.data 
             let dataArr = data.data
             getLoading(false)
+            dispatch(setLoading(false));
             setListContact(dataArr)
         }
         start();
@@ -41,7 +45,7 @@ function ReplyContact() {
             "data": formData,  
         }
         try {
-            
+            dispatch(setLoading(true));
             getLoading(true)
             let res =  await putReplyContact(req);
 
@@ -53,6 +57,7 @@ function ReplyContact() {
 
             let message = res.data.message;
             getLoading(false)
+            dispatch(setLoading(false));
             navigate("/admin/lien-he/danh-sach-lien-he")
             toast.success(message);
 
@@ -84,7 +89,7 @@ function ReplyContact() {
                 draggable
                 pauseOnHover
                 />
- 
+     
         <div className="adminItem">
                 <div className="form-group mb-2">
                     <label htmlFor="" className="form-label">Họ và tên người liên hệ</label>

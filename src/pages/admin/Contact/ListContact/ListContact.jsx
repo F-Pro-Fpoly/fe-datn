@@ -23,7 +23,7 @@ function ListContact() {
       "status" : ""
     });
 
-    const type = 0;
+    const type = 2;
         const start = async () => {
             getLoading(true)
             setListContact([])
@@ -82,8 +82,8 @@ function ListContact() {
                 />
 
 
-
         <div className="adminItem">
+<h3>PHẢN HỒI LIÊN HỆ</h3>
           <div className='row mt-3 mb-3' >
             <div className="col-2 form-group">
                 <select name="status" id="" defaultValue={0}
