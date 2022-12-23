@@ -1,8 +1,19 @@
-import { Link } from "react-router-dom"
+
 import "./PrivacyPolicy.scss";
+import { useEffect, useRef, useState } from 'react';
+import { Link } from "react-router-dom"
+
 
 
 function Policy() {
+    const start = async () => {
+
+    }
+    useEffect(() => {
+        document.title = "Chính sách bảo mật"
+        start()
+
+    }, []);
     return (
         <div className="Policy">
             <div className="policy-main">
@@ -10,9 +21,17 @@ function Policy() {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
-                                <h1>Chính sách bảo mật</h1>
+                                <h1>CHÍNH SÁCH BẢO MẬT</h1>
                                 <div className="policy-item">
-                                    <span>Trang chủ</span> / <span>Chính sách bảo mật</span>
+                                    <ol className="breadcrumb policy-ol">
+                                        <li className="breadcrumb-item">
+                                            <Link to="/"><span>Trang chủ</span></Link>
+                                        </li>
+                                        <li className="breadcrumb-item">
+                                            <span>Chính sách bảo mật</span>
+                                        </li>
+                                    </ol>
+                                    {/* <span>Trang chủ</span> / <span>Chính sách bảo mật</span> */}
                                 </div>
                             </div>
                         </div>
@@ -22,32 +41,6 @@ function Policy() {
             <div className="conten-policy">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-12 mb-4">
-                            <h3 className="h3-policy"> GIỚI THIỆU</h3>
-                        </div>
-
-                        <ul className="padding-li">
-                            <li>
-                                <span>Chào mừng bạn đến với <strong>phần mềm Fprohopital - Đặt lịch khám bệnh</strong> được vận hành bởi công ty cổ phần ứng dụng.
-                                    Chúng tôi nghiêm túc thực hiện trách nhiệm của mình liên quan đến bảo mật thông tin theo các quy định về bảo vệ bí mật thông tin cá
-                                    nhân của pháp luật Việt Nam và cam kết tôn trọng quyền riêng tư và sự quan tâm của tất cả người dùng đối với Phần mềm (chúng tôi gọi
-                                    các dịch vụ chúng tôi cung cấp trên Phần mềm là “Các Dịch Vụ”). Chúng tôi nhận biết tầm quan trọng của dữ liệu cá nhân mà bạn đã tin tưởng
-                                    giao cho chúng tôi và tin rằng chúng tôi có trách nhiệm quản lý, bảo vệ và xử lý dữ liệu cá nhân của bạn một cách thích hợp. Chính Sách
-                                    Bảo Mật này (“Chính Sách Bảo Mật” hay “Chính Sách”) được thiết kế - Để giúp bạn hiểu được cách thức chúng tôi thu thập, sử dụng, tiết lộ
-                                    và/hoặc xử lý dữ liệu cá nhân mà bạn đã cung cấp cho chúng tôi và/hoặc lưu giữ về bạn, cho dù là hiện nay hoặc trong tương lai, cũng như - Để giúp bạn đưa ra quyết định đúng trước khi cung cấp cho chúng tôi bất kỳ dữ liệu cá nhân nào của bạn. Vui lòng đọc kỹ Chính Sách Bảo Mật này. Nếu bạn có bất kỳ thắc mắc nào về thông tin này hoặc các phương pháp bảo mật thông tin của chúng tôi, vui lòng liên hệ với chúng tôi qua tổng đài <strong>0794248804</strong> hoặc gửi email đến địa chỉ <strong> fprohopital@gmail.com</strong>
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    “Dữ liệu cá nhân” có nghĩa là dữ liệu, dù đúng hay không về một cá nhân mà thông qua đó có thể được xác định được danh tính, hoặc từ dữ liệu đó và thông tin khác mà một tổ chức có hoặc có khả năng tiếp cận. Các ví dụ thường gặp về dữ liệu cá nhân có thể gồm có tên, số chứng minh nhân dân và thông tin liên hệ.
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    Bằng việc sử dụng Các Dịch Vụ, đăng ký một tài khoản với chúng tôi, truy cập Phần mềm của chúng tôi, hoặc tiếp cận Các Dịch Vụ, bạn xác nhận và đồng ý rằng bạn chấp nhận các phương pháp, yêu cầu, và/hoặc chính sách được mô tả trong Chính Sách Bảo Mật này, và theo đây bạn đồng ý cho phép chúng tôi thu thập, sử dụng, tiết lộ và/hoặc xử lý dữ liệu cá nhân của bạn như mô tả trong đây. NẾU BẠN KHÔNG ĐỒNG Ý CHO PHÉP XỬ LÝ DỮ LIỆU CÁ NHÂN CỦA BẠN NHƯ MÔ TẢ TRONG CHÍNH SÁCH NÀY, VUI LÒNG KHÔNG SỬ DỤNG CÁC DỊCH VỤ CỦA CHÚNG TÔI HAY TRUY CẬP PHẦN MỀM CỦA CHÚNG TÔI. Nếu chúng tôi thay đổi Chính Sách Bảo Mật của mình, chúng tôi sẽ đăng những thay đổi đó hoặc Chính Sách Bảo Mật sửa đổi trên Phần mềm. Chúng tôi có quyền sửa đổi bổ sung Chính Sách Bảo Mật này vào bất kỳ lúc nào.
-                                </span>
-                            </li>
-                        </ul>
                         <div className="col-md-12 mb-4">
                             <h3 className="h3-policy">CHÚNG TÔI SỬ DỤNG THÔNG TIN BẠN CUNG CẤP CHO CHÚNG TÔI NHƯ THẾ NÀO?</h3>
                         </div>
