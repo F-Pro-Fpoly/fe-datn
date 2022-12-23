@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import Loading from "../../../../components/Loading/Loading";
 import Paginate from "../../../../components/Paginate/Paginate";
 import {getDepartment,deleteDepartment} from "../../../../services/DepartmentService"
@@ -15,13 +16,22 @@ function ListDepartment() {
     const [page, setPage] = useState(1);
 
     const start = async () => {
-        getLoading(true)
-        setDepartments([])
-        let res = await getDepartment({token,page}) 
-        let data = res.data 
-        let dataArr = data.data
-        getLoading(false)
-        setDepartments(dataArr)
+        try {
+            getLoading(true)
+            setDepartments([])
+            let res = await getDepartment({token,page}) 
+            let data = res.data;
+            setPaginate(data.meta.pagination); 
+            let dataArr = data.data;
+            getLoading(false)
+            setDepartments(dataArr)
+        } catch (error) {
+            // dispatch(setLoading(false))
+            if(error.response) {
+                let message = error.response.data.message;
+                toast.error(message);
+            }
+        }
     }
 
     const onChangePage = (number) =>{
@@ -34,6 +44,7 @@ function ListDepartment() {
 
     return ( 
         <div className="adminItem">
+            <ToastContainer />
             <Table striped bordered hover responsive className='table-striped'>
                 <thead>
                     <tr>

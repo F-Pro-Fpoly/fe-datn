@@ -10,8 +10,11 @@ import { setLoading } from "../../../../redux/slices/InterfaceSile";
 import { getDepartmentOne, updateDepartment } from "../../../../services/DepartmentService";
 
 import "./UpdateDepartment.scss";
-import { getListUsersAPI, updateUser, updateUserByName } from "../../../../services/UserService";
+import { getListUsersAPI, getListUsersV2_1, updateUser, updateUserByName } from "../../../../services/UserService";
 import useDebounce from "../../../../hooks/useDebounce";
+import { SearchCheckBox } from "../../../../components/Input";
+import { Autocomplete, Box, TextField } from "@mui/material";
+// import {setLoading} from "../../../../redux/slices/InterfaceSile"
 
 function UpdateDepartment() {
     const param = useParams();
@@ -32,15 +35,19 @@ function UpdateDepartment() {
         "active" : null,
         "docters": []
     });
+    const [listUser, setListUser] = useState([]);
 
     const SubmitForm =  async (e) => {
         let id = param.id
         e.preventDefault();
         try {
+            dispatch(setLoading(true));
             let res = await updateDepartment({token, id, data: department});
             let message = res.data.message;
+            dispatch(setLoading(false));
             toast.success(message)
         } catch (error) {
+            dispatch(setLoading(false));
             console.log(error);
         }
     }
@@ -71,39 +78,59 @@ function UpdateDepartment() {
     
 
     const startApi = async () => {
-        let id = param.id;
-        dispatch(setLoading(true))
-        // get all specailist
-        let res = await getListAllSpecialist({token});
-        let resDepartment = await getDepartmentOne({token, id});
+        try {
+            let id = param.id;
+            dispatch(setLoading(true))
+            // get all specailist
+            let res = await getListAllSpecialist({token});
+            let resDepartment = await getDepartmentOne({token, id});
+    
+            let data = res.data;
+            setSpecailist(data.data);
+            let dataDepartment = resDepartment.data.data;
+            console.log(dataDepartment);
+            setDepartment({
+                code: dataDepartment.code,
+                name: dataDepartment.name,
+                specialist_id: dataDepartment.specialist_id,
+                active: dataDepartment.active ?? 0,
+                description: dataDepartment.description,
+                docters : dataDepartment.docters
+            });
 
-        let data = res.data;
-        setSpecailist(data.data);
-        let dataDepartment = resDepartment.data.data;
-        setDepartment({
-            ...department,
-            code: dataDepartment.code ?? null,
-            name: dataDepartment.name ?? null,
-            specialist_id: dataDepartment.specialist_id ?? null,
-            active: dataDepartment.active ?? 0,
-            description: dataDepartment.description ?? "",
-            docters : dataDepartment.docters ?? []
-        });
-        dispatch(setLoading(false))
+            let resListUser = await getListUsersV2_1({token, search: {'role_code': "doctor", 'specailist_id': dataDepartment.id}});
+            let dataListUser = resListUser.data.data;
+            dataListUser = dataListUser.map(item => {
+                return {
+                    'id': item.id,
+                    'username': item.username,
+                    'name': item.name,
+                    'email': item.email
+                }
+            })
+            setListUser(dataListUser);
+            dispatch(setLoading(false))
+        } catch (error) {
+            dispatch(setLoading(false))
+            if(error.response) {
+                let message = error.response.data.message;
+                toast.error(message);
+            }
+        }
     }
     useEffect(()=>{
 
         startApi();
     }, []);
 
-    useEffect(()=>{
-        const handleSearch = async () => {
-            let res = await getListUsersAPI(token, {'username': searchDebounce, 'role_code': "doctor", "department_id": "safjdsgjk"});
-            let data = res.data;
-            setListSearch(data.data);
-        }
-        handleSearch();
-    }, [searchDebounce]);
+    // useEffect(()=>{
+    //     const handleSearch = async () => {
+    //         let res = await getListUsersAPI(token, {'username': searchDebounce, 'role_code': "doctor", "department_id": "safjdsgjk"});
+    //         let data = res.data;
+    //         setListSearch(data.data);
+    //     }
+    //     handleSearch();
+    // }, [searchDebounce]);
 
     return ( 
         <div className="adminItem">
@@ -144,7 +171,7 @@ function UpdateDepartment() {
                     
                     <div className="col-12">
                         <Form.Group>
-                            <Form.Label>Name</Form.Label>
+                            <Form.Label>Mô tả</Form.Label>
                             <CKEditor
                                 editor={ ClassicEditor }
                                 data={department.description}
@@ -159,7 +186,7 @@ function UpdateDepartment() {
                     <div className="col-12">
                         <h4>Danh sách bác sĩ</h4>
                     </div>
-                    <div className="col-12">
+                    {/* <div className="col-12">
                         {
                             department.docters.map((val,index) => (
                                 <div className="row" key={index}>
@@ -202,6 +229,56 @@ function UpdateDepartment() {
                                 </Button>
                             </div>
                         </div>      
+                    </div> */}
+                     <div className="col-4">
+                        <Form.Group>
+                            {/* <Autocomplete 
+                                label="Danh sách bác sĩ của phòng"
+                                id="grouped-demo"
+                                getOptionLabel={(option) => option.name}
+                                options={listUser}
+                                onChange={(value) => {
+                                    // let arrHandle = value.map(item=>{
+                                    //     return i
+                                    // });
+                                    console.log(value);
+                                    // setDataVaccine({...dataVaccine, 'sick_ids': arrHandle});
+                                    // setSick(value)
+                                }}
+                                value={department.docters}
+                                // getOptionLabel={(option) => option.title}
+                                renderInput={(params) => <TextField {...params} label="Chọn bác sĩ" />}
+                            /> */}
+                            <Autocomplete
+                                multiple
+                                id="tags-readOnly"
+                                options={listUser}
+                                // defaultValue={[top100Films[12].title, top100Films[13].title]}
+                                renderInput={(params) => {
+                                    // console.log(params)
+                                    
+                                    return <TextField {...params} label="Bác sĩ" placeholder="Chọn bác sĩ" />
+                                }}
+                                onChange={(e, value) => {
+                                    setDepartment({...department, docters: value});
+                                }}
+                                renderOption={(props, option) => (
+                                    <Box
+                                        component="li"
+                                        {...props}
+                                    >
+                                        {option.username} - {option.name}
+                                    </Box>
+                                )}
+                                value={department.docters}
+                                // filterOptions={(options, state) => {
+
+                                // }}
+                                getOptionLabel={(option) => option.username}
+                                isOptionEqualToValue={(option, value) => option.id === value.id}
+                            />
+                        </Form.Group>
+                        
                     </div>
                 </div>
                 <Form.Group className="mt-2">
