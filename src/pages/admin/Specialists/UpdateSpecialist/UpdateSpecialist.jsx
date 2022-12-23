@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Await, Link, useParams } from "react-router-dom";
 import { getSpecialist, postListServiceAPI, updateSpecialist } from "../../../../services/SpecialistService";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string, number, date, InferType, ref } from 'yup';
 import { toast,ToastContainer } from 'react-toastify';
@@ -13,6 +13,8 @@ import {CKEditor} from "@ckeditor/ckeditor5-react"
 // import { InlineEditor } from "@ckeditor/ckeditor5-build-inline";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { uploadFileService } from "../../../../services/normal/FileService";
+import { setLoading } from "../../../../redux/slices/InterfaceSile";
+
 
 const schema = object({
     code: string().required('Mã chuyên khoa không được bỏ trống'),
@@ -22,9 +24,10 @@ const schema = object({
 function UpdateSpecialist() {
     const token = useSelector(state => state.auth.token);
     const param = useParams();
+    const dispatch = useDispatch();
     const id = param.id;
     const [loading, getLoading] = useState(false);
-    const { register, handleSubmit, watch, formState: { errors } ,reset, setError, setValue, getValues } = useForm({
+    const { register, handleSubmit, watch, formState: { errors } ,reset, setError, setValue, getValues, control } = useForm({
         resolver: yupResolver(schema)
     });
     const [selectedFile, setSelectedFile] = useState();
@@ -34,6 +37,7 @@ function UpdateSpecialist() {
     const onSubmit = async (data) => {
         try {
             getLoading(true);
+            dispatch(setLoading(true))
             let file = new FormData();
             let fileName = null;
             if(data.file[0]){
@@ -52,6 +56,7 @@ function UpdateSpecialist() {
 
             let res = await updateSpecialist({token, data: dataRes, id});
             getLoading(false);
+            dispatch(setLoading(false))
             toast.success("Cập nhập chuyên khoa thành công !");
         } catch (error) {
                 getLoading(false);
@@ -62,6 +67,7 @@ function UpdateSpecialist() {
                 setError('description', { type: 'custom', message: data.username[0] });
                 // errors.email.message = ;
                 errors.username.message = data.username[0];
+                dispatch(setLoading(false))
         }
     }
     const onSelectFile = e => {
@@ -152,7 +158,16 @@ function UpdateSpecialist() {
                 </div>
                 <div className="row">
                     <FormGroup className="col-6">
-                        <FormControlLabel control={<Switch checked={getValues('status')??false} {...register("status")} />} label="Trạng thái" />
+                        <Controller
+                            control={control}
+                            name="status"
+                            render={({
+                                field: { onChange, onBlur, value, name, ref },
+                                fieldState: { invalid, isTouched, isDirty, error },
+                            }) => (
+                                <FormControlLabel control={<Switch onChange={onChange} checked={value ?? false} />} label="Trạng thái" />
+                            )}
+                        />
                     </FormGroup>
 
                     <FormGroup className="col-6">
