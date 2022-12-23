@@ -58,5 +58,19 @@ function exportPatient({token, id}) {
     });
 }
 
+function exportBookingByUser ({token, id}) {
+    let url = `normal/report/export-booking/${id}`;
+    let headers = {
+        'content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    };
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.get(url,{
+        headers: headers, 
+        responseType: 'blob',
+    });
+}
 
-export {exportTurnover, exportBookingDay, exportBooking, exportPatient}
+
+export {exportTurnover, exportBookingDay, exportBooking, exportPatient, exportBookingByUser}
