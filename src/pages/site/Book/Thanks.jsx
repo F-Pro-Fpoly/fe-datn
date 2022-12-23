@@ -15,7 +15,7 @@ function Thanks() {
             
             const returnBooking = async() => {
                 let res =  await  cancelBookingCodeServiceAPI( token , {status_id: 5} , code);     
-                console.log(res);  
+              
             }
     
             returnBooking()
