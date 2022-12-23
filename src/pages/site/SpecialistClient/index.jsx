@@ -150,6 +150,7 @@ function SpecialistClient () {
                                     <input type="email" name="email" className="form-control" placeholder="Địa chỉ email *" />
                                   </div>
                                   <div className="form-group">
+                                    <input type="hidden" name="id_contact_firebase" className="form-control" value="" />
                                     <input type="text" name="phone" className="form-control" placeholder="Nhập số điện thoại *" />
                                   </div>
                                   <div className="form-group">

@@ -101,7 +101,7 @@ function Contact(){
                                     <label> Email</label> 
                                   </div>
                                   <div className="flex-rev-contact">
-                                   <input type="hidden" name="type" value="0" />
+                                   <input type="hidden" name="type" value="2" />
                                     <input  type="text" placeholder="VD: 0794248804" name="phone" />
                                     <label>Số điện thoại</label>
                                   </div>

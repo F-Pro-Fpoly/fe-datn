@@ -157,14 +157,7 @@ function NavBarAdmin({className}) {
                     }
                     ]} icon="far fa-address-card" />
 
-                    <NavBarItem id="newsletter" name="Quản lý nhận tin sớm"  dropdownArr={[
-
-                    {
-                        name: "Danh sách nhận tin sớm",
-                        to: "/admin/tin-som/danh-sach-nhan-tin-som"
-                    }
-                    
-                    ]} icon="fas fa-bullhorn" />
+                    <NavBarItem id="newsletter" name="Quản lý nhận tin sớm" to = "/admin/tin-som/danh-sach-nhan-tin-som"  icon="fas fa-bullhorn" />
                     <NavBarItem id="report" name="Báo cáo"  to={'/admin/bao-cao'}  icon="far fa-clipboard" />
 
                     <NavBarItem id="setting" name="Tiện ích mở rộng" dropdownArr={[
