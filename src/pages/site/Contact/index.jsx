@@ -12,7 +12,7 @@ function getRandomInt(max) {
 }
 
 function Contact(){
-    const token = useSelector((state)=>state.auth.token);
+    
     const FormRep = useRef();
     const [getconfig, setConfig] = useState([])
     const submitContact = async (event) =>{
@@ -24,9 +24,8 @@ function Contact(){
         formData.append("id_contact_firebase", id_contact_firebase)
         const req = {
           "data": formData,
-          "type":0
         };
-        let res = await creatContactApi(req,token);
+        let res = await creatContactApi(req);
         writeUserData(formData.get("name"), formData.get("contents"), id_contact_firebase)
         FormRep.current.reset();
         toast.success(res.data.message) ;     
@@ -102,6 +101,7 @@ function Contact(){
                                     <label> Email</label> 
                                   </div>
                                   <div className="flex-rev-contact">
+                                   <input type="hidden" name="type" value="2" />
                                     <input  type="text" placeholder="VD: 0794248804" name="phone" />
                                     <label>Số điện thoại</label>
                                   </div>
