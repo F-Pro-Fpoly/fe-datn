@@ -101,7 +101,7 @@ function Payment({bookingDescription}) {
             dispatch(setLoading(true));
             setTimeout(()=>{
                 dispatch(setLoading(true));
-                navigate('/cam-on-da-dat-lich');
+                navigate('/thong-bao-da-dat-lich');
                 dispatch(setLoading(false));
             }, 2000);
         } catch (error) {
