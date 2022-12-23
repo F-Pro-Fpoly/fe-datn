@@ -39,6 +39,10 @@ function UpdateDepartment() {
 
     const SubmitForm =  async (e) => {
         let id = param.id
+        if(!department.name || !department.description){
+            toast.error("Vui lòng nhập đầy đủ thông tin");
+            return;
+        }
         e.preventDefault();
         try {
             dispatch(setLoading(true));
@@ -88,7 +92,7 @@ function UpdateDepartment() {
             let data = res.data;
             setSpecailist(data.data);
             let dataDepartment = resDepartment.data.data;
-            console.log(dataDepartment);
+            // console.log(dataDepartment);
             setDepartment({
                 code: dataDepartment.code,
                 name: dataDepartment.name,
