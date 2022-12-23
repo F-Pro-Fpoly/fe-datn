@@ -22,7 +22,7 @@ function Policy() {
                                             <Link to="/"><span>Trang chủ</span></Link>
                                         </li>
                                         <li className="breadcrumb-item">
-                                            <span>Chính sách bảo mật</span>image.png
+                                            <span>Chính sách bảo mật</span>
                                         </li>
                                     </ol>
                                     {/* <span>Trang chủ</span> / <span>Chính sách bảo mật</span> */}
