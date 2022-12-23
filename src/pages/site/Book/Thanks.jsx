@@ -1,7 +1,33 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link, useSearchParams } from "react-router-dom";
+import { cancelBookingCodeServiceAPI, cancelBookingServiceAPI } from "../../../services/BookingService";
 import "./Thanks.scss";
 function Thanks() {
+    const [searchParam] = useSearchParams();
+    const [statusPayment,setStatusPay] =useState("");
+    const token = useSelector(state => state.auth.token)
+    useEffect(() => {
+        setStatusPay(searchParam.get("vnp_TransactionStatus"))
+        const code = searchParam.get("vnp_TxnRef");
+        if(statusPayment =="02"){
+            
+            const returnBooking = async() => {
+                let res =  await  cancelBookingCodeServiceAPI( token , {status_id: 5} , code);     
+              
+            }
+    
+            returnBooking()
+        }
+
+    }, [statusPayment])
+    
     return ( 
+        <>  
+        {statusPayment != "02"  ?
+        
+    
         <section className="thanks">
             <div className="d-flex">
                 <div className="box-thanks">
@@ -22,6 +48,32 @@ function Thanks() {
             </div>
         
         </section>
+        :
+        <section className="cancel">
+        <div className="d-flex">
+            <div className="box-cancel">
+                <div className="header">
+                    <h2>ĐẶT LỊCH THẤT BẠI</h2>
+                </div>
+                <div className="noti">
+                    <p>
+                        Lịch khám của bạn đã không được đăng ký thành công. Nếu bạn có nhu cầu đặt lịch lại thì hãy tiếp tục đặt lịch nhé!
+                    </p>
+                </div>
+                <div className="button">
+                    <Link className="btn btn-primary" to={"/"}>Trở về trang chủ</Link>
+                    <Link className="btn btn-warning" to={"/lien-he"}>Liên hệ</Link>
+                </div>
+            </div>
+        </div>
+    
+    </section>
+    }
+
+    
+    
+        
+        </>
 
      );
 }

@@ -1,3 +1,4 @@
+import { compareDesc } from 'date-fns/esm';
 import API from './api';
 // import axios from 'axios';
 
@@ -115,5 +116,19 @@ function cancelBookingServiceAPI(token = null, data={} , id = null) {
         return [];
     }
 }
+function cancelBookingCodeServiceAPI(token = null, data={} , code = null) {
+    
+    try {
+        let headers ={}; 
+        if(token){
+            headers = {...headers, "Authorization": `Bearer ${token}`};
+            // console.log(configs);
+        }
+        return API.put(`auth/booking/updateCancel_Code/${code}`,data,{headers: headers});
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
 
-export { getListServiceAPI,getMyBookingServiceAPI,getDetailMyBookingServiceAPI,getListBookingDoctorServiceAPI,getListStatuServiceAPI,updateBookingDoctorServiceAPI, cancelBookingServiceAPI}
+export { getListServiceAPI,getMyBookingServiceAPI,getDetailMyBookingServiceAPI,getListBookingDoctorServiceAPI,getListStatuServiceAPI,updateBookingDoctorServiceAPI, cancelBookingServiceAPI, cancelBookingCodeServiceAPI}

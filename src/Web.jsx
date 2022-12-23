@@ -108,7 +108,7 @@ function Web() {
                     <Route path="/chi-tiet/:slug"  element={ (<DetailNews />)}/>
                     <Route path="/danh-muc-tin/:id"  element={ (<NewsCate />)}/>
                     <Route path="/dang-ky-tiem" element={ <InjectionRegistration /> } />
-                    <Route path="/cam-on-da-dat-lich" element={ < Thanks /> } />
+                    <Route path="/thong-bao-da-dat-lich" element={ < Thanks /> } />
                     <Route path="/chinh-sach-bao-mat" element={ <Policy /> } />
 
                 </Route>
