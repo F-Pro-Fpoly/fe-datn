@@ -1,19 +1,13 @@
 
 import "./PrivacyPolicy.scss";
-import { useEffect, useRef, useState } from 'react';
 import { Link } from "react-router-dom"
 
 
 
 function Policy() {
-    const start = async () => {
+  
+    document.title = "Chính sách bảo mật"
 
-    }
-    useEffect(() => {
-        document.title = "Chính sách bảo mật"
-        start()
-
-    }, []);
     return (
         <div className="Policy">
             <div className="policy-main">
@@ -28,7 +22,7 @@ function Policy() {
                                             <Link to="/"><span>Trang chủ</span></Link>
                                         </li>
                                         <li className="breadcrumb-item">
-                                            <span>Chính sách bảo mật</span>
+                                            <span>Chính sách bảo mật</span>image.png
                                         </li>
                                     </ol>
                                     {/* <span>Trang chủ</span> / <span>Chính sách bảo mật</span> */}
