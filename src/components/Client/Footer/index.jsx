@@ -79,8 +79,8 @@ function Footer (getconfig) {
                                     <h3>GIỚI THIỆU</h3>
                                     <Link to="/ve-chung-toi">Về chúng tôi</Link>                            
                                     <Link to="/tin-tuc">Tin tức</Link>                        
-                                    <Link to="#">Liên hệ hợp tác</Link>                        
-                                    <Link to="#">Câu hỏi thường gặp</Link>                        
+                                    <Link to="/lien-he">Liên hệ hợp tác</Link>                        
+                                    <Link to="/cau-hoi-thuong-gap">Câu hỏi thường gặp</Link>                        
                                     <Link to="#">Tuyển dụng</Link>                        
                                  
                                 </div>
@@ -93,7 +93,7 @@ function Footer (getconfig) {
                                     <Link to="/chuyen-khoa">Đăng ký lịch khám</Link>                            
                                     <Link to="/vaccine">Đăng ký tiêm vaccsine</Link>                        
                                     <Link to="/bieu-do-covid">Biểu đồ Covid</Link>                             
-                                    <Link to="#">Điều khoản sử dụng</Link>                             
+                                    <Link to="/dieu-khoan-su-dung">Điều khoản sử dụng</Link>                             
                                     <Link to="/chinh-sach-bao-mat">Chính sách Bảo mật</Link>                             
                                
                                 </div>
