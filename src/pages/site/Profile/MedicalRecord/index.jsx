@@ -115,18 +115,15 @@ function MedicalRecord() {
                 <div className="header-box">
                     <h3>Thông tin cá nhân</h3>
                     <div className="row">
-                        <div className="col-md-1"></div>
-                        <div className="col-md-3">
+                        <div className="col-md-4">
                             <div className="image">
                                 <img
                                 src={`${process.env.REACT_APP_BE}${infoUser.thumbnail_name}`}
                                 alt="ảnh đại điện" />
                             </div>
                         </div>
-                        <div className="col-md-1"></div>
-                        <div className="col-md-6">
+                        <div className="col-md-8">
                             <div className="info">
-                         
                                 <p>Họ và tên: {infoUser.name}</p>
                                 <p>Ngày sinh: {infoUser.date}</p>
                                 <p>Địa chỉ email: {infoUser.email}</p>
