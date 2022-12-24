@@ -80,6 +80,10 @@ import Tomail from "./pages/auth/Logout/Tomail";
 import VaccineCate from "./pages/site/Vaccine/VaccinCate";
 import Thanks from "./pages/site/Book/Thanks";
 import Policy from "./pages/site/PrivacyPolicy";
+import Question from "./pages/site/Question";
+import Rules from "./pages/site/Rules";
+
+
 
 
 function Web() {
@@ -110,6 +114,10 @@ function Web() {
                     <Route path="/dang-ky-tiem" element={ <InjectionRegistration /> } />
                     <Route path="/thong-bao-da-dat-lich" element={ < Thanks /> } />
                     <Route path="/chinh-sach-bao-mat" element={ <Policy /> } />
+                    <Route path="/cau-hoi-thuong-gap" element={ <Question /> } />
+                    <Route path="/dieu-khoan-su-dung" element={ <Rules /> } />
+
+
 
                 </Route>
                

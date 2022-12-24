@@ -1,0 +1,81 @@
+.Question {
+    .question-box{
+        background: url("img/img2.jpg") no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        text-align: left;
+        background-attachment: fixed;
+        padding: 70px 0px;
+        position: relative;
+    }
+    .question-box h1{
+        font-size: 30px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 15px;
+        position: relative;
+    }
+    .question-box::before{
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+    }
+    .question-main{
+        padding: 70px 0px;
+    }
+    .question-item{
+        font-size: 14px;
+        display: inline;
+        color: #ffffff;
+    }
+    .question-ol{
+        background-color: transparent;
+        padding: 0;
+        .breadcrumb-item{
+            font-size: 14px;
+            display: inline;
+            color: #ffffff;
+            span{
+                color: #ffffff !important;
+                font-size: 14px !important;
+                transition: all 0.3s !important;
+                line-height: 1.5 !important; 
+                font-weight: normal !important;
+
+            }
+        }
+    }
+    .conten-question{
+        position: relative;
+        background: #fff;
+        margin: -100px auto 120px;
+        border-radius: 5px;
+        min-height: 300px;
+        padding: 30px;
+        max-width: 1140px;
+        border: 1px solid #ddd;
+    }
+    .padding-li li{
+        list-style-type: none;
+        padding: 0 30px 30px;
+        margin-left: 30px;
+    }
+    .padding-li h6{
+        color:rgb(189, 125, 250);
+        list-style-type: none;
+        margin-left: 20px;
+
+    }
+    .padding-lis{
+        margin-left: 30px;
+        list-style-type: none;
+
+    }
+    
+}
