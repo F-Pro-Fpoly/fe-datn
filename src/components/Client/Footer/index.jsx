@@ -91,7 +91,7 @@ function Footer (getconfig) {
                                 <div className="row">
                                     <h3>DỊCH VỤ</h3>
                                     <Link to="/chuyen-khoa">Đăng ký lịch khám</Link>                            
-                                    <Link to="/vaccine">Đăng ký tiêm vaccsine</Link>                        
+                                    <Link to="/vaccine">Đăng ký tiêm vaccine</Link>                        
                                     <Link to="/bieu-do-covid">Biểu đồ Covid</Link>                             
                                     <Link to="/dieu-khoan-su-dung">Điều khoản sử dụng</Link>                             
                                     <Link to="/chinh-sach-bao-mat">Chính sách Bảo mật</Link>                             
