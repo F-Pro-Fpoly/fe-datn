@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { getCityService, getDistrictService, getWardService } from '../../../services/normal/CityService';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { toast, ToastContainer } from 'react-toastify';
 import { getInfoDoctor, getInfoDoctorV2, getUserClientService, updateUserClient } from '../../../services/UserService';
@@ -15,6 +15,7 @@ import ModalAddress from '../../../components/Client/ModalAddress/ModalAddress';
 import { Button, ButtonBase } from '@mui/material';
 import { createBookingVaccineService } from '../../../services/normal/BookingService';
 import { getVaccineApiByCode } from '../../../services/VaccineService';
+import { setLoading } from '../../../redux/slices/InterfaceSile';
 
 function InjectionRegistration() {
     const token = useSelector((state) => state.auth.token);
@@ -22,6 +23,7 @@ function InjectionRegistration() {
     const navigate = useNavigate();
     const [user, setUser] = useState({});
     const today = new Date().toISOString().split('T')[0];
+    const dispatch = useDispatch();
     const [bookingVaccine, setBookingVaccine] = useState({
         'date': '',
         'description': ''
@@ -55,14 +57,18 @@ function InjectionRegistration() {
         };
 
         try {
+            dispatch(setLoading(true));
             let res = await createBookingVaccineService({token, data: dataPost});
             let message = res.data.message;
             toast.success(message);
             setTimeout(() => {
+                dispatch(setLoading(true));
                 sessionStorage.removeItem('vaccine');
-                navigate('/')
+                navigate('/thong-bao-da-dat-lich')
+                dispatch(setLoading(false));
             }, 2000) 
         } catch (error) {
+            dispatch(setLoading(false));
             if(error.response) {
                 let message = error.response.data.message;
                 toast.error(message);
