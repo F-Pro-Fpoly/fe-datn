@@ -27,7 +27,7 @@ function NewsCategory() {
         let res = error.response;
         let data = res.data;
         let messages = data.message;
-        toast.error("Không bỏ trống cái trường dưới đây");
+        toast.error(messages);
       }
   
     }
