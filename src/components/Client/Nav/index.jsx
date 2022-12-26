@@ -131,9 +131,9 @@ function Nav (getconfig){
                             <div className="navb-mobile-bars" onClick={() => setShowMenuMobile(true)}>
                                 <i className="fa-solid fa-bars"></i>
                             </div>
-                            <div className="navb-mobile-contact">
+                            {/* <div className="navb-mobile-contact">
                                 <i className="fa-regular fa-bell"></i>
-                            </div>
+                            </div> */}
                             <Link className="navb-mobile-avatars" to={`/ho-so-ca-nhan`}>
                                 {/* <img src="https://booking.webestica.com/assets/images/avatar/01.jpg" alt="" /> */}
                                 <img src={user ? user.avatar : login} alt="" />
