@@ -74,7 +74,7 @@ function SpecialistClient () {
                           <Link to="/"><span>Trang chủ</span></Link>
                         </li>
                         <li className="breadcrumb-item">
-                          <Link to="chuyen-khoa" ><span>Chuyên khoa</span></Link>
+                           <span>Chuyên khoa</span>
                         </li>
                       </ol>
                     </div>
