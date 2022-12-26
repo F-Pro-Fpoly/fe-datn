@@ -222,58 +222,7 @@ function Report() {
                     </Modal>
                     
                 </tr>
-                <tr>
-                    <td>Báo cáo chi tiết của lịch khám</td>
-                    <td>
-                        <a className="btn btn-primary"  rel="noopener noreferrer"  onClick={handleShowDetail}>Xuất báo cáo</a>
-                    </td>
-
-                    
-                    <Modal show={showdetail} onHide={handleCloseDetail}>
-                            
-                            <div className="mod" > 
-                                <Modal.Header closeButton>
-                                <Modal.Title>BÁO CÁO LỊCH KHÁM</Modal.Title>
-                                </Modal.Header>
-                                <Form  method = "Post" >
-                                <Modal.Body>
-            
-                            
-                                    <div className="col-md-12">
-                                        <label className="form-label">Mã lịch khám</label>
-                                        <input type="text" className="form-control" 
-                                        name="code"
-                                        required
-                                        onChange={(e) => setCode({ code : e.target.value})}
-                                        placeholder="Nhập mã lịch khám"
-                                    />
-                                    </div>
-                                
-                        
-                                        
-                                        
-                                </Modal.Body>
-                                <Modal.Footer>
-                                <Button variant="secondary" onClick={handleCloseDetail}>
-                                    Đóng
-                                </Button>
-                        
-                                {/* <a  
-                            
-                                onClick={handleCloseDetail} href={`${process.env.REACT_APP_BE}`+`normal/report/bookingCode?code=${code.code}`}  rel="noopener noreferrer" className="btn btn-primary" >Xuất báo cáo</a> */}
-                    
-                                <button
-                                    className="btn btn-primary"
-                                    onClick={handleExportExcelBooking}
-                                    type="button"
-                                >Xuất báo cáo</button>
-                                </Modal.Footer>
-                                </Form>
-                            </div>
-                    </Modal>
-
-
-                </tr>
+                
 
                 <tr>
                     <td>Báo cáo lịch khám theo người dùng</td>
