@@ -57,6 +57,9 @@ const Comment = forwardRef(({}, ref) => {
     }
     return(
       <>
+      {Comment.length>0?(
+      <>
+     
       {Comment.map((item,index) => {
           return(
           <List sx={{ width: '100%', maxWidth: 850, bgcolor: 'background.paper' }} key={index}>
@@ -88,11 +91,18 @@ const Comment = forwardRef(({}, ref) => {
           <Divider variant="inset" component="li" />
         </List>
               )                  
-            })
+            }
+            
+            )
             }
              {loading && <Loading />}
+
              {paginate && <Paginate pagination = {paginate} onChangePage={onChangePage} />}
+           
             </>
+    ):( <p>Bình luận đầu tiên</p> )}
+    </>
+       
     )
 })
 export default Comment;

@@ -51,7 +51,9 @@ function News() {
     }
 
     return ( 
+        
         <div className="addNews">
+            {loading && <Loading />}
             <ToastContainer />
             <Form method="post" onSubmit={SubmitForm} ref={FormRef}>
                 <div className="row">

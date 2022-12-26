@@ -144,9 +144,10 @@ export default function DitailNews(){
                                 <h4 className="small-title">Chi tiết bình luận</h4>
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <Comment
-                                            ref={comentRef}
-                                        />
+                                       
+                                                   <Comment
+                                                    ref={comentRef}
+                                                />  
                                     </div>
                                 </div>
                             </div>

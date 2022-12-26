@@ -34,6 +34,7 @@ function NewsCategory() {
 
     return ( 
         <div className="addNews">
+            {loading && <Loading />}
             <ToastContainer
         position="top-right"
         autoClose={4000}
