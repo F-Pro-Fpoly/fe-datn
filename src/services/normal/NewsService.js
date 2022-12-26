@@ -4,7 +4,7 @@ function getListNewsAPI( search = {}, page = 1, limit = 6) {
     
     try {
         let headers ={}; 
-        let url = `normal/news/list-news-all?`;
+        let url = `normal/news/list?`;
         for (const key in search) {
             url += `${key}=${search[key]}&`;
         }
