@@ -83,6 +83,7 @@ function UpdateDepartment() {
 
     const startApi = async () => {
         try {
+            // console.log(123);
             let id = param.id;
             dispatch(setLoading(true))
             // get all specailist
@@ -93,14 +94,18 @@ function UpdateDepartment() {
             setSpecailist(data.data);
             let dataDepartment = resDepartment.data.data;
             // console.log(dataDepartment);
-            setDepartment({
-                code: dataDepartment.code,
+
+            
+            setDepartment(prev => ({ ...prev,
                 name: dataDepartment.name,
-                specialist_id: dataDepartment.specialist_id,
-                active: dataDepartment.active ?? 0,
-                description: dataDepartment.description,
-                docters : dataDepartment.docters
-            });
+               code: dataDepartment.code,
+               name: dataDepartment.name,
+               specialist_id: dataDepartment.specialist_id,
+               active: dataDepartment.active ?? 0,
+               description: dataDepartment.description,
+               docters : dataDepartment.docters }));
+
+            // console.log(department);
 
             let resListUser = await getListUsersV2_1({token, search: {'role_code': "doctor", 'specailist_id': dataDepartment.id}});
             let dataListUser = resListUser.data.data;
@@ -148,7 +153,7 @@ function UpdateDepartment() {
                              value={department.code} 
                              onChange = {(e) => setDepartment({...department, code: e.target.value})}
                              placeholder="Mã code" name="code" 
-                             disabled
+                            readOnly
                             />        
                         </Form.Group>
                     </div>
