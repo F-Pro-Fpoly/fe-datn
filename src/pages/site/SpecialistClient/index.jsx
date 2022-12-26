@@ -96,7 +96,7 @@ function SpecialistClient () {
                                             <div className="specialBlock_20">
                                                 <div className="wrapImgPart">
                                                     <Link className="imgPart figure1" to={item.slug}>
-                                                      <img src={ `${process.env.REACT_APP_BE}${item.thumbnail_name}` } alt="" />
+                                                      <img src={ `${process.env.REACT_APP_BE}${item.thumbnail_name}` } alt="hình chuyên khoa" />
                                                     </Link>
                                                 </div>
                                                 <div className="textPart">
@@ -110,7 +110,7 @@ function SpecialistClient () {
                                                 </div>
                                             </div>
                                         </Link>
-                                    )                                               
+                                    )                                                 
                               })
                           }
                         </div>
