@@ -46,15 +46,16 @@ function News() {
             let res = error.response;
             let data = res.data;
             let messages = data.message;
-            toast.error("Không bỏ trống cái trường dưới đây");
+            toast.error(messages);
         }
     }
 
     return ( 
         
         <div className="addNews">
-            {loading && <Loading />}
+
             <ToastContainer />
+            {loading && <Loading />}
             <Form method="post" onSubmit={SubmitForm} ref={FormRef}>
                 <div className="row">
                     <div className="col-4">

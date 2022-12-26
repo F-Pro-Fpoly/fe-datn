@@ -111,7 +111,6 @@ function MedicalRecord() {
             
              
             <div className="card-body">
-
                 <div className="header-box">
                     <h3>Thông tin cá nhân</h3>
                     <div className="row">

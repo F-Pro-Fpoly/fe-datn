@@ -2,7 +2,7 @@ import API from './api';
 // import axios from 'axios';
 
 
-function getListNewsCatgoryAPI(token = null,page=1, search = {}) {
+function getListNewsCatgoryAPI(token = null, search = {},page = 1) {
     
     try {
         let headers ={}; 
@@ -11,8 +11,9 @@ function getListNewsCatgoryAPI(token = null,page=1, search = {}) {
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
-        url += `?page=${page}&name=${search.name ?? ""}&code=${search.code??""}&status=${search.status??""}&slug=${search.slug??""}`;
-        return API.get(url, {headers: headers});
+        search = {...search}
+        url += `?page=${page}`;
+        return API.get(url, {headers: headers,params: search});
     } catch (error) {
         console.error(error);
         return [];

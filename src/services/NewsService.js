@@ -11,8 +11,9 @@ function getListNewsAPI(token = null, search = {}, page = 1,category_id = null) 
             headers = {...headers, "Authorization": `Bearer ${token}`};
             // console.log(configs);
         }
-        url += `?page=${page}&name=${search.name ?? ""}&category_id=${category_id}&created_at=${search.created_at ?? ""}&featured=${search.featured ?? ""}&code=${search.code??""}&status=${search.status??""}&slug=${search.slug??""}&content=${search.content??""}&category_id=${search.category_id ?? ""}`;
-        return API.get(url, {headers: headers});
+        search = {...search}
+        url += `?page=${page}&category_id=${category_id}&category_id=${search.category_id ?? ""}`;
+        return API.get(url, {headers: headers,params:search});
     } catch (error) {
         console.error(error);
         return [];
