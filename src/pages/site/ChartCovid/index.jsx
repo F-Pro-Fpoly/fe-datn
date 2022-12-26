@@ -48,7 +48,7 @@ function ChartCovid() {
                       <Link to="/"><span style={{color: "white"}}>Trang chủ</span></Link>
                     </li>
                     <li className="breadcrumb-item">
-                      <Link to="chuyen-khoa" ><span style={{color: "white"}}>Biểu đồ covid</span></Link>
+                      <span style={{color: "white"}}>Biểu đồ covid</span>
                     </li>
                   </ol>
                 </div>
