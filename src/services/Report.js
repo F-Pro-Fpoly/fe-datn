@@ -58,6 +58,20 @@ function exportPatient({token, id}) {
     });
 }
 
+function exportBookingPdf({token, id}) {
+    let url = `auth/user/export-booking/${id}`;
+    let headers = {
+        'content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    };
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.get(url,{
+        headers: headers, 
+        responseType: 'blob',
+       
+    });
+}
 function exportBookingByUser ({token, id}) {
     let url = `normal/report/export-booking/${id}`;
     let headers = {
@@ -71,6 +85,23 @@ function exportBookingByUser ({token, id}) {
         responseType: 'blob',
     });
 }
+function exportTopView ({token, params}) {
+    let url = `/normal/report/export-news-top`;
+    let headers = {
+        'content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    };
+    if(token) {
+        headers = {...headers, "Authorization": `Bearer ${token}`};
+    }
+    return API.get(url,{
+        headers: headers, 
+        responseType: 'blob',
+        params: params,
+
+    });
+}
 
 
-export {exportTurnover, exportBookingDay, exportBooking, exportPatient, exportBookingByUser}
+
+
+export {exportTurnover, exportBookingDay, exportBooking, exportPatient, exportBookingByUser, exportBookingPdf, exportTopView}

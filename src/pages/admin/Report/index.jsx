@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useState } from "react";
-import { exportBooking, exportBookingByUser, exportBookingDay, exportTurnover } from "../../../services/Report";
+import { exportBooking, exportBookingByUser, exportBookingDay, exportTurnover, exportTopView } from "../../../services/Report";
 import { useSelector, useDispatch } from "react-redux";
 // import useExportFile from "../../../hooks/useExportFile";
 import ExportFile from "../../../hooks/useExportFile";
@@ -135,6 +135,25 @@ function Report() {
             })
             setOptionUser(data);
             setShowByUser(true);
+            dispatch(setLoading(false));
+        } catch (error) {
+            if(error.response) {
+                toast.error(error.response.data.message);
+                dispatch(setLoading(false));
+                return;
+            }
+        }
+    }
+
+    const handleExportTopView  = async () => {
+        try {
+            dispatch(setLoading(true));
+            let res = await exportTopView({token, params:{
+                from: date.from,
+                to:date.to
+            }});
+            ExportFile(res.data, 'eport_TopView.xlsx');
+            handleClose();
             dispatch(setLoading(false));
         } catch (error) {
             if(error.response) {
@@ -298,6 +317,63 @@ function Report() {
                                 </Form>
                             </div>
                     </Modal>
+                </tr>
+
+                <tr>
+                    <td>Top bài viết được xem nhiều</td>
+
+                    <td>
+                    <a className="btn btn-primary"  rel="noopener noreferrer"  onClick={handleShow}>Xuất báo cáo</a>
+                    </td>
+
+                    <Modal show={show} onHide={handleClose}>
+                            
+                            <div className="mod" > 
+                                <Modal.Header closeButton>
+                                <Modal.Title>Top bài viết</Modal.Title>
+                                </Modal.Header>
+                                <Form  method = "Post" >
+                                <Modal.Body>
+            
+                                <div className="row g-3">
+                                    <div className="col-md-6">
+                                        <label className="form-label">Từ ngày</label>
+                                        <input type="date" className="form-control" 
+                                        name="from"
+                                        onChange={(e) => setDate({...date, "from": e.target.value})}
+                                    
+                                    />
+                                    </div>
+                                
+                                    <div className="col-md-6">
+                                        <label className="form-label">Đến ngày</label>
+                                        <input type="date"  className="form-control" 
+                                        name="to"
+                                        onChange={(e) => setDate({...date, "to": e.target.value})}
+                                        />
+                                    </div>
+                                </div>
+                                        
+                                        
+                                </Modal.Body>
+                                <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Đóng
+                                </Button>
+                        
+                                {/* <a onClick={handleClose} href={`${process.env.REACT_APP_BE}`+`normal/report/bookingDay?from=${date.from}&to=${date.to}`}  rel="noopener noreferrer" className="btn btn-primary" >Xuất báo cáo</a> */}
+
+                                <button 
+                                    className="btn btn-primary"
+                                    onClick={handleExportTopView}
+                                    type="button"
+                                >Xuất báo cáo</button>
+                    
+                                </Modal.Footer>
+                                </Form>
+                            </div>
+                    </Modal>
+                    
                 </tr>
             </tbody>
             

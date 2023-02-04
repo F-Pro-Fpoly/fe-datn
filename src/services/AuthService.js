@@ -5,8 +5,9 @@ import API from './api';
 function registerApi(data) {
     
     return API.post(`/register`, data);
-
 }
+
+
 
 function loginApi(data) {
     return API.post('/login', data);
