@@ -58,7 +58,7 @@ function exportPatient({token, id}) {
     });
 }
 
-function exportBookingPdf({token, id}) {
+function exportPDFDetail({token, id}) {
     let url = `auth/user/export-booking/${id}`;
     let headers = {
         'content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -72,6 +72,8 @@ function exportBookingPdf({token, id}) {
        
     });
 }
+
+
 function exportBookingByUser ({token, id}) {
     let url = `normal/report/export-booking/${id}`;
     let headers = {
@@ -104,4 +106,4 @@ function exportTopView ({token, params}) {
 
 
 
-export {exportTurnover, exportBookingDay, exportBooking, exportPatient, exportBookingByUser, exportBookingPdf, exportTopView}
+export {exportTurnover, exportBookingDay, exportBooking, exportPatient, exportBookingByUser, exportTopView,exportPDFDetail}

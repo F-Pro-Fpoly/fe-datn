@@ -76,8 +76,6 @@ function ListPatient() {
         return;
       }
     }
-   
-    
   } 
 
     return (  
