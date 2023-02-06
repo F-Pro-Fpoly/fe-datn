@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';   
 import { cancelBookingServiceAPI, getMyBookingServiceAPI } from '../../../../services/BookingService';
 import { useEffect } from 'react';
+import {exportPDFDetail} from '../../../../services/Report';
+import ExportFile from "../../../../hooks/useExportFile";
+
 import Loading from '../../../../components/Loading/Loading';
 import { ToastContainer, toast } from "react-toastify";
 import "./ListBookingUser.scss"
@@ -11,6 +14,7 @@ function ListBookingUser() {
 
     const token = useSelector(state => state.auth.token)
     const user_id = useSelector(state => state.auth.user.id)
+    const dispatch = useDispatch();
 
     const [getNewBooking, setNewBooking] = useState([]);
     const [getCancelBooking, setCancelBooking] = useState([]);
@@ -42,10 +46,24 @@ function ListBookingUser() {
 
     }, [])
 
-const handleDow = (id) =>{
-    
-    console.log('id là', id);
-}
+    const handleDow = async (id) => {
+        
+        try {
+            // dispatch(getLoading(true));   
+          let res = await exportPDFDetail({token, id})
+      
+          ExportFile(res.data, 'Chitietlichkham.pdf');
+        //   dispatch(getLoading(false));
+        } catch (error) {
+          if(error.response) {
+            console.log(error.response.data.message);
+            // dispatch(getLoading(false));
+            return;
+          }
+        }
+      } 
+
+
 
     return (
 
@@ -173,9 +191,7 @@ const handleDow = (id) =>{
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <button onClick={handleDow(item.id)} >
-                                                            Tải xuống
-                                                            </button>
+                                                        <Link onClick={() => handleDow(item.id)}>Tải xuống</Link>
                                                     </div>
 
                                                     :
